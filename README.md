@@ -6,6 +6,7 @@
 
 <p align="left">
   <img height="150" src="./pokemon.png" />
+  PRUEEBAAAAAAA
 </p>
 
 ## Objetivos del Proyecto
