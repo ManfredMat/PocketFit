@@ -60,6 +60,7 @@ try{
     await Exercise.destroy({where:{name:name}})
 res.send({message: "Entry successfully deleted"})
 }
+
 catch(error){
     next(error)
 }
