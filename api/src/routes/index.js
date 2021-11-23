@@ -1,19 +1,19 @@
 const { Router } = require('express');
 
-const eventRoute = require('./Event');
-const exerciseRoute = require('./Exercise');
-const routineRoute = require('./Routine');
-const timetableRoute = require('./Timetable');
-const userRoute = require('./User');
+const eventRoute = require('./Routes/Event');
+const exerciseRoute = require('./Routes/Exercise');
+const routineRoute = require('./Routes/Routine');
+const timetableRoute = require('./Routes/Timetable');
+const userRoute = require('./Routes/User');
 
 
 
 const router = Router();
 
-router.use('/api' , eventRoute)
-router.use('/api' , exerciseRoute)
-router.use('/api' , routineRoute)
-router.use('/api' , timetableRoute)
-router.use('/api' , userRoute)
+router.use('/api/event' , eventRoute)
+router.use('/api/exercises' , exerciseRoute)
+router.use('/api/routines' , routineRoute)
+router.use('/api/timetables' , timetableRoute)
+router.use('/api/users' , userRoute)
 
 module.exports = router;
