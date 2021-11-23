@@ -50,7 +50,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       defaultValue: 0
     },
-    running: {
+    running: { 
       type: DataTypes.STRING,
       defaultValue: 0
     },
