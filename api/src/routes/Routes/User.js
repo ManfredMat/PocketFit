@@ -1,32 +1,16 @@
-
 const { Router } = require('express');
 const { User } = require('../../db')
 const router = Router();
+const {createUser, getAllUsers, getSpeficicUser, createRoutine, getRoutine, deleteRoutine, updateRoutine} = require('../Controllers/User')
 
-router.post('/register_user', (req, res, next)=>{
-        res.send('post created succs')
-} )
-router.post('/traine_plan', (req, res, next)=>{
-        res.send('training created succs')
-} )
-router.get('/', (req, res, next)=>{
-        res.send('allusers created succs')
-} )
-router.get('/:id', (req, res, next)=>{
-        res.send('id created succs')
-} )
-router.get('/traine_plan:id', (req, res, next)=>{
-        res.send('training id plan created succs')
-} )
-router.get('/traine_plan:id', (req, res, next)=>{
-        res.send('training id plan created succs')
-} )
-router.put('/?id=&prop=', (req, res, next)=>{
-        res.send('training id plan changed succs')
-} )
-router.delete('/:name', (req, res, next)=>{
-        res.send('training id plan deleted succs')
-} )
+router.post('/register_user', createUser )
+router.get('/', getAllUsers )
+router.get('/:id', getSpeficicUser )
+router.post('/traine_plan/:id', createRoutine)
+router.get('/traine_plan/:id', getRoutine)
+router.delete('/traine_plan/:id', deleteRoutine)
+router.put('/traine_plan/:id/:prop', updateRoutine)
+
 
 module.exports = router;
 
