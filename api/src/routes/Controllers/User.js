@@ -1,4 +1,4 @@
-const {User} = require ('../../db')
+const {User, Routine, Exercise} = require ('../../db')
 
 const createUser = async (req, res) =>{
     const {name, lastname, email, age, height, weight, 
@@ -35,11 +35,24 @@ const getSpeficicUser = async(req, res) =>{
         res.send(err);
     }
 }
+const modifyUser = async(req, res)=>{
+    const {id, prop} = req.params
+    const {update} = req.body
+    try{
+        const oneUser= await User.findOne({where:{id:id}})
+        oneUser[prop] = update
+        await oneUser.save()
+       res.send(oneUser)
+    }
+       catch(error){
+           res.send(error)
+       }
+}
 
 const createRoutine = async(req, res) => {
         const {id} = req.params
     try{
-        const createPersonalRoutine = await User.findOne({where:{id:id}});
+        const createPersonalRoutine = await Routine.findOne({where:{id:id}});
         res.json(createPersonalRoutine);
     }
     catch(err){
@@ -50,7 +63,13 @@ const createRoutine = async(req, res) => {
 const getRoutine = async(req, res) => {
     const {id} = req.params
 try{
-    const getRoutine = await User.findOne({where:{id:id}});
+    const getRoutine = await Routine.findOne({where:{id:id}, include:[{
+        model: Exercise , attributes:['name'],
+        through:{
+            attributes:[]
+        }
+    }]}
+        );
     res.json(getRoutine);
 }
 catch(err){
@@ -59,9 +78,9 @@ catch(err){
 };
 
 const deleteRoutine = async(req, res) => {
-    const {name} = req.params
+    const {id} = req.params
 try{
-    await User.destroy({where:{name:name}});
+    await Routine.destroy({where:{id:id}});
     res.json('Routine deleted');
 }
 catch(err){
@@ -73,14 +92,14 @@ const updateRoutine = async(req , res) =>{
     const{id, prop} = req.params
     const {update} = req.body
     try{
-    const oneRoutine= await User.findOne({where:{id:id}})
+    const oneRoutine= await Routine.findOne({where:{id:id}})
     oneRoutine[prop] = update
     await oneRoutine.save()
    res.send(oneRoutine)
 }
    catch(error){
-       next(error)
+       res.send(error)
    }
 }
 
-module.exports={ createUser, getSpeficicUser, getAllUsers, createRoutine, getRoutine, deleteRoutine, updateRoutine};   
+module.exports={ createUser, getSpeficicUser, getAllUsers, createRoutine, getRoutine, deleteRoutine, updateRoutine, modifyUser};   
