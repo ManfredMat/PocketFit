@@ -1,13 +1,13 @@
 const {Routine , Exercise} = require('../../db')
 
  const createRoutine = async (req , res)=>{
-    let {kindOfRoutine  , excercises} = req.body;
+    let {kindOfRoutine  , exercises} = req.body;
     try{
        const newRoutine = await  Routine.create({
            kindOfRoutine
        })
 
-       await newRoutine.setExercises(excercises)
+       await newRoutine.setExercises(exercises)
 
        res.json(newRoutine)
     }
