@@ -1,5 +1,4 @@
 const { Router } = require('express');
-const { User } = require('../../db');
 const {getAllRoutines , createRoutine , updateRoutineProp , removeRoutine } = require('../Controllers/Routine');
 const router = Router();
 
