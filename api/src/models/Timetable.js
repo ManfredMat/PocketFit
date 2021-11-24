@@ -3,27 +3,10 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('timetable', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey:true,
-      autoIncrement:true,
-    },
-    beginning:{
+  sequelize.define('pokemon', {
+    name: {
       type: DataTypes.STRING,
-      allowNull:false,
+      allowNull: false,
     },
-    ending:{
-      type: DataTypes.STRING,
-      allowNull:false,
-    },
-    kindOfRoutine:{
-      type: DataTypes.STRING,
-      allowNull:false,
-    },
-    availability:{
-      type: DataTypes.INTEGER,
-      defaultValue:0,
-    }
   });
 };
