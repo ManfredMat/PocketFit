@@ -6,4 +6,8 @@ Esta aplicación, tanto web como móvil, permitirá a los clientes y a la admini
 
 ## Tipos de Usuarios
 - Cliente
+
 - Administrador
+=======
+- Administrador
+
