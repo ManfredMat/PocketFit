@@ -15,16 +15,16 @@ router.get('/', (req, res, next)=>{
 router.get('/:id', (req, res, next)=>{
         res.send('id created succs')
 } )
-router.get('/traine_plan:id', (req, res, next)=>{
-        res.send('training id plan created succs')
+router.get('/traine_plan/:id', (req, res, next)=>{
+        res.send('training id plan get succs')
 } )
-router.get('/traine_plan:id', (req, res, next)=>{
-        res.send('training id plan created succs')
+router.post('/traine_plan/:id', (req, res, next)=>{
+        res.send('training id plan posted succs')
 } )
-router.put('/?id=&prop=', (req, res, next)=>{
+router.put('/traine_plan/:id/:name', (req, res, next)=>{
         res.send('training id plan changed succs')
 } )
-router.delete('/:name', (req, res, next)=>{
+router.delete('/traine_plan/:name', (req, res, next)=>{
         res.send('training id plan deleted succs')
 } )
 
