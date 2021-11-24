@@ -1,5 +1,6 @@
 const {Exercise} = require('../../db')
 
+
 const createExercise = async(req , res) =>{
 const { name, description, video, discipline } = req.body;
 try{
