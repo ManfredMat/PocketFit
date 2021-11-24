@@ -2,7 +2,26 @@ import React, { useState } from "react";
 
 const GymName = "CrossGym";
 const month = "December";
+
 const monthDays = [
+  [[1], ["Pelea en vivo"]],
+  [[3] ,[]],
+  [[4] ,[]],
+  [[5] ,[]],
+  [[6] ,[]],
+  [[7] ,[]],
+  [[8] ,[]],
+  [[9] ,[]],
+  [[10] ,[]],
+  [[11] ,[]],
+  [[12] ,[]],
+  [[13] ,[]],
+  [[14] ,[]],
+  [[15] ,[]],
+  [[16] ,[]],
+  [[17] ,[]],
+  [[18] ,[]],
+  [[19] ,[]],
   [[1], ["Pelea en vivo"]],
   [[3] ,[]],
   [[4] ,[]],
@@ -25,10 +44,14 @@ const monthDays = [
   [[21] ,[]],
   [[22] ,[]],
   [[23] ,[]],
-  [[24] ,["Navidad"]],
+  [[24] ,["Navidad","Fiesta"]],
   [[25] ,[]],
   [[26] ,[]],
   [[27] ,[]],
+  [[28] ,[]],
+  [[29] ,[]],
+  [[30] ,[]],
+  [[31] ,["Año Nuevo"]],
   [[28] ,[]],
   [[29] ,[]],
   [[30] ,[]],
@@ -44,9 +67,9 @@ function Home() {
         <div name="row-1">
           <section name="mes">
             <h2>{month}</h2>
-            <div>{
+            <div style={{display: "flex",flexWrap:"wrap", width:"500px"}}>{
               monthDays.map((e) => 
-              <div>
+              <div style={{width:"71px"}}>
                 <h3>{e[0]}</h3>
                 <ul>
                   {e[1].map((evento) => <li>{evento}</li>)}
