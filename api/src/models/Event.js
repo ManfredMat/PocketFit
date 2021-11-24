@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
         allowNull: false,
         primaryKey: true
       },
-  kindOfEvent:{
+  clase:{
         type: DataTypes.BOOLEAN,
         defaultValue: false,
         allowNull: false,
