@@ -6,6 +6,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import SignUp from "./components/SignUp";
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
 export default function App() {
   const Stack1 = createNativeStackNavigator();
@@ -13,7 +15,7 @@ export default function App() {
 
 
   return (
-    <>
+    <Provider store={store}>
 
       <NavigationContainer>
         <Stack.Navigator initialRouteName="nav">
@@ -45,6 +47,7 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
-    </>
+      
+    </Provider>
   );
 }
