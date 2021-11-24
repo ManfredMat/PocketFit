@@ -6,7 +6,7 @@ modif Steve prueba 2 >,<
 
 <p align="left">
   <img height="150" src="./pokemon.png" />
-  PRUEEBAAAAAAA 2s
+  PRUEEBAAAAAAAA 2s
 </p>
 
 ## Objetivos del Proyecto
