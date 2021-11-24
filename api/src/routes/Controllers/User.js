@@ -35,6 +35,19 @@ const getSpeficicUser = async(req, res) =>{
         res.send(err);
     }
 }
+const modifyUser = async(req, res)=>{
+    const {id, prop} = req.params
+    const {update} = req.body
+    try{
+        const oneUser= await User.findOne({where:{id:id}})
+        oneUser[prop] = update
+        await oneUser.save()
+       res.send(oneUser)
+    }
+       catch(error){
+           res.send(error)
+       }
+}
 
 const createRoutine = async(req, res) => {
         const {id} = req.params
@@ -89,4 +102,4 @@ const updateRoutine = async(req , res) =>{
    }
 }
 
-module.exports={ createUser, getSpeficicUser, getAllUsers, createRoutine, getRoutine, deleteRoutine, updateRoutine};   
+module.exports={ createUser, getSpeficicUser, getAllUsers, createRoutine, getRoutine, deleteRoutine, updateRoutine, modifyUser};   
