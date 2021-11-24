@@ -7,7 +7,7 @@ router.get('/all',getAllRoutines)
 
 router.post('/',createRoutine)
 
-router.put('/:id/:key' , updateRoutineProp)
+router.put('/:id/:prop' , updateRoutineProp)
 
 router.delete('/remove/:id', removeRoutine)
 
