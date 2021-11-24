@@ -44,9 +44,9 @@ function Home() {
         <div name="row-1">
           <section name="mes">
             <h2>{month}</h2>
-            <div>{
+            <div style={{display: "flex",flexWrap:"wrap", width:"500px"}}>{
               monthDays.map((e) => 
-              <div>
+              <div style={{width:"71px"}}>
                 <h3>{e[0]}</h3>
                 <ul>
                   {e[1].map((evento) => <li>{evento}</li>)}
