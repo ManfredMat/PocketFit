@@ -5,6 +5,7 @@ const { createExercise,
     getExerciseById,
     updateExercise,
     deleteExercise} =require("../Controllers/Exercise.js")
+    
 const router = Router();
 
 
