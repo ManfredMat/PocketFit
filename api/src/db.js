@@ -52,8 +52,8 @@ Event.belongsToMany(User , {through:'UserEvent'})
 Exercise.belongsToMany(Routine , {through:'ExerciseRoutine'})
 Routine.belongsToMany(Exercise , {through:'ExerciseRoutine'})
 
-Timetable.belongsToMany(Event , {through:'EventTimetable'})
-Event.belongsToMany(Timetable , {through:'EventTimetable'})
+Timetable.hasMany(Event , {through:'EventTimetable'})
+
 
 module.exports = {
   ...sequelize.models, 
