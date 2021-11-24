@@ -13,7 +13,6 @@ export default class SignUp extends Component {
                     <Input/>
                     <Input/>
                     <Input/>
-                    <Button/>
                 </View>
             </View>
         )
