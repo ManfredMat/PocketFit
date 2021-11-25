@@ -9,6 +9,7 @@ function Landing() {
           isLogged ? navigate("/home") : navigate("/login")
         }, 3000);
         return () => clearTimeout(timer);
+        // eslint-disable-next-line 
       }, []);
 
     let isLogged = false;
