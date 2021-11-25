@@ -1,13 +1,6 @@
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom"
 
 function Login() {
-    const navigate = useNavigate();
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        navigate("/home")
-    }
 
     return (
         <div style={{display: "flex",flexDirection: "column", alignItems: "center"}}>
@@ -19,7 +12,7 @@ function Login() {
                 <Link to="/home"><button>Entrar</button></Link> 
                                
             </form>
-          <Link to="/passreco"><a href="#">Recuperar contraseña</a></Link> 
+          <Link to="/passreco"><h6>Recuperar contraseña</h6></Link> 
         </div>
     )
 };
