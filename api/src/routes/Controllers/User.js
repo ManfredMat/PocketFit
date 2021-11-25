@@ -3,11 +3,11 @@ const {User, Routine, Exercise} = require ('../../db')
 const createUser = async (req, res) =>{
     const {name, lastname, email, age, height, weight, 
         backsquat, pushpress, snatch, clean, running, 
-        pullups, password, isadmin, isprofessor, isuser} = req.body;
+        pullups, password, isadmin, isprofessor, isuser, paymentday} = req.body;
     try{
         const newUser = await User.create({name, lastname, email, age, height, weight, 
             backsquat, pushpress, snatch, clean, running, 
-            pullups, password, isadmin, isprofessor, isuser});
+            pullups, password, isadmin, isprofessor, isuser, paymentday});
         res.json(newUser)
     }
     catch(err){
