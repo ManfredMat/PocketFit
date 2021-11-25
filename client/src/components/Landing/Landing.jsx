@@ -17,7 +17,7 @@ function Landing() {
 
   <h2>Cargando...</h2>
     return (
-        <div style={{display: "flex",flexDirection: "column", alignItems: "center", backgroundColor:"black"}}>
+        <div style={{display: "flex",flexDirection: "column", alignItems: "center", backgroundColor:"black", justifyContent:"center", height:"100%"}}>
             <img src={LandingIcon} alt="PocketFit" />
             <h2 style={{color: "white"}}>Cargando...</h2>
         </div>
