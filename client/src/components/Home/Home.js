@@ -12,7 +12,7 @@ function month(date) {
 function Home() {
   const date = new Date();
   return (
-    <div>
+    <div className="bg-gray-700">
       <NavBar />
       <section>
         <h1>Bienvenido, {GymName}!</h1>
