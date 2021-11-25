@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import NavBar from "../NavBar/views/NavBar";
-import Nav from "../NavBar/views/NavBar";
-import Calendar from "./logic/Calendar";
+import NavBar from "../NavBar/NavBar";
+import Calendar from "./Calendar";
 
 const GymName = "CrossGym";
 

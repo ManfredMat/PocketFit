@@ -1,9 +1,9 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home.js";
-import Landing from "./components/Landing/views/Landing.jsx"
-import Login from "./components/Login/views/Login.jsx"
-import PassRecovery from "./components/Login/views/PassRecovery"
+import Landing from "./components/Landing/Landing.jsx"
+import Login from "./components/Login/Login.jsx"
+import PassRecovery from "./components/Login/PassRecovery.jsx"
 
 
 function App() {
