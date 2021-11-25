@@ -1,43 +1,62 @@
+import { Link } from "react-router-dom";
 
 function NavBar() {
     return (
-        <div style={{aligncontent: "center", display: "flex", flexdirection: "column", flexwrap: "wrap", justifyContent:"space-around", alignItems:"center"}}>
-            <a href="#">
-                ⚪
-                {/* <img src="" alt="profile-photo" /> */}
-            </a>
-            <a href="#">
-                🔔
-                {/* <img src="" alt="notifications" /> */}
-            </a>
-            <a href="#">
-                ✍🏻
-                {/* <img src="" alt="new-event" /> */}
-            </a>
-            <a href="#">
-                👥
-                {/* <img src="" alt="users" /> */}
-            </a>
-            <a href="#">
-                📱
-                {/* <img src="" alt="weekly-routine" /> */}
-            </a>
-            <a href="#">
-                📆
-                {/* <img src="" alt="calendar" /> */}
-            </a>
-            <a href="#">
-                💲
-                {/* <img src="" alt="payments" /> */}
-            </a>
-            <a href="#">
-                ⭐
-                {/* <img src="" alt="feedback" /> */}
-            </a>
-            <a href="#">
-                ⚙
-                {/* <img src="" alt="configuration" /> */}
-            </a>
+        <div style={{display: "flex", flexDirection: "column", flexWrap: "wrap", justifyContent:"space-around", alignItems:"center"}}>
+            <Link to="/profile">
+                <p>
+                    ⚪
+                    {/* <img src="" alt="profile-photo" /> */}
+                </p>
+            </Link>
+            <Link to="/notifications">
+                <p>
+                    🔔
+                    {/* <img src="" alt="notifications" /> */}
+                </p>
+            </Link>
+            <Link to="/new-event">
+                <p>
+                    ✍🏻
+                    {/* <img src="" alt="new-event" /> */}
+                </p>
+            </Link>
+            <Link to="/users">
+                <p>
+                    👥
+                    {/* <img src="" alt="users" /> */}
+                </p>
+            </Link>
+            <Link to="/weeklyroutine">
+                <p>
+                    📱
+                    {/* <img src="" alt="weekly-routine" /> */}
+                </p>
+            </Link>
+            <Link to="/calendar">
+                <p>
+                    📆
+                    {/* <img src="" alt="calendar" /> */}
+                </p>
+            </Link>
+            <Link to="/payments">
+                <p>
+                    💲
+                    {/* <img src="" alt="payments" /> */}
+                </p>
+            </Link>
+            <Link to="/feed">
+                <p>
+                    ⭐
+                    {/* <img src="" alt="feedback" /> */}
+                </p>
+            </Link>
+            <Link to="/config">
+                <p>
+                    ⚙
+                    {/* <img src="" alt="configuration" /> */}
+                </p>
+            </Link>
         </div>
     )
 };
