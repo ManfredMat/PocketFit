@@ -7,7 +7,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import RootStack from "./components/navigator/RootStack";
 import InicioStack from "./components/navigator/InicioStack";
 
-
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import SignUp from "./components/SignUp";
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -16,12 +19,14 @@ export default function App() {
 
   return (
     <>
+    <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
             <Stack.Screen name= 'Authentication ' component={RootStack} options = {{headerShown: false}}/> 
             <Stack.Screen name= 'Inicio' component={InicioStack} options={{title:'PocketFit'}} />
         </Stack.Navigator>
       </NavigationContainer>
-    </>
+      
+    </Provider>
   );
 }
