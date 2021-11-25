@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+
 import LandingIcon from '../../assets/img/landingicon.svg'
 
 function Landing() {
@@ -14,6 +15,7 @@ function Landing() {
         // eslint-disable-next-line 
       }, []);
 
+  <h2>Cargando...</h2>
     return (
         <div style={{display: "flex",flexDirection: "column", alignItems: "center", backgroundColor:"black"}}>
             <img src={LandingIcon} alt="PocketFit" />
