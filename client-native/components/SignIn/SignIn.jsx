@@ -15,7 +15,6 @@ const SignIn = ({navigation}) => {
     const handleOnChangePass = (value) => {
         
         setState({...state, password: value});
-        console.log(state);
 
     }
 
