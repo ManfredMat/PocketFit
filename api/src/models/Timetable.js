@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull:false,
     },
-    kindOfRoutine:{
+    kindOfTimetable:{
       type: DataTypes.STRING,
       allowNull:false,
     },
