@@ -1,82 +1,26 @@
 import React, { useState } from "react";
+import NavBar from "../NavBar/views/NavBar";
+import Nav from "../NavBar/views/NavBar";
+import Calendar from "./logic/Calendar";
 
 const GymName = "CrossGym";
-const month = "December";
 
-const monthDays = [
-  [[1], ["Pelea en vivo"]],
-  [[3] ,[]],
-  [[4] ,[]],
-  [[5] ,[]],
-  [[6] ,[]],
-  [[7] ,[]],
-  [[8] ,[]],
-  [[9] ,[]],
-  [[10] ,[]],
-  [[11] ,[]],
-  [[12] ,[]],
-  [[13] ,[]],
-  [[14] ,[]],
-  [[15] ,[]],
-  [[16] ,[]],
-  [[17] ,[]],
-  [[18] ,[]],
-  [[19] ,[]],
-  [[1], ["Pelea en vivo"]],
-  [[3] ,[]],
-  [[4] ,[]],
-  [[5] ,[]],
-  [[6] ,[]],
-  [[7] ,[]],
-  [[8] ,[]],
-  [[9] ,[]],
-  [[10] ,[]],
-  [[11] ,[]],
-  [[12] ,[]],
-  [[13] ,[]],
-  [[14] ,[]],
-  [[15] ,[]],
-  [[16] ,[]],
-  [[17] ,[]],
-  [[18] ,[]],
-  [[19] ,[]],
-  [[20] ,[]],
-  [[21] ,[]],
-  [[22] ,[]],
-  [[23] ,[]],
-  [[24] ,["Navidad","Fiesta"]],
-  [[25] ,[]],
-  [[26] ,[]],
-  [[27] ,[]],
-  [[28] ,[]],
-  [[29] ,[]],
-  [[30] ,[]],
-  [[31] ,["Año Nuevo"]],
-  [[28] ,[]],
-  [[29] ,[]],
-  [[30] ,[]],
-  [[31] ,["Año Nuevo"]],
-]
+function month(date) {
+  let options = { month: "long" };
+  return date.toLocaleDateString(undefined, options);
+}
 
 function Home() {
+  const date = new Date();
   return (
     <div>
-      <nav></nav>
+      <NavBar />
       <section>
         <h1>Bienvenido, {GymName}!</h1>
         <div name="row-1">
           <section name="mes">
-            <h2>{month}</h2>
-            <div style={{display: "flex",flexWrap:"wrap", width:"500px"}}>{
-              monthDays.map((e) => 
-              <div style={{width:"71px"}}>
-                <h3>{e[0]}</h3>
-                <ul>
-                  {e[1].map((evento) => <li>{evento}</li>)}
-                </ul>
-              </div>
-              )
-              }</div>
+            <h2>{month(date)}</h2>
+            <Calendar year={date.getFullYear()} month={date.getMonth()} />
           </section>
           <section name="hoy">
             <h2>Hoy</h2>
