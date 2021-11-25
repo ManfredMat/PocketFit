@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 function Login() {
     return (
@@ -7,8 +8,10 @@ function Login() {
             <div style={{display: "flex",flexDirection: "column", alignItems: "center"}}>
                 <input name="email" type="text" placeholder="Email"/>
                 <input name="pass" type="text" placeholder="Contraseña"/>
-                <button disabled="disabled">Entrar</button>
-                <a href="#">Recuperar contraseña</a>
+                <Link to="/home"><button>Entrar</button></Link> 
+                
+                <Link to="/passreco"><a href="#">Recuperar contraseña</a></Link> 
+                
             </div>
         </div>
     )
