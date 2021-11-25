@@ -73,6 +73,9 @@ module.exports = (sequelize) => {
     isuser: {
       type: DataTypes.BOOLEAN,
       defaultValue: true
+    },
+    paymentday:{
+      type: DataTypes.DATE
     }
   });
 };
