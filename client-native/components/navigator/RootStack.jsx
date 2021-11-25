@@ -1,7 +1,7 @@
 import React from 'react'
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SignUp from "../Authentication/SignUp";
-import Login from '../Authentication/Login';
+import SignIn from '../SignIn/SignIn';
 
 
 const Stack = createNativeStackNavigator();
@@ -12,7 +12,7 @@ export default function RootStack() {
                 <Stack.Navigator>
                     <Stack.Screen 
                        name="Login"
-                       component={Login}
+                       component={SignIn}
                        options={{ title: "Iniciar Sesion" }}
                     />
                     <Stack.Screen

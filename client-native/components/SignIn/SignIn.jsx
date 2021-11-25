@@ -20,7 +20,7 @@ const SignIn = ({navigation}) => {
     }
 
     const handleOnPress = () => {
-        navigation.navigate("Home")
+        navigation.navigate("Inicio")
     }
 
     const validateUserAndPass = () => {
