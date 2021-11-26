@@ -1,37 +1,65 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import ProfilePhoto from '../../assets/img/profilephoto.svg';
-import LandingIcon from '../../assets/img/landingicon.svg';
+import ProfilePhoto from "../../assets/img/profilephoto.svg";
+import LandingIcon from "../../assets/img/landingicon.svg";
+import LogingWave from "../../assets/img/loginwave.svg";
+import FitnessLogo from "../../assets/img/fitnesslogo.svg";
 
 function Login() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        navigate("/home")
-    }
+  function handleSubmit(e) {
+    e.preventDefault();
+    navigate("/home");
+  }
 
-    return (
-        <div className="bg-login-background h-full w-full bg-no-repeat bg-cover bg-top">
-            <div className="flex flex-col items-center" style={{position: "absolute", left: "10vw", top: "4vw"}}>
-                <img className="h-30 w-30" src={ProfilePhoto} alt="profile" />
-
-                <div style={{backgroundColor:"rgba(255, 255, 255, 0.3)"}} className="flex flex-col items-center rounded-lg p-10">
-                    <label style={{fontFamily:"poppins"}} className="self-start text-white" htmlFor="email">E-Mail</label>
-                    <input className="rounded-lg px-10" name="email" type="email" />
-                    <label style={{fontFamily:"poppins"}} className="self-start text-white mt-4" htmlFor="pass">Contraseña</label>
-                    <input className="rounded-lg px-10" name="pass" type="password" />
-                </div>
-                <Link to="/home"><button style={{fontFamily:"poppins"}} className="bg-green-base rounded-md py-2 px-6 mt-4">Iniciar Sesión</button></Link>              
-                
-                <Link to="/passreco"><h6 className="text-green-base underline mt-8">OLVIDÉ MI CONTRASEÑA</h6></Link>
-
-                <h6 style={{fontFamily:"poppins"}} className="text-white mt-8">Powered by</h6>
-                <img src={LandingIcon} alt="pocket-fit-logo" className="w-4/5"/>
-            </div>
+  return (
+    <div className="hola">
+      <div className="hola">
+        <img src={LogingWave} alt="pocket-fit-logo" className="w-screen" />
+        <div className="hola">
+          <h1 className="hola">Bienvenido a PocketFit...</h1>
+          <img src={FitnessLogo} alt="pocket-fit-logo" className="hola"/>
         </div>
-    )
-};
+      </div>
+
+      <div
+        className="hola"
+        style={{ position: "absolute", left: "10vw", top: "4vw" }}
+      >
+        <img className="hola" src={ProfilePhoto} alt="profile" />
+
+        <div
+          style={{ backgroundColor: "rgba(255, 255, 255, 0.3)" }}
+          className="hola"
+        >
+          <label className="hola" htmlFor="email">
+            E-Mail
+          </label>
+          <input className="hola" name="email" type="email" />
+          <label className="hola" htmlFor="pass">
+            Contraseña
+          </label>
+          <input className="hola" name="pass" type="password" />
+        </div>
+        <Link to="/home">
+          <button className="hola">
+            Iniciar Sesión
+          </button>
+        </Link>
+
+        <Link to="/passreco">
+          <h6 className="hola">
+            OLVIDÉ MI CONTRASEÑA
+          </h6>
+        </Link>
+
+        <h6 className="hola">Powered by</h6>
+        <img src={LandingIcon} alt="pocket-fit-logo" className="w-4/5" />
+      </div>
+    </div>
+  );
+}
 
 export default Login;
