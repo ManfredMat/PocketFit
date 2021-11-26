@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 
+import EventsIco from "../../assets/img/iconos/events.svg"
+import WeeklyRoutine from "../../assets/img/iconos/Plans.svg"
+
 function NavBar() {
     return (
-        <div style={{display: "flex", flexDirection: "column", flexWrap: "wrap", justifyContent:"space-around", alignItems:"center"}}>
+        <div className="w-16 h-screen flex flex-col bg-darkGray-medium">
             <Link to="/profile">
                 <p>
                     ⚪
@@ -23,14 +26,13 @@ function NavBar() {
             </Link>
             <Link to="/users">
                 <p>
-                    👥
-                    {/* <img src="" alt="users" /> */}
+                    <img src={EventsIco} alt="users" />
                 </p>
             </Link>
             <Link to="/weeklyroutine">
                 <p>
                     📱
-                    {/* <img src="" alt="weekly-routine" /> */}
+                    <img src={WeeklyRoutine} alt="weekly-routine" />
                 </p>
             </Link>
             <Link to="/calendar">
