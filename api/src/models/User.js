@@ -25,7 +25,7 @@ module.exports = (sequelize) => {
     },
     age: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     height: {
       type: DataTypes.FLOAT,
