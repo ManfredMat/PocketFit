@@ -1,10 +1,8 @@
 require("dotenv").config();
-
 const { Sequelize } = require("sequelize");
-
 const fs = require("fs");
-
 const path = require("path");
+const session = require("express-session");
 
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
@@ -13,8 +11,6 @@ const sequelize = new Sequelize(
   {
     logging: false,
     native: false,
-    dialect: "postgres",
-    storage: "./db.postgres",
   }
 );
 

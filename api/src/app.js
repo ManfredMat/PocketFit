@@ -6,9 +6,11 @@ const routes = require("./routes/index.js");
 const passport = require("passport");
 const flash = require("express-flash");
 const session = require("express-session");
-require("./passport-config.js")(passport);
-const { sequelize } = require("sequelize");
 let SequelizeStore = require("connect-session-sequelize")(session.Store);
+const { conn } = require("./db.js");
+
+require("./passport-config.js")(passport);
+
 require("./db.js");
 
 const server = express();
@@ -30,11 +32,12 @@ server.use((req, res, next) => {
   next();
 });
 
+server.use(flash());
+
 let myStore = new SequelizeStore({
-  db: sequelize,
+  db: conn,
 });
 
-server.use(flash());
 server.use(
   session({
     key: "express.sid",
@@ -45,7 +48,6 @@ server.use(
     cookie: { expires: null },
   })
 );
-
 myStore.sync();
 
 server.use(passport.initialize());
