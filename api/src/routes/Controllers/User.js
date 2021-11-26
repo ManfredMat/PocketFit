@@ -44,16 +44,17 @@ const getSpeficicUser = async(req, res) =>{
 }
 const modifyUser = async(req, res)=>{
     const {id, prop} = req.params
-    const {update} = req.body
-    try{
-        const oneUser= await User.findOne({where:{id:id}})
-        oneUser[prop] = update
-        await oneUser.save()
-       res.send(oneUser)
-    }
-       catch(error){
-           res.send(error)
-       }
+    const {name, lastname, email, age, height, weight, backsquat, pushpress, snatch, clean, running, pullups, password, paymentday} = req.body
+       try {
+        await Users.update(
+          { name, lastname, email, age, height, weight, backsquat, pushpress, snatch, clean, running, pullups, password, paymentday },
+          { where: { id: parseInt(id) } }
+        );
+        const user = await Users.findOne({ where: { id: parseInt(id) } });
+        res.status(200).json(user);
+      } catch (error) {
+        res.send(error)
+      }
 }
 
 const createRoutine = async(req, res) => {
@@ -110,3 +111,4 @@ const updateRoutine = async(req , res) =>{
 }
 
 module.exports={ createUser, getSpeficicUser, getAllUsers, createRoutine, getRoutine, deleteRoutine, updateRoutine, modifyUser};   
+
