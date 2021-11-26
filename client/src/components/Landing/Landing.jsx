@@ -18,7 +18,7 @@ function Landing() {
   <h2>Cargando...</h2>
     return (
         <div className="flex flex-col items-center justify-center bg-darkGray-base h-full">
-            <img src={LandingIcon} alt="PocketFit" />
+            <img src={LandingIcon} alt="pocket-fit-logo" />
             <h2 className="text-yellow-base">Cargando...</h2>
         </div>
     )
