@@ -19,13 +19,13 @@ function Calendar({ year, month }) {
   ];
 
   return (
-    <div className="w-38 grid grid-cols-7 gap-2 ">
+    <div className="hola">
       {weekDays.map((day) => (
         <div>{day}</div>
       ))}
 
       {Array.from(range(-firstDay + 2, daysMonth, 1)).map((day) =>
-        day >= 1 ? <div className="h-20 w-20 bg-pink-200">{day}</div> : <div>x</div>
+        day >= 1 ? <div className="hola">{day}</div> : <div>x</div>
       )}
     </div>
   );
