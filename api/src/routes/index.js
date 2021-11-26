@@ -10,7 +10,7 @@ const userRoute = require('./Routes/User');
 
 const router = Router();
 
-router.use('/api/event' , eventRoute)
+router.use('/api/events' , eventRoute)
 router.use('/api/exercises' , exerciseRoute)
 router.use('/api/routines' , routineRoute)
 router.use('/api/timetables' , timetableRoute)

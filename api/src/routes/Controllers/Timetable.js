@@ -1,9 +1,9 @@
 const {Timetable} = require('../../db')
 
 const createTimetable= async (req , res) =>{
-const {beginning, ending, kindOfRoutine, availability} = req.body
+const {beginning, ending, kindOfTimetable, availability} = req.body
 try{
-    const newTimetable = await Timetable.create({beginning, ending, kindOfRoutine, availability});
+    const newTimetable = await Timetable.create({beginning, ending, kindOfTimetable, availability});
     res.json(newTimetable)
 }
 catch(err){
