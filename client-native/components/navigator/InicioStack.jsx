@@ -1,7 +1,6 @@
 import React from 'react'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from '../Home/Home';
-import SignIn from '../SignIn/SignIn';
 import NavIcon from './NavIcons';
 import TestComponent from '../TestComponent';
 
