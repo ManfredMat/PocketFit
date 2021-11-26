@@ -37,15 +37,15 @@ const SignIn = ({navigation}) => {
         <View>
             <View>
                 <Text style={tw`ml-4 text-gray-300`}>E-mail</Text>
-                <Input inputContainerStyle={{borderBottomWidth:0}} style={tw`bg-gray-400 bg-opacity-40 pl-2 rounded-3xl`} placeholder="Email o Usuario" onChangeText={handleOnChangeUser}/>
+                <Input inputContainerStyle={{borderBottomWidth:0}} style={tw`bg-gray-400 bg-opacity-40 pl-2 rounded-3xl text-sm`} placeholder="Email o Usuario" onChangeText={handleOnChangeUser}/>
             </View>
 
             <View>
                 <Text style={tw`ml-4 text-gray-300`}>Contraseña</Text>
-                <Input inputContainerStyle={{borderBottomWidth:0}} style={tw`bg-gray-400 bg-opacity-40 pl-2 rounded-3xl`} name="password" secureTextEntry={true} placeholder="Contraseña" onChangeText={handleOnChangePass}/>
+                <Input inputContainerStyle={{borderBottomWidth:0}} style={tw`bg-gray-400 bg-opacity-40 pl-2 rounded-3xl text-sm`} name="password" secureTextEntry={true} placeholder="Contraseña" onChangeText={handleOnChangePass}/>
             </View>
             </View >
-            <View style={tw`self-center`}>
+            <View style={tw`self-center mt-3`}>
                 <TouchableOpacity disabled={state.user.length < 1 || state.password.length < 1} onPress={() => handleOnPress()}>
                     <SvgXml xml={ButtonSignIn}/>
                 </TouchableOpacity>
