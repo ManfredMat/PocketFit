@@ -43,15 +43,15 @@ const getSpeficicUser = async(req, res) =>{
     }
 }
 const modifyUser = async(req, res)=>{
-    const {id, prop} = req.params
+    const {id} = req.params
     const {name, lastname, email, age, height, weight, backsquat, pushpress, snatch, clean, running, pullups, password, paymentday} = req.body
        try {
-        await Users.update(
+        await User.update(
           { name, lastname, email, age, height, weight, backsquat, pushpress, snatch, clean, running, pullups, password, paymentday },
-          { where: { id: parseInt(id) } }
+          { where: { id: id } }
         );
-        const user = await Users.findOne({ where: { id: parseInt(id) } });
-        res.status(200).json(user);
+        const newUser = await User.findOne({ where: { id: id } });
+        res.json(newUser);
       } catch (error) {
         res.send(error)
       }
