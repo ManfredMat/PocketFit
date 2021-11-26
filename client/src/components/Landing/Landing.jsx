@@ -1,8 +1,11 @@
 import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
+import LandingIcon from '../../assets/img/landingicon.svg'
+
 function Landing() {
     const navigate = useNavigate();
+    let isLogged = false;
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -12,12 +15,11 @@ function Landing() {
         // eslint-disable-next-line 
       }, []);
 
-    let isLogged = false;
-
+  <h2>Cargando...</h2>
     return (
-        <div style={{display: "flex",flexDirection: "column", alignItems: "center"}}>
-            <h1>PocketFit</h1>
-            <h2>Cargando...</h2>
+        <div className="flex flex-col items-center justify-center bg-darkGray-base h-full">
+            <img src={LandingIcon} alt="pocket-fit-logo" />
+            <h2 className="text-yellow-base">Cargando...</h2>
         </div>
     )
 };

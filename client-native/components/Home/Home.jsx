@@ -15,11 +15,16 @@ export default function Home() {
                 <Text>Estadisticas</Text>
             </View>
             
-            <View style={{backgroundColor: '#fff', height:'40%' ,padding: 20, margin: 10}}>
+            <View style={{backgroundColor: '#fff', height:'20%' ,padding: 20, margin: 10}}>
                 <Text>Newsletter</Text>
             </View>
+
             <View style={{backgroundColor: '#fff', height:'20%', padding: 20, margin: 10}}>
                 <Text>Tu rutina</Text>
+            </View>
+
+            <View style={{backgroundColor: '#fff', height:'20%', padding: 20, margin: 10}}>
+                <Text>Clases</Text>
             </View>
         </View>
     )
