@@ -2,9 +2,7 @@ const {User, Routine, Exercise} = require ('../../db')
 const bcrypt = require("bcrypt");
 
 const createUser = async (req, res) =>{
-    const {name, lastname, age, height, weight, 
-        backsquat, pushpress, snatch, clean, running, 
-        pullups, isadmin, isprofessor, isuser, paymentday} = req.body;
+    const {name, lastname, paymentday} = req.body;
         
     let {email, password} = req.body
     password = await bcrypt.hash(password, 10);
@@ -12,9 +10,8 @@ const createUser = async (req, res) =>{
     try{
         const duplicatedMail = await User.findOne({ where: { email: email } });
         if (duplicatedMail === null) {
-        const newUser = await User.create({name, lastname, email, age, height, weight, 
-            backsquat, pushpress, snatch, clean, running, 
-            pullups, password, isadmin, isprofessor, isuser, paymentday});
+        const newUser = await User.create({name, lastname, email, 
+            password, paymentday});
               res.send("New user succesfully created!");
               res.json(newUser)
             }
