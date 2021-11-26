@@ -1,6 +1,10 @@
 import React from "react";
+import {prueba} from "../../redux/Actions/actions-Prueba"
+import {useSelector, useDispatch} from "react-redux"
 
 function Calendar({ year, month }) {
+  const pruebaEstado = useSelector(state => state.counter)
+  const dispatch = useDispatch()
   var daysMonth = new Date(year, month, 0).getDate();
   let firstDay = new Date(year, month, 1).getDay();
   const range = (start, stop, step) =>
@@ -18,8 +22,11 @@ function Calendar({ year, month }) {
     "Domingo",
   ];
 
+  dispatch(prueba("hola")) 
+
   return (
     <div className="hola">
+      
       {weekDays.map((day) => (
         <div>{day}</div>
       ))}
