@@ -26,7 +26,7 @@ function Calendar({ year, month }) {
 
   return (
     <div className="hola">
-      
+
       {weekDays.map((day) => (
         <div>{day}</div>
       ))}
