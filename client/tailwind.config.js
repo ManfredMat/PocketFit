@@ -18,6 +18,7 @@ module.exports = {
         },
         darkGray: {
           base:'#020E12',
+          medium: '#041D25'
         }
       },
     },
