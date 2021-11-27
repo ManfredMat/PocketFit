@@ -1,13 +1,12 @@
-import { useNavigation } from "@react-navigation/core";
+
 import React, { Component, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { Input, Button } from "react-native-elements";
-import ButtonSignUp from "../../../assets/ButtonSignUp";
+import ButtonGreen from "../../../assets/Svg/ButtonGreen";
 import { SvgXml } from "react-native-svg";
 import postUser from "../../../api/post-login"
 
 export default function SignUp() {
-  const navigation = useNavigation();
 
   const [input, setInput] = useState({
     name: "",
@@ -91,7 +90,10 @@ export default function SignUp() {
         />
       </View>
       <TouchableOpacity onPress={() => handleOnSubmit()}>
-        <SvgXml xml={ButtonSignUp} />
+          <View>
+            <SvgXml xml={ButtonGreen} />
+            <Text>Registrarse</Text>
+          </View>
       </TouchableOpacity>
     </View>
   );

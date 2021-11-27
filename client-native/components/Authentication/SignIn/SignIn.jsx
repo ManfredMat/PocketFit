@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 import { Text, TouchableOpacity, View } from "react-native";
 import { Input } from "react-native-elements";
-import ButtonSignIn from "../../../assets/ButtonSignIn";
+import ButtonGreen from "../../../assets/Svg/ButtonGreen";
 import { SvgXml } from "react-native-svg";
 
 const SignIn = () => {
@@ -56,7 +56,7 @@ const SignIn = () => {
           disabled={state.user.length < 1 || state.password.length < 1}
           onPress={() => handleOnPress()}
         >
-          <SvgXml xml={ButtonSignIn} />
+          <SvgXml xml={ButtonGreen} />
         </TouchableOpacity>
       </View>
       <View>

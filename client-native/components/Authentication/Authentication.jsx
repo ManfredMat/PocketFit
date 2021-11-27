@@ -3,10 +3,12 @@ import { View, Text, TouchableOpacity, ImageBackground } from 'react-native'
 import SignUp from './SignUp/SignUp'
 import SignIn from './SignIn/SignIn'
 import { SvgXml } from 'react-native-svg'
-import headerLogin from '../../assets/headerLogin'
+import headerLogin from '../../assets/Svg/headerLogin'
 import background from '../../assets/Background.png'
-import fitnessGym from '../../assets/fitnessGym'
-import userIcon from '../../assets/userIcon'
+import fitnessGym from '../../assets/Svg/fitnessGym'
+import userIcon from '../../assets/Svg/userIcon'
+
+
 
 export default function Authentication() {
     
@@ -16,7 +18,6 @@ export default function Authentication() {
             source={background} 
             style={{flex: 1, with:'100%', height: '100%'}} 
             imageStyle={{resizeMode: 'stretch'}}>   
-
             <View>
                 <SvgXml xml={fitnessGym}/>
             </View>
