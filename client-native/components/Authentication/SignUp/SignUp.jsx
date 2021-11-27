@@ -1,28 +1,25 @@
-
 import React, { Component, useState } from "react";
+import { useNavigation } from "@react-navigation/core";
 import { Text, TouchableOpacity, View } from "react-native";
 import { Input, Button } from "react-native-elements";
-import postUser from "../../../api/post-login"
+import postUser from "../../../api/post-login";
 import { ButtonGreen } from "../AuthenticatioStyled";
-import { Styles } from '../AuthenticatioStyled'
-
-
+import { Styles } from "../AuthenticatioStyled";
+import { useSelector, useDispatch } from "react-redux";
+import signUp from "../../../redux/Actions/actions-User";
 
 export default function SignUp() {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const userSignIn = useSelector((state) => state.userSignIn);
 
   const [input, setInput] = useState({
     name: "",
-    lastname: '',
+    lastname: "",
     email: "",
     password: "",
     repeatPassword: "",
   });
-  const [send, setSend] = useState({
-    paymentday:""
-  });
-
-
-  React.useEffect(()=>{handleOnSubmit()},[])
 
   const DateGenerate = () => {
     const date = new Date();
@@ -37,28 +34,35 @@ export default function SignUp() {
       ...input,
       [type]: e.nativeEvent.text,
     });
-    console.log(input)
+    //console.log(input);
   };
 
-  const handleOnSubmit = async () =>{
-   let datos = {
-    paymentday: DateGenerate(),
-    name: input.name,
-    lastname: input.lastname,
-    email: input.email,
-    password: input.password,
-  }
+  const handleOnSubmit = async () => {
+    try {
+      let datos = {
+        paymentday: DateGenerate(),
+        name: input.name,
+        lastname: input.lastname,
+        email: input.email,
+        password: input.password,
+      };
 
-  const res = await postUser(datos)
+      const res = await postUser(datos);
+      
+      dispatch(signUp(res.data));
 
-  console.log(res)
-
-  }
+      //console.log(res.data)
+      console.log(userSignIn);
+      await navigation.navigate("Inicio");
+    } catch (e) {
+      alert("No se pudo iniciar sesion");
+    }
+  };
 
   return (
     <View>
       <View>
-        <Text style={{color:'#C0C6CC'}}>Nombre</Text>
+        <Text style={{ color: "#C0C6CC" }}>Nombre</Text>
         <Input
           style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -67,7 +71,7 @@ export default function SignUp() {
           onChange={(e) => handleInputChange(e, "name")}
         />
 
-        <Text style={{color:'#C0C6CC'}}>Apellido</Text>
+        <Text style={{ color: "#C0C6CC" }}>Apellido</Text>
         <Input
           style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -76,7 +80,7 @@ export default function SignUp() {
           onChange={(e) => handleInputChange(e, "lastname")}
         />
 
-        <Text style={{color:'#C0C6CC'}}>E-mail</Text>
+        <Text style={{ color: "#C0C6CC" }}>E-mail</Text>
         <Input
           style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -85,7 +89,7 @@ export default function SignUp() {
           onChange={(e) => handleInputChange(e, "email")}
         />
 
-        <Text style={{color:'#C0C6CC'}}>Contraseña</Text>
+        <Text style={{ color: "#C0C6CC" }}>Contraseña</Text>
         <Input
           style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -95,7 +99,7 @@ export default function SignUp() {
           secureTextEntry={true}
         />
 
-        <Text style={{color:'#C0C6CC'}}>Repetir Contraseña</Text>
+        <Text style={{ color: "#C0C6CC" }}>Repetir Contraseña</Text>
         <Input
           style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -107,7 +111,7 @@ export default function SignUp() {
       </View>
       <View>
         <ButtonGreen onPress={() => handleOnSubmit()}>
-            <Text>Registrarse</Text>
+          <Text>Registrarse</Text>
         </ButtonGreen>
       </View>
     </View>
