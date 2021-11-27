@@ -2,14 +2,17 @@
 import React, { Component, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { Input, Button } from "react-native-elements";
-import ButtonGreen from "../../../assets/Svg/ButtonGreen";
-import { SvgXml } from "react-native-svg";
 import postUser from "../../../api/post-login"
+import { ButtonGreen } from "../AuthenticatioStyled";
+import { Styles } from '../AuthenticatioStyled'
+
+
 
 export default function SignUp() {
 
   const [input, setInput] = useState({
     name: "",
+    lastname: '',
     email: "",
     password: "",
     repeatPassword: "",
@@ -41,7 +44,7 @@ export default function SignUp() {
    let datos = {
     paymentday: DateGenerate(),
     name: input.name,
-    lastname: "hola",
+    lastname: input.lastname,
     email: input.email,
     password: input.password,
   }
@@ -55,24 +58,36 @@ export default function SignUp() {
   return (
     <View>
       <View>
-        <Text>Nombre</Text>
+        <Text style={{color:'#C0C6CC'}}>Nombre</Text>
         <Input
+          style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
-          placeholder="Usuario"
+          placeholder="Nombre"
           value={input.name}
           onChange={(e) => handleInputChange(e, "name")}
         />
 
-        <Text>E-mail</Text>
+        <Text style={{color:'#C0C6CC'}}>Apellido</Text>
         <Input
+          style={Styles.Input}
+          inputContainerStyle={{ borderBottomWidth: 0 }}
+          placeholder="Apellido"
+          value={input.lastname}
+          onChange={(e) => handleInputChange(e, "lastname")}
+        />
+
+        <Text style={{color:'#C0C6CC'}}>E-mail</Text>
+        <Input
+          style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
           placeholder="user@example.com"
           value={input.email}
           onChange={(e) => handleInputChange(e, "email")}
         />
 
-        <Text>Contraseña</Text>
+        <Text style={{color:'#C0C6CC'}}>Contraseña</Text>
         <Input
+          style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
           placeholder="**********"
           value={input.password}
@@ -80,8 +95,9 @@ export default function SignUp() {
           secureTextEntry={true}
         />
 
-        <Text>Repetir Contraseña</Text>
+        <Text style={{color:'#C0C6CC'}}>Repetir Contraseña</Text>
         <Input
+          style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
           placeholder="**********"
           value={input.repeatPassword}
@@ -89,12 +105,11 @@ export default function SignUp() {
           secureTextEntry={true}
         />
       </View>
-      <TouchableOpacity onPress={() => handleOnSubmit()}>
-          <View>
-            <SvgXml xml={ButtonGreen} />
+      <View>
+        <ButtonGreen onPress={() => handleOnSubmit()}>
             <Text>Registrarse</Text>
-          </View>
-      </TouchableOpacity>
+        </ButtonGreen>
+      </View>
     </View>
   );
 }

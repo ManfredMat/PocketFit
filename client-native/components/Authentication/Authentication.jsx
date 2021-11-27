@@ -7,7 +7,7 @@ import headerLogin from '../../assets/Svg/headerLogin'
 import background from '../../assets/Background.png'
 import fitnessGym from '../../assets/Svg/fitnessGym'
 import userIcon from '../../assets/Svg/userIcon'
-
+import { Container, ContainerBar } from './AuthenticatioStyled'
 
 
 export default function Authentication() {
@@ -25,15 +25,16 @@ export default function Authentication() {
                 <SvgXml xml={headerLogin}/>
             </View>
 
-            <View>
-                <View>
+            <Container>
+                <SvgXml style={{position: 'relative', marginTop: -50}} xml={userIcon}/>
+                <ContainerBar>
                     <TouchableOpacity onPress={()=> setRender(false)}>
-                        <Text>Registro</Text>
+                        <Text style={{marginRight: 40, fontSize: 15, color:'#C0C6CC'}}>Registro</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=> setRender(true)}>
-                        <Text>Iniciar Sesion</Text>
+                        <Text style={{marginLeft: 40, fontSize: 15, color:'#C0C6CC'}}>Iniciar Sesion</Text>
                     </TouchableOpacity>
-                </View>
+                </ContainerBar>
                    
                 <View>
                     {render ? 
@@ -46,8 +47,7 @@ export default function Authentication() {
                     )
                     }
                 </View>
-            </View>
-            <SvgXml xml={userIcon}/>
+            </Container>
         </ImageBackground>
     )
 }

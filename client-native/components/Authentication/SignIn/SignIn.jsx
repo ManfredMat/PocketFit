@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 import { Text, TouchableOpacity, View } from "react-native";
 import { Input } from "react-native-elements";
-import ButtonGreen from "../../../assets/Svg/ButtonGreen";
-import { SvgXml } from "react-native-svg";
+import { ButtonGreen } from "../AuthenticatioStyled";
+import { Styles } from '../AuthenticatioStyled'
 
 const SignIn = () => {
   const navigation = useNavigation();
@@ -28,20 +28,18 @@ const SignIn = () => {
 
   return (
     <View>
-      <View>
-        <View>
-          <Text>E-mail</Text>
+      <View style>
+          <Text style={{color:'#C0C6CC'}}>E-mail</Text>
           <Input
+            style={Styles.Input}
             inputContainerStyle={{ borderBottomWidth: 0 }}
             placeholder="Email o Usuario"
             value={state.user}
             onChange={(e) => handleOnChange(e, "user")}
           />
-        </View>
-
-        <View>
-          <Text>Contraseña</Text>
+          <Text style={{color:'#C0C6CC'}}>Contraseña</Text>
           <Input
+            style={Styles.Input}
             inputContainerStyle={{ borderBottomWidth: 0 }}
             name="password"
             secureTextEntry={true}
@@ -49,18 +47,17 @@ const SignIn = () => {
             value={state.password}
             onChange={(e) => handleOnChange(e, "password")}
           />
-        </View>
       </View>
       <View>
-        <TouchableOpacity
+        <ButtonGreen
           disabled={state.user.length < 1 || state.password.length < 1}
           onPress={() => handleOnPress()}
         >
-          <SvgXml xml={ButtonGreen} />
+          <Text>Iniciar sesión</Text>
+        </ButtonGreen>
+        <TouchableOpacity onPress={() => alert('que lastima')}>
+            <Text style={{color:'#6AE056', alignSelf: "center"}}>Olvide mi Contraseña</Text>
         </TouchableOpacity>
-      </View>
-      <View>
-        <Text>Olvide mi Contraseña</Text>
       </View>
     </View>
   );
