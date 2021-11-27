@@ -1,8 +1,10 @@
-import {combineReducers} from "redux"
-import reducerPlantilla from "./Reducer-Plantilla.js"
+import { combineReducers } from "redux";
+import reducerPlantilla from "./Reducer-Plantilla.js";
+import reducerUser from "./ReducerUser.js";
 
 const rootReducer = combineReducers({
-    plantilla : reducerPlantilla
+    reducerPlantilla,
+    reducerUser
 })
 
 export default rootReducer
