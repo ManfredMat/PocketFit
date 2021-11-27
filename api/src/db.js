@@ -35,7 +35,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 
 
-const { Event , Exercise  , Routine , Timetable , User } = sequelize.models;
+const { Event , Exercise  , Routine , Timetable , User  , Block} = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
