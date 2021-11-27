@@ -1,13 +1,28 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import axios from 'axios'
 import ProfilePhoto from "../../assets/img/profilephoto.svg";
 import LandingIcon from "../../assets/img/landingicon.svg";
 import LogingWave from "../../assets/img/loginwave.svg";
 import FitnessLogo from "../../assets/img/fitnesslogo.svg";
+import { useState } from "react";
 
 function Login() {
   const navigate = useNavigate();
+
+  const [input, setInput] = useState({
+    user:'',
+    password:'',
+  })
+
+  const handleChange = (e, type) => {
+    setInput({
+      ...input,
+      [type]: e.target.value
+    })
+  }
+
+  
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -37,11 +52,11 @@ function Login() {
           <label className="hola" htmlFor="email">
             E-Mail
           </label>
-          <input className="hola" name="email" type="email" />
+          <input className="hola" name="email" type="email" onChange={(e) => handleChange(e, 'user')}/>
           <label className="hola" htmlFor="pass">
             Contraseña
           </label>
-          <input className="hola" name="pass" type="password" />
+          <input className="hola" name="pass" type="password"  onChange={(e) => handleChange(e, 'password')} />
         </div>
         <Link to="/home">
           <button className="hola">
