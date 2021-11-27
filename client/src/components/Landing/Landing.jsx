@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import { LandingDiv, CargandoLanding } from "./Landing.styles";
 
 import LandingIcon from '../../assets/img/landingicon.svg'
 
@@ -15,12 +16,11 @@ function Landing() {
         // eslint-disable-next-line 
       }, []);
 
-  <h2>Cargando...</h2>
     return (
-        <div className="hola">
+        <LandingDiv>
             <img src={LandingIcon} alt="pocket-fit-logo" />
-            <h2 className="hola">Cargando...</h2>
-        </div>
+            <h3 className="CargandoLanding">Cargando...</h3>
+        </LandingDiv>
     )
 };
 
