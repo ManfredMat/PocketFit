@@ -11,7 +11,7 @@ import signUp from "../../../redux/Actions/actions-User";
 export default function SignUp() {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const userSignIn = useSelector((state) => state.userSignIn);
+  const user = useSelector((state) => state.reducerUser);
 
   const [input, setInput] = useState({
     name: "",
@@ -46,15 +46,15 @@ export default function SignUp() {
         email: input.email,
         password: input.password,
       };
-
+      
       const res = await postUser(datos);
       
       dispatch(signUp(res.data));
 
-      //console.log(res.data)
-      console.log(userSignIn);
+      console.log(user.userSignIn, "userSignIn");
       await navigation.navigate("Inicio");
     } catch (e) {
+      console.log(e, "error")
       alert("No se pudo iniciar sesion");
     }
   };
