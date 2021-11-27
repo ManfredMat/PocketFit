@@ -21,7 +21,7 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator>
               <Stack.Screen name= 'Authentication' component={RootStack} options = {{headerShown: false}}/> 
-              <Stack.Screen name= 'Inicio' component={InicioStack} options={{title:'PocketFit'}} />
+              <Stack.Screen name= 'Inicio' component={InicioStack} options = {{headerShown: false}} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
