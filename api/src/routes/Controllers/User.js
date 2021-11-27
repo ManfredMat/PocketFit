@@ -12,7 +12,7 @@ const createUser = async (req, res) =>{
         if (duplicatedMail === null) {
         const newUser = await User.create({name, lastname, email, 
             password, paymentday});
-              res.send("New user succesfully created!");
+              //res.send("New user succesfully created!");
               res.json(newUser)
             }
         else{res.send("User is already registered")}
