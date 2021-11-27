@@ -1,5 +1,4 @@
 const { Router } = require("express");
-const { login } = require("../Controllers/Login");
 const passport = require("passport");
 const router = Router();
 

@@ -27,13 +27,5 @@ module.exports = function (passport) {
 
   passport.serializeUser((user, done) => done(null, user));
 
-  passport.deserializeUser(async (id, done) => {
-    try {
-      await User.findByPk(id, (err, user) => {
-        done(err, user);
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  });
+  passport.deserializeUser((user, done) => done(null, user));
 };
