@@ -5,7 +5,7 @@ const {createUser, getAllUsers, getSpeficicUser, createRoutine, getRoutine, dele
 
 router.post('/register_user', createUser )
 router.get('/', getAllUsers )
-router.put('/:id/:prop', modifyUser )
+router.put('/:id', modifyUser )
 router.get('/:id', getSpeficicUser )
 router.post('/traine_plan/:id', createRoutine)
 router.get('/traine_plan/:id', getRoutine)

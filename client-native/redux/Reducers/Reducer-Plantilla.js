@@ -1,14 +1,14 @@
 import {
- PRUEBA
-} from "../actions/actions-names";
+  PLANTILLA
+} from "../Actions/actions-Prueba";
 
 const initialState = {
   prueba: ""
 };
 
-function reducer(state = initialState, action) {
+function reducerPlantilla(state = initialState, action) {
   switch (action.type) {
-    case PRUEBA:
+    case PLANTILLA:
       return {
         ...state,
         prueba: action.value,
@@ -19,4 +19,4 @@ function reducer(state = initialState, action) {
   }
 }
 
-export default reducer;
+export default reducerPlantilla;

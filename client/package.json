@@ -16,12 +16,13 @@
     "react-scripts": "4.0.0",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.0",
+    "styled-components": "^5.3.3",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

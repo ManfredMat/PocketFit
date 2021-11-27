@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, ImageBackground } from 'react-native'
 import SignUp from './SignUp/SignUp'
 import SignIn from './SignIn/SignIn'
-import tw from 'tailwind-react-native-classnames'
 import { SvgXml } from 'react-native-svg'
-import headerLogin from '../../assets/headerLogin'
+import headerLogin from '../../assets/Svg/headerLogin'
 import background from '../../assets/Background.png'
-import fitnessGym from '../../assets/fitnessGym'
+import fitnessGym from '../../assets/Svg/fitnessGym'
+import userIcon from '../../assets/Svg/userIcon'
+import { Container, ContainerBar } from './AuthenticatioStyled'
+
 
 export default function Authentication() {
     
@@ -16,22 +18,24 @@ export default function Authentication() {
             source={background} 
             style={{flex: 1, with:'100%', height: '100%'}} 
             imageStyle={{resizeMode: 'stretch'}}>   
-
-            <View style={tw`self-center mt-12`}>
+            <View>
                 <SvgXml xml={fitnessGym}/>
             </View>
-            <View style={tw`flex self-center mt-7 mb-5`}>
+            <View>
                 <SvgXml xml={headerLogin}/>
             </View>
-            <View style={tw`bg-gray-300 bg-opacity-40 ml-10 mr-10 rounded-3xl`}>
-                <View style={tw`flex-row self-center mb-5`}>
+
+            <Container>
+                <SvgXml style={{position: 'relative', marginTop: -50}} xml={userIcon}/>
+                <ContainerBar>
                     <TouchableOpacity onPress={()=> setRender(false)}>
-                        <Text style={tw`ml-0.5 text-xl text-gray-300`}>Registro</Text>
+                        <Text style={{marginRight: 40, fontSize: 15, color:'#C0C6CC'}}>Registro</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=> setRender(true)}>
-                        <Text style={tw`ml-10 text-xl text-gray-300`}>Iniciar Sesion</Text>
+                        <Text style={{marginLeft: 40, fontSize: 15, color:'#C0C6CC'}}>Iniciar Sesion</Text>
                     </TouchableOpacity>
-                </View>
+                </ContainerBar>
+                   
                 <View>
                     {render ? 
                     (
@@ -43,7 +47,7 @@ export default function Authentication() {
                     )
                     }
                 </View>
-            </View>
+            </Container>
         </ImageBackground>
     )
 }
