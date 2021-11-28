@@ -11,7 +11,7 @@ function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    navigate("/home");
+    navigate("/session/home");
   }
 
   return (
@@ -43,7 +43,7 @@ function Login() {
           </label>
           <input className="hola" name="pass" type="password" />
         </div>
-        <Link to="/home">
+        <Link to="/session/home">
           <button className="hola">
             Iniciar Sesión
           </button>
