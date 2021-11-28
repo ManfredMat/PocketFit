@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View, Alert } from "react-native";
 import { Input } from "react-native-elements";
-import { ButtonGreen } from "../AuthenticatioStyled";
-import { Styles } from '../AuthenticatioStyled';
+import { ButtonGreen } from "../Authentication.styles";
+import { Styles } from '../Authentication.styles';
 import { useSelector, useDispatch } from "react-redux";
 import signIn from "../../../redux/Actions/actions-User";
 import postLoginUser from "../../../api/post-login";
@@ -23,17 +23,19 @@ const SignIn = () => {
 
   const handleOnSubmit = async () => {
     try {
-      let datos = {
-        email: state.email,
-        password: state.password
-      };
+      if (state.email.length > 1 && state.password.length > 1) {
+        let datos = {
+          email: state.email,
+          password: state.password
+        };
 
-      const res = await postLoginUser(datos);
-      dispatch(signIn(res.data.passport.user));
+        const res = await postLoginUser(datos);
+        dispatch(signIn(res.data.passport.user));
 
-      navigation.navigate("Inicio");
+        navigation.navigate("Inicio");
+      } else Alert.alert("Error", "Por favor completa todos los campos");
     } catch (e) {
-      alert("No se pudo iniciar sesión");
+      Alert.alert("Error", "No se pudo iniciar sesión");
     }
   };
 
@@ -44,35 +46,47 @@ const SignIn = () => {
 
   return (
     <View>
-      <View style>
-          <Text style={{color:'#C0C6CC'}}>E-mail</Text>
-          <Input
-            style={Styles.Input}
-            inputContainerStyle={{ borderBottomWidth: 0 }}
-            placeholder="Email"
-            value={state.email}
-            onChange={(e) => handleOnChange(e, "email")}
-          />
-          <Text style={{color:'#C0C6CC'}}>Contraseña</Text>
-          <Input
-            style={Styles.Input}
-            inputContainerStyle={{ borderBottomWidth: 0 }}
-            name="password"
-            secureTextEntry={true}
-            placeholder="********"
-            value={state.password}
-            onChange={(e) => handleOnChange(e, "password")}
-          />
+      <View style={{ width: 300 }}>
+        <Text style={{ color: "white", marginLeft: 10 }}>E-mail</Text>
+        <Input
+          style={Styles.Input}
+          inputContainerStyle={{ borderBottomWidth: 0 }}
+          placeholder="user@example.com"
+          value={state.email}
+          onChange={(e) => handleOnChange(e, "email")}
+        />
+        <Text style={{ color: "white", marginLeft: 10 }}>Contraseña</Text>
+        <Input
+          style={Styles.Input}
+          inputContainerStyle={{ borderBottomWidth: 0 }}
+          name="password"
+          secureTextEntry={true}
+          placeholder="********"
+          value={state.password}
+          onChange={(e) => handleOnChange(e, "password")}
+        />
       </View>
       <View>
         <ButtonGreen
-          disabled={state.email.length < 1 || state.password.length < 1}
           onPress={() => handleOnSubmit()}
         >
-          <Text>Iniciar sesión</Text>
+          <Text style={{ alignSelf: "center" }}>Iniciar Sesión</Text>
         </ButtonGreen>
-        <TouchableOpacity onPress={() => alert('que lastima')}>
-            <Text style={{color:'#6AE056', alignSelf: "center"}}>Olvide mi Contraseña</Text>
+        <TouchableOpacity onPress={() => Alert.alert(
+          "Atención", 'Le enviaremos las instrucciones para reestablecer la contraseña al mail asociado a su cuenta',
+          [
+            {
+              text: "Cancelar",
+              style: "cancel"
+            },
+            {
+              text: "Aceptar",
+              onPress: () => Alert.alert("Mail enviado, revise su correo"),
+              style: "default"
+            }
+          ]
+        )}>
+          <Text style={{ color: '#6AE056', alignSelf: "center", marginBottom: 20, marginTop: 8 }}>OLVIDE MI CONTRASEÑA</Text>
         </TouchableOpacity>
       </View>
     </View>

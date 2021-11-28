@@ -1,10 +1,10 @@
 import React, { Component, useState } from "react";
 import { useNavigation } from "@react-navigation/core";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View, Alert } from "react-native";
 import { Input, Button } from "react-native-elements";
 import postRegisterUser from "../../../api/post-register";
-import { ButtonGreen } from "../AuthenticatioStyled";
-import { Styles } from "../AuthenticatioStyled";
+import { ButtonGreen } from "../Authentication.styles";
+import { Styles } from "../Authentication.styles";
 import { useSelector, useDispatch } from "react-redux";
 import signIn from "../../../redux/Actions/actions-User";
 
@@ -23,9 +23,8 @@ export default function SignUp() {
 
   const DateGenerate = () => {
     const date = new Date();
-    const format = `${date.getFullYear()}-${
-      date.getMonth() + 1
-    }-${date.getUTCDate()}`;
+    const format = `${date.getFullYear()}-${date.getMonth() + 1
+      }-${date.getUTCDate()}`;
     return format;
   };
 
@@ -38,27 +37,32 @@ export default function SignUp() {
 
   const handleOnSubmit = async () => {
     try {
-      let datos = {
-        paymentday: DateGenerate(),
-        name: input.name,
-        lastname: input.lastname,
-        email: input.email,
-        password: input.password,
-      };
-      
-      const res = await postRegisterUser(datos);
-      dispatch(signIn(res.data));
+      if (input.name.length > 1 && input.lastname.length > 1 && input.email.length > 1 && input.password.length > 1 && input.repeatPassword.length > 1) {
+        let datos
+        if (input.password === input.repeatPassword) {
+          datos = {
+            paymentday: DateGenerate(),
+            name: input.name,
+            lastname: input.lastname,
+            email: input.email,
+            password: input.password,
+          };
+        } else Alert.alert("Error", "Las contraseñas no coinciden")
 
-      navigation.navigate("Inicio");
+        const res = await postRegisterUser(datos);
+        dispatch(signIn(res.data));
+
+        navigation.navigate("Inicio");
+      } else Alert.alert("Error", "Por favor completa todos los campos")
     } catch (e) {
-      alert("No se pudo iniciar sesion");
+      Alert.alert("Error", "No se pudo iniciar sesion");
     }
   };
 
   return (
     <View>
-      <View>
-        <Text style={{ color: "#C0C6CC" }}>Nombre</Text>
+      <View style={{ width: 300 }}>
+        <Text style={{ color: "white", marginLeft: 10 }}>Nombre</Text>
         <Input
           style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -67,7 +71,7 @@ export default function SignUp() {
           onChange={(e) => handleInputChange(e, "name")}
         />
 
-        <Text style={{ color: "#C0C6CC" }}>Apellido</Text>
+        <Text style={{ color: "white", marginLeft: 10 }}>Apellido</Text>
         <Input
           style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -76,7 +80,7 @@ export default function SignUp() {
           onChange={(e) => handleInputChange(e, "lastname")}
         />
 
-        <Text style={{ color: "#C0C6CC" }}>E-mail</Text>
+        <Text style={{ color: "white", marginLeft: 10 }}>E-mail</Text>
         <Input
           style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -85,7 +89,7 @@ export default function SignUp() {
           onChange={(e) => handleInputChange(e, "email")}
         />
 
-        <Text style={{ color: "#C0C6CC" }}>Contraseña</Text>
+        <Text style={{ color: "white", marginLeft: 10 }}>Contraseña</Text>
         <Input
           style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -95,7 +99,7 @@ export default function SignUp() {
           secureTextEntry={true}
         />
 
-        <Text style={{ color: "#C0C6CC" }}>Repetir Contraseña</Text>
+        <Text style={{ color: "white", marginLeft: 10 }}>Repetir Contraseña</Text>
         <Input
           style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -106,8 +110,10 @@ export default function SignUp() {
         />
       </View>
       <View>
-        <ButtonGreen onPress={() => handleOnSubmit()}>
-          <Text>Registrarse</Text>
+        <ButtonGreen
+          onPress={() => handleOnSubmit()}
+        >
+          <Text style={{ alignSelf: "center" }}>Registrarse</Text>
         </ButtonGreen>
       </View>
     </View>
