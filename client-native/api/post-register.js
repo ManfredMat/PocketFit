@@ -5,10 +5,10 @@ import axios from "axios";
 // Luciano = 192.168.0.26
 
 
-export default postLoginUser = async (datos) => {
+export default postRegisterUser = async (datos) => {
   return await axios({
     method: "post",
-    url: "http://192.168.0.26:3001/api/login",
+    url: "http://192.168.0.26:3001/api/users/register_user",
     data: datos,
   });
 };

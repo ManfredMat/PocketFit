@@ -2,16 +2,16 @@ import React, { Component, useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 import { Text, TouchableOpacity, View } from "react-native";
 import { Input, Button } from "react-native-elements";
-import postUser from "../../../api/post-login";
+import postRegisterUser from "../../../api/post-register";
 import { ButtonGreen } from "../AuthenticatioStyled";
 import { Styles } from "../AuthenticatioStyled";
 import { useSelector, useDispatch } from "react-redux";
-import signUp from "../../../redux/Actions/actions-User";
+import signIn from "../../../redux/Actions/actions-User";
 
 export default function SignUp() {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.reducerUser);
+  const user = useSelector((state) => state.reducerUser.user);
 
   const [input, setInput] = useState({
     name: "",
@@ -34,7 +34,6 @@ export default function SignUp() {
       ...input,
       [type]: e.nativeEvent.text,
     });
-    //console.log(input);
   };
 
   const handleOnSubmit = async () => {
@@ -47,14 +46,11 @@ export default function SignUp() {
         password: input.password,
       };
       
-      const res = await postUser(datos);
-      
-      dispatch(signUp(res.data));
+      const res = await postRegisterUser(datos);
+      dispatch(signIn(res.data));
 
-      console.log(user.userSignIn, "userSignIn");
-      await navigation.navigate("Inicio");
+      navigation.navigate("Inicio");
     } catch (e) {
-      console.log(e, "error")
       alert("No se pudo iniciar sesion");
     }
   };
