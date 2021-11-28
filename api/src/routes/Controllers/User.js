@@ -1,14 +1,21 @@
 const {User, Routine, Exercise} = require ('../../db')
+const bcrypt = require("bcrypt");
 
 const createUser = async (req, res) =>{
-    const {name, lastname, email, age, height, weight, 
-        backsquat, pushpress, snatch, clean, running, 
-        pullups, password, isadmin, isprofessor, isuser} = req.body;
+    const {name, lastname, paymentday} = req.body;
+        
+    let {email, password} = req.body
+    password = await bcrypt.hash(password, 10);
+
     try{
-        const newUser = await User.create({name, lastname, email, age, height, weight, 
-            backsquat, pushpress, snatch, clean, running, 
-            pullups, password, isadmin, isprofessor, isuser});
-        res.json(newUser)
+        const duplicatedMail = await User.findOne({ where: { email: email } });
+        if (duplicatedMail === null) {
+        const newUser = await User.create({name, lastname, email, 
+            password, paymentday});
+              //res.send("New user succesfully created!");
+              res.json(newUser)
+            }
+        else{res.send("User is already registered")}
     }
     catch(err){
         res.send(err)
@@ -36,17 +43,18 @@ const getSpeficicUser = async(req, res) =>{
     }
 }
 const modifyUser = async(req, res)=>{
-    const {id, prop} = req.params
-    const {update} = req.body
-    try{
-        const oneUser= await User.findOne({where:{id:id}})
-        oneUser[prop] = update
-        await oneUser.save()
-       res.send(oneUser)
-    }
-       catch(error){
-           res.send(error)
-       }
+    const {id} = req.params
+    const {name, lastname, email, age, height, weight, backsquat, pushpress, snatch, clean, running, pullups, password, paymentday} = req.body
+       try {
+        await User.update(
+          { name, lastname, email, age, height, weight, backsquat, pushpress, snatch, clean, running, pullups, password, paymentday },
+          { where: { id: id } }
+        );
+        const newUser = await User.findOne({ where: { id: id } });
+        res.json(newUser);
+      } catch (error) {
+        res.send(error)
+      }
 }
 
 const createRoutine = async(req, res) => {
@@ -103,3 +111,4 @@ const updateRoutine = async(req , res) =>{
 }
 
 module.exports={ createUser, getSpeficicUser, getAllUsers, createRoutine, getRoutine, deleteRoutine, updateRoutine, modifyUser};   
+

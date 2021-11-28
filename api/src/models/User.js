@@ -25,15 +25,15 @@ module.exports = (sequelize) => {
     },
     age: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     height: {
       type: DataTypes.FLOAT,
-      allowNull: false
+      allowNull: true
     },
     weight: {
       type: DataTypes.FLOAT,
-      allowNull: false
+      allowNull: true
     },
     backsquat: {
       type: DataTypes.INTEGER,
@@ -73,6 +73,9 @@ module.exports = (sequelize) => {
     isuser: {
       type: DataTypes.BOOLEAN,
       defaultValue: true
+    },
+    paymentday:{
+      type: DataTypes.DATE
     }
   });
 };

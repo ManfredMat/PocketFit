@@ -4,30 +4,43 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('event', {
+
       id:{
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         allowNull: false,
         primaryKey: true
       },
-  kindOfEvent:{
-        type: DataTypes.BOOLEAN,
+
+    kindOfEvent:{
+        type: DataTypes.STRING,
         defaultValue: false,
         allowNull: false,
-  },
-  event:{
-        type: DataTypes.BOOLEAN,
-        defaultValue: false,
-        allowNull: false,
-},
-  name:{
+    },
+  
+    name:{
         type: DataTypes.STRING,
         allowNull: false,
-},
-description:{
-  type: DataTypes.TEXT,
-  allowNull: false
-},
+    },
+
+    month:{
+      type: DataTypes.INTEGER,
+      allowNull:false
+    },
+
+    day:{
+      type: DataTypes.INTEGER,
+      allowNull:false
+    },
+    hour:{
+      type: DataTypes.INTEGER,
+      allowNull:false
+    },
+
+    description:{
+    type: DataTypes.TEXT,
+    allowNull: false
+    },
 
    }
   );
