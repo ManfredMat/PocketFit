@@ -1,37 +1,80 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
-import ProfilePhoto from '../../assets/img/profilephoto.svg';
-import LandingIcon from '../../assets/img/landingicon.svg';
+import ProfilePhoto from "../../assets/img/profilephoto.svg";
+import footer from "../../assets/img/footer.svg";
+import LogingWave from "../../assets/img/loginwave.svg";
+import { useState } from "react";
+import { LogIn } from '../../redux/Actions/actions-Prueba'
+import { useDispatch, useSelector } from "react-redux";
+import { ContainerIn, Input, Container, Btn, TextGreen, Wave} from "./Login.styles";
 
 function Login() {
-    const navigate = useNavigate();
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        navigate("/home")
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const getSession = useSelector((state) => state.state.session)
+  
+  const [loading, setLoading] = useState(false)
+  const check = async () => {
+    if(getSession.length !== 0){
+      getSession.passport.user.isadmin ? navigate('/home')
+      : alert('usted no es administrador, para continuar descargue PocketFit movile')
     }
+}
+console.log(getSession.passport)
 
-    return (
-        <div className="bg-login-background h-full w-full bg-no-repeat bg-cover bg-top">
-            <div className="flex flex-col items-center" style={{position: "absolute", left: "10vw", top: "4vw"}}>
-                <img className="h-30 w-30" src={ProfilePhoto} alt="profile" />
-
-                <div style={{backgroundColor:"rgba(255, 255, 255, 0.3)"}} className="flex flex-col items-center rounded-lg p-10">
-                    <label style={{fontFamily:"poppins"}} className="self-start text-white" htmlFor="email">E-Mail</label>
-                    <input className="rounded-lg px-10" name="email" type="email" />
-                    <label style={{fontFamily:"poppins"}} className="self-start text-white mt-4" htmlFor="pass">Contraseña</label>
-                    <input className="rounded-lg px-10" name="pass" type="password" />
-                </div>
-                <Link to="/home"><button style={{fontFamily:"poppins"}} className="bg-green-base rounded-md py-2 px-6 mt-4">Iniciar Sesión</button></Link>              
-                
-                <Link to="/passreco"><h6 className="text-green-base underline mt-8">OLVIDÉ MI CONTRASEÑA</h6></Link>
-
-                <h6 style={{fontFamily:"poppins"}} className="text-white mt-8">Powered by</h6>
-                <img src={LandingIcon} alt="pocket-fit-logo" className="w-4/5"/>
-            </div>
+  const [input, setInput] = useState({
+    email:'',
+    password:'',
+  })
+  
+  const handleChange = (e, type) => {
+    setInput({
+      ...input,
+      [type]: e.target.value
+    })
+  }
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch(LogIn(input))
+    setLoading(true)
+  }
+  loading && check()
+console.log(loading)
+  
+  return (
+    <Container>
+        <div>
+          <Wave src={LogingWave} alt="pocket-fit-logo"/>
         </div>
-    )
-};
+      <div style={{width: 500, marginTop: -250}}>
+        <div style={{display: "flex", flexDirection: 'column', alignItems: 'center'}}>
+          <img style={{position: 'relative', marginBottom: -40}} src={ProfilePhoto} alt="profile" />
+        <ContainerIn>
+          <label htmlFor="email" style={{marginLeft: 35}}>
+            E-Mail
+          </label>
+          <Input name="email" type="email" onChange={(e) => handleChange(e, 'email')}/>
+          <label htmlFor="pass" style={{marginLeft: 35}}>
+            Contraseña
+          </label>
+          <Input name="pass" type="password"  onChange={(e) => handleChange(e, 'password')} />
+        </ContainerIn>
+          <Btn onClick={(e)=>handleSubmit(e)}>
+            Iniciar Sesión
+          </Btn>
+
+        <Link to="/passreco" style={{textDecoration: 'none'}}>
+          <TextGreen>
+            OLVIDÉ MI CONTRASEÑA
+          </TextGreen>
+        </Link>
+            <h6 style={{color: '#fff', marginBottom: -0.5}}>Powered by</h6>
+            <img style={{marginBottom: 120}}src={footer} alt="pocket-fit-logo"/>
+        </div>
+      </div>
+    </Container>
+  );
+}
 
 export default Login;

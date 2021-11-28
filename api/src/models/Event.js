@@ -32,6 +32,10 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull:false
     },
+    hour:{
+      type: DataTypes.INTEGER,
+      allowNull:false
+    },
 
     description:{
     type: DataTypes.TEXT,

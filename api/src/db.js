@@ -36,7 +36,11 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Event, Exercise, Routine, Timetable, User } = sequelize.models;
+
+
+
+const { Event , Exercise  , Routine , Timetable , User  , Block} = sequelize.models;
+
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -49,11 +53,8 @@ Timetable.belongsToMany(User, { through: "UserTimetable" });
 User.belongsToMany(Event, { through: "UserEvent" });
 Event.belongsToMany(User, { through: "UserEvent" });
 
-Exercise.belongsToMany(Routine, { through: "ExerciseRoutine" });
-Routine.belongsToMany(Exercise, { through: "ExerciseRoutine" });
-
-Timetable.belongsToMany(Event, { through: "EventTimetable" });
-Event.belongsToMany(Timetable, { through: "EventTimetable" });
+Block.belongsToMany(Routine, { through: "BlockRoutine" });
+Routine.belongsToMany(Block, { through: "BlockRoutine" });
 
 module.exports = {
   ...sequelize.models,

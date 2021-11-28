@@ -2,16 +2,8 @@ const { Router } = require("express");
 const { User } = require("../../db");
 const router = Router();
 const { checkAuth } = require("../Controllers/auth");
-const {
-  createUser,
-  getAllUsers,
-  getSpeficicUser,
-  createRoutine,
-  getRoutine,
-  deleteRoutine,
-  updateRoutine,
-  modifyUser,
-} = require("../Controllers/User");
+const {createUser, getAllUsers, getSpeficicUser, createRoutine, getRoutine, deleteRoutine, updateRoutine, modifyUser} = require('../Controllers/User')
+
 
 router.post("/register_user", createUser);
 router.get("/", checkAuth, getAllUsers);

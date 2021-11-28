@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-
+import { LandingDiv, CargandoLanding } from "./Landing.styles";
 import LandingIcon from '../../assets/img/landingicon.svg'
+import { Container, Wave } from "../Login/Login.styles";
+import LogingWave from "../../assets/img/loginwave.svg";
 
 function Landing() {
     const navigate = useNavigate();
@@ -15,12 +17,14 @@ function Landing() {
         // eslint-disable-next-line 
       }, []);
 
-  <h2>Cargando...</h2>
     return (
-        <div className="flex flex-col items-center justify-center bg-darkGray-base h-full">
+        <Container>
+          <Wave src={LogingWave} alt="pocket-fit-logo"/>
+          <LandingDiv>
             <img src={LandingIcon} alt="pocket-fit-logo" />
-            <h2 className="text-yellow-base">Cargando...</h2>
-        </div>
+            <h2 style={{color: '#fff', marginTop: -5}}>Cargando...</h2>
+          </LandingDiv>
+        </Container>
     )
 };
 
