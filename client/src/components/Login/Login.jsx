@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import ProfilePhoto from "../../assets/img/profilephoto.svg";
-import LandingIcon from "../../assets/img/landingicon.svg";
+import footer from "../../assets/img/footer.svg";
 import LogingWave from "../../assets/img/loginwave.svg";
-import FitnessLogo from "../../assets/img/fitnesslogo.svg";
 import { useState } from "react";
 import { LogIn } from '../../redux/Actions/actions-Prueba'
 import { useDispatch, useSelector } from "react-redux";
-import { ContainerIn, Input, Container } from "./Login.styles";
+import { ContainerIn, Input, Container, Btn, TextGreen, Wave} from "./Login.styles";
 
 function Login() {
   const navigate = useNavigate();
@@ -45,46 +44,34 @@ console.log(loading)
   
   return (
     <Container>
-      <div>
-        <img src={LogingWave} alt="pocket-fit-logo"/>
         <div>
-          <h1>Bienvenido a PocketFit...</h1>
-          <img src={FitnessLogo} alt="pocket-fit-logo" />
+          <Wave src={LogingWave} alt="pocket-fit-logo"/>
         </div>
-      </div>
-
-      <div 
-      style={{ position: "absolute", 
-               left: "10vw", 
-               top: "4vw", 
-               display: "flex", 
-               flexDirection: "column", 
-               alignItems: "center"}}>
-
-        <img style={{position: 'relative', marginBottom: -40}} src={ProfilePhoto} alt="profile" />
-
+      <div style={{width: 500, marginTop: -250}}>
+        <div style={{display: "flex", flexDirection: 'column', alignItems: 'center'}}>
+          <img style={{position: 'relative', marginBottom: -40}} src={ProfilePhoto} alt="profile" />
         <ContainerIn>
-          <label htmlFor="email">
+          <label htmlFor="email" style={{marginLeft: 35}}>
             E-Mail
           </label>
           <Input name="email" type="email" onChange={(e) => handleChange(e, 'email')}/>
-          <label htmlFor="pass">
+          <label htmlFor="pass" style={{marginLeft: 35}}>
             Contraseña
           </label>
           <Input name="pass" type="password"  onChange={(e) => handleChange(e, 'password')} />
         </ContainerIn>
-          <button onClick={(e)=>handleSubmit(e)}>
+          <Btn onClick={(e)=>handleSubmit(e)}>
             Iniciar Sesión
-          </button>
+          </Btn>
 
-        <Link to="/passreco">
-          <h6 className="hola">
+        <Link to="/passreco" style={{textDecoration: 'none'}}>
+          <TextGreen>
             OLVIDÉ MI CONTRASEÑA
-          </h6>
+          </TextGreen>
         </Link>
-
-        <h6 className="hola">Powered by</h6>
-        <img src={LandingIcon} alt="pocket-fit-logo"/>
+            <h6 style={{color: '#fff', marginBottom: -0.5}}>Powered by</h6>
+            <img style={{marginBottom: 120}}src={footer} alt="pocket-fit-logo"/>
+        </div>
       </div>
     </Container>
   );

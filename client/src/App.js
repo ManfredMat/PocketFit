@@ -6,7 +6,7 @@ import Login from "./components/Login/Login.jsx"
 import PassRecovery from "./components/Login/PassRecovery.jsx"
 
 
-function App() {
+function App(){
   return (
     <Routes>
       <Route exact path="/" element={<Landing />} />

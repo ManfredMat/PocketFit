@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { LandingDiv, CargandoLanding } from "./Landing.styles";
 import LandingIcon from '../../assets/img/landingicon.svg'
+import { Container, Wave } from "../Login/Login.styles";
+import LogingWave from "../../assets/img/loginwave.svg";
 
 function Landing() {
     const navigate = useNavigate();
@@ -16,10 +18,13 @@ function Landing() {
       }, []);
 
     return (
-        <LandingDiv>
+        <Container>
+          <Wave src={LogingWave} alt="pocket-fit-logo"/>
+          <LandingDiv>
             <img src={LandingIcon} alt="pocket-fit-logo" />
-            <h2 className="CargandoLanding">Cargando...</h2>
-        </LandingDiv>
+            <h2 style={{color: '#fff', marginTop: -5}}>Cargando...</h2>
+          </LandingDiv>
+        </Container>
     )
 };
 
