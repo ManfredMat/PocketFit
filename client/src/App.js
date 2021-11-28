@@ -30,10 +30,3 @@ function App(){
 }
 
 export default App;
-
-/*
-"Landing.js" path "/"
-"SingUp.js" path "/newuser"
-"Login.js" path "/login"
-"Home.js" path "/home"
-*/
