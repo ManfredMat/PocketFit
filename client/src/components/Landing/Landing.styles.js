@@ -5,5 +5,6 @@ export const LandingDiv = styled.div`
     justify-items: center;
     gap: 3rem;
     grid-template-columns: 1fr
-    color: var(--darkGray-base);
+    margin: 0;
+    padding: 5rem;
 `
