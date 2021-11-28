@@ -3,22 +3,38 @@ import { useNavigation } from "@react-navigation/core";
 import { Text, TouchableOpacity, View } from "react-native";
 import { Input } from "react-native-elements";
 import { ButtonGreen } from "../AuthenticatioStyled";
-import { Styles } from '../AuthenticatioStyled'
+import { Styles } from '../AuthenticatioStyled';
+import { useSelector, useDispatch } from "react-redux";
+import signIn from "../../../redux/Actions/actions-User";
+import postLoginUser from "../../../api/post-login";
 
 const SignIn = () => {
   const navigation = useNavigation();
-  const [state, setState] = useState({ user: "", password: "" });
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.reducerUser.user);
+  const [state, setState] = useState({ email: "", password: "" });
 
   const handleOnChange = (e, type) => {
     setState({
       ...state,
       [type]: e.nativeEvent.text,
     });
-    console.log(state);
   };
 
-  const handleOnPress = () => {
-    navigation.navigate("Inicio");
+  const handleOnSubmit = async () => {
+    try {
+      let datos = {
+        email: state.email,
+        password: state.password
+      };
+
+      const res = await postLoginUser(datos);
+      dispatch(signIn(res.data.passport.user));
+
+      navigation.navigate("Inicio");
+    } catch (e) {
+      alert("No se pudo iniciar sesión");
+    }
   };
 
   const validateUserAndPass = () => {
@@ -33,9 +49,9 @@ const SignIn = () => {
           <Input
             style={Styles.Input}
             inputContainerStyle={{ borderBottomWidth: 0 }}
-            placeholder="Email o Usuario"
-            value={state.user}
-            onChange={(e) => handleOnChange(e, "user")}
+            placeholder="Email"
+            value={state.email}
+            onChange={(e) => handleOnChange(e, "email")}
           />
           <Text style={{color:'#C0C6CC'}}>Contraseña</Text>
           <Input
@@ -50,8 +66,8 @@ const SignIn = () => {
       </View>
       <View>
         <ButtonGreen
-          disabled={state.user.length < 1 || state.password.length < 1}
-          onPress={() => handleOnPress()}
+          disabled={state.email.length < 1 || state.password.length < 1}
+          onPress={() => handleOnSubmit()}
         >
           <Text>Iniciar sesión</Text>
         </ButtonGreen>
