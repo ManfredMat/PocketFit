@@ -11,7 +11,7 @@ function Landing() {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-          isLogged ? navigate("/home") : navigate("/login")
+          isLogged ? navigate("/session/home") : navigate("/login")
         }, 3000);
         return () => clearTimeout(timer);
         // eslint-disable-next-line 
