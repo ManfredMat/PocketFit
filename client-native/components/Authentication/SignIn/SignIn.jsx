@@ -31,7 +31,7 @@ const SignIn = () => {
 
         const res = await postLoginUser(datos);
         dispatch(signIn(res.data.passport.user));
-
+        Alert.alert("Exito")
         navigation.navigate("Inicio");
       } else Alert.alert("Error", "Por favor completa todos los campos");
     } catch (e) {

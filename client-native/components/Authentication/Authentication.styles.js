@@ -32,5 +32,5 @@ export const Styles = StyleSheet.create({
         backgroundColor: 'rgba(196, 196, 196, 1)',
         borderRadius: 16,
         marginBottom: -10
-    }
+    },
 })
