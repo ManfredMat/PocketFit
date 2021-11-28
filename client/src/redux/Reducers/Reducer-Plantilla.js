@@ -1,9 +1,13 @@
 import {
-  PLANTILLA
+  PLANTILLA,
+  LOG_IN
 } from "../Actions/actions-Prueba";
 
 const initialState = {
-  prueba: ""
+  
+  prueba: "",
+  session:[]
+
 };
 
 function reducerPlantilla(state = initialState, action) {
@@ -13,7 +17,11 @@ function reducerPlantilla(state = initialState, action) {
         ...state,
         prueba: action.value,
       };
-
+    case LOG_IN:
+      return {
+        ...state,
+        session: action.payload
+      }
     default:
       return state;
   }
