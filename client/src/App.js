@@ -6,6 +6,7 @@ import Landing from "./components/Landing/Landing.jsx";
 import Login from "./components/Login/Login.jsx";
 import PassRecovery from "./components/Login/PassRecovery.jsx";
 import NavBar from "./components/NavBar/NavBar";
+import Users from "./components/Users/Users";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/session" element={<Home />} />
           <Route path="/session/home" element={<Home />} />
           <Route path="/session/payments" element={<Payments />} />
+          <Route path="/session/users" element={<Users />} />
         </Routes>
       </main>
     </>
