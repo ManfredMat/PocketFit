@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { LandingDiv, CargandoLanding } from "./Landing.styles";
-
 import LandingIcon from '../../assets/img/landingicon.svg'
 
 function Landing() {
@@ -19,7 +18,7 @@ function Landing() {
     return (
         <LandingDiv>
             <img src={LandingIcon} alt="pocket-fit-logo" />
-            <h3 className="CargandoLanding">Cargando...</h3>
+            <h2 className="CargandoLanding">Cargando...</h2>
         </LandingDiv>
     )
 };
