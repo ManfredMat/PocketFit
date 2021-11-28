@@ -5,7 +5,7 @@ const monthEventStructure = (eventArray)=>{
     
         eventArray.forEach(event => {
         
-            let {name , day , users ,description ,timetables} = event
+            let {name , day , users ,description ,hour} = event
 
             let user= users[0].name
             
@@ -15,8 +15,7 @@ const monthEventStructure = (eventArray)=>{
                 day:day,
                 responsable:user,
                 description:description,
-                beginning:timetables[0].beginning,
-                ending:timetables[0].ending,
+                hour:hour
             }
 
             nuevoArray.push(eventRestructured)  
@@ -47,7 +46,7 @@ const monthEventSort = (eventArray)=>{
 
 const createEvent = async (req , res)=>{
 
-    let{kindOfEvent , name , description , profesor , timetable , month , day} = req.body
+    let{kindOfEvent , name , description , profesor , hour , month , day} = req.body
 
     try{
         let newEvent = await Event.create({
@@ -55,10 +54,10 @@ const createEvent = async (req , res)=>{
             name,
             description,
             month,
+            hour,
             day
         })
 
-        await newEvent.setTimetables(timetable)
 
         await newEvent.setUsers(profesor)
 
@@ -73,7 +72,6 @@ const getAllEvents = async (req , res)=>{
     try{
         let events = await Event.findAll({
             include:[{
-                model: Timetable , attributes:['beginning' , 'ending'],
                 model: User , attributes:['name'],
                 through:{
                     attributes:[]
@@ -95,7 +93,6 @@ const getOneEvent = async (req , res)=>{
         let event = await Event.findOne({
             where:{id:id},
             include:[{
-                model: Timetable , attributes:['beginning' , 'ending'],
                 model: User , attributes:['name'],
                 through:{
                     attributes:[]
@@ -121,14 +118,7 @@ const getEventsByMonth = async (req , res)=>{
                 through:{
                     attributes:[]
                 }
-            } ,
-            {
-            model: Timetable , attributes:['beginning' , 'ending'],
-            through:{
-                attributes:[]
-            }
-        }]
-
+            }]
         })
 
 
