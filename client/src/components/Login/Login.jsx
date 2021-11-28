@@ -36,6 +36,7 @@ console.log(getSession.passport)
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     dispatch(LogIn(input))
     setLoading(true)
   }
@@ -58,9 +59,11 @@ console.log(loading)
           <label htmlFor="pass" style={{marginLeft: 35}}>
             Contraseña
           </label>
+
           <Input name="pass" type="password"  onChange={(e) => handleChange(e, 'password')} />
         </ContainerIn>
           <Btn onClick={(e)=>handleSubmit(e)}>
+
             Iniciar Sesión
           </Btn>
 
