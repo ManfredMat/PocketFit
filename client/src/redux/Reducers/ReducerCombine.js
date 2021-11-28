@@ -2,7 +2,7 @@ import {combineReducers} from "redux"
 import reducerPlantilla from "./Reducer-Plantilla.js"
 
 const rootReducer = combineReducers({
-    plantilla : reducerPlantilla
+    state: reducerPlantilla
 })
 
 export default rootReducer
