@@ -71,7 +71,7 @@ function NavBar() {
               <img src={EventsIco} alt="users" />
             </Styles.StyledNavButton>
           </Link>
-          <Link to="/payments">
+          <Link to="/session/payments">
             <Styles.StyledNavButton
               select={actual.includes("payments") ? true : false}
             >
