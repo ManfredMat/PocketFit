@@ -20,7 +20,7 @@ export default function App() {
       <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator>
-              <Stack.Screen name= 'Authentication' component={RootStack} options = {{headerShown: false}}/> 
+              <Stack.Screen name= 'Auth' component={RootStack} options = {{headerShown: false}}/> 
               <Stack.Screen name= 'Inicio' component={InicioStack} options = {{headerShown: false}} />
           </Stack.Navigator>
         </NavigationContainer>

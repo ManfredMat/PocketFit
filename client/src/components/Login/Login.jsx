@@ -1,64 +1,82 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
 import ProfilePhoto from "../../assets/img/profilephoto.svg";
-import LandingIcon from "../../assets/img/landingicon.svg";
+import footer from "../../assets/img/footer.svg";
 import LogingWave from "../../assets/img/loginwave.svg";
-import FitnessLogo from "../../assets/img/fitnesslogo.svg";
+import { useState } from "react";
+import { LogIn } from '../../redux/Actions/actions-Prueba'
+import { useDispatch, useSelector } from "react-redux";
+import { ContainerIn, Input, Container, Btn, TextGreen, Wave} from "./Login.styles";
 
 function Login() {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const getSession = useSelector((state) => state.state.session)
+  
+  const [loading, setLoading] = useState(false)
+  const check = async () => {
+    if(getSession.length !== 0){
+      getSession.passport.user.isadmin ? navigate('/home')
+      : alert('usted no es administrador, para continuar descargue PocketFit movile')
+    }
+}
+console.log(getSession.passport)
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    navigate("/session/home");
+  const [input, setInput] = useState({
+    email:'',
+    password:'',
+  })
+  
+  const handleChange = (e, type) => {
+    setInput({
+      ...input,
+      [type]: e.target.value
+    })
   }
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
+    dispatch(LogIn(input))
+    setLoading(true)
+  }
+  loading && check()
+console.log(loading)
+  
   return (
-    <div className="hola">
-      <div className="hola">
-        <img src={LogingWave} alt="pocket-fit-logo" className="w-screen" />
-        <div className="hola">
-          <h1 className="hola">Bienvenido a PocketFit...</h1>
-          <img src={FitnessLogo} alt="pocket-fit-logo" className="hola"/>
+    <Container>
+        <div>
+          <Wave src={LogingWave} alt="pocket-fit-logo"/>
         </div>
-      </div>
-
-      <div
-        className="hola"
-        style={{ position: "absolute", left: "10vw", top: "4vw" }}
-      >
-        <img className="hola" src={ProfilePhoto} alt="profile" />
-
-        <div
-          style={{ backgroundColor: "rgba(255, 255, 255, 0.3)" }}
-          className="hola"
-        >
-          <label className="hola" htmlFor="email">
+      <div style={{width: 500, marginTop: -250}}>
+        <div style={{display: "flex", flexDirection: 'column', alignItems: 'center'}}>
+          <img style={{position: 'relative', marginBottom: -40}} src={ProfilePhoto} alt="profile" />
+        <ContainerIn>
+          <label htmlFor="email" style={{marginLeft: 35}}>
             E-Mail
           </label>
-          <input className="hola" name="email" type="email" />
-          <label className="hola" htmlFor="pass">
+          <Input name="email" type="email" onChange={(e) => handleChange(e, 'email')}/>
+          <label htmlFor="pass" style={{marginLeft: 35}}>
             Contraseña
           </label>
-          <input className="hola" name="pass" type="password" />
-        </div>
-        <Link to="/session/home">
-          <button className="hola">
+
+          <Input name="pass" type="password"  onChange={(e) => handleChange(e, 'password')} />
+        </ContainerIn>
+          <Btn onClick={(e)=>handleSubmit(e)}>
+
             Iniciar Sesión
-          </button>
-        </Link>
+          </Btn>
 
-        <Link to="/passreco">
-          <h6 className="hola">
+        <Link to="/passreco" style={{textDecoration: 'none'}}>
+          <TextGreen>
             OLVIDÉ MI CONTRASEÑA
-          </h6>
+          </TextGreen>
         </Link>
-
-        <h6 className="hola">Powered by</h6>
-        <img src={LandingIcon} alt="pocket-fit-logo" className="w-4/5" />
+            <h6 style={{color: '#fff', marginBottom: -0.5}}>Powered by</h6>
+            <img style={{marginBottom: 120}}src={footer} alt="pocket-fit-logo"/>
+        </div>
       </div>
-    </div>
+    </Container>
   );
 }
 

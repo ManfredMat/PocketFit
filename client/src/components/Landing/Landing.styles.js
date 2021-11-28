@@ -1,13 +1,10 @@
 import styled from "styled-components";
 
 export const LandingDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--darkGray-base);
-`
-
-export const CargandoLanding = styled.h2`
-    
+    display: grid;
+    justify-items: center;
+    gap: 3rem;
+    grid-template-columns: 1fr
+    margin: 0;
+    padding: 5rem;
 `

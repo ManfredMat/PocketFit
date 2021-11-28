@@ -7,7 +7,7 @@ import headerLogin from '../../assets/Svg/headerLogin'
 import background from '../../assets/Background.png'
 import fitnessGym from '../../assets/Svg/fitnessGym'
 import userIcon from '../../assets/Svg/userIcon'
-import { Container, ContainerBar } from './AuthenticatioStyled'
+import { Container, ContainerBar } from './Authentication.styles'
 
 
 export default function Authentication() {
@@ -19,20 +19,20 @@ export default function Authentication() {
             style={{flex: 1, with:'100%', height: '100%'}} 
             imageStyle={{resizeMode: 'stretch'}}>   
             <View>
-                <SvgXml xml={fitnessGym}/>
+                <SvgXml xml={fitnessGym} style={{flex: 1, alignSelf: "center", marginTop: 25}}/>
             </View>
             <View>
-                <SvgXml xml={headerLogin}/>
+                <SvgXml xml={headerLogin} style={{alignSelf: "center", top: 50}}/>
             </View>
 
             <Container>
                 <SvgXml style={{position: 'relative', marginTop: -50}} xml={userIcon}/>
                 <ContainerBar>
                     <TouchableOpacity onPress={()=> setRender(false)}>
-                        <Text style={{marginRight: 40, fontSize: 15, color:'#C0C6CC'}}>Registro</Text>
+                        <Text style={{marginRight: 40, fontSize: 15, color: render ? "#C0C6CC" : "#6AE056"}}>Registro</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=> setRender(true)}>
-                        <Text style={{marginLeft: 40, fontSize: 15, color:'#C0C6CC'}}>Iniciar Sesion</Text>
+                        <Text style={{marginLeft: 40, fontSize: 15, color: render ? "#6AE056" : "#C0C6CC"}}>Iniciar Sesión</Text>
                     </TouchableOpacity>
                 </ContainerBar>
                    
