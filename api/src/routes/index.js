@@ -4,8 +4,10 @@ const routineRoute = require("./Routes/Routine");
 const timetableRoute = require("./Routes/Timetable");
 const userRoute = require("./Routes/User");
 const loginRoute = require("./Routes/Login");
+const logoutRoute = require("./Routes/Logout");
 const blockRoute = require('./Routes/Block');
 const { Router } = require("express");
+
 const router = Router();
 
 
@@ -16,5 +18,6 @@ router.use('/api/timetables' , timetableRoute);
 router.use('/api/users' , userRoute);
 router.use('/api/blocks' , blockRoute);
 router.use("/api/login", loginRoute);
+router.use("/api/logout", logoutRoute);
 
 module.exports = router;
