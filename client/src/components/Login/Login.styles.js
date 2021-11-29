@@ -9,8 +9,8 @@ export const Container = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vw;
 `
 
 export const ContainerIn = styled.div`
