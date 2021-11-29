@@ -31,7 +31,6 @@ const SignIn = () => {
 
         const res = await postLoginUser(datos);
         dispatch(signIn(res.data.passport.user));
-        Alert.alert("Exito")
         navigation.navigate("Inicio");
       } else Alert.alert("Error", "Por favor completa todos los campos");
     } catch (e) {
@@ -54,6 +53,8 @@ const SignIn = () => {
           placeholder="user@example.com"
           value={state.email}
           onChange={(e) => handleOnChange(e, "email")}
+          keyboardType="email-address"
+          textContentType="emailAddress"
         />
         <Text style={{ color: "white", marginLeft: 10 }}>Contraseña</Text>
         <Input
@@ -64,6 +65,7 @@ const SignIn = () => {
           placeholder="********"
           value={state.password}
           onChange={(e) => handleOnChange(e, "password")}
+          textContentType="password"
         />
       </View>
       <View>
