@@ -44,7 +44,9 @@ module.exports = (sequelize) => {
     type: DataTypes.TEXT,
     allowNull: false
     },
-
+    profesor:{
+      type: DataTypes.STRING
+    }
    }
   );
 };
