@@ -3,9 +3,10 @@ const {Routine , Block} = require('../../db')
 
 
  const createRoutine = async (req , res)=>{
-    let {kindOfRoutine  , blocks } = req.body;
+    let {kindOfRoutine  , blocks , day } = req.body;
     try{
        const newRoutine = await  Routine.create({
+           day,
            kindOfRoutine
        })
        newRoutine.setBlocks(blocks)

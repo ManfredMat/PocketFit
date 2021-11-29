@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
       },
 
       day:{
-        type: DataTypes.STRING,
+        type:DataTypes.ENUM("monday" , "tuesday" , "wendsday" , "thursday" , "friday" , "saturday"),
         allowNull:false
       },
 
