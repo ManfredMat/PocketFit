@@ -29,7 +29,7 @@ module.exports = (sequelize) => {
     },
 
     day:{
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull:false
     },
     hour:{
