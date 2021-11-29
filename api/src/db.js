@@ -53,8 +53,8 @@ Timetable.belongsToMany(User, { through: "UserTimetable" });
 User.belongsToMany(Event, { through: "UserEvent" });
 Event.belongsToMany(User, { through: "UserEvent" });
 
-Block.belongsToMany(Routine, { through: "BlockRoutine" });
 Routine.belongsToMany(Block, { through: "BlockRoutine" });
+Block.belongsToMany(Routine, { through: "BlockRoutine" });
 
 module.exports = {
   ...sequelize.models,
