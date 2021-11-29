@@ -27,10 +27,13 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull:true,
     },
-
-    day:{
+    nameday:{
       type: DataTypes.STRING,
       allowNull:false
+    },
+    day:{
+      type: DataTypes.INTEGER,
+      allowNull:true,
     },
     hour:{
       type: DataTypes.INTEGER,
