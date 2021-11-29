@@ -1,8 +1,9 @@
-// module.exports = {
-//   checkAuth: function (req, res, next) {
-//     if (req.isAuthenticated()) {
-//       return next();
-//     }
-//     res.send(403);
-//   },
-// };
+module.exports = {
+  checkAuth: function (req, res, next) {
+    if (req.isAuthenticated()) {
+      return next();
+    }
+    res.sendStatus(403);
+  },
+};
+
