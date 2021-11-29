@@ -34,7 +34,7 @@ let adminAcount = {
   isuser:false
 }
 
-conn.sync({ force: true }).then(async () => {
+conn.sync({ force: false }).then(async () => {
   
   await User.create(adminAcount)
   await Exercise.bulkCreate(exerArray)
