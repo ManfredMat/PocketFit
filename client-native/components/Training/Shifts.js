@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-
+import {Container} from './Training.Styles'
 export default function Shifts() {
     return (
-        <View>
+        <Container>
             <Text>aca van los turnos</Text>
-        </View>
+        </Container>
     )
 }

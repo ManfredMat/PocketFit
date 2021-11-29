@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
-import { Container, Routines, TextW, TextT, LemonContainer } from './Training.Styles'
+import { Container, Routines, TextW, TextT, LemonContainer, Excercise, ProxShifts } from './Training.Styles'
 import {ButtonGreen} from '../Authentication/Authentication.styles'
 import { useNavigation } from '@react-navigation/core';
 
@@ -14,9 +14,26 @@ export default function Training() {
             <ScrollView>
                 <TextW>Tu Rutina de hoy</TextW>
                 <Routines>
-                    <View>
+                    <ScrollView>
+                    <Excercise>
                         <Text>q hacemo</Text>
-                    </View>
+                    </Excercise>
+                    <Excercise>
+                        <Text>q hacemo</Text>
+                    </Excercise>
+                    <Excercise>
+                        <Text>q hacemo</Text>
+                    </Excercise>
+                    <Excercise>
+                        <Text>q hacemo</Text>
+                    </Excercise>
+                    <Excercise>
+                        <Text>q hacemo</Text>
+                    </Excercise>
+                    <Excercise>
+                        <Text>q hacemo</Text>
+                    </Excercise>
+                    </ScrollView>
                 </Routines>
                 <View style={{marginTop: 15}}>
                     <ButtonGreen onPress={() => alert('próximamente solo en cines')}>
@@ -25,9 +42,9 @@ export default function Training() {
                 </View>
                 <TextW>Próximo Turno</TextW>
                 <LemonContainer>
-                    <View>
+                    <ProxShifts>
                         <Text>todos los turnos</Text>
-                    </View>
+                    </ProxShifts>
                 </LemonContainer>
                 <View style={{marginTop: 15}}>
                     <ButtonGreen onPress={() => navigation.navigate('Shifts')}>
