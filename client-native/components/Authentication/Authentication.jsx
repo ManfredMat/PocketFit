@@ -16,7 +16,7 @@ export default function Authentication() {
     return (
         <ImageBackground 
             source={background} 
-            style={{flex: 1, with:'100%', height: '100%'}} 
+            style={{flex: 1, width:'100%', height: '100%'}} 
             imageStyle={{resizeMode: 'stretch'}}>   
             <View>
                 <SvgXml xml={fitnessGym} style={{flex: 1, alignSelf: "center", marginTop: 25}}/>

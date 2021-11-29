@@ -49,8 +49,8 @@ console.log(loading)
         <div>
           <Wave src={LogingWave} alt="pocket-fit-logo"/>
         </div>
-      <div style={{width: 500, marginTop: -250}}>
-        <div style={{display: "flex", flexDirection: 'column', alignItems: 'center'}}>
+      <div style={{width: 500, marginTop: -350}}>
+        <div style={{display: "flex", flexDirection: 'column', alignItems: 'center', marginLeft: "8rem"}}>
           <img style={{position: 'relative', marginBottom: -40}} src={ProfilePhoto} alt="profile" />
         <ContainerIn>
           <label htmlFor="email" style={{marginLeft: 35}}>

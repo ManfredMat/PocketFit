@@ -19,7 +19,6 @@ function Landing() {
 
     return (
         <Container>
-          <Wave src={LogingWave} alt="pocket-fit-logo"/>
           <LandingDiv>
             <img src={LandingIcon} alt="pocket-fit-logo" />
             <h2 style={{color: '#fff', marginTop: -5}}>Cargando...</h2>
