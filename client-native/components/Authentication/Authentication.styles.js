@@ -27,10 +27,12 @@ export const ContainerBar = styled.View`
     flex-direction: row;
     align-self: center;
 `
+
 export const Styles = StyleSheet.create({
     Input: {
         backgroundColor: 'rgba(196, 196, 196, 1)',
         borderRadius: 16,
-        marginBottom: -10
+        marginBottom: -10,
+        paddingLeft: 8
     },
 })

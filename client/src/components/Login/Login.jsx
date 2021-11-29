@@ -13,14 +13,15 @@ function Login() {
   const dispatch = useDispatch()
   const getSession = useSelector((state) => state.state.session)
   
-  const [loading, setLoading] = useState(false)
-  const check = async () => {
-    if(getSession.length !== 0){
-      getSession.passport.user.isadmin ? navigate('/session')
-      : alert('usted no es administrador, para continuar descargue PocketFit mobile')
-    }
-}
-console.log(getSession.passport)
+  //   const [loading, setLoading] = useState(false)
+  //   const check = async () => {
+  //     if(getSession.length !== 0){
+  //       getSession.passport.user.isadmin ? navigate('/session')
+  //       : alert('Usted no es administrador, para continuar descargue PocketFit mobile')
+  //     }
+  // }
+  console.log(getSession.passport)
+
 
   const [input, setInput] = useState({
     email:'',
@@ -34,15 +35,27 @@ console.log(getSession.passport)
     })
   }
   
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    dispatch(LogIn(input))
-    setLoading(true)
+    if (input.email < 1 || input.password < 1) {
+      alert("Completa todos los campos")
+    } else {
+      if (validatorEmail(input.email)) {
+        dispatch(LogIn(input))
+        // setLoading(true)
+      } else {
+        alert("Email invalido")
+      }
+    }
   }
 
-  loading && check()
-console.log(loading)
+  const validatorEmail = (email) => {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) return true
+    else return false
+  }
+
+//   loading && check()
+// console.log(loading)
   
   return (
     <Container>
@@ -60,8 +73,7 @@ console.log(loading)
           <label htmlFor="pass" style={{marginLeft: 35}}>
             Contraseña
           </label>
-
-          <Input name="pass" type="password"  onChange={(e) => handleChange(e, 'password')} />
+          <Input name="pass" type="password" onChange={(e) => handleChange(e, 'password')} />
         </ContainerIn>
           <Btn onClick={(e)=>handleSubmit(e)}>
 
@@ -74,7 +86,7 @@ console.log(loading)
           </TextGreen>
         </Link>
             <h6 style={{color: '#fff', marginBottom: -0.5}}>Powered by</h6>
-            <img style={{marginBottom: 120}}src={footer} alt="pocket-fit-logo"/>
+            <img src={footer} alt="pocket-fit-logo"/>
         </div>
       </div>
     </Container>

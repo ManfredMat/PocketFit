@@ -23,10 +23,14 @@ export default function SignUp() {
 
   const DateGenerate = () => {
     const date = new Date();
-    const format = `${date.getFullYear()}-${date.getMonth() + 1
-      }-${date.getUTCDate()}`;
+    const format = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getUTCDate()}`;
     return format;
   };
+
+  const validatorEmail = (email) => {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) return true
+    else return false
+  }
 
   const handleInputChange = (e, type) => {
     setInput({
@@ -38,30 +42,34 @@ export default function SignUp() {
   const handleOnSubmit = async () => {
     try {
       if (input.name.length > 1 && input.lastname.length > 1 && input.email.length > 1 && input.password.length > 1 && input.repeatPassword.length > 1) {
-        let datos
-        if (input.password === input.repeatPassword) {
-          datos = {
-            paymentday: DateGenerate(),
-            name: input.name,
-            lastname: input.lastname,
-            email: input.email,
-            password: input.password,
-          };
-        } else Alert.alert("Error", "Las contraseñas no coinciden")
 
-        const res = await postRegisterUser(datos);
-        dispatch(signIn(res.data));
-        if (res.data === "User is already registered") {
-          Alert.alert("Error", "El usuario ya existe")
-        } else {
-          Alert.alert(`Bienvenido ${input.name}!`, "Te has registrado correctamente")
-          navigation.navigate("Inicio")
-        };
-      } else Alert.alert("Error", "Por favor completa todos los campos")
+        if (!validatorEmail(input.email)) return Alert.alert("Error", "Email inválido")
+        if (input.password !== input.repeatPassword) return Alert.alert("Error", "Las contraseñas no coinciden")
+
+      } else return Alert.alert("Error", "Por favor completa todos los campos")
+
+      const datos = {
+        paymentday: DateGenerate(),
+        name: input.name,
+        lastname: input.lastname,
+        email: input.email,
+        password: input.password,
+      };
+
+      const res = await postRegisterUser(datos);
+      dispatch(signIn(res.data));
+
+      if (res.data === "User is already registered") {
+        Alert.alert("Error", "El usuario ya existe")
+      } else {
+        Alert.alert(`Bienvenido ${input.name}!`, "Te has registrado correctamente")
+        navigation.navigate("Inicio")
+      };
     } catch (e) {
-      Alert.alert("Error", "No se pudo iniciar sesion");
+      Alert.alert("Error", "No se pudo registrar");
     }
   };
+
 
   return (
     <View>
