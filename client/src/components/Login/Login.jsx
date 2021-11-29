@@ -16,7 +16,7 @@ function Login() {
   const [loading, setLoading] = useState(false)
   const check = async () => {
     if(getSession.length !== 0){
-      getSession.passport.user.isadmin ? navigate('/home')
+      getSession.passport.user.isadmin ? navigate('/session')
       : alert('usted no es administrador, para continuar descargue PocketFit mobile')
     }
 }
