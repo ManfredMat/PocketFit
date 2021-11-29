@@ -3,6 +3,6 @@ module.exports = {
     if (req.isAuthenticated()) {
       return next();
     }
-    res.send(403);
+    res.sendStatus(403);
   },
 };
