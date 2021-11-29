@@ -25,7 +25,7 @@ module.exports = (sequelize) => {
 
     month:{
       type: DataTypes.INTEGER,
-      allowNull:false
+      allowNull:true,
     },
 
     day:{
