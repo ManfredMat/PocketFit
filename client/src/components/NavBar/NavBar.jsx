@@ -1,66 +1,99 @@
 import { Link } from "react-router-dom";
-
-import EventsIco from "../../assets/img/iconos/events.svg"
-import WeeklyRoutine from "../../assets/img/iconos/Plans.svg"
+import Styles from "./NavBar-Styled";
+import EventsIco from "../../assets/img/iconos/events.svg";
+import EventsIcoSelect from "../../assets/img/iconos/select-icons/event-select.svg";
+import PayIco from "../../assets/img/iconos/Pay.svg";
+import PayIcoSelect from "../../assets/img/iconos/select-icons/payments-select.svg";
+import SemanalPlan from "../../assets/img/iconos/Plans.svg";
+import SemanalPlanSelect from "../../assets/img/iconos/select-icons/plan-select.svg";
+import FeedBackIco from "../../assets/img/iconos/feedback.svg";
+import FeedBackIcoSelect from "../../assets/img/iconos/select-icons/feedback-select.svg";
+import React from "react";
 
 function NavBar() {
-    return (
-        <div className="w-16 h-screen flex flex-col bg-darkGray-medium">
-            <Link to="/profile">
-                <p>
-                    ⚪
-                    {/* <img src="" alt="profile-photo" /> */}
-                </p>
-            </Link>
-            <Link to="/notifications">
-                <p>
-                    🔔
-                    {/* <img src="" alt="notifications" /> */}
-                </p>
-            </Link>
+  let actual = window.location.pathname;
+
+  return (
+    <React.Fragment>
+      <Styles.GlobalStyle />
+      <Styles.StyledBody>
+        <Styles.StyledTopContainer>
+          <Link to="/profile">
+            <Styles.StyledProfileImageContainer>
+              <Styles.StyledProfileImage
+                src="https://picsum.photos/200"
+                alt="profile-photo"
+              />
+            </Styles.StyledProfileImageContainer>
+          </Link>
+          <Link to="/notifications">
+            <Styles.StyledNotifiImage />
+          </Link>
+          <Styles.StyledEventContainer>
             <Link to="/new-event">
-                <p>
-                    ✍🏻
-                    {/* <img src="" alt="new-event" /> */}
-                </p>
+              <Styles.StyledEventImage />
             </Link>
-            <Link to="/users">
-                <p>
-                    <img src={EventsIco} alt="users" />
-                </p>
-            </Link>
-            <Link to="/weeklyroutine">
-                <p>
-                    📱
-                    <img src={WeeklyRoutine} alt="weekly-routine" />
-                </p>
-            </Link>
-            <Link to="/calendar">
-                <p>
-                    📆
-                    {/* <img src="" alt="calendar" /> */}
-                </p>
-            </Link>
-            <Link to="/payments">
-                <p>
-                    💲
-                    {/* <img src="" alt="payments" /> */}
-                </p>
-            </Link>
-            <Link to="/feed">
-                <p>
-                    ⭐
-                    {/* <img src="" alt="feedback" /> */}
-                </p>
-            </Link>
-            <Link to="/config">
-                <p>
-                    ⚙
-                    {/* <img src="" alt="configuration" /> */}
-                </p>
-            </Link>
-        </div>
-    )
-};
+          </Styles.StyledEventContainer>
+        </Styles.StyledTopContainer>
+
+        <Styles.StyledNavContainer>
+          <Link to="/session/home">
+            <Styles.StyledNavButton
+              select={actual.includes("home") ? true : false}
+            >
+              <Styles.StyledNavButtonHome
+                select={actual.includes("home") ? true : false}
+                className="home"
+              />
+            </Styles.StyledNavButton>
+          </Link>
+          <Link to="/session/users">
+            <Styles.StyledNavButton
+              select={actual.includes("users") ? true : false}
+            >
+              <Styles.StyledNavButtonUsers
+                select={actual.includes("users") ? true : false}
+                className="user"
+              />
+            </Styles.StyledNavButton>
+          </Link>
+          <Link to="/weeklyroutine">
+            <Styles.StyledNavButton
+              select={actual.includes("weeklyroutine") ? true : false}
+            >
+              <img src={SemanalPlan} alt="weekly-routine" />
+            </Styles.StyledNavButton>
+          </Link>
+          <Link to="/calendar">
+            <Styles.StyledNavButton
+              select={actual.includes("calendar") ? true : false}
+            >
+              <img src={EventsIco} alt="users" />
+            </Styles.StyledNavButton>
+          </Link>
+          <Link to="/session/payments">
+            <Styles.StyledNavButton
+              select={actual.includes("payments") ? true : false}
+            >
+              <img src={PayIco} alt="payments" />
+            </Styles.StyledNavButton>
+          </Link>
+          <Link to="/feed">
+            <Styles.StyledNavButton
+              select={actual.includes("feed") ? true : false}
+            >
+              <img src={FeedBackIco} alt="feedback" />
+            </Styles.StyledNavButton>
+          </Link>
+        </Styles.StyledNavContainer>
+        <Styles.StyledBottomContainer>
+          <Link to="/config">
+            <Styles.StyledConfigImage/>
+          </Link>
+        </Styles.StyledBottomContainer>
+      </Styles.StyledBody>
+    </React.Fragment>
+  );
+}
 
 export default NavBar;

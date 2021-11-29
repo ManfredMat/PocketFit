@@ -16,8 +16,8 @@ function Login() {
   const [loading, setLoading] = useState(false)
   const check = async () => {
     if(getSession.length !== 0){
-      getSession.passport.user.isadmin ? navigate('/home')
-      : alert('usted no es administrador, para continuar descargue PocketFit movile')
+      getSession.passport.user.isadmin ? navigate('/session')
+      : alert('usted no es administrador, para continuar descargue PocketFit mobile')
     }
 }
 console.log(getSession.passport)
@@ -36,9 +36,11 @@ console.log(getSession.passport)
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     dispatch(LogIn(input))
     setLoading(true)
   }
+
   loading && check()
 console.log(loading)
   
@@ -47,8 +49,8 @@ console.log(loading)
         <div>
           <Wave src={LogingWave} alt="pocket-fit-logo"/>
         </div>
-      <div style={{width: 500, marginTop: -250}}>
-        <div style={{display: "flex", flexDirection: 'column', alignItems: 'center'}}>
+      <div style={{width: 500, marginTop: -350}}>
+        <div style={{display: "flex", flexDirection: 'column', alignItems: 'center', marginLeft: "8rem"}}>
           <img style={{position: 'relative', marginBottom: -40}} src={ProfilePhoto} alt="profile" />
         <ContainerIn>
           <label htmlFor="email" style={{marginLeft: 35}}>
@@ -58,9 +60,11 @@ console.log(loading)
           <label htmlFor="pass" style={{marginLeft: 35}}>
             Contraseña
           </label>
+
           <Input name="pass" type="password"  onChange={(e) => handleChange(e, 'password')} />
         </ContainerIn>
           <Btn onClick={(e)=>handleSubmit(e)}>
+
             Iniciar Sesión
           </Btn>
 

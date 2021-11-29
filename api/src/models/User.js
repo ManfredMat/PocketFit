@@ -75,7 +75,8 @@ module.exports = (sequelize) => {
       defaultValue: true
     },
     paymentday:{
-      type: DataTypes.DATE
+      type: DataTypes.DATE,
+      allowNull:true
     }
   });
 };

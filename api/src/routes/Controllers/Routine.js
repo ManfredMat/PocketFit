@@ -1,14 +1,14 @@
-const {Routine , Exercise} = require('../../db')
+const {Routine , Block} = require('../../db')
+
+
 
  const createRoutine = async (req , res)=>{
-    let {kindOfRoutine  , exercises} = req.body;
+    let {kindOfRoutine  , blocks } = req.body;
     try{
        const newRoutine = await  Routine.create({
            kindOfRoutine
        })
-
-       await newRoutine.setExercises(exercises)
-
+       newRoutine.setBlocks(blocks)
        res.json(newRoutine)
     }
     catch(error){
@@ -21,7 +21,7 @@ const getAllRoutines = async (req , res)=> {
     try{
     let routines = await Routine.findAll({
         include:[{
-            model: Exercise , attributes:['name'],
+            model: Block , attributes:['id' , 'rounds' ,'kindOfBlock','exercises' ,'description'],
             through:{
                 attributes:[]
             }
@@ -35,6 +35,30 @@ const getAllRoutines = async (req , res)=> {
         res.send(error)
     }
 }
+
+const getOneRoutine = async (req , res)=> {
+
+    let id = req.params
+    try{
+    let routines = await Routine.findOne({
+        where:{id:id},
+        include:[{
+            model: Block , attributes:['id' , 'rounds' ,'kindOfBlock','exercises' ,'description'],
+            through:{
+                attributes:[]
+            }
+        }]
+    })
+
+
+    res.json(routines)        
+    }
+    catch(error){
+        res.send(error)
+    }
+}
+
+
  const updateRoutineProp = async (req , res)=>{
     const{id, prop} = req.params
     const {update} = req.body
@@ -65,6 +89,7 @@ const getAllRoutines = async (req , res)=> {
 module.exports = {
     createRoutine,
     getAllRoutines,
+    getOneRoutine,
     updateRoutineProp,
     removeRoutine
 }

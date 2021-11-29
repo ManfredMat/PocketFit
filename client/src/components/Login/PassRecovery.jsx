@@ -11,13 +11,13 @@ function PassRecovery() {
             <div>
              <Wave src={LogingWave} alt="pocket-fit-logo"/>
             </div> 
-            <div style={{width: 500, marginTop: -250}}>
-                <div style={{display: "flex", flexDirection: 'column', alignItems: 'center'}}>
+            <div style={{width: 500, marginTop: -350}}>
+                <div style={{display: "flex", flexDirection: 'column', alignItems: 'center', marginLeft: "8rem"}}>
                     <img style={{position: 'relative', marginBottom: -40}} src={ProfilePhoto} alt="profile" />
                     <ContainerIn>
                         <h3 style={{alignSelf: "center", marginTop: 60}}>Recuperar Contraseña</h3>
                         <Input name="pass" type="text" placeholder="Ingresa tu email"/>
-                        <p style={{textAlign: "center", color: 'var(--green)'}}>
+                        <p style={{textAlign: "center", color: 'var(--green)', fontSize: ".8rem"}}>
                             Las instrucciones para reestablecer la contraseña de tu cuenta se enviarán a esta dirección de email
                         </p>
                     </ContainerIn>

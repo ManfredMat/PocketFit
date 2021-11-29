@@ -8,9 +8,8 @@ export const Container = styled.div`
     background-image: url(${imge});
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
 `
 
 export const ContainerIn = styled.div`
@@ -41,8 +40,9 @@ export const Btn = styled.button`
     width: 10rem;
     margin-top: 1rem;
 `
-export const TextGreen = styled.h6`
+export const TextGreen = styled.h5`
     color: var(--green);
+    text-decoration: underline;
 `
 export const Wave = styled.img`
     width: 100%;

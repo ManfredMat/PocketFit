@@ -51,7 +51,12 @@ export default function SignUp() {
 
         const res = await postRegisterUser(datos);
         dispatch(signIn(res.data));
-        res.data === "User is already registered" ? Alert.alert("Error", "El usuario ya existe") : navigation.navigate("Inicio");
+        if (res.data === "User is already registered") {
+          Alert.alert("Error", "El usuario ya existe")
+        } else {
+          Alert.alert(`Bienvenido ${input.name}!`, "Te has registrado correctamente")
+          navigation.navigate("Inicio")
+        };
       } else Alert.alert("Error", "Por favor completa todos los campos")
     } catch (e) {
       Alert.alert("Error", "No se pudo iniciar sesion");
@@ -68,6 +73,7 @@ export default function SignUp() {
           placeholder="Nombre"
           value={input.name}
           onChange={(e) => handleInputChange(e, "name")}
+          textContentType="name"
         />
 
         <Text style={{ color: "white", marginLeft: 10 }}>Apellido</Text>
@@ -86,6 +92,8 @@ export default function SignUp() {
           placeholder="user@example.com"
           value={input.email}
           onChange={(e) => handleInputChange(e, "email")}
+          keyboardType="email-address"
+          textContentType="emailAddress"
         />
 
         <Text style={{ color: "white", marginLeft: 10 }}>Contraseña</Text>
@@ -106,6 +114,7 @@ export default function SignUp() {
           value={input.repeatPassword}
           onChange={(e) => handleInputChange(e, "repeatPassword")}
           secureTextEntry={true}
+          textContentType="password"
         />
       </View>
       <View>

@@ -11,7 +11,7 @@ function Landing() {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-          isLogged ? navigate("/home") : navigate("/login")
+          isLogged ? navigate("/session/home") : navigate("/login")
         }, 3000);
         return () => clearTimeout(timer);
         // eslint-disable-next-line 
@@ -19,7 +19,6 @@ function Landing() {
 
     return (
         <Container>
-          <Wave src={LogingWave} alt="pocket-fit-logo"/>
           <LandingDiv>
             <img src={LandingIcon} alt="pocket-fit-logo" />
             <h2 style={{color: '#fff', marginTop: -5}}>Cargando...</h2>
