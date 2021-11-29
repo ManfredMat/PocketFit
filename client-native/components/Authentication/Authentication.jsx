@@ -28,15 +28,15 @@ export default function Authentication() {
             <Container>
                 <SvgXml style={{position: 'relative', marginTop: -50}} xml={userIcon}/>
                 <ContainerBar>
-                    <TouchableOpacity onPress={()=> setRender(false)}>
+                    <TouchableOpacity onPress={()=> setRender(false)} style={{borderBottomWidth: 2, borderStyle: "solid", borderColor: render ? "#C0C6CC" : "#6AE056", paddingLeft: 25}}>
                         <Text style={{marginRight: 40, fontSize: 15, color: render ? "#C0C6CC" : "#6AE056"}}>Registro</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=> setRender(true)}>
+                    <TouchableOpacity onPress={()=> setRender(true)} style={{borderBottomWidth: 2, borderStyle: "solid", borderColor: render ? "#6AE056" : "#C0C6CC", paddingRight: 25}}>
                         <Text style={{marginLeft: 40, fontSize: 15, color: render ? "#6AE056" : "#C0C6CC"}}>Iniciar Sesión</Text>
                     </TouchableOpacity>
                 </ContainerBar>
                    
-                <View>
+                <View style={{marginTop: 10}}>
                     {render ? 
                     (
                         <SignIn/>
