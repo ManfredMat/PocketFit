@@ -26,7 +26,7 @@ const structureExercise = (exercises , exercisesList)=>{
 
 
 const createBlock = async (req , res)=>{
-    let {rounds , kindOfBlock , exercises , description} = req.body
+    let {rounds , kindOfBlock , exercises , day , order } = req.body
     
     try{
         let exercisesDb = await Exercise.findAll()
@@ -36,10 +36,12 @@ const createBlock = async (req , res)=>{
 
         
         let newBlock= await Block.create({
+            day,
+            order,
             rounds,
             kindOfBlock,
             exercises,
-            description
+            
         })
     
         res.json(newBlock)
@@ -63,7 +65,8 @@ const getBlockById = async (req , res)=>{
     let block = await Block.findOne({where:{id:id}})        
 
     res.json(block)
-}catch(error){console.log(error)}}
+}catch(error){console.log(error)}
+}
 
 const updateBlock = async (req , res)=>{
     const{id, prop} = req.params
