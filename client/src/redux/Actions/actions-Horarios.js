@@ -1,11 +1,18 @@
-//ACTIONS NAMES
-export const PLANTILLA = "PLANTILLA";
+import axios from "axios";
 
-import axios from 'axios'
-  
-  export function prueba (prueba) {
-    return {
-      type: PLANTILLA,
-      value: prueba,
-    };
-  }
+//ACTIONS NAMES
+export const GET_LESSONS = "GET_LESSONS";
+
+export function getLessons() {
+  return async function (dispatch) {
+    await axios
+      .get("http://localhost:3001/api/events/all")
+      .then((res) => {
+        //console.log(res.data)
+        dispatch({
+          type: GET_LESSONS,
+          value: res.data,
+        });
+      });
+  };
+}

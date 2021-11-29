@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as json from "./Hard-code.json";
+import {useSelector, useDispatch} from "react-redux"
+import {getLessons} from '../../redux/Actions/actions-Horarios';
+
 
 var weekDays = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
 
 function ClasesWeeklyView() {
-  console.log(json.clases);
+    const lessons = useSelector(state => state.timetable.lessons)
+    const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getLessons())
+  }, []);
+
   return (
     <div
       style={{
@@ -17,7 +26,7 @@ function ClasesWeeklyView() {
         <div>
           <div>{day}</div>
           <div>
-            {json.clases
+            {lessons
               .filter((cla) => cla.nameday === day)
               .sort(function (a, b) {
                 if (a.hour > b.hour) return 1;

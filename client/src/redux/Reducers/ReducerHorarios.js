@@ -1,22 +1,24 @@
 import {
-  PLANTILLA
-} from "../Actions/actions-Prueba";
+  GET_LESSONS
+} from "../Actions/actions-Horarios";
 
 const initialState = {
-  prueba: ""
+  lessons: ""
 };
 
-function reducerPlantilla(state = initialState, action) {
+function reducerHorario(state = initialState, action) {
   switch (action.type) {
-    case PLANTILLA:
+    case GET_LESSONS:
       return {
         ...state,
-        prueba: action.value,
-      };
-
+        lessons: action.value,
+      }
+      
     default:
       return state;
   }
 }
 
-export default reducerPlantilla;
+
+
+export default reducerHorario;

@@ -1,9 +1,10 @@
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
-const {User} = require("./src/db")
+const {User,Event} = require("./src/db")
+const datos = require('../client/src/components/Timetable/clases-pre')
 
 
-conn.sync({ alter: true }).then(async () => {
+conn.sync({ force: true }).then(async () => {
   
   let adminAcount = {
     name:"Admin",
@@ -15,6 +16,7 @@ conn.sync({ alter: true }).then(async () => {
     isuser:false
   }
   await User.create(adminAcount)
+  await datos.clases.forEach((cla)=> Event.create(cla))
   server.listen(3001, () => {
     console.log("%s listening at 3001");
   });

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ClasesWeeklyView from "./ClasesWeeklyView";
 
 function Timetable() {
+
   return (
     <div>
       <h1>Horarios</h1>
