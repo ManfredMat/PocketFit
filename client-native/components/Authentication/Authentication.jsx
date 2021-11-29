@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity, ImageBackground } from 'react-native'
+import { View, Text, TouchableOpacity, ImageBackground, ScrollView } from 'react-native'
 import SignUp from './SignUp/SignUp'
 import SignIn from './SignIn/SignIn'
 import { SvgXml } from 'react-native-svg'
@@ -36,7 +36,7 @@ export default function Authentication() {
                     </TouchableOpacity>
                 </ContainerBar>
                    
-                <View>
+                <ScrollView>
                     {render ? 
                     (
                         <SignIn/>
@@ -46,7 +46,7 @@ export default function Authentication() {
                         <SignUp/>
                     )
                     }
-                </View>
+                </ScrollView>
             </Container>
         </ImageBackground>
     )
