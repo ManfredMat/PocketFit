@@ -5,7 +5,7 @@ import Detail from "./Detail";
 
 function Timetable() {
   const date = new Date();
-
+  console.log(window.screen)
 
   return (
     <div style={{ padding: "1rem" }}>

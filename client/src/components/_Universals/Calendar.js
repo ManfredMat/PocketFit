@@ -1,5 +1,4 @@
 import React from "react";
-import { prueba } from "../../redux/Actions/actions-Prueba";
 import { useSelector, useDispatch } from "react-redux";
 import Styles from "./CalendarStyled";
 
