@@ -98,7 +98,8 @@
       "hour": 11,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis egestas integer eget aliquet nibh praesent tristique. Viverra mauris in aliquam sem fringilla ut. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Amet risus nullam eget felis eget nunc lobortis. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. ",
       "profesor": "Fer"
-    },{},
+    },
+    {},
     {
       "kindOfEvent": "Clases",
       "name": "Zumba",
@@ -145,46 +146,47 @@
       "profesor": "Steve"
     },
     {
-        "kindOfEvent": "Clases",
-        "name": "Boxeo",
-        "nameday": "Martes",
-        "day": 0,
-        "hour": 8,
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis egestas integer eget aliquet nibh praesent tristique. Viverra mauris in aliquam sem fringilla ut. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Amet risus nullam eget felis eget nunc lobortis. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. ",
-        "profesor": "Steve"
-      },
-      {
-        "kindOfEvent": "Clases",
-        "name": "Bachata",
-        "nameday": "Martes",
-        "day": 0,
-        "hour": 8,
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis egestas integer eget aliquet nibh praesent tristique. Viverra mauris in aliquam sem fringilla ut. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Amet risus nullam eget felis eget nunc lobortis. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. ",
-        "profesor": "Steve"
-      },
-      {
-        "kindOfEvent": "Clases",
-        "name": "Trampoline",
-        "nameday": "Martes",
-        "day": 0,
-        "hour": 8,
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis egestas integer eget aliquet nibh praesent tristique. Viverra mauris in aliquam sem fringilla ut. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Amet risus nullam eget felis eget nunc lobortis. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. ",
-        "profesor": "Cande"
-      }
-  ],
-  "shifts": [{
-    "kindOfShift":"dato",
-    "availability": 3,
-    "capacity": 10,
-    "beginning": "7",
-    "ending": "9",
-    "weekday": "Viernes",
-    "day": 3,
-    "month": 12,
-    "year":2021
-  },{
+      "kindOfEvent": "Clases",
+      "name": "Boxeo",
+      "nameday": "Martes",
+      "day": 0,
+      "hour": 8,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis egestas integer eget aliquet nibh praesent tristique. Viverra mauris in aliquam sem fringilla ut. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Amet risus nullam eget felis eget nunc lobortis. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. ",
+      "profesor": "Steve"
+    },
     {
-      "kindOfShift":"dato",
+      "kindOfEvent": "Clases",
+      "name": "Bachata",
+      "nameday": "Martes",
+      "day": 0,
+      "hour": 8,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis egestas integer eget aliquet nibh praesent tristique. Viverra mauris in aliquam sem fringilla ut. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Amet risus nullam eget felis eget nunc lobortis. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. ",
+      "profesor": "Steve"
+    },
+    {
+      "kindOfEvent": "Clases",
+      "name": "Trampoline",
+      "nameday": "Martes",
+      "day": 0,
+      "hour": 8,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis egestas integer eget aliquet nibh praesent tristique. Viverra mauris in aliquam sem fringilla ut. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Amet risus nullam eget felis eget nunc lobortis. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. ",
+      "profesor": "Cande"
+    }
+  ],
+  "shifts": [
+    {
+      "kindOfShift": "dato",
+      "availability": 3,
+      "capacity": 10,
+      "beginning": "7",
+      "ending": "9",
+      "weekday": "Viernes",
+      "day": 3,
+      "month": 12,
+      "year": 2021
+    },
+    {
+      "kindOfShift": "dato",
       "availability": 3,
       "capacity": 10,
       "beginning": "9",
@@ -192,63 +194,139 @@
       "weekday": "Viernes",
       "day": 3,
       "month": 12,
-      "year":2021
+      "year": 2021
+    },
+    {
+      "kindOfShift": "dato",
+      "availability": 3,
+      "capacity": 10,
+      "beginning": "11",
+      "ending": "13",
+      "weekday": "Viernes",
+      "day": 3,
+      "month": 12,
+      "year": 2021
+    },
+    {
+      "kindOfShift": "dato",
+      "availability": 3,
+      "capacity": 10,
+      "beginning": "14",
+      "ending": "16",
+      "weekday": "Viernes",
+      "day": 3,
+      "month": 12,
+      "year": 2021
+    },
+    {
+      "kindOfShift": "dato",
+      "availability": 3,
+      "capacity": 10,
+      "beginning": "16",
+      "ending": "18",
+      "weekday": "Viernes",
+      "day": 3,
+      "month": 12,
+      "year": 2021
+    },
+    {
+      "kindOfShift": "dato",
+      "availability": 3,
+      "capacity": 10,
+      "beginning": "18",
+      "ending": "20",
+      "weekday": "Viernes",
+      "day": 3,
+      "month": 12,
+      "year": 2021
+    },
+    {
+      "kindOfShift": "dato",
+      "availability": 3,
+      "capacity": 10,
+      "beginning": "20",
+      "ending": "22",
+      "weekday": "Viernes",
+      "day": 3,
+      "month": 12,
+      "year": 2021
+    },
+    {
+      "kindOfShift": "dato",
+      "availability": 3,
+      "capacity": 10,
+      "beginning": "7",
+      "ending": "9",
+      "weekday": "Jueves",
+      "day": 3,
+      "month": 12,
+      "year": 2021
+    },
+    {
+      "kindOfShift": "dato",
+      "availability": 3,
+      "capacity": 10,
+      "beginning": "9",
+      "ending": "11",
+      "weekday": "Jueves",
+      "day": 3,
+      "month": 12,
+      "year": 2021
+    },
+    {
+      "kindOfShift": "dato",
+      "availability": 3,
+      "capacity": 10,
+      "beginning": "11",
+      "ending": "13",
+      "weekday": "Jueves",
+      "day": 3,
+      "month": 12,
+      "year": 2021
+    },
+    {
+      "kindOfShift": "dato",
+      "availability": 3,
+      "capacity": 10,
+      "beginning": "14",
+      "ending": "16",
+      "weekday": "Jueves",
+      "day": 2,
+      "month": 12,
+      "year": 2021
+    },
+    {
+      "kindOfShift": "dato",
+      "availability": 3,
+      "capacity": 10,
+      "beginning": "16",
+      "ending": "18",
+      "weekday": "Jueves",
+      "day": 2,
+      "month": 12,
+      "year": 2021
+    },
+    {
+      "kindOfShift": "dato",
+      "availability": 3,
+      "capacity": 10,
+      "beginning": "18",
+      "ending": "20",
+      "weekday": "Jueves",
+      "day": 2,
+      "month": 12,
+      "year": 2021
+    },
+    {
+      "kindOfShift": "dato",
+      "availability": 3,
+      "capacity": 10,
+      "beginning": "20",
+      "ending": "22",
+      "weekday": "Jueves",
+      "day": 2,
+      "month": 12,
+      "year": 2021
     }
-  },
-  {
-    "kindOfShift":"dato",
-    "availability": 3,
-    "capacity": 10,
-    "beginning": "11",
-    "ending": "13",
-    "weekday": "Viernes",
-    "day": 3,
-    "month": 12,
-    "year":2021
-  },
-  {
-    "kindOfShift":"dato",
-    "availability": 3,
-    "capacity": 10,
-    "beginning": "14",
-    "ending": "16",
-    "weekday": "Viernes",
-    "day": 3,
-    "month": 12,
-    "year":2021
-  },
-  {
-    "kindOfShift":"dato",
-    "availability": 3,
-    "capacity": 10,
-    "beginning": "16",
-    "ending": "18",
-    "weekday": "Viernes",
-    "day": 3,
-    "month": 12,
-    "year":2021
-  },
-  {
-    "kindOfShift":"dato",
-    "availability": 3,
-    "capacity": 10,
-    "beginning": "18",
-    "ending": "20",
-    "weekday": "Viernes",
-    "day": 3,
-    "month": 12,
-    "year":2021
-  }, {
-    "kindOfShift":"dato",
-    "availability": 3,
-    "capacity": 10,
-    "beginning": "20",
-    "ending": "22",
-    "weekday": "Viernes",
-    "day": 3,
-    "month": 12,
-    "year":2021
-  }
-   
   ]
 }
