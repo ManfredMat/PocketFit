@@ -16,9 +16,16 @@ function Login() {
   
   const [loading, setLoading] = useState(false)
   const check = () => {
+    console.log(getSession, "getSession")
     if(getSession.length !== 0){
-      getSession.passport.user.isadmin ? navigate('/session')
+      if (getSession === "Email not found") {
+        alert("No se ha encontrado el email en nuestra base de datos"); setLoading(false)
+      } else if (getSession === "Password mismatch") {
+        alert("La contraseña ingresada es incorrecta"); setLoading(false)
+      } else {
+        getSession.passport.user.isadmin ? navigate('/session')
       : alert('Usted no es administrador, para continuar descargue PocketFit mobile'); setLoading(false)
+      }
     } else alert("No se pudo iniciar sesión"); setLoading(false)
   }
 
@@ -36,14 +43,14 @@ function Login() {
     })
   }
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     try {
       if (input.email.length > 1 && input.password.length > 1) {
         if (!validatorEmail(input.email)) return alert ("Email inválido")
        } else return alert("Completa todos los campos")
         
-      dispatch(LogIn(input))
+      await dispatch(LogIn(input))
       setLoading(true)
       // console.log(Cookies.get(), "cookie")
     } catch (e) {

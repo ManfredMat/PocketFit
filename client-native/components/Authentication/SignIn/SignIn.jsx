@@ -28,6 +28,7 @@ const SignIn = () => {
 
   const handleOnSubmit = async () => {
     try {
+      
       if (state.email.length > 1 && state.password.length > 1) {
         if (!validatorEmail(state.email)) return Alert.alert("Error", "Email inválido");
       } else return Alert.alert("Error", "Por favor completa todos los campos");
@@ -38,17 +39,15 @@ const SignIn = () => {
       };
       
       const res = await postLoginUser(datos);
-      // if (res.data === "Email not found") {
-      //   return Alert.alert("Error", "No se ha encontrado el email en nuestra base de datos");
-      // } else if (res.data === "Password mismatch") {
-      //   return Alert.alert("Error", "La contraseña ingresada es incorrecta")
-      // } else {
+      if (res.data === "Email not found") {
+        return Alert.alert("Error", "No se ha encontrado el email en nuestra base de datos");
+      } else if (res.data === "Password mismatch") {
+        return Alert.alert("Error", "La contraseña ingresada es incorrecta")
+      } else {
         dispatch(signIn(res.data.passport.user));
         navigation.navigate("loading");
       // }
-
-      
-
+      }
     } catch (e) {
       Alert.alert("Error", "No se pudo iniciar sesión");
     }
