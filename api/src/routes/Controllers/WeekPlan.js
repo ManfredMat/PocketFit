@@ -31,7 +31,7 @@ const createWeekPlan = async (req , res)=>{
 
         res.json(newWeekPlan)
     }
-    catch(error){console.log(error)}
+    catch(error){res.send(error)}
 
 }
 
@@ -45,7 +45,7 @@ const getAllWeekPlans = async (req , res)=>{
         }]})        
         
         res.json(weekplan)
-    }catch(error){console.log(error)}
+    }catch(error){res.send(error)}
 }
 
 const getWeekPlanById = async (req , res)=>{
@@ -81,7 +81,7 @@ const getWeekPlanById = async (req , res)=>{
 
 
         res.json(weekplan)
-    }catch(error){console.log(error)}
+    }catch(error){res.send(error)}
 }
 
 const updateWeekPlan = async (req , res)=>{
@@ -96,7 +96,7 @@ const updateWeekPlan = async (req , res)=>{
    res.send(oneWeekPlan)
     }
    catch(error){
-    console.log(error)
+    res.send(error)
    }
 }
 
@@ -109,7 +109,7 @@ const deleteWeekPlan = async (req , res)=>{
     }
 
     catch(error){
-        console.log(error)
+        res.send(error)
     }
 }
 
