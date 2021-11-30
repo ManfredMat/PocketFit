@@ -14,6 +14,11 @@ const SignIn = () => {
   const user = useSelector((state) => state.reducerUser.user);
   const [state, setState] = useState({ email: "", password: "" });
 
+  const validatorEmail = (email) => {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) return true
+    else return false
+  }
+
   const handleOnChange = (e, type) => {
     setState({
       ...state,
@@ -24,24 +29,30 @@ const SignIn = () => {
   const handleOnSubmit = async () => {
     try {
       if (state.email.length > 1 && state.password.length > 1) {
-        let datos = {
-          email: state.email,
-          password: state.password
-        };
+        if (!validatorEmail(state.email)) return Alert.alert("Error", "Email inválido");
+      } else return Alert.alert("Error", "Por favor completa todos los campos");
 
-        const res = await postLoginUser(datos);
+      const datos = {
+        email: state.email,
+        password: state.password
+      };
+      
+      const res = await postLoginUser(datos);
+      // if (res.data === "Email not found") {
+      //   return Alert.alert("Error", "No se ha encontrado el email en nuestra base de datos");
+      // } else if (res.data === "Password mismatch") {
+      //   return Alert.alert("Error", "La contraseña ingresada es incorrecta")
+      // } else {
         dispatch(signIn(res.data.passport.user));
         navigation.navigate("Inicio");
-      } else Alert.alert("Error", "Por favor completa todos los campos");
+      // }
+
+      
     } catch (e) {
       Alert.alert("Error", "No se pudo iniciar sesión");
     }
   };
 
-  const validateUserAndPass = () => {
-    if (state.user.length < 1 || state.password.length < 1) return true;
-    else return false;
-  };
 
   return (
     <View>
@@ -88,7 +99,7 @@ const SignIn = () => {
             }
           ]
         )}>
-          <Text style={{ color: '#6AE056', alignSelf: "center", marginBottom: 20, marginTop: 8 }}>OLVIDE MI CONTRASEÑA</Text>
+          <Text style={{ color: '#6AE056', alignSelf: "center", marginBottom: 20, marginTop: 8, borderBottomWidth: 2, borderStyle: "solid", borderColor: "#6AE056"}}>OLVIDE MI CONTRASEÑA</Text>
         </TouchableOpacity>
       </View>
     </View>

@@ -14,4 +14,5 @@ router.put("/:id/:prop", updateTimetable);
 
 router.delete("/:id", deleteTimetable);
 
+
 module.exports= router;

@@ -8,8 +8,7 @@ try{
 }
 catch(err){
     res.send(err)
-}
-}
+}}
 
 
 const getAllTimetables = async (req , res) =>{
@@ -50,7 +49,6 @@ catch(err){
 
 const deleteTimetable = async (req , res) =>{
 const {id} = req.params
-
 try{
     await Timetable.destroy({where:{id:id}})
     res.send({message: "Entry successfully deleted"})
@@ -58,7 +56,6 @@ try{
 catch(err){
     res.send(err)
 }
-
 }
 
 module.exports ={

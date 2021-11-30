@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity, ImageBackground } from 'react-native'
+import { View, Text, TouchableOpacity, ImageBackground, ScrollView } from 'react-native'
 import SignUp from './SignUp/SignUp'
 import SignIn from './SignIn/SignIn'
 import { SvgXml } from 'react-native-svg'
@@ -28,15 +28,14 @@ export default function Authentication() {
             <Container>
                 <SvgXml style={{position: 'relative', marginTop: -50}} xml={userIcon}/>
                 <ContainerBar>
-                    <TouchableOpacity onPress={()=> setRender(false)}>
+                    <TouchableOpacity onPress={()=> setRender(false)} style={{borderBottomWidth: 2, borderStyle: "solid", borderColor: render ? "#C0C6CC" : "#6AE056", paddingLeft: 25}}>
                         <Text style={{marginRight: 40, fontSize: 15, color: render ? "#C0C6CC" : "#6AE056"}}>Registro</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=> setRender(true)}>
+                    <TouchableOpacity onPress={()=> setRender(true)} style={{borderBottomWidth: 2, borderStyle: "solid", borderColor: render ? "#6AE056" : "#C0C6CC", paddingRight: 25}}>
                         <Text style={{marginLeft: 40, fontSize: 15, color: render ? "#6AE056" : "#C0C6CC"}}>Iniciar Sesión</Text>
                     </TouchableOpacity>
                 </ContainerBar>
-                   
-                <View>
+                <ScrollView>
                     {render ? 
                     (
                         <SignIn/>
@@ -46,7 +45,7 @@ export default function Authentication() {
                         <SignUp/>
                     )
                     }
-                </View>
+                </ScrollView>
             </Container>
         </ImageBackground>
     )

@@ -39,6 +39,9 @@ export const Btn = styled.button`
     padding: .6rem;
     width: 10rem;
     margin-top: 1rem;
+    &:hover {
+        cursor: pointer;
+    }
 `
 export const TextGreen = styled.h5`
     color: var(--green);
