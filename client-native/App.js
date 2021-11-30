@@ -23,8 +23,14 @@ export default function App() {
           <Stack.Navigator>
               <Stack.Screen name= 'Auth' component={RootStack} options = {{headerShown: false}}/> 
               <Stack.Screen name= 'Inicio' component={InicioStack} options = {{headerShown: false}} />
-              <Stack.Screen name= 'Shifts' component={Shifts}/>
+              <Stack.Screen name= 'Shifts' component={Shifts} options={{
+                   
+                    title:'Turnos',
+                    headerTitleStyle:{ color: '#fff'}, 
+                    headerStyle:{ backgroundColor: '#041D25'},}}
+                    />
           </Stack.Navigator>
+          <StatusBar/>
         </NavigationContainer>
       </Provider>
     </>

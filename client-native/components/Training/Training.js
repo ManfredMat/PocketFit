@@ -56,7 +56,7 @@ export default function Training() {
                     
                 </LemonContainer>
                 <View style={{marginTop: 15}}>
-                    <ButtonGreen onPress={() => alert('seras redireccionado')}>
+                    <ButtonGreen onPress={() => alert('trae las malomitas')}>
                         <Text style={{alignSelf: 'center'}}>Ver Clase</Text>
                     </ButtonGreen>
                 </View>
