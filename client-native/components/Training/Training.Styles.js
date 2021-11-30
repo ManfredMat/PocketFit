@@ -43,6 +43,7 @@ export const LemonContainer = styled.View`
 export const Excercise = styled.View`
     background-color: ${lime};
     border-radius: 15px;
+    justify-content: center;
     margin: 5px;
     width: 340px;
     height: 50px;
@@ -52,6 +53,7 @@ export const Excercise = styled.View`
     shadow-opacity: 0.8;
     shadow-radius: 2;
     elevation: 3;
+    opacity: 0.9;
 `
 export const ProxShifts = styled.View`
     background-color: ${green};
