@@ -1,22 +1,22 @@
 import {
-  PLANTILLA,
+  // PLANTILLA,
   LOG_IN
-} from "../Actions/actions-Prueba";
+} from "../Actions/actions-login";
 
 const initialState = {
   
-  prueba: "",
+  // prueba: "",
   session:[]
 
 };
 
 function reducerPlantilla(state = initialState, action) {
   switch (action.type) {
-    case PLANTILLA:
-      return {
-        ...state,
-        prueba: action.value,
-      };
+    // case PLANTILLA:
+    //   return {
+    //     ...state,
+    //     prueba: action.value,
+    //   };
     case LOG_IN:
       return {
         ...state,

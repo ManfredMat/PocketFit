@@ -1,5 +1,5 @@
 import React from "react";
-import { prueba } from "../../redux/Actions/actions-Prueba";
+// import { prueba } from "../../redux/Actions/actions-Prueba";
 import { useSelector, useDispatch } from "react-redux";
 import Styles from "./CalendarStyled";
 
@@ -15,7 +15,7 @@ function Calendar({ year, month }) {
     );
   var weekDays = ["Lun", "Mar", "Mie", "Jue", "Vie", "Sab", "Dom"];
 
-  dispatch(prueba("hola"));
+  // dispatch(prueba("hola"));
 
   return (
     <Styles.StyledContainer>

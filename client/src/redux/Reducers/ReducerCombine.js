@@ -1,9 +1,9 @@
 import {combineReducers} from "redux"
-import reducerPlantilla from "./Reducer-Plantilla.js"
+import ReducerLogin from "./ReducerLogin.js"
 import ReducerUsers from "./ReducerUsers.js"
 
 const rootReducer = combineReducers({
-    state: reducerPlantilla,
+    session: ReducerLogin,
     users: ReducerUsers
 })
 

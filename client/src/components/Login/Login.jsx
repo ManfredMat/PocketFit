@@ -4,14 +4,15 @@ import ProfilePhoto from "../../assets/img/profilephoto.svg";
 import footer from "../../assets/img/footer.svg";
 import LogingWave from "../../assets/img/loginwave.svg";
 import { useState } from "react";
-import { LogIn } from '../../redux/Actions/actions-Prueba'
+import { LogIn } from '../../redux/Actions/actions-login'
 import { useDispatch, useSelector } from "react-redux";
 import { ContainerIn, Input, Container, Btn, TextGreen, Wave} from "./Login.styles";
+import Cookies from "js-cookie"
 
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch()
-  const getSession = useSelector((state) => state.state.session)
+  const getSession = useSelector((state) => state.session.session)
   
   //   const [loading, setLoading] = useState(false)
   //   const check = async () => {
@@ -20,8 +21,6 @@ function Login() {
   //       : alert('Usted no es administrador, para continuar descargue PocketFit mobile')
   //     }
   // }
-  console.log(getSession.passport)
-
 
   const [input, setInput] = useState({
     email:'',
@@ -37,15 +36,16 @@ function Login() {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (input.email < 1 || input.password < 1) {
-      alert("Completa todos los campos")
-    } else {
-      if (validatorEmail(input.email)) {
-        dispatch(LogIn(input))
-        // setLoading(true)
-      } else {
-        alert("Email invalido")
-      }
+    try {
+      if (input.email.length > 1 && input.password.length > 1) {
+        if (!validatorEmail(input.email)) return alert ("Email inválido")
+       } else return alert("Completa todos los campos")
+        
+      dispatch(LogIn(input))
+      // console.log(Cookies.get(), "cookie")
+      getSession.passport.user.isadmin ? navigate("/session/home") : alert('Usted no es administrador, para continuar descargue PocketFit mobile')
+    } catch (e) {
+      alert("No se pudo iniciar sesión")
     }
   }
 
@@ -54,8 +54,6 @@ function Login() {
     else return false
   }
 
-//   loading && check()
-// console.log(loading)
   
   return (
     <Container>
@@ -75,7 +73,7 @@ function Login() {
           </label>
           <Input name="pass" type="password" onChange={(e) => handleChange(e, 'password')} />
         </ContainerIn>
-          <Btn onClick={(e)=>handleSubmit(e)}>
+          <Btn onClick={(e) => handleSubmit(e)}>
 
             Iniciar Sesión
           </Btn>
