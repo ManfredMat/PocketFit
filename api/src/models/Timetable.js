@@ -24,6 +24,10 @@ module.exports = (sequelize) => {
     availability:{
       type: DataTypes.INTEGER,
       defaultValue:0,
+    },
+    capacity:{
+      type: DataTypes.INTEGER,
+      defaultValue:0,
     }
   });
 };

@@ -10,6 +10,16 @@ module.exports = (sequelize) => {
         primaryKey: true
       },
 
+      day:{
+        type: DataTypes.STRING,
+        allowNull:false
+      },
+
+      order:{
+        type: DataTypes.INTEGER,
+        allowNull:false
+      },
+
     rounds:{
         type: DataTypes.INTEGER,
         defaultValue: 1,
@@ -25,10 +35,7 @@ module.exports = (sequelize) => {
         allowNull:true
     },
     
-    description:{
-    type: DataTypes.TEXT,
-    allowNull: false
-    },
+  
 
    }
   );

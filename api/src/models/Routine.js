@@ -8,6 +8,12 @@ module.exports = (sequelize) => {
       primaryKey:true,
       autoIncrement:true
     },
+
+    day:{
+      type:DataTypes.ENUM("monday" , "tuesday" , "wednsday" , "thursday" , "friday" , "saturday"),
+      allowNull:false
+    },
+
     kindOfRoutine:{
       type:DataTypes.STRING,
       allowNull:false,

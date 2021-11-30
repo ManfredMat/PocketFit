@@ -47,6 +47,18 @@ catch(err){
     res.send(err)
 }
 }
+const reserveTimeTable = async (req, res) =>{
+    const ids = req.body;
+    ids.forEach((id) => {
+      Timetable.find((t) => t.id === id);
+      if (Timetable.availability > 0) {
+        availability--;
+      } else {
+        throw "Sin turnos disponibles";
+      }
+    });
+    res.send(availability);
+  };
 
 const deleteTimetable = async (req , res) =>{
 const {id} = req.params
@@ -62,7 +74,7 @@ catch(err){
 }
 
 module.exports ={
-    createTimetable, getAllTimetables, getTimetableById, updateTimetable, deleteTimetable
+    createTimetable, getAllTimetables, getTimetableById, updateTimetable, deleteTimetable, reserveTimeTable
 }
 
 
