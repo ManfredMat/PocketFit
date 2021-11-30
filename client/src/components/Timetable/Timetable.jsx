@@ -5,7 +5,6 @@ import Detail from "./Detail";
 
 function Timetable() {
   const date = new Date();
-  console.log(window.screen)
 
   return (
     <div style={{ padding: "1rem" }}>
@@ -22,6 +21,9 @@ function Timetable() {
           </div>
         </div>
         <div name="Column-right">
+          <div name="row-1">
+            
+          </div>
           <div name="Row-2">
             <div name="Clases Semanales">
               <h2>Clases Semanales</h2>
