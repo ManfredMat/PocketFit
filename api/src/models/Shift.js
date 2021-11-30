@@ -15,11 +15,11 @@ module.exports = (sequelize) => {
       },
       availability:{
         type: DataTypes.INTEGER,
-        defaultValue:0,
+
       },
       capacity:{
         type: DataTypes.INTEGER,
-        defaultValue:0,
+
       },
       beginning:{
         type: DataTypes.STRING,
@@ -44,4 +44,5 @@ module.exports = (sequelize) => {
       year:{        
         type: DataTypes.INTEGER,
         allowNull: false}
-    })}
+    })
+  };

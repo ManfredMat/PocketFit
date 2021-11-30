@@ -11,14 +11,15 @@ export default function RootStack() {
         <>
                 <Stack.Navigator>
                     <Stack.Screen 
+                        name= 'loading' 
+                        component={Loading} 
+                        options = {{headerShown: false}}
+                    />
+                    <Stack.Screen 
                        name="Authentication"
                        component={Authentication}
                        options={{ headerShown: false}}
                     />
-                    <Stack.Screen 
-                        name= 'loading' 
-                        component={Loading} 
-                        options = {{headerShown: false}}/>
                 </Stack.Navigator>
         </>
     )

@@ -61,7 +61,14 @@ export default function SignUp() {
       if (res.data === "User is already registered") {
         Alert.alert("Error", "El usuario ya existe")
       } else {
-        navigation.navigate("loading")
+        setInput({
+          name: "",
+          lastname: "",
+          email: "",
+          password: "",
+          repeatPassword: ""
+        })
+        navigation.navigate("Inicio")
         Alert.alert(`Bienvenido ${input.name}!`, "Te has registrado correctamente")
       };
     } catch (e) {

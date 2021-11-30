@@ -24,7 +24,7 @@ router.use('/api/blocks' , blockRoute);
 router.use("/api/login", loginRoute);
 router.use("/api/weekplan", weekplanRoute);
 router.use("/api/logout", logoutRoute);
-router.use('/api/shifts', shiftRoute);
+router.use('/api/shift', shiftRoute);
 router.use('/api/paypal', paypalRoutes)
 
 
