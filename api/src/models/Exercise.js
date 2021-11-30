@@ -5,10 +5,9 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('exercise', {
     id:{
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
-      primaryKey: true
+      type: DataTypes.INTEGER,
+        autoIncrement:true,
+        primaryKey: true
     },
     name:{
       type: DataTypes.STRING,

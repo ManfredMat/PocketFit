@@ -55,15 +55,14 @@ export default function SignUp() {
         email: input.email,
         password: input.password,
       };
-
       const res = await postRegisterUser(datos);
       dispatch(signIn(res.data));
 
       if (res.data === "User is already registered") {
         Alert.alert("Error", "El usuario ya existe")
       } else {
+        navigation.navigate("loading")
         Alert.alert(`Bienvenido ${input.name}!`, "Te has registrado correctamente")
-        navigation.navigate("Inicio")
       };
     } catch (e) {
       Alert.alert("Error", "No se pudo registrar");
