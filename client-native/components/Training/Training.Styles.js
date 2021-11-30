@@ -20,7 +20,7 @@ export const Routines = styled.View`
     width: 370px;
     height: 400px;
     padding: 10px;
-    opacity: 0.8;
+    opacity: 0.9;
 `
 export const TextW = styled.Text`
     color: #fff;
