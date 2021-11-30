@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from '../Home/Home';
 import NavIcon from './NavIcons';
 import TestComponent from '../TestComponent';
+import Training from '../Training/Training';
 
 const Stack = createBottomTabNavigator();
 
@@ -30,7 +31,7 @@ export default function InicioStack() {
                     />
                     <Stack.Screen
                         name="Training"
-                        component={TestComponent}
+                        component={Training}
                         options={{ headerShown: false, tabBarIcon:() => <NavIcon imgSrc={4} size={35}/>}}
                         />
                     <Stack.Screen

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity, ImageBackground } from 'react-native'
+import { View, Text, TouchableOpacity, ImageBackground, ScrollView } from 'react-native'
 import SignUp from './SignUp/SignUp'
 import SignIn from './SignIn/SignIn'
 import { SvgXml } from 'react-native-svg'
@@ -35,8 +35,7 @@ export default function Authentication() {
                         <Text style={{marginLeft: 40, fontSize: 15, color: render ? "#6AE056" : "#C0C6CC"}}>Iniciar Sesión</Text>
                     </TouchableOpacity>
                 </ContainerBar>
-                   
-                <View style={{marginTop: 10}}>
+                <ScrollView>
                     {render ? 
                     (
                         <SignIn/>
@@ -46,7 +45,7 @@ export default function Authentication() {
                         <SignUp/>
                     )
                     }
-                </View>
+                </ScrollView>
             </Container>
         </ImageBackground>
     )
