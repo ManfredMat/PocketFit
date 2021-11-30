@@ -8,14 +8,14 @@ function Calendar({ year, month }) {
   const dispatch = useDispatch();
   var daysMonth = new Date(year, month, 0).getDate();
   let firstDay = new Date(year, month, 1).getDay();
+
+  //Function to create an array with all the days of the month
   const range = (start, stop, step) =>
     Array.from(
       { length: (stop - start) / step + 1 },
       (_, i) => start + i * step
     );
   var weekDays = ["Lun", "Mar", "Mie", "Jue", "Vie", "Sab", "Dom"];
-
-  dispatch(prueba("hola"));
 
   return (
     <Styles.StyledContainer>

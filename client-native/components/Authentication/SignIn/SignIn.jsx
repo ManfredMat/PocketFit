@@ -36,10 +36,19 @@ const SignIn = () => {
         email: state.email,
         password: state.password
       };
-
+      
       const res = await postLoginUser(datos);
-      dispatch(signIn(res.data.passport.user));
-      navigation.navigate("loading");
+      // if (res.data === "Email not found") {
+      //   return Alert.alert("Error", "No se ha encontrado el email en nuestra base de datos");
+      // } else if (res.data === "Password mismatch") {
+      //   return Alert.alert("Error", "La contraseña ingresada es incorrecta")
+      // } else {
+        dispatch(signIn(res.data.passport.user));
+        navigation.navigate("loading");
+      // }
+
+      
+
     } catch (e) {
       Alert.alert("Error", "No se pudo iniciar sesión");
     }

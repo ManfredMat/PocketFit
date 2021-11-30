@@ -20,7 +20,7 @@ function PassRecovery() {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (input.email < 1) {
+        if (input.email.length < 1) {
           alert("Completa el campo email")
         } else {
           if (validatorEmail(input.email)) {

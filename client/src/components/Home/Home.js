@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import NavBar from "../NavBar/NavBar";
-import Calendar from "./Calendar";
+import Calendar from "../_Universals/Calendar";
 import Clases from "./Clases";
 import Turnos from './Turnos'
 import Styles from "./HomeStyled";
