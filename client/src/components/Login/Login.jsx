@@ -14,13 +14,15 @@ function Login() {
   const dispatch = useDispatch()
   const getSession = useSelector((state) => state.session.session)
   
-  //   const [loading, setLoading] = useState(false)
-  //   const check = async () => {
-  //     if(getSession.length !== 0){
-  //       getSession.passport.user.isadmin ? navigate('/session')
-  //       : alert('Usted no es administrador, para continuar descargue PocketFit mobile')
-  //     }
-  // }
+  const [loading, setLoading] = useState(false)
+  const check = () => {
+    if(getSession.length !== 0){
+      getSession.passport.user.isadmin ? navigate('/session')
+      : alert('Usted no es administrador, para continuar descargue PocketFit mobile'); setLoading(false)
+    } else alert("No se pudo iniciar sesión"); setLoading(false)
+  }
+
+  loading && check()
 
   const [input, setInput] = useState({
     email:'',
@@ -42,8 +44,8 @@ function Login() {
        } else return alert("Completa todos los campos")
         
       dispatch(LogIn(input))
+      setLoading(true)
       // console.log(Cookies.get(), "cookie")
-      getSession.passport.user.isadmin ? navigate("/session/home") : alert('Usted no es administrador, para continuar descargue PocketFit mobile')
     } catch (e) {
       alert("No se pudo iniciar sesión")
     }
