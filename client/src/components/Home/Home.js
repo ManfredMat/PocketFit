@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import NavBar from "../NavBar/NavBar";
-import Calendar from "./Calendar";
+import Calendar from "../_Universals/Calendar";
+import Clases from "./Clases";
+import Turnos from './Turnos'
+import Styles from "./HomeStyled";
+import datos from "./Datos-Hard";
 
-const GymName = "CrossGym";
+const GymName = "FitnessGym";
 
 function month(date) {
   let options = { month: "long" };
@@ -12,22 +15,42 @@ function month(date) {
 function Home() {
   const date = new Date();
   return (
-    <div className="">
-      <NavBar />
-      <section>
+    <React.Fragment>
+      <Styles.GlobalStyle />
+      <Styles.StyledBody>
         <h1>Bienvenido, {GymName}!</h1>
-        <div name="row-1">
-          <section name="mes">
+        <Styles.StyledFirstRow>
+          <Styles.StyledCalendarContainer>
             <h2>{month(date)}</h2>
             <Calendar year={date.getFullYear()} month={date.getMonth()} />
-          </section>
-          <section name="hoy">
+          </Styles.StyledCalendarContainer>
+
+          <section>
             <h2>Hoy</h2>
+            <Styles.StyledTodayRows>
+              <Styles.StyledLeftColumn>
+                <Styles.StyledLeftColumnHead>
+                  <h3>Clases</h3>
+                  <p>Ver Todas</p>
+                </Styles.StyledLeftColumnHead>
+                <Clases clases={datos.actividades}/>
+                <h3>Mañana</h3>
+                <Clases clases={datos.actividadesMañana}/>
+              </Styles.StyledLeftColumn>
+              <section>
+                <div>
+                  <h3>Turnos</h3>
+                  <p>Ver Detalle</p>
+                </div>
+                <Turnos turnos={datos.turnos}/>
+              </section>
+            </Styles.StyledTodayRows>
           </section>
-        </div>
+        </Styles.StyledFirstRow>
+
         <div name="row-2"></div>
-      </section>
-    </div>
+      </Styles.StyledBody>
+    </React.Fragment>
   );
 }
 

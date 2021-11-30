@@ -1,8 +1,12 @@
 import {combineReducers} from "redux"
-import reducerPlantilla from "./Reducer-Plantilla.js"
+import ReducerLogin from "./ReducerLogin.js"
+import ReducerUsers from "./ReducerUsers.js"
+import reducerHorario from "./ReducerHorarios.js"
 
 const rootReducer = combineReducers({
-    plantilla : reducerPlantilla
+    session: ReducerLogin,
+    users: ReducerUsers,
+    timetable: reducerHorario
 })
 
 export default rootReducer

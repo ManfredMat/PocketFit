@@ -32,8 +32,6 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use(flash());
-
 let myStore = new SequelizeStore({
   db: conn,
 });
@@ -50,6 +48,7 @@ server.use(
 );
 myStore.sync();
 
+server.use(flash());
 server.use(passport.initialize());
 server.use(passport.session());
 
