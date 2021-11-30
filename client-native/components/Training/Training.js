@@ -12,7 +12,7 @@ export default function Training() {
 
     const getAll = useSelector((state)  => state.reducerTraining.exercise)
     const dispatch = useDispatch()
-    useEffect(() => { dispatch(getAllExercises())}, [])
+    useEffect(() => { dispatch(getAllExercises())},[])
     console.log(getAll)
     const navigation = useNavigation();
     const [isEnabled, setIsEnabled] = useState(false);

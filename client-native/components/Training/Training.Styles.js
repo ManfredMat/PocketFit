@@ -48,11 +48,6 @@ export const Excercise = styled.View`
     width: 340px;
     height: 50px;
     padding: 10px;
-    shadow-color: #000;
-    shadow-offset: {width: 0, height: 2};
-    shadow-opacity: 0.8;
-    shadow-radius: 2;
-    elevation: 3;
     opacity: 0.9;
 `
 export const ProxShifts = styled.View`
@@ -62,11 +57,6 @@ export const ProxShifts = styled.View`
     width: 350px;
     height: 100px;
     padding: 10px;
-    shadow-color: #000;
-    shadow-offset: {width: 0, height: 2};
-    shadow-opacity: 0.8;
-    shadow-radius: 2;
-    elevation: 3;
 `
 export const ViewEX = styled.View`
     display: flex;

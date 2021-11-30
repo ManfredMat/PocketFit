@@ -8,7 +8,7 @@ export function getAllExercises() {
       .then(data => {
         dispatch({
           type: EXERCISE,
-          payload: data
+          payload: data.data
         })
       });
   }

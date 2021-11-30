@@ -39,7 +39,7 @@ const SignIn = () => {
 
       const res = await postLoginUser(datos);
       dispatch(signIn(res.data.passport.user));
-      navigation.navigate("Inicio");
+      navigation.navigate("loading");
     } catch (e) {
       Alert.alert("Error", "No se pudo iniciar sesión");
     }
