@@ -188,7 +188,38 @@ const clases = [
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis egestas integer eget aliquet nibh praesent tristique. Viverra mauris in aliquam sem fringilla ut. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Amet risus nullam eget felis eget nunc lobortis. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. ",
             "profesor": "Cande",
             "month": 0
+          },
+          {
+            "kindOfEvent": "Eventos",
+            "name": "Competencia de CrossFit",
+            "nameday": "Lunes",
+            "day": 20,
+            "hour": 18,
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis egestas integer eget aliquet nibh praesent tristique. Viverra mauris in aliquam sem fringilla ut. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Amet risus nullam eget felis eget nunc lobortis. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. ",
+            "profesor": "Mateo",
+            "month": 12
+          },
+          {
+            "kindOfEvent": "Eventos",
+            "name": "Clase Aerobica Grupal",
+            "nameday": "Viernes",
+            "day": 3,
+            "hour": 9,
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis egestas integer eget aliquet nibh praesent tristique. Viverra mauris in aliquam sem fringilla ut. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Amet risus nullam eget felis eget nunc lobortis. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. ",
+            "profesor": "Lucho",
+            "month": 12
+          },
+          {
+            "kindOfEvent": "Eventos",
+            "name": "Clase en el Parque Auxilio",
+            "nameday": "Martes",
+            "day": 14,
+            "hour": 7,
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis egestas integer eget aliquet nibh praesent tristique. Viverra mauris in aliquam sem fringilla ut. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Amet risus nullam eget felis eget nunc lobortis. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. ",
+            "profesor": "Vicky",
+            "month": 12
           }
+          
 ]
 
 module.exports={clases};

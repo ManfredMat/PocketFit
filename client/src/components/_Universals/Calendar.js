@@ -17,8 +17,6 @@ function Calendar({ year, month }) {
     );
   var weekDays = ["Lun", "Mar", "Mie", "Jue", "Vie", "Sab", "Dom"];
 
-  dispatch(prueba("hola"));
-
   return (
     <Styles.StyledContainer>
       <Styles.GlobalStyle />

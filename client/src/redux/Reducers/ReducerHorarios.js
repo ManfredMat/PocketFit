@@ -1,9 +1,11 @@
 import {
-  GET_LESSONS
+  GET_LESSONS,
+  GET_EVENTS
 } from "../Actions/actions-Horarios";
 
 const initialState = {
-  lessons: ""
+  lessons: [],
+  events: []
 };
 
 function reducerHorario(state = initialState, action) {
@@ -13,7 +15,13 @@ function reducerHorario(state = initialState, action) {
         ...state,
         lessons: action.value,
       }
-      
+    case GET_EVENTS:
+      return {
+        ...state,
+        events: action.value,
+      }
+
+
     default:
       return state;
   }

@@ -14,11 +14,13 @@ function ClasesWeeklyView() {
     dispatch(getLessons())
   }, []);
 
+  console.log(lessons)
+
   return (
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "repeat(6, 1fr",
+        gridTemplateColumns: "repeat(6, 1fr)",
         gap: "2rem ",
       }}
     >
