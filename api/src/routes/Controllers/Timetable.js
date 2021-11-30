@@ -10,17 +10,6 @@ catch(err){
     res.send(err)
 }}
 
-
-const getAllTimetables = async (req , res) =>{
-    try{
-        const allTimetables = await Timetable.findAll()
-        res.json(allTimetables)
-    }
-    catch(err){
-        res.send(err)
-    }
-}
-
 const getTimetableById = async (req , res) =>{
 const {id}= req.params
 try{
@@ -59,7 +48,7 @@ catch(err){
 }
 
 module.exports ={
-    createTimetable, getAllTimetables, getTimetableById, updateTimetable, deleteTimetable
+    createTimetable, getTimetableById, updateTimetable, deleteTimetable
 }
 
 
