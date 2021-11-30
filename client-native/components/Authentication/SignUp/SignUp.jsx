@@ -55,7 +55,6 @@ export default function SignUp() {
         email: input.email,
         password: input.password,
       };
-
       const res = await postRegisterUser(datos);
       dispatch(signIn(res.data));
 
