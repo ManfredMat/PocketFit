@@ -7,10 +7,11 @@ const createShift= async (req , res) =>{
             beginning,
             ending,
             weekday,
+            week,
             month,
             year} = req.body
     try{
-        const newShift = await Shift.create({ kindOfShift, availability, capacity, beginning, ending, weekday, month, year});
+        const newShift = await Shift.create({ kindOfShift, availability, capacity, beginning, ending, week, weekday, month, year});
         res.json(newShift)
     }
     catch(err){
