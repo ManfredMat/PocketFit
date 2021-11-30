@@ -25,12 +25,15 @@ module.exports = (sequelize) => {
 
     month:{
       type: DataTypes.INTEGER,
+      allowNull:true,
+    },
+    nameday:{
+      type: DataTypes.STRING,
       allowNull:false
     },
-
     day:{
       type: DataTypes.INTEGER,
-      allowNull:false
+      allowNull:true,
     },
     hour:{
       type: DataTypes.INTEGER,
@@ -41,7 +44,9 @@ module.exports = (sequelize) => {
     type: DataTypes.TEXT,
     allowNull: false
     },
-
+    profesor:{
+      type: DataTypes.STRING
+    }
    }
   );
 };

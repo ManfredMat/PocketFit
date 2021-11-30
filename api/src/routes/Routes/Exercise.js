@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { Exercise } = require("../../db.js");
+
 const { createExercise,
     getAllExercises,
     getExerciseById,
