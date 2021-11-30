@@ -30,31 +30,28 @@ const EditBlock = (props) => {
         const block = {
             ...inputs,
             rounds: parseInt(inputs.rounds),
-            excercises,
+            exercises:excercises,
             day: props.api,
             order: props.block,
         }
+
+        try{
+
+            const response = await axios.post("http://127.0.0.1:3001/api/blocks/",block);
+
+            props.setIdRoutine({...props.idRoutine,[`block${props.block}`]:response.data.id});
+
+        } catch(e){
+            console.log("oups error")
+            console.log(e)
+        }
         
-        console.log(block);
-
-        // try{
-
-        //     console.log("...enviando")
-        //     const response = await axios.post("http://127.0.0.1:3001/api/blocks/",block);
-        //     console.log(response);
-
-        // } catch(e){
-        //     console.log("oups error")
-        //     console.log(e)
-        // }
-        
-        // console.log("Acabo!");
+        console.log("Acabo!");
     }
 
     return (
         <div>
-            {console.log(excercises)}
-            {console.log(inputs)}
+
             <div>
                 <h3>Editar {props.day} Bloque: {props.block}</h3>
                 <button onClick={handleOnClick}>Agregar Ejercicio</button>

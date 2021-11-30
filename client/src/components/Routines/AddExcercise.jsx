@@ -34,7 +34,6 @@ const AddExcercise = (props) => {
 
         <div>
 
-            {console.log(inputs)}
             <h3>Agregando Ejercicio a {props.day} bloque {props.block}</h3>
 
             <label htmlFor="exercises">Ejercicio </label>

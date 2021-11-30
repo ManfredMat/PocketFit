@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Day from "./Day";
 import { DayName, HeaderDay, Level, Table, Week } from "./Routines.styles";
 // const planSemanal = {
@@ -10,11 +11,24 @@ import { DayName, HeaderDay, Level, Table, Week } from "./Routines.styles";
 
 const WeekTable = () => {
 
+    const [weekIds, setWeekIds] = useState({
+        monday:'',
+        tuesday: '',
+        wendsday: '',
+        thursday: '',
+        friday: '',
+        saturday: ''    
+    })
+
     return (
         <>
             <h1>Plan Semanal</h1>
             <Day day="Lunes" api="monday"></Day>
             <Day day="Martes" api="tuesday"></Day>
+            <Day day="Miércoles" api="wendsday"></Day>
+            <Day day="Jueves" api="thursday"></Day>
+            <Day day="Viernes" api="friday"></Day>
+            <Day day="Sábado" api="saturday"></Day>
            
         </>
     )
