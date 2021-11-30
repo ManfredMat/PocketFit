@@ -3,9 +3,10 @@ const {Routine , Block} = require('../../db')
 
 
  const createRoutine = async (req , res)=>{
-    let {kindOfRoutine  , blocks } = req.body;
+    let {kindOfRoutine  , blocks , day } = req.body;
     try{
        const newRoutine = await  Routine.create({
+           day,
            kindOfRoutine
        })
        newRoutine.setBlocks(blocks)
@@ -43,7 +44,7 @@ const getOneRoutine = async (req , res)=> {
     let routines = await Routine.findOne({
         where:{id:id},
         include:[{
-            model: Block , attributes:['id' , 'rounds' ,'kindOfBlock','exercises' ,'description'],
+            model: Block , attributes:['id' , 'order', 'rounds' ,'kindOfBlock','exercises' ],
             through:{
                 attributes:[]
             }
