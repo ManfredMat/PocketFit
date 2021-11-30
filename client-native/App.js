@@ -8,7 +8,6 @@ import RootStack from "./components/navigator/RootStack";
 import InicioStack from "./components/navigator/InicioStack";
 import store from "./redux/store";
 import { Provider } from "react-redux";
-import Authentication from "./components/Authentication/Authentication";
 import Shifts from "./components/Training/Shifts";
 
 export default function App() {
@@ -21,7 +20,7 @@ export default function App() {
       <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator>
-              <Stack.Screen name= 'Auth' component={RootStack} options = {{headerShown: false}}/> 
+              <Stack.Screen name= 'Auth' component={RootStack} options = {{headerShown: false}}/>  
               <Stack.Screen name= 'Inicio' component={InicioStack} options = {{headerShown: false}} />
               <Stack.Screen name= 'Shifts' component={Shifts} options={{
                    

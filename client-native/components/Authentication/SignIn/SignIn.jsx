@@ -45,10 +45,9 @@ const SignIn = () => {
         return Alert.alert("Error", "La contraseña ingresada es incorrecta")
       } else {
         dispatch(signIn(res.data.passport.user));
-        navigation.navigate("Inicio");
+        navigation.navigate("loading");
+      // }
       }
-
-      
     } catch (e) {
       Alert.alert("Error", "No se pudo iniciar sesión");
     }

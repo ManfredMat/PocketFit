@@ -1,6 +1,6 @@
 import {
     EXERCISE
-  } from "../Actions/actions-Prueba";
+  } from "../Actions/actions-Training";
   
   const initialState = {
     exercise: []
@@ -9,9 +9,10 @@ import {
   function reducerTraining(state = initialState, action) {
     switch (action.type) {
       case EXERCISE:
+        console.log(value.data, 'reducer')
         return {
           ...state,
-          exercise: action.payload[0]
+          exercise: value.data
         };
   
       default:
