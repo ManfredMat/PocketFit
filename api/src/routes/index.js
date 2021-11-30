@@ -8,6 +8,7 @@ const logoutRoute = require("./Routes/Logout");
 const blockRoute = require('./Routes/Block');
 const weekplanRoute = require("./Routes/WeekPlan");
 const shiftRoute = require('./Routes/Shift');
+const paypalRoutes = require('./Routes/Paypal')
 
 const { Router } = require("express");
 
@@ -24,6 +25,7 @@ router.use("/api/login", loginRoute);
 router.use("/api/weekplan", weekplanRoute);
 router.use("/api/logout", logoutRoute);
 router.use('/api/shifts', shiftRoute);
+router.use('/api/paypal', paypalRoutes)
 
 
 module.exports = router;

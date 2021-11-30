@@ -1,8 +1,9 @@
 const { Router } = require('express');
-const { createTimetable, getTimetableById, updateTimetable, deleteTimetable} = require("../Controllers/Timetable.js")
+const { createTimetable, getTimetableById, updateTimetable, deleteTimetable, getAllTimetables} = require("../Controllers/Timetable.js")
 
 const router = Router();
 
+router.get("/all", getAllTimetables);
 
 router.post("/", createTimetable);
 
