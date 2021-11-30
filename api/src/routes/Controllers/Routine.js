@@ -22,7 +22,7 @@ const getAllRoutines = async (req , res)=> {
     try{
     let routines = await Routine.findAll({
         include:[{
-            model: Block , attributes:['id' , 'rounds' ,'kindOfBlock','exercises' ,'description'],
+            model: Block , attributes:['id' , 'order', 'rounds' ,'kindOfBlock','exercises'],
             through:{
                 attributes:[]
             }
