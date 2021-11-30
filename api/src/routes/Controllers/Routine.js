@@ -44,7 +44,7 @@ const getOneRoutine = async (req , res)=> {
     let routines = await Routine.findOne({
         where:{id:id},
         include:[{
-            model: Block , attributes:['id' , 'rounds' ,'kindOfBlock','exercises' ,'description'],
+            model: Block , attributes:['id' , 'order', 'rounds' ,'kindOfBlock','exercises' ],
             through:{
                 attributes:[]
             }

@@ -39,7 +39,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 
 
-const { Event , Exercise  , Routine , Timetable , User  , Block , WeekPlan} = sequelize.models;
+const { Event , Exercise  , Routine , Timetable , User  , Block , Weekplan} = sequelize.models;
 
 
 // Aca vendrian las relaciones

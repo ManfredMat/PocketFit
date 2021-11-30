@@ -12,27 +12,27 @@ module.exports = (sequelize) => {
       },
 
       monday:{
-        type:DataTypes.STRING,
+        type:DataTypes.INTEGER,
         allownull:false,
       },
       tuesday:{
-        type:DataTypes.STRING,
+        type:DataTypes.INTEGER,
         allownull:false,
       },
       wendsday:{
-        type:DataTypes.STRING,
+        type:DataTypes.INTEGER,
         allownull:false,
       },
       thursday:{
-        type:DataTypes.STRING,
+        type:DataTypes.INTEGER,
         allownull:false,
       },
       friday:{
-        type:DataTypes.STRING,
+        type:DataTypes.INTEGER,
         allownull:false,
       },
       saturday:{
-        type:DataTypes.STRING,
+        type:DataTypes.INTEGER,
         allownull:false,
       }  
 
