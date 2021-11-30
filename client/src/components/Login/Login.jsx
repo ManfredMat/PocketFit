@@ -7,16 +7,14 @@ import { useState } from "react";
 import { LogIn } from '../../redux/Actions/actions-login'
 import { useDispatch, useSelector } from "react-redux";
 import { ContainerIn, Input, Container, Btn, TextGreen, Wave} from "./Login.styles";
-import Cookies from "js-cookie"
 
 function Login() {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
-  const getSession = useSelector((state) => state.session.session)
-  
-  const [loading, setLoading] = useState(false)
+  const dispatch = useDispatch();
+  const getSession = useSelector((state) => state.session.session);
+  const [loading, setLoading] = useState(false);
+
   const check = () => {
-    console.log(getSession, "getSession")
     if(getSession.length !== 0){
       if (getSession === "Email not found") {
         alert("No se ha encontrado el email en nuestra base de datos"); setLoading(false)
@@ -52,7 +50,6 @@ function Login() {
         
       await dispatch(LogIn(input))
       setLoading(true)
-      // console.log(Cookies.get(), "cookie")
     } catch (e) {
       alert("No se pudo iniciar sesión")
     }

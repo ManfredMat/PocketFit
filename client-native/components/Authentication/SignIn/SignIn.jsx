@@ -7,6 +7,7 @@ import { Styles } from '../Authentication.styles';
 import { useSelector, useDispatch } from "react-redux";
 import signIn from "../../../redux/Actions/actions-User";
 import postLoginUser from "../../../api/post-login";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignIn = () => {
   const navigation = useNavigation();
@@ -43,14 +44,27 @@ const SignIn = () => {
         return Alert.alert("Error", "No se ha encontrado el email en nuestra base de datos");
       } else if (res.data === "Password mismatch") {
         return Alert.alert("Error", "La contraseña ingresada es incorrecta")
+      } else if (res.data.passport.user.isadmin) {
+        return Alert.alert("Error", "Usted es administrador, para continuar ingrese a PocketFit Web")
       } else {
         dispatch(signIn(res.data.passport.user));
-        navigation.navigate("loading");
+        storeEmail(state.email);
+        storePassword(state.password);
+        setState({email: "", password: ""});
+        navigation.navigate("Inicio");
       // }
       }
     } catch (e) {
       Alert.alert("Error", "No se pudo iniciar sesión");
     }
+  };
+
+  const storeEmail = async (value) => {
+    await AsyncStorage.setItem('email', value)
+  };
+
+  const storePassword = async (value) => {
+    await AsyncStorage.setItem('password', value)
   };
 
 
