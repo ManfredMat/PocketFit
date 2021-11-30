@@ -32,6 +32,7 @@ let adminAcount = {
   isadmin:true,
   isprofessor:false,
   isuser:false
+  
 }
 
 conn.sync({ force: true }).then(async () => {
