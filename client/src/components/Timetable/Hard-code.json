@@ -171,5 +171,84 @@
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis egestas integer eget aliquet nibh praesent tristique. Viverra mauris in aliquam sem fringilla ut. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Amet risus nullam eget felis eget nunc lobortis. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. ",
         "profesor": "Cande"
       }
+  ],
+  "shifts": [{
+    "kindOfShift":"dato",
+    "availability": 3,
+    "capacity": 10,
+    "beginning": "7",
+    "ending": "9",
+    "weekday": "Viernes",
+    "day": 3,
+    "month": 12,
+    "year":2021
+  },{
+    {
+      "kindOfShift":"dato",
+      "availability": 3,
+      "capacity": 10,
+      "beginning": "9",
+      "ending": "11",
+      "weekday": "Viernes",
+      "day": 3,
+      "month": 12,
+      "year":2021
+    }
+  },
+  {
+    "kindOfShift":"dato",
+    "availability": 3,
+    "capacity": 10,
+    "beginning": "11",
+    "ending": "13",
+    "weekday": "Viernes",
+    "day": 3,
+    "month": 12,
+    "year":2021
+  },
+  {
+    "kindOfShift":"dato",
+    "availability": 3,
+    "capacity": 10,
+    "beginning": "14",
+    "ending": "16",
+    "weekday": "Viernes",
+    "day": 3,
+    "month": 12,
+    "year":2021
+  },
+  {
+    "kindOfShift":"dato",
+    "availability": 3,
+    "capacity": 10,
+    "beginning": "16",
+    "ending": "18",
+    "weekday": "Viernes",
+    "day": 3,
+    "month": 12,
+    "year":2021
+  },
+  {
+    "kindOfShift":"dato",
+    "availability": 3,
+    "capacity": 10,
+    "beginning": "18",
+    "ending": "20",
+    "weekday": "Viernes",
+    "day": 3,
+    "month": 12,
+    "year":2021
+  }, {
+    "kindOfShift":"dato",
+    "availability": 3,
+    "capacity": 10,
+    "beginning": "20",
+    "ending": "22",
+    "weekday": "Viernes",
+    "day": 3,
+    "month": 12,
+    "year":2021
+  }
+   
   ]
 }
