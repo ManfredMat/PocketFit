@@ -39,7 +39,9 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 
 
-const { Event , Exercise  , Routine , Timetable , User  , Block} = sequelize.models;
+
+const { Event , Exercise  , Routine , Timetable , User  , Block, Shift , Weekplan} = sequelize.models;
+
 
 
 // Aca vendrian las relaciones
@@ -47,8 +49,11 @@ const { Event , Exercise  , Routine , Timetable , User  , Block} = sequelize.mod
 User.belongsToMany(Routine, { through: "UserRoutine" });
 Routine.belongsToMany(User, { through: "UserRoutine" });
 
-User.belongsToMany(Timetable, { through: "UserTimetable" });
-Timetable.belongsToMany(User, { through: "UserTimetable" });
+User.belongsToMany(Shift, { through: "UserShift" });
+Shift.belongsToMany(User, { through: "UserShift" });
+
+Shift.belongsToMany(Timetable, { through: "ShiftTimetable" });
+Timetable.belongsToMany(Shift, { through: "ShiftTimetable" });
 
 User.belongsToMany(Event, { through: "UserEvent" });
 Event.belongsToMany(User, { through: "UserEvent" });
