@@ -33,6 +33,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false
       },
+      week:{
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
       month:{
         type: DataTypes.STRING,
         allowNull: false
