@@ -18,6 +18,12 @@ const turnos = [
     franjahoraria: "14hs a 16hs",
     //personas: ["mateo", cande, lucho, lean],
   },
+ /*  Llega
+ {beginning: "14hs",
+ending: "15hs",
+availability: 7,
+capacity:10}
+   */
   {
     orden: 2,
     ocupado: 3,

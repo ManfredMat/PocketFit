@@ -8,19 +8,7 @@ try{
 }
 catch(err){
     res.send(err)
-}
-}
-
-
-const getAllTimetables = async (req , res) =>{
-    try{
-        const allTimetables = await Timetable.findAll()
-        res.json(allTimetables)
-    }
-    catch(err){
-        res.send(err)
-    }
-}
+}}
 
 const getTimetableById = async (req , res) =>{
 const {id}= req.params
@@ -50,7 +38,6 @@ catch(err){
 
 const deleteTimetable = async (req , res) =>{
 const {id} = req.params
-
 try{
     await Timetable.destroy({where:{id:id}})
     res.send({message: "Entry successfully deleted"})
@@ -58,11 +45,10 @@ try{
 catch(err){
     res.send(err)
 }
-
 }
 
 module.exports ={
-    createTimetable, getAllTimetables, getTimetableById, updateTimetable, deleteTimetable
+    createTimetable, getTimetableById, updateTimetable, deleteTimetable
 }
 
 

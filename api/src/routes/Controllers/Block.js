@@ -1,4 +1,3 @@
-//const { createBlock,getAllBlocks,getBlockById,updateBlock,deleteBlock} =require("../Controllers/Block")
 const {Block , Exercise} = require('../../db')
 
 
