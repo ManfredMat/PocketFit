@@ -11,7 +11,7 @@ import {
       case EXERCISE:
         return {
           ...state,
-          exercise: action.payload[0]
+          exercise: action.payload
         };
   
       default:

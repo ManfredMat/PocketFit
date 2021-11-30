@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {View, Text, ScrollView, Switch, Image } from 'react-native'
-import { Container, Routines, TextW, TextT, LemonContainer, Excercise, ProxShifts } from './Training.Styles'
+import { Container, Routines, TextW, TextT, LemonContainer, Excercise, ProxShifts, ViewEX, Pesa} from './Training.Styles'
 import {ButtonGreen} from '../Authentication/Authentication.styles'
 import { useNavigation } from '@react-navigation/core';
 import pesa from '../../assets/pesa.png'
@@ -35,10 +35,10 @@ export default function Training() {
                         value={isEnabled}/>
                         {
                             isEnabled 
-                            ? <View style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                            ? <ViewEX>
                                 <Text>COMPLETADO!</Text>
-                                <Image source={pesa} style={{width: 40, height: 40, marginLeft: 50}}/>
-                             </View>
+                                <Pesa source={pesa}/>
+                             </ViewEX>
                             : <Text>q hacemo</Text>
                         }
                     </Excercise>

@@ -68,3 +68,13 @@ export const ProxShifts = styled.View`
     shadow-radius: 2;
     elevation: 3;
 `
+export const ViewEX = styled.View`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`
+export const Pesa = styled.Image`
+    width: 40px;
+    height: 40px;
+    margin-left: 50px;
+`
