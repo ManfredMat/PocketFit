@@ -8,8 +8,7 @@ try{
 }
 catch(err){
     res.send(err)
-}
-}
+}}
 
 
 const getAllTimetables = async (req , res) =>{
@@ -47,22 +46,9 @@ catch(err){
     res.send(err)
 }
 }
-const reserveTimeTable = async (req, res) =>{
-    const ids = req.body;
-    ids.forEach((id) => {
-      Timetable.find((t) => t.id === id);
-      if (Timetable.availability > 0) {
-        availability--;
-      } else {
-        throw "Sin turnos disponibles";
-      }
-    });
-    res.send(availability);
-  };
 
 const deleteTimetable = async (req , res) =>{
 const {id} = req.params
-
 try{
     await Timetable.destroy({where:{id:id}})
     res.send({message: "Entry successfully deleted"})
@@ -70,11 +56,10 @@ try{
 catch(err){
     res.send(err)
 }
-
 }
 
 module.exports ={
-    createTimetable, getAllTimetables, getTimetableById, updateTimetable, deleteTimetable, reserveTimeTable
+    createTimetable, getAllTimetables, getTimetableById, updateTimetable, deleteTimetable
 }
 
 
