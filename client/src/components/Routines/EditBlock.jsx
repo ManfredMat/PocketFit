@@ -46,7 +46,7 @@ const EditBlock = (props) => {
             console.log(e)
         }
         
-        console.log("Acabo!");
+        props.setRender({ render: false })
     }
 
     return (

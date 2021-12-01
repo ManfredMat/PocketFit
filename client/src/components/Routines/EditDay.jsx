@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import EditBlock from "./EditBlock";
 
 const EditDay = (props) => {
@@ -41,11 +41,10 @@ const EditDay = (props) => {
             day:props.api
         }
 
-        console.log(dayRoutine);
-
         const response = await axios.post("http://127.0.0.1:3001/api/routines",dayRoutine);
+        props.setRender(false)
 
-        console.log(response);
+        props.setWeekIds({...props.weekIds, [props.api]: response.data.id});
 
     }
 
@@ -53,7 +52,7 @@ const EditDay = (props) => {
 
         <div>
             <div>
-                <h2>Editando {props.day}</h2>
+                <h3>Editando {props.day}</h3>
 
                 <input type="text" value={input} onChange={(e) => setInput(e.target.value)}/>
 
@@ -98,7 +97,7 @@ const EditDay = (props) => {
 
             <button onClick={submitChanges} disabled={idRoutine.block1.length === 0 || idRoutine.block2.length === 0 || idRoutine.block3.length === 0}>Aceptar</button>
 
-            {renderEditBlock.render ? <EditBlock day={props.day} api={props.api} block={renderEditBlock.block} excersices={renderEditBlock.excersices} setIdRoutine={setIdRoutine} idRoutine={idRoutine}/> : null}
+            {renderEditBlock.render ? <EditBlock day={props.day} api={props.api} block={renderEditBlock.block} excersices={renderEditBlock.excersices} setIdRoutine={setIdRoutine} idRoutine={idRoutine} setRender={setRender}/> : null}
 
         </div>
 
