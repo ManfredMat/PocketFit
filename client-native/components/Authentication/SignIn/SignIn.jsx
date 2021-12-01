@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 import { Text, TouchableOpacity, View, Alert } from "react-native";
 import { Input } from "react-native-elements";
-import { ButtonGreen } from "../Authentication.styles";
+import { ButtonGreen, Label } from "../Authentication.styles";
 import { Styles } from '../Authentication.styles';
 import { useSelector, useDispatch } from "react-redux";
 import signIn from "../../../redux/Actions/actions-User";
@@ -79,8 +79,8 @@ const SignIn = () => {
 
   return (
     <View>
-      <View style={{ width: 300 }}>
-        <Text style={{ color: "white", marginLeft: 10 }}>E-mail</Text>
+      <View style={{ width: 300, marginTop: 5 }}>
+        <Label>E-mail</Label>
         <Input
           style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -90,7 +90,7 @@ const SignIn = () => {
           keyboardType="email-address"
           textContentType="emailAddress"
         />
-        <Text style={{ color: "white", marginLeft: 10 }}>Contraseña</Text>
+        <Label>Contraseña</Label>
         <Input
           style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -106,7 +106,7 @@ const SignIn = () => {
         <ButtonGreen
           onPress={() => handleOnSubmit()}
         >
-          <Text style={{ alignSelf: "center" }}>Iniciar Sesión</Text>
+          <Text style={{ alignSelf: "center", fontFamily: "Poppins_500Medium" }}>Iniciar Sesión</Text>
         </ButtonGreen>
 
         {
@@ -125,7 +125,7 @@ const SignIn = () => {
                 }
               ]
             )}>
-              <Text style={{ color: '#6AE056', alignSelf: "center", marginBottom: 20, marginTop: 8, borderBottomWidth: 2, borderStyle: "solid", borderColor: "#6AE056" }}>OLVIDE MI CONTRASEÑA</Text>
+              <Text style={{ color: '#6AE056', alignSelf: "center", marginBottom: 20, marginTop: 8, borderBottomWidth: 2, borderStyle: "solid", borderColor: "#6AE056", fontFamily: "Poppins_500Medium" }}>OLVIDE MI CONTRASEÑA</Text>
             </TouchableOpacity>
             : <></>
         }

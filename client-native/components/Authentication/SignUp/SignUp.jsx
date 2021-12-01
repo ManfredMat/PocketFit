@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/core";
 import { Text, TouchableOpacity, View, Alert } from "react-native";
 import { Input, Button } from "react-native-elements";
 import postRegisterUser from "../../../api/post-register";
-import { ButtonGreen } from "../Authentication.styles";
+import { ButtonGreen, Label } from "../Authentication.styles";
 import { Styles } from "../Authentication.styles";
 import { useSelector, useDispatch } from "react-redux";
 import signIn from "../../../redux/Actions/actions-User";
@@ -90,8 +90,8 @@ export default function SignUp() {
 
   return (
     <View>
-      <View style={{ width: 300 }}>
-        <Text style={{ color: "white", marginLeft: 10 }}>Nombre</Text>
+      <View style={{ width: 300, marginTop: 5 }}>
+        <Label>Nombre</Label>
         <Input
           style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -101,7 +101,7 @@ export default function SignUp() {
           textContentType="name"
         />
 
-        <Text style={{ color: "white", marginLeft: 10 }}>Apellido</Text>
+        <Label>Apellido</Label>
         <Input
           style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -110,7 +110,7 @@ export default function SignUp() {
           onChange={(e) => handleInputChange(e, "lastname")}
         />
 
-        <Text style={{ color: "white", marginLeft: 10 }}>E-mail</Text>
+        <Label>E-mail</Label>
         <Input
           style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -121,7 +121,7 @@ export default function SignUp() {
           textContentType="emailAddress"
         />
 
-        <Text style={{ color: "white", marginLeft: 10 }}>Contraseña</Text>
+        <Label>Contraseña</Label>
         <Input
           style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -131,7 +131,7 @@ export default function SignUp() {
           secureTextEntry={true}
         />
 
-        <Text style={{ color: "white", marginLeft: 10 }}>Repetir Contraseña</Text>
+        <Label>Repetir Contraseña</Label>
         <Input
           style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -146,7 +146,7 @@ export default function SignUp() {
         <ButtonGreen
           onPress={() => handleOnSubmit()}
         >
-          <Text style={{ alignSelf: "center" }}>Registrarse</Text>
+          <Text style={{ alignSelf: "center", fontFamily: "Poppins_500Medium" }}>Registrarse</Text>
         </ButtonGreen>
       </View>
     </View>

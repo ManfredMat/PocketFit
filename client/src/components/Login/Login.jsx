@@ -21,7 +21,7 @@ function Login() {
       } else if (getSession === "Password mismatch") {
         alert("La contraseña ingresada es incorrecta"); setLoading(false)
       } else {
-        getSession.passport.user.isadmin ? navigate('/session')
+        getSession.passport.user.isadmin ? navigate('/session/home')
           : alert('Usted no es administrador, para continuar descargue PocketFit mobile'); setLoading(false)
       }
     } else alert("No se pudo iniciar sesión"); setLoading(false)
