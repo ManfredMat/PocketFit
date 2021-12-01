@@ -19,6 +19,10 @@ module.exports = (sequelize) => {
     },
     intervalo:{
       type: DataTypes.ARRAY(DataTypes.STRING)
-    }
+    },
+    capacity:{
+      type: DataTypes.INTEGER,
+
+    },
   });
 };
