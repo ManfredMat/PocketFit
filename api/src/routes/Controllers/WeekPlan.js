@@ -1,7 +1,8 @@
 const {Weekplan , Routine , Block} = require('../../db')
 
-const structureWeekPlan=(weekplan)=>{
+const structureWeekPlan=(weekplan , name)=>{
     let newStructure = {
+        name:name,
         monday: weekplan[0],
         tuesday: weekplan[1],
         wendsday:weekplan[2],
@@ -14,10 +15,16 @@ const structureWeekPlan=(weekplan)=>{
 }
 
 const createWeekPlan = async (req , res)=>{
-    let {monday , tuesday ,wendsday , thursday , friday , saturday} = req.body
+    let {name , monday , tuesday ,wendsday , thursday , friday , saturday} = req.body
+    
+    if(!name){
+        name = "Plan semanal general"
+    }
+
     try{
         let newWeekPlan = await Weekplan.create(
             {
+                name,
                 monday,
                 tuesday,
                 wendsday,
@@ -37,12 +44,7 @@ const createWeekPlan = async (req , res)=>{
 
 const getAllWeekPlans = async (req , res)=>{
     try{
-        let weekplan = await Weekplan.findAll({include:[{
-            model: Block , attributes:['id' , 'rounds' ,'kindOfBlock','exercises' ,'description'],
-            through:{
-                attributes:[]
-            }
-        }]})        
+        let weekplan = await Weekplan.findAll()        
         
         res.json(weekplan)
     }catch(error){res.send(error)}
@@ -56,6 +58,8 @@ const getWeekPlanById = async (req , res)=>{
         let weekplan = await Weekplan.findOne({where:{id:id}})
 
         let {monday , tuesday ,wendsday , thursday , friday , saturday} = weekplan
+
+        let {name}=weekplan
 
         let newStructure=[]
 
@@ -75,7 +79,7 @@ const getWeekPlanById = async (req , res)=>{
        
        
         }
-        weekplan = await Promise.all(newStructure)
+        weekplan = await Promise.all(newStructure , name)
 
         weekplan = structureWeekPlan(weekplan)
 

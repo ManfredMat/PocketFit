@@ -9,17 +9,13 @@ module.exports = (sequelize) => {
       primaryKey:true,
       autoIncrement:true,
     },
-    kindOfShift:{
-        type: DataTypes.STRING,
-        allowNull:false,
-      },
       availability:{
         type: DataTypes.INTEGER,
-        defaultValue:0,
+
       },
       capacity:{
         type: DataTypes.INTEGER,
-        defaultValue:0,
+
       },
       beginning:{
         type: DataTypes.STRING,
@@ -41,7 +37,11 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false
       },
+      day:{
+        type: DataTypes.INTEGER
+      },
       year:{        
         type: DataTypes.INTEGER,
         allowNull: false}
-    })}
+    })
+  };

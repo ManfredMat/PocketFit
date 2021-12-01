@@ -1,13 +1,6 @@
+import axios from "axios";
 import { useState } from "react";
 import Day from "./Day";
-import { DayName, HeaderDay, Level, Table, Week } from "./Routines.styles";
-// const planSemanal = {
-
-//     bloque1: {
-//         name: "calentamiento"
-//     }
-
-// }
 
 const WeekTable = () => {
 
@@ -20,15 +13,32 @@ const WeekTable = () => {
         saturday: ''    
     })
 
+    const saveChanges = async () => {
+
+        console.log(weekIds)
+
+        // const response = await axios.post("unaUrl", weekIds);
+        // console.log(response);
+
+    }
+
+    const validateWeekIds = () => {
+        return (weekIds.monday.length === 0 || weekIds.tuesday.length === 0 || weekIds.wendsday.length === 0 || weekIds.thursday.length === 0 || weekIds.friday.length === 0 || weekIds.saturday.length === 0);
+    }
+
     return (
         <>
             <h1>Plan Semanal</h1>
-            <Day day="Lunes" api="monday"></Day>
-            <Day day="Martes" api="tuesday"></Day>
-            <Day day="Miércoles" api="wendsday"></Day>
-            <Day day="Jueves" api="thursday"></Day>
-            <Day day="Viernes" api="friday"></Day>
-            <Day day="Sábado" api="saturday"></Day>
+            <div style={{display:'flex'}}>
+                <Day day="Lunes" api="monday" setWeekIds={setWeekIds} weekIds={weekIds}></Day>
+                <Day day="Martes" api="tuesday" setWeekIds={setWeekIds} weekIds={weekIds}></Day>
+                <Day day="Miércoles" api="wendsday" setWeekIds={setWeekIds} weekIds={weekIds}></Day>
+                <Day day="Jueves" api="thursday" setWeekIds={setWeekIds} weekIds={weekIds}></Day>
+                <Day day="Viernes" api="friday" setWeekIds={setWeekIds} weekIds={weekIds}></Day>
+                <Day day="Sábado" api="saturday" setWeekIds={setWeekIds} weekIds={weekIds}></Day>
+            </div>
+            <button disabled={validateWeekIds()} onClick={saveChanges}>Guardar Cambios</button>
+
            
         </>
     )
@@ -36,96 +46,3 @@ const WeekTable = () => {
 }
 
 export default WeekTable;
-
-{/*<button>Agregar un ejercicio</button>
- <Table>
-    <HeaderDay>
-        <Level></Level>
-        <DayName>Lunes</DayName>
-        <DayName>Martes</DayName>
-        <DayName>Miércoles</DayName>
-        <DayName>Jueves</DayName>
-        <DayName>Viernes</DayName>
-        <DayName>Sábado</DayName>
-    </HeaderDay>
-
-    <Week>
-        <Level>Calentamiento</Level>
-        <Day>
-            <ul>
-                <li>Lagartijas 20</li>
-                <li>Lagartijas 30</li>
-                <li>Lagartijas 40</li>
-                <li>Lagartijas 50</li>
-            </ul>
-        </Day>
-        <Day>
-            <ul>
-                <li>Lagartijas 20</li>
-                <li>Lagartijas 30</li>
-                <li>Lagartijas 40</li>
-                <li>Lagartijas 50</li>
-            </ul>
-        </Day>
-        <Day>
-            <ul>
-                <li>Lagartijas 20</li>
-                <li>Lagartijas 30</li>
-                <li>Lagartijas 40</li>
-                <li>Lagartijas 50</li>
-            </ul>
-        </Day>
-        <Day>
-            <ul>
-                <li>Lagartijas 20</li>
-                <li>Lagartijas 30</li>
-                <li>Lagartijas 40</li>
-                <li>Lagartijas 50</li>
-            </ul>
-        </Day>
-        <Day>
-            <ul>
-                <li>Lagartijas 20</li>
-                <li>Lagartijas 30</li>
-                <li>Lagartijas 40</li>
-                <li>Lagartijas 50</li>
-            </ul>
-        </Day>
-        <Day>
-            <ul>
-                <li>Lagartijas 20</li>
-                <li>Lagartijas 30</li>
-                <li>Lagartijas 40</li>
-                <li>Lagartijas 50</li>
-            </ul>
-        </Day>
-    </Week>
-
-    <Week>
-        <Level>Entrenamiento</Level>
-        <Day></Day>
-        <Day></Day>
-        <Day></Day>
-        <Day></Day>
-        <Day></Day>
-        <Day></Day>
-    </Week>
-
-    <Week>
-        <Level>Estiramiento</Level>
-        <Day></Day>
-        <Day>
-            <ul>
-                <li>Lagartijas 20</li>
-                <li>Lagartijas 30</li>
-                <li>Lagartijas 40</li>
-                <li>Lagartijas 50</li>
-            </ul>
-        </Day>
-        <Day></Day>
-        <Day></Day>
-        <Day></Day>
-        <Day></Day>
-    </Week>
-
-</Table> */}

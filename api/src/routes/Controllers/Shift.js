@@ -1,7 +1,7 @@
-const {Shift} = require('../../models/Shift')
+const { Shift } = require('../../models/Shift')
 
 const createShift= async (req , res) =>{
-    const { kindOfShift,
+    const { day,
             availability,
             capacity,
             beginning,
@@ -11,23 +11,43 @@ const createShift= async (req , res) =>{
             month,
             year} = req.body
     try{
-        const newShift = await Shift.create({ kindOfShift, availability, capacity, beginning, ending, week, weekday, month, year});
-        res.json(newShift)
+        const newShift = await Shift.create({ 
+            day, 
+            availability, 
+            capacity, 
+            beginning, 
+            ending, 
+            week, 
+            weekday, 
+            month, 
+            year});
+        res.send(newShift)
     }
     catch(err){
         res.send(err)
     }}
 
-    
-
 const getAllShifts = async (req , res) =>{
     try{
-        const allTimetables = await Shift.findAll()
-        res.json(allTimetables)
+        const allShift = await Shift.findAll()
+        res.json(allShift)
     }
     catch(err){
         res.send(err)
     }
+}
+
+const getShiftById = async(req , res) =>{
+    const {id} = req.params
+
+    try{
+        const oneShift= await Shift.findOne({where:{id:id}})
+        res.send(oneShift)
+    }
+    catch(error){
+        next(error)
+    }
+
 }
 
 const updateShift = async (req , res) =>{
@@ -56,4 +76,4 @@ const deleteShift = async (req , res) =>{
     }
     }
 
-module.exports = { getAllShifts, createShift, updateShift, deleteShift };
+module.exports = { getAllShifts, createShift, updateShift, deleteShift, getShiftById };

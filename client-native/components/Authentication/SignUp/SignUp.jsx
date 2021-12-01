@@ -7,6 +7,7 @@ import { ButtonGreen } from "../Authentication.styles";
 import { Styles } from "../Authentication.styles";
 import { useSelector, useDispatch } from "react-redux";
 import signIn from "../../../redux/Actions/actions-User";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function SignUp() {
   const navigation = useNavigation();
@@ -61,12 +62,29 @@ export default function SignUp() {
       if (res.data === "User is already registered") {
         Alert.alert("Error", "El usuario ya existe")
       } else {
-        navigation.navigate("loading")
+        storeEmail(input.email);
+        storePassword(input.password);
+        setInput({
+          name: "",
+          lastname: "",
+          email: "",
+          password: "",
+          repeatPassword: ""
+        })
+        navigation.navigate("Inicio")
         Alert.alert(`Bienvenido ${input.name}!`, "Te has registrado correctamente")
       };
     } catch (e) {
       Alert.alert("Error", "No se pudo registrar");
     }
+  };
+
+  const storeEmail = async (value) => {
+    await AsyncStorage.setItem('email', value)
+  };
+
+  const storePassword = async (value) => {
+    await AsyncStorage.setItem('password', value)
   };
 
 
