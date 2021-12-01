@@ -39,7 +39,7 @@ conn.sync({ force: false }).then(async () => {
   
   await User.create(adminAcount)
   await Exercise.bulkCreate(exerArray)
-  server.listen(3001, () => {
+  server.listen(3004, () => {
     console.log("%s listening at 3001");
   });
 });
