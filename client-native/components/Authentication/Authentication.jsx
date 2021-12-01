@@ -28,11 +28,11 @@ export default function Authentication() {
             <Container>
                 <SvgXml style={{ position: 'relative', marginTop: -50 }} xml={userIcon} />
                 <ContainerBar>
-                    <TouchableOpacity onPress={() => setRender(true)} style={{ borderBottomWidth: 2, borderStyle: "solid", borderColor: render ? "#6AE056" : "#C0C6CC", paddingLeft: 15 }}>
-                        <Text style={{ marginRight: 40, fontSize: 15, color: render ? "#6AE056" : "#C0C6CC", right: -8 }}>Iniciar Sesión</Text>
+                    <TouchableOpacity onPress={() => setRender(true)} style={{ borderBottomWidth: render ? 4 : 2, borderStyle: "solid", borderColor: render ? "#6AE056" : "#C0C6CC", paddingLeft: 15 }}>
+                        <Text style={{ marginRight: 40, fontSize: 15, color: render ? "#6AE056" : "#C0C6CC", right: -8, fontFamily: "Poppins_500Medium" }}>Iniciar Sesión</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => setRender(false)} style={{ borderBottomWidth: 2, borderStyle: "solid", borderColor: render ? "#C0C6CC" : "#6AE056", paddingRight: 30 }}>
-                        <Text style={{ marginLeft: 40, fontSize: 15, color: render ? "#C0C6CC" : "#6AE056", left: -10 }}>Registro</Text>
+                    <TouchableOpacity onPress={() => setRender(false)} style={{ borderBottomWidth: render ? 2 : 4, borderStyle: "solid", borderColor: render ? "#C0C6CC" : "#6AE056", paddingRight: 30 }}>
+                        <Text style={{ marginLeft: 40, fontSize: 15, color: render ? "#C0C6CC" : "#6AE056", left: -10, fontFamily: "Poppins_500Medium" }}>Registrarse</Text>
                     </TouchableOpacity>
                 </ContainerBar>
                 <ScrollView>

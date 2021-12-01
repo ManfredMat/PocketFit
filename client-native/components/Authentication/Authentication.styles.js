@@ -28,11 +28,18 @@ export const ContainerBar = styled.View`
     align-self: center;
 `
 
+export const Label = styled.Text`
+    color: #fff; 
+    margin-left: 10px;
+    font-family: "Poppins_500Medium"
+`
+
 export const Styles = StyleSheet.create({
     Input: {
         backgroundColor: 'rgba(196, 196, 196, 1)',
         borderRadius: 16,
-        marginBottom: -10,
-        paddingLeft: 8
+        marginBottom: -15,
+        paddingLeft: 8,
+        fontFamily: "Poppins_500Medium"
     },
 })
