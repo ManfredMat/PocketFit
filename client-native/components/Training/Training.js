@@ -12,21 +12,21 @@ export default function Training() {
 
     const getAll = useSelector((state)  => state.reducerTraining.weekPlan)
     const dispatch = useDispatch()
-
+  
     useEffect(() => { 
-        dispatch(getAllWeekPlan()),
-        SetDay()
-     },
-        []);
+        dispatch(getAllWeekPlan())
+        setTimeout(() => SetDay(), 1000);
+     },[dispatch]);
 
     const navigation = useNavigation();
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-
+    
+    const load = !Array.isArray(getAll)
     const day = new Date().getDay()
-    const [today, setToday] = useState()
-
+    const [today, setToday] = useState([])
     const SetDay = () =>{
+        if(load) {
         day === 1 ? setToday([getAll.monday]) : 
         day === 2 ? setToday([getAll.tuesday]) :
         day === 3 ? setToday([getAll.wendsday]) :
@@ -34,43 +34,44 @@ export default function Training() {
         day === 5 ? setToday([getAll.friday]):
         day === 6 ? setToday([getAll.saturday]) :
         day === 0 && setToday('No tienes nada para hoy, Descansa…') 
-        console.log(!today)
+        }
     }
+
     return (
         <Container>
             <TextT>Entrenamiento</TextT>
             <ScrollView>
                 <TextW>Tu Rutina de hoy</TextW>
                 <Routines>
-                  {
-                    !today ? 
-                        <Excercise>
-                            <Image style={{width: 100, height: 100, alignSelf: 'center'}}source={loading}/>
-                        </Excercise>
+                  { 
+                    today.length !== 0 ? today[0].blocks[0].exercises?.map(e => {
+                        return (
+                          <Excercise key={e[0]}>
+                              <Switch
+                                   style={{position: 'absolute', alignSelf: 'flex-end'}}
+                                   trackColor={{ false: "#767577", true: "#6AE056" }}
+                                   thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"}
+                                   onValueChange={toggleSwitch}
+                                   value={isEnabled}/>
+                                      {
+                                        isEnabled 
+                                        ? <ViewEX>
+                                             <Text>COMPLETADO!</Text>
+                                              <Pesa source={pesa}/>
+                                           </ViewEX>
+                                        : <ViewEX>
+                                            <Text>{e[0]}</Text>
+                                            <Text style={{marginLeft: 80}}>reps: {e[1]}</Text>
+                                        </ViewEX>
+                                      }
+                          </Excercise>
+                        )
+                    })
 
-                          : today.map(e => {
-                            return (
-                              <Excercise>
-                                  <Switch
-                                       style={{position: 'absolute', alignSelf: 'flex-end'}}
-                                       trackColor={{ false: "#767577", true: "#6AE056" }}
-                                       thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"}
-                                       onValueChange={toggleSwitch}
-                                       value={isEnabled}/>
-                                          {
-                                            isEnabled 
-                                            ? <ViewEX>
-                                                 <Text>COMPLETADO!</Text>
-                                                  <Pesa source={pesa}/>
-                                               </ViewEX>
-                                            : <ViewEX>
-                                                <Text>dominadas</Text>
-                                                <Text>3 x 10</Text>
-                                            </ViewEX>
-                                          }
-                              </Excercise>
-                            )
-                        })
+                          : 
+                         <Excercise>
+                             <Image style={{width: 100, height: 100, alignSelf: 'center'}}source={loading}/>
+                        </Excercise>
                   }
                 </Routines>
                 <View style={{marginTop: 15}}>
