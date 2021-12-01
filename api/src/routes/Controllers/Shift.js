@@ -57,7 +57,9 @@ const getShiftByWeekNum = async (req, res) => {
      const { week } = req.params
 
     try {
-        const WeekShifts = await Shift.findAll()
+        const WeekShifts = await Shift.findAll({
+          where: {week : week}
+        })
         res.send(WeekShifts)
     }
     catch (error) {
