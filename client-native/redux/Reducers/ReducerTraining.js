@@ -1,20 +1,19 @@
 import {
-    EXERCISE
+  WEEK_PLAN
   } from "../Actions/actions-Training";
   
   const initialState = {
-    exercise: []
+    weekPlan: []
   };
   
   function reducerTraining(state = initialState, action) {
     switch (action.type) {
-      case EXERCISE:
-        console.log(value.data, 'reducer')
+      case WEEK_PLAN:
         return {
           ...state,
-          exercise: value.data
+          weekPlan: action.payload
         };
-  
+        
       default:
         return state;
     }

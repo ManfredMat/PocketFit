@@ -13,14 +13,11 @@ export const Container = styled.View`
     height: 100%;
 `
 export const Routines = styled.View`
-    background-color: ${green};
-    border-radius: 15px;
     align-items: center;
     justify-content: center;
-    width: 370px;
-    height: 400px;
-    padding: 10px;
-    opacity: 0.9;
+    width: 100%;
+    height: 200px;
+
 `
 export const TextW = styled.Text`
     color: #fff;
@@ -30,7 +27,7 @@ export const TextW = styled.Text`
 export const TextT = styled.Text`
     font-size: 40px;
     color: #fff;
-    margin-top: 30px;
+    margin-top: 60px;
 `
 export const LemonContainer = styled.View`
     align-items: center;
@@ -45,10 +42,9 @@ export const Excercise = styled.View`
     border-radius: 15px;
     justify-content: center;
     margin: 5px;
-    width: 340px;
-    height: 50px;
+    width: 360px;
+    height: 60px;
     padding: 10px;
-    opacity: 0.9;
 `
 export const ProxShifts = styled.View`
     background-color: ${green};
