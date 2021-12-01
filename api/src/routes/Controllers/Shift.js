@@ -1,7 +1,7 @@
 const { Shift } = require('../../models/Shift')
 
 const createShift= async (req , res) =>{
-    const { kindOfShift,
+    const { day,
             availability,
             capacity,
             beginning,
@@ -12,7 +12,7 @@ const createShift= async (req , res) =>{
             year} = req.body
     try{
         const newShift = await Shift.create({ 
-            kindOfShift, 
+            day, 
             availability, 
             capacity, 
             beginning, 
@@ -21,14 +21,11 @@ const createShift= async (req , res) =>{
             weekday, 
             month, 
             year});
-
         res.send(newShift)
     }
     catch(err){
         res.send(err)
     }}
-
-    
 
 const getAllShifts = async (req , res) =>{
     try{

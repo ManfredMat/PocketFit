@@ -3,7 +3,32 @@ const router = Router();
 const { getAllShifts, createShift, updateShift, deleteShift, getShiftById } = require('../Controllers/Shift')
 const { Shift } = require("../../db.js");
 
-router.post("/create_shift", createShift);
+router.post("/createshift", async (req , res) =>{
+  const { day,
+          availability,
+          capacity,
+          beginning,
+          ending,
+          weekday,
+          week,
+          month,
+          year} = req.body
+  try{
+      const newShift = await Shift.create({ 
+          day, 
+          availability, 
+          capacity, 
+          beginning, 
+          ending, 
+          week, 
+          weekday, 
+          month, 
+          year});
+      res.send(newShift)
+  }
+  catch(err){
+      res.send(err)
+  }});
 
 router.get("/all", getAllShifts);
 
