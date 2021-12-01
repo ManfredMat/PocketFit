@@ -27,6 +27,8 @@ const createShift= async (req , res) =>{
         res.send(err)
     }}
 
+const weekCreate= async (req , res) =>{res.send("hola")} 
+
 const getAllShifts = async (req , res) =>{
     try{
         const allShift = await Shift.findAll()
@@ -76,4 +78,4 @@ const deleteShift = async (req , res) =>{
     }
     }
 
-module.exports = { getAllShifts, createShift, updateShift, deleteShift, getShiftById };
+module.exports = { getAllShifts,weekCreate, createShift, updateShift, deleteShift, getShiftById };

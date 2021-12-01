@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const { getAllShifts, createShift, updateShift, deleteShift, getShiftById } = require('../Controllers/Shift')
+const { getAllShifts, createShift, weekCreate,updateShift, deleteShift, getShiftById } = require('../Controllers/Shift')
 const { Shift } = require("../../db.js");
 
 router.post("/createshift", async (req , res) =>{
@@ -41,5 +41,7 @@ router.delete("/:id", deleteShift);
 router.post('/bulk', async (req, res) => {
     res.json(await Shift.bulkCreate(req.body))
   });
+
+  router.post('/weekcreate', weekCreate);
 
 module.exports = router;
