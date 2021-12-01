@@ -10,11 +10,11 @@ module.exports = (sequelize) => {
       autoIncrement:true,
     },
     beginning:{
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull:false,
     },
     ending:{
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull:false,
     },
     intervalo:{
