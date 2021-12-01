@@ -1,6 +1,6 @@
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
-const {User , Exercise} = require("./src/db")
+const {User , Exercise, Timetable} = require("./src/db")
 
 const generatorEx = (n)=>{
   let array=[]
@@ -37,9 +37,10 @@ let adminAcount = {
 
 conn.sync({ force: false }).then(async () => {
   
+  await Timetable.create()
   await User.create(adminAcount)
   await Exercise.bulkCreate(exerArray)
-  server.listen(3002, () => {
+  server.listen(3001, () => {
     console.log("%s listening at 3001");
   });
 });
