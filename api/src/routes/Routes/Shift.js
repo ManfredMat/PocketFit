@@ -14,7 +14,7 @@ router.post("/createshift", async (req , res) =>{
           month,
           year} = req.body
   try{
-      const newShift = await Shift.create({ 
+      const newShift = await Shift.findOrCreate({ 
           day, 
           availability, 
           capacity, 
