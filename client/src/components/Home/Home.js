@@ -13,6 +13,8 @@ function month(date) {
 }
 
 function Home() {
+  localStorage.setItem("isLogged", "true");
+
   const date = new Date();
   return (
     <React.Fragment>

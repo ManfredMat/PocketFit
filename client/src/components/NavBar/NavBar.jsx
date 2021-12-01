@@ -87,7 +87,7 @@ function NavBar() {
           </Link>
         </Styles.StyledNavContainer>
         <Styles.StyledBottomContainer>
-          <Link to="/config">
+          <Link to="/session/config">
             <Styles.StyledConfigImage/>
           </Link>
         </Styles.StyledBottomContainer>
