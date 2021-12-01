@@ -11,10 +11,12 @@ const {
   deleteRoutine,
   updateRoutine,
   modifyUser,
+  getUserPayStatus
 } = require("../Controllers/User");
 
 router.post("/register_user", createUser);
 router.get("/", checkAuth, getAllUsers);
+router.get("/paystatus/:date" , getUserPayStatus)
 router.put("/:id/:prop", modifyUser);
 router.get("/:id", getSpeficicUser);
 router.post("/traine_plan/:id", createRoutine);

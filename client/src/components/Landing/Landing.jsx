@@ -7,11 +7,11 @@ import LogingWave from "../../assets/img/loginwave.svg";
 
 function Landing() {
     const navigate = useNavigate();
-    let isLogged = false;
+    const isLogged = localStorage.getItem("isLogged");
 
     useEffect(() => {
         const timer = setTimeout(() => {
-          isLogged ? navigate("/session/home") : navigate("/login")
+          isLogged === "true" ? navigate("/session/home") : navigate("/login")
         }, 3000);
         return () => clearTimeout(timer);
         // eslint-disable-next-line 
