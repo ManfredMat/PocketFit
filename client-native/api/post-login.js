@@ -8,7 +8,7 @@ import axios from "axios";
 export default postLoginUser = async (datos) => {
   return await axios({
     method: "post",
-    url: "http://192.168.0.26:3001/api/login",
+    url: "http://192.168.1.109:3001/api/login",
     data: datos,
     withCredentials: true
   });

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {View, Text, ScrollView, Switch, FlatList, Image } from 'react-native'
+import {View, Text, ScrollView, Switch, FlatList, Image, TouchableOpacity } from 'react-native'
 import { Container, Routines, TextW, TextT, LemonContainer, Excercise, ProxShifts, ViewEX, Pesa} from './Training.Styles'
 import {ButtonGreen} from '../Authentication/Authentication.styles'
 import { useNavigation } from '@react-navigation/core';
@@ -10,19 +10,18 @@ import loading from '../../assets/loading.gif'
 
 export default function Training() {
 
-    const getAll = useSelector((state)  => state.reducerTraining.weekPlan)
     const dispatch = useDispatch()
-  
+
     useEffect(() => { 
         dispatch(getAllWeekPlan())
-        setTimeout(() => SetDay(), 1000);
      },[dispatch]);
+    const getAll = useSelector((state)  => state.reducerTraining.weekPlan)
 
     const navigation = useNavigation();
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     
-    const load = !Array.isArray(getAll)
+    const load = !Array.isArray(getAll) 
     const day = new Date().getDay()
     const [today, setToday] = useState([])
     const SetDay = () =>{
@@ -36,7 +35,9 @@ export default function Training() {
         day === 0 && setToday('No tienes nada para hoy, Descansa…') 
         }
     }
-
+    setTimeout(() => {
+        SetDay()
+    }, 2021);
     return (
         <Container>
             <TextT>Entrenamiento</TextT>
@@ -67,7 +68,6 @@ export default function Training() {
                           </Excercise>
                         )
                     })
-
                           : 
                          <Excercise>
                              <Image style={{width: 100, height: 100, alignSelf: 'center'}}source={loading}/>
@@ -75,9 +75,9 @@ export default function Training() {
                   }
                 </Routines>
                 <View style={{marginTop: 15}}>
-                    <ButtonGreen onPress={() => alert('próximamente solo en cines')}>
-                        <Text style={{alignSelf: 'center'}}>Ver Mas...</Text>
-                    </ButtonGreen>
+                    <TouchableOpacity onPress={() => alert('próximamente solo en cines')}>
+                        <Text style={{alignSelf: 'center', color: "#6AE056"}}>Ver Mas...</Text>
+                    </TouchableOpacity>
                 </View>
                 <TextW>Próximo Turno</TextW>
                 <LemonContainer>
