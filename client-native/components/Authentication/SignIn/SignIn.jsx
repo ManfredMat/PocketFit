@@ -52,7 +52,6 @@ const SignIn = () => {
         storePassword(state.password);
         setState({email: "", password: ""});
         navigation.navigate("Inicio");
-      // }
       }
     } catch (e) {
       Alert.alert("Error", "No se pudo iniciar sesión");
