@@ -54,22 +54,17 @@ const getShiftById = async (req, res) => {
 }
 
 const getShiftByWeekNum = async (req, res) => {
-     const { week } = req.params
-    console.log(typeof week)
-    let week2 = parseInt(week)
-    console.log(week2)
-    console.log(typeof week2)
-    try {
-        const WeekShifts = await Shift.findAll({
-          where: {week : week}
-        })
+  const { week } = req.params
 
-
-        res.send(WeekShifts)
-    }
-    catch (error) {
-        res.send(error)
-    } 
+ try {
+     const WeekShifts = await Shift.findAll({
+       where: {week : week}
+     })
+     res.send(WeekShifts)
+ }
+ catch (error) {
+     next(error)
+ } 
 
 }
 
