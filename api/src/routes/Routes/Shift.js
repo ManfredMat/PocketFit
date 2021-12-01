@@ -1,50 +1,21 @@
 const { Router } = require('express');
 const router = Router();
-const { getAllShifts,getShiftByWeekNum, createShift, updateShift, deleteShift, getShiftById } = require('../Controllers/Shift')
+const { createBulk, newShift, getAllShifts,getShiftByWeekNum, updateShift, deleteShift, getShiftById } = require('../Controllers/Shift')
 const { Shift, Timetable } = require("../../db.js");
 
-router.post("/createshift", async (req, res) => {
-  const { day,
-    availability,
-    capacity,
-    beginning,
-    ending,
-    weekday,
-    week,
-    month,
-    year } = req.body
-  try {
-    const newShift = await Shift.findOrCreate({
-      day,
-      availability,
-      capacity,
-      beginning,
-      ending,
-      week,
-      weekday,
-      month,
-      year
-    });
-    res.send(newShift)
-  }
-  catch (err) {
-    res.send(err)
-  }
-});
+router.post("/create", newShift);
 
 router.get("/all", getAllShifts);
 
 router.get('/:id', getShiftById)
 
-//router.get('/week/:week', getShiftByWeekNum)
+router.get('/:week', getShiftByWeekNum)
 
 router.put("/:id/:prop", updateShift);
 
 router.delete("/:id", deleteShift);
 
-router.post('/bulk', async (req, res) => {
-  res.json(await Shift.bulkCreate(req.body))
-});
+router.post('/bulk', createBulk);
 
 
 //TIENE UN BULK Y NO ME FUNCIONABA CON CONTROLLER NO SE PORQUE

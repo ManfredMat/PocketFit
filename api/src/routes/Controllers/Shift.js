@@ -1,36 +1,34 @@
-const { Shift } = require('../../models/Shift')
+const { Shift } = require('../../db')
 
-const createShift = async (req, res) => {
+const newShift = async (req, res) => {
     const { day,
-        availability,
-        capacity,
-        beginning,
-        ending,
-        weekday,
-        week,
-        month,
-        year } = req.body
+      availability,
+      capacity,
+      beginning,
+      ending,
+      weekday,
+      week,
+      month,
+      year } = req.body
     try {
-        const newShift = await Shift.create({
-            day,
-            availability,
-            capacity,
-            beginning,
-            ending,
-            week,
-            weekday,
-            month,
-            year
-        });
-
-        res.send(newShift)
+      const newS = await Shift.findOrCreate({
+       where: {
+        day : day,
+        week : week,
+        weekday : weekday,
+        month : month,  
+        beginning : beginning,
+        ending : ending,
+        year : year
+      }
+      });
+      console.log(newS)
+      res.send(newS)
     }
     catch (err) {
-        res.send(err)
+      res.send(err)
     }
 }
-
-
 
 const getAllShifts = async (req, res) => {
     try {
@@ -56,7 +54,7 @@ const getShiftById = async (req, res) => {
 }
 
 const getShiftByWeekNum = async (req, res) => {
-/*     const { week } = req.params
+     const { week } = req.params
 
     try {
         const WeekShifts = await Shift.findAll()
@@ -64,7 +62,7 @@ const getShiftByWeekNum = async (req, res) => {
     }
     catch (error) {
         next(error)
-    } */
+    } 
 
 }
 
@@ -94,4 +92,11 @@ const deleteShift = async (req, res) => {
     }
 }
 
-module.exports = { getAllShifts, getShiftByWeekNum,createShift, updateShift, deleteShift, getShiftById };
+const createBulk = async (req, res) => {
+    try{res.json(await Shift.bulkCreate(req.body))}
+    catch(error){
+        res.send(error)
+    }
+  }
+
+module.exports = { createBulk, newShift, getAllShifts, getShiftByWeekNum, updateShift, deleteShift, getShiftById };
