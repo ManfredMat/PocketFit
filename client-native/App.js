@@ -9,6 +9,7 @@ import InicioStack from "./components/navigator/InicioStack";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 import Shifts from "./components/Training/Shifts";
+import PassReco from "./components/Authentication/SignIn/PassReco";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -20,16 +21,18 @@ export default function App() {
       <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator>
-              <Stack.Screen name= 'Auth' component={RootStack} options = {{headerShown: false}}/>  
-              <Stack.Screen name= 'Inicio' component={InicioStack} options = {{headerShown: false}} />
-              <Stack.Screen name= 'Shifts' component={Shifts} options={{
-                   
-                    title:'Turnos',
-                    headerTitleStyle:{ color: '#fff'}, 
-                    headerStyle:{ backgroundColor: '#041D25'},}}
-                    />
+            <Stack.Screen name='Auth' component={RootStack} options={{ headerShown: false }} />
+            <Stack.Screen name='PassReco' component={PassReco} options={{ headerShown: false }} />
+            <Stack.Screen name='Inicio' component={InicioStack} options={{ headerShown: false }} />
+            <Stack.Screen name='Shifts' component={Shifts} options={{
+
+              title: 'Turnos',
+              headerTitleStyle: { color: '#fff' },
+              headerStyle: { backgroundColor: '#041D25' },
+            }}
+            />
           </Stack.Navigator>
-          <StatusBar/>
+          <StatusBar />
         </NavigationContainer>
       </Provider>
     </>
