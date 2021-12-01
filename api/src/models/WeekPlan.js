@@ -11,6 +11,11 @@ module.exports = (sequelize) => {
         primaryKey: true
       },
 
+      name:{
+        type:DataTypes.STRING,
+        allownull:false
+      },
+
       monday:{
         type:DataTypes.INTEGER,
         allownull:false,

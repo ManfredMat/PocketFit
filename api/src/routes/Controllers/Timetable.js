@@ -3,7 +3,7 @@ const {Timetable} = require('../../db')
 const createTimetable= async (req , res) =>{
 const {beginning, ending, kindOfTimetable, availability} = req.body
 try{
-    const newTimetable = await Timetable.create({beginning, ending, kindOfTimetable, availability});
+    const newTimetable = await Timetable.create({beginning, ending, intervalo});
     res.json(newTimetable)
 }
 catch(err){
@@ -47,8 +47,19 @@ catch(err){
 }
 }
 
+const getAllTimetables = async (req , res) =>{
+    try{
+        const allTimetables = await Timetable.findAll()
+        res.json(allTimetables)
+    }
+    catch(err){
+        res.send(err)
+    }
+}
+
+
 module.exports ={
-    createTimetable, getTimetableById, updateTimetable, deleteTimetable
+    createTimetable, getTimetableById, updateTimetable, deleteTimetable, getAllTimetables
 }
 
 
