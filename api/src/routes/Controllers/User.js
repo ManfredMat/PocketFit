@@ -1,6 +1,8 @@
 const { User, Routine, Exercise } = require("../../db");
 const bcrypt = require("bcrypt");
 
+
+
 const createUser = async (req, res) => {
   const { name, lastname, paymentday } = req.body;
 
@@ -145,6 +147,31 @@ const updateRoutine = async (req, res) => {
   }
 };
 
+const getUserPayStatus = async(res , req)=>{
+  let {date} = req.
+  date = new Date(date)
+
+  try{
+   let clients = await User.findAll({where:{isuser:true , isadmin:false , isprofessor:false}})
+   let alDia =[]
+   let fueraDeTermino =[]
+
+   for(let i of clients){
+     if(clients[i].paymentday > date){
+      alDia.push(clients[i])
+     }else{
+      fueraDeTermino.push(clients[i])
+     }
+   }
+   return({
+    upToDate:alDia,
+    offToDate:fueraDeTermino
+   })
+
+  }
+  catch(error){res.send(error)}
+}
+
 module.exports = {
   createUser,
   getSpeficicUser,
@@ -154,4 +181,5 @@ module.exports = {
   deleteRoutine,
   updateRoutine,
   modifyUser,
+  getUserPayStatus
 };
