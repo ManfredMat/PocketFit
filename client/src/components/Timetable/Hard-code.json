@@ -181,7 +181,7 @@
       "capacity": 10,
       "beginning": "7",
       "ending": "9",
-      "weekday": "Miercoles",
+      "weekday": "Miércoles",
       "day": 1,
       "month": 12,
       "year": 2021
@@ -192,7 +192,7 @@
       "capacity": 10,
       "beginning": "9",
       "ending": "11",
-      "weekday": "Miercoles",
+      "weekday": "Miércoles",
       "day": 1,
       "month": 12,
       "year": 2021
@@ -203,7 +203,7 @@
       "capacity": 10,
       "beginning": "11",
       "ending": "13",
-      "weekday": "Miercoles",
+      "weekday": "Miércoles",
       "day": 1,
       "month": 12,
       "year": 2021
@@ -214,7 +214,7 @@
       "capacity": 10,
       "beginning": "14",
       "ending": "16",
-      "weekday": "Miercoles",
+      "weekday": "Miércoles",
       "day": 1,
       "month": 12,
       "year": 2021
@@ -225,7 +225,7 @@
       "capacity": 10,
       "beginning": "16",
       "ending": "18",
-      "weekday": "Miercoles",
+      "weekday": "Miércoles",
       "day": 1,
       "month": 12,
       "year": 2021
@@ -236,7 +236,7 @@
       "capacity": 10,
       "beginning": "18",
       "ending": "20",
-      "weekday": "Miercoles",
+      "weekday": "Miércoles",
       "day": 1,
       "month": 12,
       "year": 2021
@@ -247,7 +247,7 @@
       "capacity": 10,
       "beginning": "20",
       "ending": "22",
-      "weekday": "Miercoles",
+      "weekday": "Miércoles",
       "day": 1,
       "month": 12,
       "year": 2021
@@ -258,7 +258,7 @@
       "capacity": 10,
       "beginning": "7",
       "ending": "9",
-      "weekday": "Martes",
+      "weekday": "Jueves",
       "day": 30,
       "month": 11,
       "year": 2021
@@ -269,7 +269,7 @@
       "capacity": 10,
       "beginning": "9",
       "ending": "11",
-      "weekday": "Martes",
+      "weekday": "Jueves",
       "day": 30,
       "month": 11,
       "year": 2021
@@ -280,7 +280,7 @@
       "capacity": 10,
       "beginning": "11",
       "ending": "13",
-      "weekday": "Martes",
+      "weekday": "Jueves",
       "day": 30,
       "month": 11,
       "year": 2021
@@ -291,7 +291,7 @@
       "capacity": 10,
       "beginning": "14",
       "ending": "16",
-      "weekday": "Martes",
+      "weekday": "Jueves",
       "day": 30,
       "month": 11,
       "year": 2021
@@ -302,7 +302,7 @@
       "capacity": 10,
       "beginning": "16",
       "ending": "18",
-      "weekday": "Martes",
+      "weekday": "Jueves",
       "day": 30,
       "month": 11,
       "year": 2021
@@ -313,7 +313,7 @@
       "capacity": 10,
       "beginning": "18",
       "ending": "20",
-      "weekday": "Martes",
+      "weekday": "Jueves",
       "day": 30,
       "month": 11,
       "year": 2021
@@ -324,7 +324,7 @@
       "capacity": 10,
       "beginning": "20",
       "ending": "22",
-      "weekday": "Martes",
+      "weekday": "Jueves",
       "day": 30,
       "month": 11,
       "year": 2021
