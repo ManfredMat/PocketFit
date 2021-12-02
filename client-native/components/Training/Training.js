@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import {View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
-import { 
-    Container, Routines, TextW, TextT, LemonContainer, Excercise, ProxShifts, 
-    ViewEX, Pesa, ButtonShifts, ShiftsCont} from './Training.Styles'
+import { Container, Routines, TextW, TextT, Excercise, ProxShifts, ButtonShifts, ShiftsCont} from './Training.Styles'
 import arrow from '../../assets/arrow.png'
-import {ButtonGreen} from '../Authentication/Authentication.styles'
 import { useNavigation } from '@react-navigation/core';
-import pesa from '../../assets/pesa.png'
 import { getAllWeekPlan } from '../../redux/Actions/actions-Training';
 import { useDispatch, useSelector } from 'react-redux';
 import loading from '../../assets/loading.gif'
-import {MultipleSwitch} from './MultipleSwitch';
-
+import CardExercise from './CardExercise'
 
 export default function Training() {
-    let is = true
     //basics
     const dispatch = useDispatch()
     const getAll = useSelector((state)  => state.reducerTraining.weekPlan)
@@ -38,39 +32,23 @@ export default function Training() {
     setTimeout(() => {
         SetDay()
     }, 2021);
-    console.log()
+    
     return (
         <Container>
             <TextT>Entrenamiento</TextT>
             <ScrollView>
                 <TextW>Tu Rutina de hoy</TextW>
                 <Routines>
-                  { 
-                    today.length !== 0 ? today[0].blocks[0].exercises?.map(e => {
-                        return (
-                          <Excercise key={e[0]}>
-                             {
-                            //  is
-                            //     ? <ViewEX>
-                            //         <Text>COMPLETADO!</Text>
-                            //         <Pesa source={pesa}/>
-                            //         </ViewEX>
-                            //     : 
-                                <ViewEX>
-                                    <Text>{e[0]}</Text>
-                                    <Text style={{marginLeft: 80}}>reps: {e[1]}</Text>
-                                </ViewEX>
-                             }
-                             <View style={{position: 'absolute', alignSelf: 'flex-end'}}>
-                                <MultipleSwitch/>
-                             </View>
-                          </Excercise>
-                        )
+                { today.length !== 0 
+                    ? today[0].blocks[0].exercises?.map(e => {
+                     return <Excercise key={e[3]}>
+                                <CardExercise  reps={e[1]} exercise={e[0]}/>
+                            </Excercise>
                     })
-                          : 
-                         <Excercise>
-                             <Image style={{width: 100, height: 100, alignSelf: 'center'}}source={loading}/>
-                        </Excercise>
+                    : 
+                    <Excercise>
+                        <Image style={{width: 100, height: 100, alignSelf: 'center'}}source={loading}/>
+                   </Excercise>
                   }
                 </Routines>
                 <View style={{marginTop: 15}}>
