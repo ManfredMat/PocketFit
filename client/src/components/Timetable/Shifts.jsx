@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import * as json from "./Hard-code.json";
-import { getWeekShifts } from "../../redux/Actions/actions-Horarios"
-import {useSelector, useDispatch} from "react-redux"
+import { getWeekShifts, selectShift } from "../../redux/Actions/actions-Horarios"
+import { useSelector, useDispatch } from "react-redux"
 
 
 
@@ -20,7 +20,7 @@ function getWeekNameDay(today) {
     return convert.charAt(0).toUpperCase() + convert.slice(1)
 }
 
-function Shifts() {
+function Shifts({ setShiftDetail }) {
     const today = new Date()
     const nextDay = new Date(today);
     nextDay.setDate(nextDay.getDate() + 1);
@@ -29,30 +29,38 @@ function Shifts() {
 
 
     useEffect(() => {
-        dispatch( getWeekShifts() )
-      }, [dispatch]);
-    
+        dispatch(getWeekShifts())
+    }, [dispatch]);
+
+    function shiftPreview(shift) {
+        console.log("entre")
+        dispatch(selectShift(shift))
+        setShiftDetail(true)
+    }
 
     return (
         <div>
-            <div style={{display:"flex"}}>
+            <div style={{ display: "flex" }}>
                 <h3>Hoy</h3>
                 {weekShifts.filter((shift) => shift.weekday === getWeekNameDay(today))
                     .map((ofDay) => (
-                        <div >
+                        <button onClick={() => shiftPreview(ofDay)}>
                             <p>{ofDay.availability}/{ofDay.capacity}</p>
                             <p>{ofDay.beginning}hs a {ofDay.ending}hs</p>
-                        </div>
+                        </button>
                     ))}
             </div>
-            <div style={{display:"flex"}}>
+            <div style={{ display: "flex" }}>
                 <h3>Mañana</h3>
                 {weekShifts.filter((shift) => shift.weekday === getWeekNameDay(nextDay))
                     .map((ofDay) => (
-                        <div>
-                            <p>{ofDay.availability}/{ofDay.capacity}</p>
-                            <p>{ofDay.beginning}hs a {ofDay.ending}hs</p>
+                        <div onClick={() => shiftPreview(ofDay)}>
+                            <button>
+                                <p>{ofDay.availability}/{ofDay.capacity}</p>
+                                <p>{ofDay.beginning}hs a {ofDay.ending}hs</p>
+                            </button>
                         </div>
+
                     ))}
             </div>
 

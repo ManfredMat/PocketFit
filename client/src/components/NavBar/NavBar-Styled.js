@@ -68,7 +68,7 @@ const Styles = {
         .weekly{
           background-image: url(${SemanalPlanSelect});
         }
-        .calendar{
+        .timetable{
           background-image: url(${EventsIcoSelect});
         }
         .payments{
