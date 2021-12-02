@@ -1,9 +1,9 @@
 const {Timetable} = require('../../db')
 
 const createTimetable= async (req , res) =>{
-const {beginning, ending, kindOfTimetable, availability} = req.body
+const {beginning, ending, intervalo, capacity} = req.body
 try{
-    const newTimetable = await Timetable.create({beginning, ending, intervalo});
+    const newTimetable = await Timetable.create({beginning, ending, intervalo, capacity});
     res.json(newTimetable)
 }
 catch(err){
@@ -22,14 +22,18 @@ try{
 }
 
 const updateTimetable = async (req , res) =>{
-    const{id, prop} = req.params
-    const {update} = req.body
+    const{id} = req.params
+    const {beginning, ending, intervalo, capacity} = req.body
 try{
-    let oneTimetable = await Timetable.findOne({where:{id:id}})
-    oneTimetable[prop]= update
-    console.log(oneTimetable)
-    await oneTimetable.save()
-    res.send(oneTimetable)
+    await Timetable.update(
+        {
+            beginning, ending, intervalo, capacity
+        },
+        { where: { id: id } }
+      );
+      const updateTime = await Timetable.findOne({ where: { id: id } });
+      console.log(updateTime)
+      res.json(updateTime);
 }
 catch(err){
     res.send(err)

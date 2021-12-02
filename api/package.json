@@ -14,6 +14,7 @@
     "npm": ">=6.14.6"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "connect-session-sequelize": "^7.1.2",
@@ -23,9 +24,12 @@
     "express": "^4.17.1",
     "express-flash": "^0.0.2",
     "express-session": "^1.17.2",
+    "fetch": "^1.1.0",
     "ioredis": "^4.19.2",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
+    "node": "^17.1.0",
+    "node-fetch": "^3.1.0",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0",
     "pg": "^8.5.1",

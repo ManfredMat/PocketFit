@@ -43,7 +43,7 @@ server.use(
     store: myStore,
     resave: false,
     saveUninitialized: false,
-    cookie: { expires: null },
+    cookie: { maxAge: 365 * 24 * 60 * 60 * 1000 },
   })
 );
 myStore.sync();

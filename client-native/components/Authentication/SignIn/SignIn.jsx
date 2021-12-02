@@ -14,6 +14,7 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.reducerUser.user);
   const [state, setState] = useState({ email: "", password: "" });
+  const [passRecoRender, setPassRecoRender] = useState(false);
 
   const validatorEmail = (email) => {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) return true
@@ -29,7 +30,7 @@ const SignIn = () => {
 
   const handleOnSubmit = async () => {
     try {
-      
+
       if (state.email.length > 1 && state.password.length > 1) {
         if (!validatorEmail(state.email)) return Alert.alert("Error", "Email inválido");
       } else return Alert.alert("Error", "Por favor completa todos los campos");
@@ -38,21 +39,21 @@ const SignIn = () => {
         email: state.email,
         password: state.password
       };
-      
+
       const res = await postLoginUser(datos);
       if (res.data === "Email not found") {
         return Alert.alert("Error", "No se ha encontrado el email en nuestra base de datos");
       } else if (res.data === "Password mismatch") {
-        return Alert.alert("Error", "La contraseña ingresada es incorrecta")
+        Alert.alert("Error", "La contraseña ingresada es incorrecta")
+        return setPassRecoRender(true);
       } else if (res.data.passport.user.isadmin) {
         return Alert.alert("Error", "Usted es administrador, para continuar ingrese a PocketFit Web")
       } else {
         dispatch(signIn(res.data.passport.user));
         storeEmail(state.email);
         storePassword(state.password);
-        setState({email: "", password: ""});
+        setState({ email: "", password: "" });
         navigation.navigate("Inicio");
-      // }
       }
     } catch (e) {
       Alert.alert("Error", "No se pudo iniciar sesión");
@@ -66,6 +67,14 @@ const SignIn = () => {
   const storePassword = async (value) => {
     await AsyncStorage.setItem('password', value)
   };
+
+  const passReco = async () => {
+    // await sendMailPassReco(state.email);
+
+    Alert.alert("Mail enviado, revise su correo");
+    setState({ email: "", password: "" });
+    navigation.navigate("PassReco");
+  }
 
 
   return (
@@ -99,22 +108,28 @@ const SignIn = () => {
         >
           <Text style={{ alignSelf: "center" }}>Iniciar Sesión</Text>
         </ButtonGreen>
-        <TouchableOpacity onPress={() => Alert.alert(
-          "Atención", 'Le enviaremos las instrucciones para reestablecer la contraseña al mail asociado a su cuenta',
-          [
-            {
-              text: "Cancelar",
-              style: "cancel"
-            },
-            {
-              text: "Aceptar",
-              onPress: () => Alert.alert("Mail enviado, revise su correo"),
-              style: "default"
-            }
-          ]
-        )}>
-          <Text style={{ color: '#6AE056', alignSelf: "center", marginBottom: 20, marginTop: 8, borderBottomWidth: 2, borderStyle: "solid", borderColor: "#6AE056"}}>OLVIDE MI CONTRASEÑA</Text>
-        </TouchableOpacity>
+
+        {
+          passRecoRender ?
+            <TouchableOpacity onPress={() => Alert.alert(
+              "Atención", 'Le enviaremos las instrucciones para reestablecer la contraseña al mail asociado a su cuenta',
+              [
+                {
+                  text: "Cancelar",
+                  style: "cancel"
+                },
+                {
+                  text: "Enviar",
+                  onPress: () => passReco(),
+                  style: "default"
+                }
+              ]
+            )}>
+              <Text style={{ color: '#6AE056', alignSelf: "center", marginBottom: 20, marginTop: 8, borderBottomWidth: 2, borderStyle: "solid", borderColor: "#6AE056" }}>OLVIDE MI CONTRASEÑA</Text>
+            </TouchableOpacity>
+            : <></>
+        }
+
       </View>
     </View>
   );

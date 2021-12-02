@@ -9,7 +9,7 @@ router.post("/", createTimetable);
 
 router.get("/:id", getTimetableById);
 
-router.put("/:id/:prop", updateTimetable);
+router.put("/update/:id", updateTimetable);
 
 router.delete("/:id", deleteTimetable);
 
