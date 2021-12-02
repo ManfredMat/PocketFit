@@ -43,7 +43,7 @@ conn.sync({ force: true }).then(async () => {
   await Timetable.create()
   await User.create(adminAcount)
   await Exercise.bulkCreate(exerArray)
-  server.listen(3001, () => {
-    console.log("%s listening at 3001");
+  server.listen(process.env.PORT, () => {
+    console.log("%s listening at 3000"); 
   });
 });
