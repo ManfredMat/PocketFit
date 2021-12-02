@@ -103,6 +103,16 @@ const createRoutine = async (req, res) => {
   }
 };
 
+const assignShift = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const getOneShift = await Shift.findOne({ where: { id: id } });
+    res.json(getOneShift);
+  } catch (err) {
+    res.send(err);
+  }
+};
+
 const getRoutine = async (req, res) => {
   const { id } = req.params;
   try {
@@ -181,5 +191,6 @@ module.exports = {
   deleteRoutine,
   updateRoutine,
   modifyUser,
-  getUserPayStatus
+  getUserPayStatus,
+  assignShift
 };
