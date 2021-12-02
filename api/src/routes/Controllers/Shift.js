@@ -44,8 +44,11 @@ const newShift = async (req, res) => {
 }
 
 const getAllShifts = async (req, res) => {
+  const {day, month, year} = req.body
     try {
-        const allShift = await Shift.findAll({include: User})
+        const allShift = await Shift.findAll({
+          where:{year: year > Shift.year, month: month > Shift.month, day: day > Shift.day },
+          include: User})
         res.json(allShift)
     }
     catch (err) {
@@ -164,7 +167,7 @@ const WeekDaysGenerator = (
   
       //const intervalo = ["7-9", "9-11", "11-13", "14-16", "16-18", "18-20"]; //esto viene de timetable
       //const capacity = 10; //esto viene de timetable
-  
+
       const array = [];
       const WeekDays = WeekDaysGenerator(
         firstDay,
