@@ -8,24 +8,27 @@ export default function CardExercise({reps, exercise}) {
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     return (
-         <Excercise>
-            <Switch
-            style={{position:'absolute', alignSelf: 'flex-end'}}
+        <View style={{display: 'flex', flexDirection: 'row-reverse'}}>
+        <View>
+         <Switch
             trackColor={{ false: "#767577", true: "#6AE056" }}
             thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"}
             onValueChange={toggleSwitch}
             value={isEnabled}/>
+        </View>
             {
                 isEnabled 
                 ?<ViewEX>
-                       <Text>COMPLETADO!</Text>
-                       <Pesa source={pesa}/>
+                    <View style={{display: 'flex', flexDirection: 'row', alignItems: 'center', marginRight: 35}}>
+                        <Text>COMPLETADO!</Text>
+                        <Pesa source={pesa}/>
+                    </View>
                  </ViewEX>
                 : <ViewEX>
                     <Text>{exercise}</Text>
                     <Text style={{marginLeft: 40}}> Repeticiones: {reps}</Text>
                  </ViewEX>
             }
-        </Excercise>
+        </View>
     )
 }

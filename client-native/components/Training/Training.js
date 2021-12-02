@@ -32,7 +32,7 @@ export default function Training() {
     setTimeout(() => {
         SetDay()
     }, 2021);
-    console.log()
+    
     return (
         <Container>
             <TextT>Entrenamiento</TextT>
@@ -41,7 +41,9 @@ export default function Training() {
                 <Routines>
                 { today.length !== 0 
                     ? today[0].blocks[0].exercises?.map(e => {
-                     return <CardExercise key={e[0]} reps={e[1]} exercise={e[0]}/>
+                     return <Excercise key={e[3]}>
+                                <CardExercise  reps={e[1]} exercise={e[0]}/>
+                            </Excercise>
                     })
                     : 
                     <Excercise>
