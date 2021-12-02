@@ -7,7 +7,7 @@ function Configuration() {
     const logOut = async () => {
         await axios({
             method: "get",
-            url: "http://localhost:3001/api/logout",
+            url: "/api/logout",
             withCredentials: true
         });
         localStorage.removeItem("isLogged");

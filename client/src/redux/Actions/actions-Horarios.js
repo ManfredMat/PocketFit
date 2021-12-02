@@ -9,7 +9,7 @@ export const GET_WEEK_SHIFTS = "GET_WEEK_SHIFTS";
 export function getLessons() {
   return async function (dispatch) {
     await axios
-      .get("http://localhost:3001/api/events/all")
+      .get("/api/events/all")
       .then((res) => {
           let lessons = res.data.filter((cla)=>cla.kindOfEvent === "Clases")
         dispatch({
@@ -23,7 +23,7 @@ export function getLessons() {
 export function getEvents() {
   return async function (dispatch) {
     await axios
-      .get("http://localhost:3001/api/events/all")
+      .get("/api/events/all")
       .then((res) => {
           let events = res.data.filter((cla)=>cla.kindOfEvent === "Eventos")
         dispatch({

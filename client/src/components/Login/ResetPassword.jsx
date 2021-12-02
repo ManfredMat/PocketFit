@@ -46,7 +46,7 @@ function ResetPassword() {
     const changeUserPassword = async (datos) => {
         return await axios({
             method: "put",
-            url: "http://localhost:3001/api/resetpassword/reset_password",
+            url: "/api/resetpassword/reset_password",
             data: datos,
             withCredentials: true
         });
