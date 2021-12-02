@@ -3,8 +3,9 @@ const IPv4 = {
     Luciano: "192.168.0.26",
     Leandro: "192.168.1.109",
     Mateo: "192.168.0.15",
+    Steve: "",
+    Victoria: "",
+    Jesus: "",
 }
 
-export default {
-    IP: IPv4.Luciano
-}
+export default IPv4.Luciano
