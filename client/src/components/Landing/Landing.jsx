@@ -21,7 +21,7 @@ function Landing() {
         <ContainerLanding>
           <LandingDiv>
             <img src={LandingIcon} alt="pocket-fit-logo" />
-            <h2 style={{color: '#fff', marginTop: -5}}>Cargando...</h2>
+            <h2 style={{color: "#DFFC52", marginTop: -5}}>Cargando...</h2>
           </LandingDiv>
         </ContainerLanding>
     )

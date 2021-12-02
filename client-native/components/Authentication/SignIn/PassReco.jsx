@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 import { View, Text, ImageBackground, Alert } from 'react-native';
 import { Input } from "react-native-elements";
-import { ButtonGreen } from "../Authentication.styles";
+import { ButtonGreen, Label } from "../Authentication.styles";
 import { Styles } from "../Authentication.styles";
 import { Container } from '../Authentication.styles'
 import headerLogin from '../../../assets/Svg/headerLogin';
@@ -10,16 +10,13 @@ import fitnessGym from '../../../assets/Svg/fitnessGym';
 import userIcon from '../../../assets/Svg/userIcon';
 import background from '../../../assets/Background.png';
 import { SvgXml } from 'react-native-svg';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import changeUserPassword from "../../../api/put-passreco";
 
 
 const PassReco = () => {
     const navigation = useNavigation();
     const [state, setState] = useState({ newPassword: "", repeatNewPassword: "" });
-
-    // const validatorEmail = (email) => {
-    //     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) return true
-    //     else return false
-    // }
 
     const handleOnChange = (e, type) => {
         setState({
@@ -32,16 +29,16 @@ const PassReco = () => {
         try {
 
             if (state.newPassword.length > 1 && state.repeatNewPassword.length > 1) {
-                // if (!validatorEmail(state.email)) return Alert.alert("Error", "Email inválido");
                 if (state.newPassword !== state.repeatNewPassword) return Alert.alert("Error", "Las contraseñas no coinciden")
             } else return Alert.alert("Error", "Por favor completa todos los campos");
 
-            // const datos = {
-            //     newPassword: state.newPassword,
-            //     repeatNewPassword: state.repeatNewPassword
-            // };
+            const email = await AsyncStorage.getItem("recoEmail");
+            await changeUserPassword({
+                email: email,
+                newPassword: state.newPassword
+            });
+            await AsyncStorage.removeItem("recoEmail");
 
-            // await changeUserPassword(state.newPassword);
             Alert.alert("Éxito", "Contraseña cambiada satisfactoriamente")
             navigation.navigate('Authentication')
 
@@ -66,17 +63,7 @@ const PassReco = () => {
             <Container>
                 <SvgXml style={{ position: 'relative', marginTop: -50 }} xml={userIcon} />
                 <View style={{ width: 300 }}>
-                    {/* <Text style={{ color: "white", marginLeft: 10 }}>E-mail</Text>
-                    <Input
-                        style={Styles.Input}
-                        inputContainerStyle={{ borderBottomWidth: 0 }}
-                        placeholder="user@example.com"
-                        value={state.email}
-                        onChange={(e) => handleOnChange(e, "email")}
-                        keyboardType="email-address"
-                        textContentType="emailAddress"
-                    /> */}
-                    <Text style={{ color: "white", marginLeft: 10 }}>Nueva Contraseña</Text>
+                    <Label>Nueva Contraseña</Label>
                     <Input
                         style={Styles.Input}
                         inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -87,7 +74,7 @@ const PassReco = () => {
                         onChange={(e) => handleOnChange(e, "newPassword")}
                         textContentType="password"
                     />
-                    <Text style={{ color: "white", marginLeft: 10 }}>Repetir Nueva Contraseña</Text>
+                    <Label>Repetir Nueva Contraseña</Label>
                     <Input
                         style={Styles.Input}
                         inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -103,7 +90,7 @@ const PassReco = () => {
                     <ButtonGreen
                         onPress={() => handleOnSubmit()}
                     >
-                        <Text style={{ alignSelf: "center" }}>Cambiar contraseña</Text>
+                        <Text style={{ alignSelf: "center", fontFamily: "Poppins_500Medium" }}>Cambiar contraseña</Text>
                     </ButtonGreen>
                 </View>
             </Container>

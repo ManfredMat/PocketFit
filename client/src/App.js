@@ -1,4 +1,5 @@
 import "./App.css";
+import React, {useEffect, useState} from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home.js";
 import Payments from './components/Payments/Payments.jsx'
@@ -12,17 +13,24 @@ import Configuration from "./components/Configuration/Configuration.jsx";
 import ResetPassword from "./components/Login/ResetPassword";
 
 function App() {
+const [screenHeight, setScreenHeight] = useState("")
+
+  useEffect(() => {
+    setScreenHeight(window.screen.availHeight)
+  }, [])
+
+  console.log(screenHeight)
   return (
     <>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/passreco" element={<PassRecovery />} />
-        <Route path="/reset_password" element={<ResetPassword />} />
+        <Route path="/resetpassword" element={<ResetPassword />} />
       </Routes>
       <main>
         <Routes>
-          <Route path="/session*" element={<NavBar />} />
+          <Route path="/session*" element={<NavBar screenHeight={screenHeight}/>} />
         </Routes>
         <Routes>
           <Route path="/session" element={<Home />} />

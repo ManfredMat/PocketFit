@@ -4,6 +4,7 @@ import footer from "../../assets/img/footer.svg";
 import LogingWave from "../../assets/img/loginwave.svg";
 import ProfilePhoto from "../../assets/img/profilephoto.svg"
 import { Container, ContainerIn, Input, Wave, Btn } from "./Login.styles";
+import axios from "axios"
 
 function ResetPassword() {
     const navigate = useNavigate();
@@ -27,20 +28,29 @@ function ResetPassword() {
                 if (input.newPassword !== input.repeatNewPassword) return alert("Las contraseñas no coinciden")
             } else return alert("Por favor completa todos los campos");
 
-            // const datos = {
-            //     newPassword: input.newPassword,
-            //     repeatNewPassword: input.repeatNewPassword
-            // };
+            const email = localStorage.getItem("recoEmail");
+            changeUserPassword({
+                email: email,
+                newPassword: input.newPassword
+            });
+            localStorage.removeItem("recoEmail");
 
-            // await changeUserPassword(state.newPassword);
             alert("Contraseña cambiada satisfactoriamente");
             navigate('/login');
 
         } catch (e) {
             alert("No se pudo cambiar la contraseña")
         }
-
     }
+
+    const changeUserPassword = async (datos) => {
+        return await axios({
+            method: "put",
+            url: "http://localhost:3001/api/resetpassword/reset_password",
+            data: datos,
+            withCredentials: true
+        });
+    };
 
 
     return (

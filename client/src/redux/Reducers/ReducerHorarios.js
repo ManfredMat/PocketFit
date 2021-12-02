@@ -25,7 +25,7 @@ function reducerHorario(state = initialState, action) {
       case GET_WEEK_SHIFTS:
         return {
           ...state,
-          events: action.value,
+          weekShifts: action.value,
         }
 
     default:

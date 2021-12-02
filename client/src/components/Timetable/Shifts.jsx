@@ -32,13 +32,12 @@ function Shifts() {
         dispatch( getWeekShifts() )
       }, [dispatch]);
     
-      console.log("Es este" + weekShifts)
 
     return (
         <div>
-            {/* <div style={{display:"flex"}}>
+            <div style={{display:"flex"}}>
                 <h3>Hoy</h3>
-                {json.shifts.filter((shift) => shift.weekday === getWeekNameDay(today))
+                {weekShifts.filter((shift) => shift.weekday === getWeekNameDay(today))
                     .map((ofDay) => (
                         <div >
                             <p>{ofDay.availability}/{ofDay.capacity}</p>
@@ -48,14 +47,14 @@ function Shifts() {
             </div>
             <div style={{display:"flex"}}>
                 <h3>Mañana</h3>
-                {json.shifts.filter((shift) => shift.weekday === getWeekNameDay(nextDay))
+                {weekShifts.filter((shift) => shift.weekday === getWeekNameDay(nextDay))
                     .map((ofDay) => (
                         <div>
                             <p>{ofDay.availability}/{ofDay.capacity}</p>
                             <p>{ofDay.beginning}hs a {ofDay.ending}hs</p>
                         </div>
                     ))}
-            </div> */}
+            </div>
 
 
         </div>

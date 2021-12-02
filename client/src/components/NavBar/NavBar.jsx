@@ -10,13 +10,13 @@ import FeedBackIco from "../../assets/img/iconos/feedback.svg";
 import FeedBackIcoSelect from "../../assets/img/iconos/select-icons/feedback-select.svg";
 import React from "react";
 
-function NavBar() {
+function NavBar({screenHeight}) {
   let actual = window.location.pathname;
 
   return (
     <React.Fragment>
       <Styles.GlobalStyle />
-      <Styles.StyledBody>
+      <Styles.StyledBody screenHeight={screenHeight}>
         <Styles.StyledTopContainer>
           <Link to="/profile">
             <Styles.StyledProfileImageContainer>
@@ -61,28 +61,40 @@ function NavBar() {
             <Styles.StyledNavButton
               select={actual.includes("weeklyroutine") ? true : false}
             >
-              <img src={SemanalPlan} alt="weekly-routine" />
+              <Styles.StyledNavButtonWeekly
+                select={actual.includes("weeklyroutine") ? true : false}
+                className="weekly"
+              />
             </Styles.StyledNavButton>
           </Link>
           <Link to="/calendar">
             <Styles.StyledNavButton
               select={actual.includes("calendar") ? true : false}
             >
-              <img src={EventsIco} alt="users" />
+              <Styles.StyledNavButtonEvents
+                select={actual.includes("calendar") ? true : false}
+                className="calendar"
+              />
             </Styles.StyledNavButton>
           </Link>
           <Link to="/session/payments">
             <Styles.StyledNavButton
               select={actual.includes("payments") ? true : false}
             >
-              <img src={PayIco} alt="payments" />
+              <Styles.StyledNavButtonPay
+                select={actual.includes("payments") ? true : false}
+                className="payments"
+              />
             </Styles.StyledNavButton>
           </Link>
           <Link to="/feed">
             <Styles.StyledNavButton
               select={actual.includes("feed") ? true : false}
             >
-              <img src={FeedBackIco} alt="feedback" />
+              <Styles.StyledNavButtonFeed
+                select={actual.includes("feed") ? true : false}
+                className="feed"
+              />
             </Styles.StyledNavButton>
           </Link>
         </Styles.StyledNavContainer>
