@@ -18,7 +18,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/passreco" element={<PassRecovery />} />
-        <Route path="/reset_password" element={<ResetPassword />} />
+        <Route path="/resetpassword" element={<ResetPassword />} />
       </Routes>
       <main>
         <Routes>

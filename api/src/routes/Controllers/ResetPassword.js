@@ -4,21 +4,21 @@ const bcrypt = require("bcrypt");
 
 //otjtefuzpkuuiief
 const transporter = nodemailer.createTransport({
-    service:'gmail',
-    auth:{
-        user:'pocketfitteam@gmail.com',
-        pass:'henryft18a'
-    }
+  service: 'gmail',
+  auth: {
+    user: 'pocketfitteam@gmail.com',
+    pass: 'henryft18a'
+  }
 })
 
-const mailOptions = (email , modelEmail)=> {
-    return({
-        from: 'pocketfitteam@gmail.com',
-        to: email,
-        subject: 'Recover you password',
-        html: modelEmail
-    })
-  };
+const mailOptions = (email, modelEmail) => {
+  return ({
+    from: 'pocketfitteam@gmail.com',
+    to: email,
+    subject: 'Recover you password',
+    html: modelEmail
+  })
+};
 let modelEmail = `<!DOCTYPE html>
   <html>
   
@@ -36,65 +36,65 @@ let modelEmail = `<!DOCTYPE html>
   
   </html>`
 
-const sendEmailToRecover = async(req , res)=>{
-    let {email}= req.body
-try{
+const sendEmailToRecover = async (req, res) => {
+  let { email } = req.body
+  try {
 
-    if(!email){
-        res.send({message:"You need to send an email"})
+    if (!email) {
+      res.send({ message: "You need to send an email" })
     }
 
- let usuario = await User.findOne({where:{email:email}})
- 
- let id = usuario.id
- let usuarioEmail=email
- let link= `localhost:3000/reset_password/${id}`
- let otrolink="https://www.youtube.com/watch?v=35XFAkwmU4c"
- let message=modelEmail
- let resetButton = `<a style="padding:0.5em; display:inline-block; text-decoration:none; background-color: #507b00; color:#ffffff; margin:.5em; border-radius:.5em;" href=${otrolink} >Recuperar Contraseña</a>`
- 
- message = message.replace("%usuario%", usuario.name);
- message = message.replace("%link%", resetButton)
- 
- let emailOptions=mailOptions(usuarioEmail , message)
+    let usuario = await User.findOne({ where: { email: email } })
+
+    let id = usuario.id
+    let usuarioEmail = email
+    let link = `localhost:3000/reset_password/${id}`
+    let otrolink = "https://www.youtube.com/watch?v=35XFAkwmU4c"
+    let message = modelEmail
+    let resetButton = `<a style="padding:0.5em; display:inline-block; text-decoration:none; background-color: #507b00; color:#ffffff; margin:.5em; border-radius:.5em;" href=${otrolink} >Recuperar Contraseña</a>`
+
+    message = message.replace("%usuario%", usuario.name);
+    message = message.replace("%link%", resetButton)
+
+    let emailOptions = mailOptions(usuarioEmail, message)
 
 
- let info = await transporter.sendMail(emailOptions, function(error, info){
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
-  });
-res.send({message:"Everithing is awesome"})
+    let info = await transporter.sendMail(emailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+    res.send("Everithing is awesome")
 
-}catch(error){
-    res.send({message:"Something went wrong"})
-} 
+  } catch (error) {
+    res.send("Something went wrong")
+  }
 
 }
 
 
 
-const changePassword = async(req , res)=>{
-    let {id , newPassword} = req.body
-try{
+const changePassword = async (req, res) => {
+  let { email, newPassword } = req.body
+  try {
 
-let usuario = await User.findOne({where:{id:id}})
+    let usuario = await User.findOne({ where: { email: email } })
 
-newPassword = await bcrypt.hash(newPassword, 10)
+    newPassword = await bcrypt.hash(newPassword, 10)
 
-usuario["password"]= newPassword
+    usuario["password"] = newPassword
 
-await usuario.save()
+    await usuario.save()
 
-res.send(usuario)
-}
-catch(error){res.send(error)}
+    res.send(usuario)
+  }
+  catch (error) { res.send(error) }
 
 }
 
 module.exports = {
-    sendEmailToRecover,
-    changePassword
+  sendEmailToRecover,
+  changePassword
 }
