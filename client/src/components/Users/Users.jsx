@@ -2,6 +2,7 @@ import { React, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from '../../redux/Actions/actions-users';
 import User from '../User/User';
+import Styles from './Users.styles';
 
 function Users() {
     const users = useSelector(state => state.users.users)
@@ -11,7 +12,7 @@ function Users() {
     }, [dispatch]);
     
     return (
-        <div>
+        <Styles.Container>
             <input type="text" placeholder="Buscar..."/>
             <div>
                 {
@@ -23,7 +24,7 @@ function Users() {
                     })
                 }
             </div>
-        </div>
+        </Styles.Container>
     )
 }
 
