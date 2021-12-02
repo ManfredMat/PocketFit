@@ -17,7 +17,13 @@ const structureWeekPlan=(weekplan , name)=>{
 const createWeekPlan = async (req , res)=>{
     let {name , monday , tuesday ,wendsday , thursday , friday , saturday} = req.body
     
+
+    
+
     if(!name){
+
+        let prevWeekplan = Weekplan.findOne({where:{name:"Plan semanal general"}})
+        prevWeekplan.destroy()
         name = "Plan semanal general"
     }
 
@@ -88,6 +94,46 @@ const getWeekPlanById = async (req , res)=>{
     }catch(error){res.send(error)}
 }
 
+const getGeneralWeekPlan = async (req , res) =>{
+
+    try{
+    let generalWeekPlan = await Weekplan.findOne({where:{name:"Plan semanal general"}})
+
+    let {monday , tuesday ,wendsday , thursday , friday , saturday} = weekplan
+
+    let {name}=generalWeekPlan
+
+    let newStructure=[]
+
+    generalWeekPlan=[monday,tuesday,wendsday,thursday,friday,saturday]
+
+    for(let i of generalWeekPlan){
+    
+
+        newStructure.push(Routine.findOne({
+            where:{id:i},
+            include:[{
+                model: Block , attributes:['id' , 'order', 'rounds' ,'kindOfBlock','exercises'],
+                through:{
+                    attributes:[]
+                }
+            }]}))
+   
+   
+    }
+    generalWeekPlan = await Promise.all(newStructure , name)
+
+    generalWeekPlan = structureWeekPlan(generalWeekPlan)
+
+
+    res.json(generalWeekPlan)
+
+    }
+    catch(error){res.send(error)}
+}
+
+
+
 const updateWeekPlan = async (req , res)=>{
     const{id, prop} = req.params
 
@@ -122,5 +168,6 @@ module.exports = {
     getAllWeekPlans,
     getWeekPlanById,
     updateWeekPlan,
-    deleteWeekPlan
+    deleteWeekPlan,
+    getGeneralWeekPlan
 }
