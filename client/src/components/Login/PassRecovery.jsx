@@ -4,6 +4,7 @@ import footer from "../../assets/img/footer.svg";
 import LogingWave from "../../assets/img/loginwave.svg";
 import ProfilePhoto from "../../assets/img/profilephoto.svg"
 import { Container, ContainerIn, Input, Wave, Btn } from "./Login.styles";
+import axios from "axios";
 
 function PassRecovery() {
   const navigate = useNavigate();
@@ -24,9 +25,9 @@ function PassRecovery() {
       alert("Completa el campo email")
     } else {
       if (validatorEmail(input.email)) {
-        // await sendMailPassReco(state.email);
-        alert('Instrucciones enviadas, revise su bandeja de entrada')
-        navigate("/reset_password")
+        mailPassReco({
+          email: input.email
+        });
       } else {
         alert("Email invalido")
       }
@@ -37,6 +38,23 @@ function PassRecovery() {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) return true
     else return false
   }
+
+  const mailPassReco = async (mail) => {
+    const res = await sendMailPassReco(mail);
+    if (res.data === "Something went wrong") return alert("El Email ingresado no coincide con el registrado en la base de datos")
+    localStorage.setItem("recoEmail", input.email);
+    alert('Instrucciones enviadas, revise su bandeja de entrada');
+    navigate("/resetpassword");
+  }
+
+  const sendMailPassReco = async (datos) => {
+    return await axios({
+      method: "post",
+      url: "http://localhost:3001/api/resetpassword/forgotten_password",
+      data: datos,
+      withCredentials: true
+    });
+  };
 
   return (
     <Container>
@@ -54,7 +72,7 @@ function PassRecovery() {
             </p>
           </ContainerIn>
           <Btn onClick={(e) => handleSubmit(e)}>Enviar</Btn>
-          <div style={{display: "flex", flexDirection: "column", alignItems: "center", marginTop: "5rem"}}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "5rem" }}>
             <h6 style={{ color: '#fff', marginBottom: -0.5 }}>Powered by</h6>
             <img src={footer} alt="pocket-fit-logo" />
           </div>

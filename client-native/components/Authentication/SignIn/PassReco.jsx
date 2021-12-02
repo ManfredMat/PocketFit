@@ -10,16 +10,13 @@ import fitnessGym from '../../../assets/Svg/fitnessGym';
 import userIcon from '../../../assets/Svg/userIcon';
 import background from '../../../assets/Background.png';
 import { SvgXml } from 'react-native-svg';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import changeUserPassword from "../../../api/put-passreco";
 
 
 const PassReco = () => {
     const navigation = useNavigation();
     const [state, setState] = useState({ newPassword: "", repeatNewPassword: "" });
-
-    // const validatorEmail = (email) => {
-    //     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) return true
-    //     else return false
-    // }
 
     const handleOnChange = (e, type) => {
         setState({
@@ -32,16 +29,16 @@ const PassReco = () => {
         try {
 
             if (state.newPassword.length > 1 && state.repeatNewPassword.length > 1) {
-                // if (!validatorEmail(state.email)) return Alert.alert("Error", "Email inválido");
                 if (state.newPassword !== state.repeatNewPassword) return Alert.alert("Error", "Las contraseñas no coinciden")
             } else return Alert.alert("Error", "Por favor completa todos los campos");
 
-            // const datos = {
-            //     newPassword: state.newPassword,
-            //     repeatNewPassword: state.repeatNewPassword
-            // };
+            const email = await AsyncStorage.getItem("recoEmail");
+            await changeUserPassword({
+                email: email,
+                newPassword: state.newPassword
+            });
+            await AsyncStorage.removeItem("recoEmail");
 
-            // await changeUserPassword(state.newPassword);
             Alert.alert("Éxito", "Contraseña cambiada satisfactoriamente")
             navigation.navigate('Authentication')
 
@@ -66,16 +63,6 @@ const PassReco = () => {
             <Container>
                 <SvgXml style={{ position: 'relative', marginTop: -50 }} xml={userIcon} />
                 <View style={{ width: 300 }}>
-                    {/* <Text style={{ color: "white", marginLeft: 10 }}>E-mail</Text>
-                    <Input
-                        style={Styles.Input}
-                        inputContainerStyle={{ borderBottomWidth: 0 }}
-                        placeholder="user@example.com"
-                        value={state.email}
-                        onChange={(e) => handleOnChange(e, "email")}
-                        keyboardType="email-address"
-                        textContentType="emailAddress"
-                    /> */}
                     <Label>Nueva Contraseña</Label>
                     <Input
                         style={Styles.Input}

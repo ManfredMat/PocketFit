@@ -7,6 +7,7 @@ import { Styles } from '../Authentication.styles';
 import { useSelector, useDispatch } from "react-redux";
 import signIn from "../../../redux/Actions/actions-User";
 import postLoginUser from "../../../api/post-login";
+import sendMailPassReco from "../../../api/post-passreco-mail";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignIn = () => {
@@ -69,8 +70,10 @@ const SignIn = () => {
   };
 
   const passReco = async () => {
-    // await sendMailPassReco(state.email);
-
+    await sendMailPassReco({
+      email: state.email
+    });
+    await AsyncStorage.setItem('recoEmail', state.email);
     Alert.alert("Mail enviado, revise su correo");
     setState({ email: "", password: "" });
     navigation.navigate("PassReco");
