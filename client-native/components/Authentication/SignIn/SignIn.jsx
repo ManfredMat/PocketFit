@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 import { Text, TouchableOpacity, View, Alert } from "react-native";
 import { Input } from "react-native-elements";
-import { ButtonGreen } from "../Authentication.styles";
+import { ButtonGreen, Label } from "../Authentication.styles";
 import { Styles } from '../Authentication.styles';
 import { useSelector, useDispatch } from "react-redux";
 import signIn from "../../../redux/Actions/actions-User";
 import postLoginUser from "../../../api/post-login";
+import sendMailPassReco from "../../../api/post-passreco-mail";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignIn = () => {
@@ -14,6 +15,7 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.reducerUser.user);
   const [state, setState] = useState({ email: "", password: "" });
+  const [passRecoRender, setPassRecoRender] = useState(false);
 
   const validatorEmail = (email) => {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) return true
@@ -29,7 +31,7 @@ const SignIn = () => {
 
   const handleOnSubmit = async () => {
     try {
-      
+
       if (state.email.length > 1 && state.password.length > 1) {
         if (!validatorEmail(state.email)) return Alert.alert("Error", "Email inválido");
       } else return Alert.alert("Error", "Por favor completa todos los campos");
@@ -38,21 +40,21 @@ const SignIn = () => {
         email: state.email,
         password: state.password
       };
-      
+
       const res = await postLoginUser(datos);
       if (res.data === "Email not found") {
         return Alert.alert("Error", "No se ha encontrado el email en nuestra base de datos");
       } else if (res.data === "Password mismatch") {
-        return Alert.alert("Error", "La contraseña ingresada es incorrecta")
+        Alert.alert("Error", "La contraseña ingresada es incorrecta")
+        return setPassRecoRender(true);
       } else if (res.data.passport.user.isadmin) {
         return Alert.alert("Error", "Usted es administrador, para continuar ingrese a PocketFit Web")
       } else {
         dispatch(signIn(res.data.passport.user));
         storeEmail(state.email);
         storePassword(state.password);
-        setState({email: "", password: ""});
+        setState({ email: "", password: "" });
         navigation.navigate("Inicio");
-      // }
       }
     } catch (e) {
       Alert.alert("Error", "No se pudo iniciar sesión");
@@ -67,11 +69,21 @@ const SignIn = () => {
     await AsyncStorage.setItem('password', value)
   };
 
+  const passReco = async () => {
+    await sendMailPassReco({
+      email: state.email
+    });
+    await AsyncStorage.setItem('recoEmail', state.email);
+    Alert.alert("Mail enviado, revise su correo");
+    setState({ email: "", password: "" });
+    navigation.navigate("PassReco");
+  }
+
 
   return (
     <View>
-      <View style={{ width: 300 }}>
-        <Text style={{ color: "white", marginLeft: 10 }}>E-mail</Text>
+      <View style={{ width: 300, marginTop: 5 }}>
+        <Label>E-mail</Label>
         <Input
           style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -81,7 +93,7 @@ const SignIn = () => {
           keyboardType="email-address"
           textContentType="emailAddress"
         />
-        <Text style={{ color: "white", marginLeft: 10 }}>Contraseña</Text>
+        <Label>Contraseña</Label>
         <Input
           style={Styles.Input}
           inputContainerStyle={{ borderBottomWidth: 0 }}
@@ -97,24 +109,30 @@ const SignIn = () => {
         <ButtonGreen
           onPress={() => handleOnSubmit()}
         >
-          <Text style={{ alignSelf: "center" }}>Iniciar Sesión</Text>
+          <Text style={{ alignSelf: "center", fontFamily: "Poppins_500Medium" }}>Iniciar Sesión</Text>
         </ButtonGreen>
-        <TouchableOpacity onPress={() => Alert.alert(
-          "Atención", 'Le enviaremos las instrucciones para reestablecer la contraseña al mail asociado a su cuenta',
-          [
-            {
-              text: "Cancelar",
-              style: "cancel"
-            },
-            {
-              text: "Aceptar",
-              onPress: () => Alert.alert("Mail enviado, revise su correo"),
-              style: "default"
-            }
-          ]
-        )}>
-          <Text style={{ color: '#6AE056', alignSelf: "center", marginBottom: 20, marginTop: 8, borderBottomWidth: 2, borderStyle: "solid", borderColor: "#6AE056"}}>OLVIDE MI CONTRASEÑA</Text>
-        </TouchableOpacity>
+
+        {
+          passRecoRender ?
+            <TouchableOpacity onPress={() => Alert.alert(
+              "Atención", 'Le enviaremos las instrucciones para reestablecer la contraseña al mail asociado a su cuenta',
+              [
+                {
+                  text: "Cancelar",
+                  style: "cancel"
+                },
+                {
+                  text: "Enviar",
+                  onPress: () => passReco(),
+                  style: "default"
+                }
+              ]
+            )}>
+              <Text style={{ color: '#6AE056', alignSelf: "center", marginBottom: 20, marginTop: 8, borderBottomWidth: 2, borderStyle: "solid", borderColor: "#6AE056", fontFamily: "Poppins_500Medium" }}>OLVIDE MI CONTRASEÑA</Text>
+            </TouchableOpacity>
+            : <></>
+        }
+
       </View>
     </View>
   );
