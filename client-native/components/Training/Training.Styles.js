@@ -15,9 +15,6 @@ export const Container = styled.View`
 export const Routines = styled.View`
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 200px;
-
 `
 export const TextW = styled.Text`
     color: #fff;
@@ -59,6 +56,7 @@ export const ViewEX = styled.View`
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-right: 50px;
 `
 export const Pesa = styled.Image`
     width: 40px;

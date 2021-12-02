@@ -1,7 +1,31 @@
-const { Shift, Timetable } = require('../../db')
+
+const { Shift, Timetable, User } = require('../../db')
 
 const newShift = async (req, res) => {
-    const { day,
+  const { day,
+    availability,
+    capacity,
+    beginning,
+    ending,
+    weekday,
+    week,
+    month,
+    year } = req.body
+  try {
+    const oldShift = await Shift.findOne({
+      where: {
+        day: day,
+        beginning: beginning,
+        ending: ending,
+        weekday: weekday,
+        week: week,
+        month: month,
+        year:year
+      }
+    })
+    if (oldShift === null) {
+    const newS = await Shift.create({
+      day,
       availability,
       capacity,
       beginning,
@@ -9,30 +33,22 @@ const newShift = async (req, res) => {
       weekday,
       week,
       month,
-      year } = req.body
-    try {
-      const newS = await Shift.findOrCreate({
-       where: {
-        day : day,
-        week : week,
-        weekday : weekday,
-        month : month,  
-        beginning : beginning,
-        ending : ending,
-        year : year
-      }
-      });
-      console.log(newS)
-      res.send(newS)
-    }
-    catch (err) {
-      res.send(err)
-    }
+      year
+    });
+    //console.log(newS)
+    res.send(newS)
+  }else{res.send({message:'turno existente'})}}
+  catch (err) {
+    res.send(err)
+  }
 }
 
 const getAllShifts = async (req, res) => {
+  const {day, month, year} = req.body
     try {
-        const allShift = await Shift.findAll()
+        const allShift = await Shift.findAll({
+         // where:{year: `^([0-9]|[1-9][0-9]|${year})$`.year, month: month > Shift.month, day: day > Shift.day },
+          include: User})
         res.json(allShift)
     }
     catch (err) {
@@ -44,7 +60,7 @@ const getShiftById = async (req, res) => {
     const { id } = req.params
 
     try {
-        const oneShift = await Shift.findOne({ where: { id: id } })
+        const oneShift = await Shift.findOne({ where: { id: id }, include: User})
         res.send(oneShift)
     }
     catch (error) {
@@ -58,24 +74,25 @@ const getShiftByWeekNum = async (req, res) => {
 
  try {
      const WeekShifts = await Shift.findAll({
-       where: {week : week}
+       where: {week : week},
+       include: User
      })
      res.send(WeekShifts)
  }
  catch (error) {
      next(error)
  } 
-
 }
 
 const updateShift = async (req, res) => {
-    const { id, prop } = req.params
-    const { update } = req.body
+    const { idUser, idShift } = req.body
     try {
-        let oneShift = await Shift.findOne({ where: { id: id } })
-        oneShift[prop] = update
-        console.log(oneShift)
-        await oneShift.save()
+        let oneShift = await Shift.findOne({ where: { id: idShift }, include: User })
+        let addUser = await User.findOne({ where: {id: idUser}})
+        await oneShift.addUser(addUser)
+        let newAvailability = oneShift.capacity -1
+        oneShift.availability = newAvailability
+        //oneShift.update()
         res.send(oneShift)
     }
     catch (err) {
@@ -151,7 +168,7 @@ const WeekDaysGenerator = (
   
       //const intervalo = ["7-9", "9-11", "11-13", "14-16", "16-18", "18-20"]; //esto viene de timetable
       //const capacity = 10; //esto viene de timetable
-  
+
       const array = [];
       const WeekDays = WeekDaysGenerator(
         firstDay,

@@ -11,7 +11,8 @@ const {
   deleteRoutine,
   updateRoutine,
   modifyUser,
-  getUserPayStatus
+  getUserPayStatus,
+  assignShift
 } = require("../Controllers/User");
 
 router.post("/register_user", createUser);
@@ -20,6 +21,7 @@ router.get("/paystatus/:date" , getUserPayStatus)
 router.put("/:id/:prop", modifyUser);
 router.get("/:id", getSpeficicUser);
 router.post("/traine_plan/:id", createRoutine);
+router.post("/shift_user/:id", assignShift);
 router.get("/traine_plan/:id", getRoutine);
 router.delete("/traine_plan/:id", deleteRoutine);
 router.put("/traine_plan/:id/:prop", updateRoutine);
