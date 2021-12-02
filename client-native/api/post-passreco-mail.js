@@ -4,7 +4,7 @@ import IP from "../components/Ips";
 export default sendMailPassReco = async (datos) => {
     return await axios({
         method: "post",
-        url: `http://${IP.IP}:3001/api/resetpassword/forgotten_password`,
+        url: `http://${IP}:3001/api/resetpassword/forgotten_password`,
         data: datos,
         withCredentials: true
     });
