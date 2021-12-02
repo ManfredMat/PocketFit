@@ -47,7 +47,7 @@ const getAllShifts = async (req, res) => {
   const {day, month, year} = req.body
     try {
         const allShift = await Shift.findAll({
-          where:{year: `^([0-9]|[1-9][0-9]|${year})$`.year, month: month > Shift.month, day: day > Shift.day },
+         // where:{year: `^([0-9]|[1-9][0-9]|${year})$`.year, month: month > Shift.month, day: day > Shift.day },
           include: User})
         res.json(allShift)
     }
