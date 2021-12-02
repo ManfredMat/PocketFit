@@ -2,10 +2,10 @@ const {Block , Exercise} = require('../../db')
 
 
 const structureExercise = (exercises , exercisesList)=>{
-
     let exercisesId = exercises.map((excercise)=> excercise = excercise.id)
+    let exercisesName = exercises.map((excercise)=> excercise = excercise.id)
 
-        exercisesId = exercisesId.map((ex)=>(exercisesList.find((exl)=> exl.id == ex)).name)
+        exercisesName = exercisesName.map((ex)=>(exercisesList.find((exl)=> exl.id == ex)).name)
 
     let exercisesReps = exercises.map((excercise)=> excercise = excercise.reps)
 
@@ -14,7 +14,7 @@ const structureExercise = (exercises , exercisesList)=>{
     let newExerArray=[]
     
     for(i=0 ; i < exercises.length ; i++){
-        let newExObject = [exercisesId[i] , exercisesReps[i].toString() ,exercisesDescription[i]]
+        let newExObject = [exercisesName[i] , exercisesReps[i].toString() ,exercisesDescription[i] , (exercisesId[i]).toString()]
         newExerArray.push(newExObject)
     }
     

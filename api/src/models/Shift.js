@@ -11,11 +11,9 @@ module.exports = (sequelize) => {
     },
       availability:{
         type: DataTypes.INTEGER,
-
       },
       capacity:{
         type: DataTypes.INTEGER,
-
       },
       beginning:{
         type: DataTypes.STRING,
@@ -34,7 +32,7 @@ module.exports = (sequelize) => {
         allowNull: false
       },
       month:{
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false
       },
       day:{

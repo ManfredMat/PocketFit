@@ -9,9 +9,9 @@ router.get("/all", getAllShifts);
 
 router.get('/:id', getShiftById)
 
-router.get('/:week', getShiftByWeekNum)
+router.get('/week/:week', getShiftByWeekNum)
 
-router.put("/:id/:prop", updateShift);
+router.put("/update", updateShift);
 
 router.delete("/:id", deleteShift);
 

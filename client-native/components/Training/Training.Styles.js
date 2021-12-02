@@ -15,9 +15,6 @@ export const Container = styled.View`
 export const Routines = styled.View`
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 200px;
-
 `
 export const TextW = styled.Text`
     color: #fff;
@@ -30,12 +27,12 @@ export const TextT = styled.Text`
     margin-top: 60px;
 `
 export const LemonContainer = styled.View`
+background-color: ${lime};
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    background-color: ${lemon};
-    border-radius: 15px;
     width: 370px;
-    height: 200px;
-    padding: 10px;
+    height: 100px;
 `
 export const Excercise = styled.View`
     background-color: ${lime};
@@ -50,17 +47,34 @@ export const ProxShifts = styled.View`
     background-color: ${green};
     border-radius: 15px;
     margin: 5px;
-    width: 350px;
+    width: 300px;
     height: 100px;
     padding: 10px;
+    opacity: 0.9;
 `
 export const ViewEX = styled.View`
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-right: 50px;
 `
 export const Pesa = styled.Image`
     width: 40px;
     height: 40px;
     margin-left: 50px;
+`
+export const ButtonShifts = styled.TouchableOpacity`
+    background-color: ${green};
+    justify-content: center;
+    border-radius: 15px;
+    margin-left: 5px;
+    height: 100px;
+    width: 50px;
+`
+export const ShiftsCont = styled.View`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 370px;
+    height: 100px;
 `

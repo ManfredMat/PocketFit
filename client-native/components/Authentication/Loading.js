@@ -27,6 +27,7 @@ const Loading = () => {
         email: email,
         password: password
       });
+      if (res.data === "Email not found") return navigation.navigate('Authentication')
       dispatch(signIn(res.data.passport.user));
       navigation.navigate('Inicio');
     } else navigation.navigate('Authentication')

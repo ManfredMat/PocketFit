@@ -1,4 +1,5 @@
 const {Weekplan , Routine , Block} = require('../../db')
+const NOMBRE_GENERAL = "Plan semanal general"
 
 const structureWeekPlan=(weekplan , name)=>{
     let newStructure = {
@@ -17,8 +18,13 @@ const structureWeekPlan=(weekplan , name)=>{
 const createWeekPlan = async (req , res)=>{
     let {name , monday , tuesday ,wendsday , thursday , friday , saturday} = req.body
     
+
+    
+
     if(!name){
-        name = "Plan semanal general"
+
+        Weekplan.destroy({where:{name:NOMBRE_GENERAL}})        
+        name = NOMBRE_GENERAL
     }
 
     try{
@@ -53,7 +59,7 @@ const getAllWeekPlans = async (req , res)=>{
 const getWeekPlanById = async (req , res)=>{
 
     let {id}=req.params
-
+    console.log(typeof id)
     try{
         let weekplan = await Weekplan.findOne({where:{id:id}})
 
@@ -87,6 +93,47 @@ const getWeekPlanById = async (req , res)=>{
         res.json(weekplan)
     }catch(error){res.send(error)}
 }
+
+const getGeneralWeekPlan = async (req , res) =>{
+
+    let name= NOMBRE_GENERAL
+
+    try{
+
+    let generalWeekPlan = await Weekplan.findOne({where:{name:name}})
+
+    let {monday , tuesday ,wendsday , thursday , friday , saturday} = generalWeekPlan
+
+    let newStructure=[]
+
+    generalWeekPlan=[monday,tuesday,wendsday,thursday,friday,saturday]
+
+    for(let i of generalWeekPlan){
+    
+
+        newStructure.push(Routine.findOne({
+            where:{id:i},
+            include:[{
+                model: Block , attributes:['id' , 'order', 'rounds' ,'kindOfBlock','exercises'],
+                through:{
+                    attributes:[]
+                }
+            }]}))
+   
+   
+    }
+    generalWeekPlan = await Promise.all(newStructure , name)
+
+    generalWeekPlan = structureWeekPlan(generalWeekPlan)
+    
+
+    res.json(generalWeekPlan)
+
+    }
+    catch(error){res.send(error)}
+}
+
+
 
 const updateWeekPlan = async (req , res)=>{
     const{id, prop} = req.params
@@ -122,5 +169,6 @@ module.exports = {
     getAllWeekPlans,
     getWeekPlanById,
     updateWeekPlan,
-    deleteWeekPlan
+    deleteWeekPlan,
+    getGeneralWeekPlan
 }

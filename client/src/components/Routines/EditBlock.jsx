@@ -4,8 +4,8 @@ import AddExcercise from "./AddExcercise";
 
 const EditBlock = (props) => {
 
-    const [excercises, setExcercises] = useState([]);
     const [renderAddExcercises, setRender] = useState(false);
+
     const [inputs, setInputs] = useState({
         rounds: 0,
         kindOfBlock: ""
@@ -13,13 +13,13 @@ const EditBlock = (props) => {
 
     const handleInputs = (e) => {
 
-        setInputs({...inputs, [e.target.name]: e.target.value})
+        setInputs({ ...inputs, [e.target.name]: e.target.value })
 
-    } 
-    
+    }
+
     const handleOnClick = () => {
 
-        renderAddExcercises 
+        renderAddExcercises
             ? setRender(false)
             : setRender(true)
 
@@ -30,22 +30,23 @@ const EditBlock = (props) => {
         const block = {
             ...inputs,
             rounds: parseInt(inputs.rounds),
-            exercises:excercises,
+            exercises: props.exercises.map(exercise => {return {id: exercise.id, reps: exercise.repetitions, description: exercise.notes}}),
             day: props.api,
             order: props.block,
         }
 
-        try{
+        props.setWeekChanges(oldState => {return { ...oldState, [props.api]:{...oldState[props.api], blocks:{...oldState[props.api].blocks,[`block${props.block}`]:block}}}})
 
-            const response = await axios.post("http://127.0.0.1:3001/api/blocks/",block);
+        // try {
 
-            props.setIdRoutine({...props.idRoutine,[`block${props.block}`]:response.data.id});
+        //     const response = await axios.post("http://127.0.0.1:3001/api/blocks/", block);
+        //     props.setIdRoutine({ ...props.idRoutine, [`block${props.block}`]: response.data.id });
 
-        } catch(e){
-            console.log("oups error")
-            console.log(e)
-        }
-        
+        // } catch (e) {
+        //     console.log("oups error")
+        //     console.log(e)
+        // }
+
         props.setRender({ render: false })
     }
 
@@ -58,19 +59,18 @@ const EditBlock = (props) => {
             </div>
 
             <div>
-                <p>Ejercicio 1</p>
-                <p>Ejercicio 2</p>
-                <p>Ejercicio 3</p>
-                <p>Ejercicio 4</p>
+                {props.exercises
+                    ? <ul>{props.exercises.map((excercise, i) => <li key={i}>{excercise.name} <br /> repeticiones: {excercise.repetitions}</li>)}</ul>
+                    : <p>No hay ejercicios asignados para este día</p>}
             </div>
 
-            <input type="text" name="kindOfBlock" value={inputs.kindOfBlock} onChange={handleInputs}/>
-            <input type="number" min="0" name="rounds" value={inputs.rounds} onChange={handleInputs}/>
+            <input type="text" name="kindOfBlock" value={inputs.kindOfBlock} onChange={handleInputs} />
+            <input type="number" min="0" name="rounds" value={inputs.rounds} onChange={handleInputs} />
 
             <button onClick={handleAccept}>Aceptar Cambios</button>
             <button >Cancelar</button>
 
-            {renderAddExcercises ? <AddExcercise setRender = {setRender} setExcercises={setExcercises} excercises={excercises} day={props.day} block={props.block}/> : null}
+            {renderAddExcercises ? <AddExcercise setRender={setRender} setExercises={props.setExercises} api={props.api} day={props.day} block={props.block} /> : null}
 
         </div>
     )
@@ -78,15 +78,3 @@ const EditBlock = (props) => {
 }
 
 export default EditBlock;
-
-const block = {
-    day : "string",
-    order : 1,
-    excercises : [
-        {
-            id:"id",
-            reps: 1,
-            description:""
-        },
-    ]
-}
