@@ -8,9 +8,10 @@ router.post("/", createWeekPlan)
 
 router.get("/", getAllWeekPlans)
 
+router.get("/general", getGeneralWeekPlan)
+
 router.get("/:id", getWeekPlanById)
 
-router.get("/general", getGeneralWeekPlan)
 
 router.put("/:id/:prop", updateWeekPlan)
 
