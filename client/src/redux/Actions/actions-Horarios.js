@@ -35,19 +35,9 @@ export function getEvents() {
 }
 
 export function getWeekShifts() {
-  /* return async function (dispatch) {
-    await axios
-      .get("http://localhost:3001/api/events/all")
-      .then((res) => {
-          let events = res.data.filter((cla)=>cla.kindOfEvent === "Eventos")
-        dispatch({
-          type: GET_EVENTS,
-          value: events,
-        });
-      });
-  }; */
+  const shifts = json.shifts
   return {
     type: GET_WEEK_SHIFTS,
-    value: json.shifts,
+    value: shifts,
   }
 }
