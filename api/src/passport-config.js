@@ -2,6 +2,7 @@ const Strategy = require("passport-local").Strategy;
 const sequelize = require("sequelize");
 const { User } = require("./db.js");
 const bcrypt = require("bcrypt");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 module.exports = function (passport) {
   passport.use(
