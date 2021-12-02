@@ -1,4 +1,4 @@
-const { User, Routine, Exercise } = require("../../db");
+const { User, Routine, Exercise, Shift } = require("../../db");
 const bcrypt = require("bcrypt");
 
 
