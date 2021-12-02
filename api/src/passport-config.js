@@ -28,4 +28,30 @@ module.exports = function (passport) {
   passport.serializeUser((user, done) => done(null, user));
 
   passport.deserializeUser((user, done) => done(null, user));
+
+  passport.use(
+    new GoogleStrategy(
+      {
+        clientID:
+          "318198588175-t32ch17n9vdonvsp7qspqltgqa851eeu.apps.googleusercontent.com",
+        clientSecret: "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",
+        callbackURL: `http://localhost:3001/api/google/callback`,
+        session: false,
+      },
+      async (accessToken, refreshToken, profile, done) => {
+        const googleUser = profile._json;
+        try {
+          let user = await User.findOne({ where: { mail: googleUser.email } });
+          if (!user) {
+            user = await User.create({
+              email: googleUser.email,
+            });
+          }
+          return done(null, user);
+        } catch (err) {
+          done(err);
+        }
+      }
+    )
+  );
 };
