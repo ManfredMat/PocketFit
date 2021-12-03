@@ -2,12 +2,44 @@ import styled from "styled-components";
 
 const Styles = {
     Container: styled.div`
-        padding: 3rem;
         display: flex;
         flex-direction: column;
         width:100vw;
         height: 100vh;
-    `
+        background-color: var(--darkGray-base);
+        overflow-y: scroll;
+    `,
+
+    NavBar: styled.div`
+        background-color: var(--darkGray-base);
+        position: sticky;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+    `,
+
+    SearchBar: styled.input`
+        background-color: #C4C4C4;
+        border-radius: 2rem;
+        border-style: hidden;
+        margin-top: 2rem;
+        margin-left: 30vw;
+        margin-right: 30vw;
+        padding: .5rem;
+    `,
+
+    Filter: styled.select`
+        background-color: var(--green);
+        margin-top: 1rem;
+        margin-left: 40vw;
+        margin-right: 40vw;
+        margin-bottom: 1rem;
+        `,
+
+    UsersContainer: styled.div`
+        margin-left: 2vw;
+        margin-right: 2vw;
+    `,
 }
 
 export default Styles;
