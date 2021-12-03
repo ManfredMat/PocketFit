@@ -5,6 +5,8 @@ import * as json from "../../components/Timetable/Hard-code.json";
 export const GET_LESSONS = "GET_LESSONS";
 export const GET_EVENTS = "GET_EVENTS";
 export const GET_WEEK_SHIFTS = "GET_WEEK_SHIFTS";
+export const SELECT_SHIFT = "SELECT_SHIFT";
+export const GET_ALL_SHIFTS = "GET_ALL_SHIFTS";
 
 export function getLessons() {
   return async function (dispatch) {
@@ -38,6 +40,21 @@ export function getWeekShifts() {
   const shifts = json.shifts
   return {
     type: GET_WEEK_SHIFTS,
+    value: shifts,
+  }
+}
+
+export function selectShift(shift) {
+  return {
+    type: SELECT_SHIFT,
+    value: shift,
+  }
+}
+
+export function getAllShifts() {
+  const shifts = json.shifts
+  return {
+    type: GET_ALL_SHIFTS,
     value: shifts,
   }
 }

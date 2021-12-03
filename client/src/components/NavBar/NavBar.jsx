@@ -67,13 +67,13 @@ function NavBar({screenHeight}) {
               />
             </Styles.StyledNavButton>
           </Link>
-          <Link to="/calendar">
+          <Link to="/session/timetable">
             <Styles.StyledNavButton
-              select={actual.includes("calendar") ? true : false}
+              select={actual.includes("timetable") ? true : false}
             >
               <Styles.StyledNavButtonEvents
-                select={actual.includes("calendar") ? true : false}
-                className="calendar"
+                select={actual.includes("timetable") ? true : false}
+                className="timetable"
               />
             </Styles.StyledNavButton>
           </Link>

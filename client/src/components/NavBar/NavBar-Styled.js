@@ -31,7 +31,7 @@ const Styles = {
       display: flex;
       flex-direction: column;
       background: var(--darkGray-medium);
-      width: 5em;
+      width: ${(props) => (8*props.screenHeight)/100}px;
       height: 100vh;
   `,
   StyledNavContainer: styled.div`
@@ -68,7 +68,7 @@ const Styles = {
         .weekly{
           background-image: url(${SemanalPlanSelect});
         }
-        .calendar{
+        .timetable{
           background-image: url(${EventsIcoSelect});
         }
         .payments{
