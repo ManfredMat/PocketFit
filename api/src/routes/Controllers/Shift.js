@@ -46,10 +46,23 @@ const newShift = async (req, res) => {
 const getAllShifts = async (req, res) => {
   const {day, month, year} = req.body
     try {
-        const allShift = await Shift.findAll({
+      const allShift = await Shift.findAll()
+      const allShiftFiltered = allShift.filter((shift)=> shift.year >= year && shift.month >= month && shift.day >= day)
+
+       /*  const allShift = await Shift.findAll({
          // where:{year: `^([0-9]|[1-9][0-9]|${year})$`.year, month: month > Shift.month, day: day > Shift.day },
-          include: User})
-        res.json(allShift)
+          include: User})*/
+        res.json(allShiftFiltered) 
+    }
+    catch (err) {
+        res.send(err)
+    }
+}
+
+const getAllShiftsPlus = async (req, res) => {
+    try {
+      const allShift = await Shift.findAll()
+        res.json(allShift) 
     }
     catch (err) {
         res.send(err)
@@ -205,4 +218,4 @@ const WeekDaysGenerator = (
     }
   }
 
-module.exports = { weekCreate, createBulk, newShift, getAllShifts, getShiftByWeekNum, updateShift, deleteShift, getShiftById };
+module.exports = { weekCreate, createBulk, newShift, getAllShifts, getShiftByWeekNum, updateShift, deleteShift, getShiftById,getAllShiftsPlus };

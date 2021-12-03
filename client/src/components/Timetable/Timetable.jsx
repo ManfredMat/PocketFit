@@ -1,19 +1,22 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import ClasesWeeklyView from "./ClasesWeeklyView";
 import Calendar from "../_Universals/Calendar";
 import Detail from "./Detail";
 import Shifts from "./Shifts";
 import ScheduleShift from "./ScheduleShift";
 import ShiftsConfig from "./ShiftsConfig";
+import ShiftsPreview from "./ShiftsPreview";
 
 function Timetable() {
   const [configTurnos, setconfigTurnos] = React.useState(false)
   const [takeShift, setTakeShift] = React.useState(false)
+  const [shiftDetail, setShiftDetail] = React.useState(false)
   const date = new Date();
 
   console.log(configTurnos)
   return (
-    <div style={{position: "relative",width:"-webkit-fill-available", height: "-webkit-fill-available" }}>
+    <div style={{ position: "relative", width: "-webkit-fill-available", height: "-webkit-fill-available" }}>
       <div style={{ padding: "1rem", position: "relative" }}>
         <h1>Horarios</h1>
         <div name="content" style={{ display: "flex" }}>
@@ -31,13 +34,15 @@ function Timetable() {
             <div name="row-1">
               <div>
                 <h2>Turnos</h2>
-                
+
                 <button onClick={() => setTakeShift(!takeShift)}>Agendar Turno</button>
                 <button onClick={() => setconfigTurnos(!configTurnos)}>Configurar Turnos</button>
                 {console.log(configTurnos)}
               </div>
-              <Shifts />
+              <Shifts setShiftDetail={setShiftDetail}/>
+              <Link to="/session/timetable/ShiftsDetails">
               <button>Ver detalle</button>
+              </Link>
             </div>
             <div name="Row-2">
               <div name="Clases Semanales">
@@ -50,8 +55,10 @@ function Timetable() {
       </div>
       {takeShift &&
         <ScheduleShift display={setTakeShift} />}
-{configTurnos &&
+      {configTurnos &&
         <ShiftsConfig display={setconfigTurnos} />}
+        {shiftDetail &&
+        <ShiftsPreview display={setShiftDetail} />}
     </div>
   );
 }

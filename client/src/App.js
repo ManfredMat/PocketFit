@@ -9,6 +9,7 @@ import PassRecovery from "./components/Login/PassRecovery.jsx";
 import NavBar from "./components/NavBar/NavBar";
 import Users from "./components/Users/Users";
 import Timetable from "./components/Timetable/Timetable";
+import ShiftsDetails from "./components/Timetable/ShiftsDetails"
 import Configuration from "./components/Configuration/Configuration.jsx";
 import ResetPassword from "./components/Login/ResetPassword";
 
@@ -38,6 +39,7 @@ const [screenHeight, setScreenHeight] = useState("")
           <Route path="/session/payments" element={<Payments />} />
           <Route path="/session/users" element={<Users />} />
           <Route path="/session/timetable" element={<Timetable />} />
+          <Route path="/session/timetable/ShiftsDetails" element={<ShiftsDetails />} />
           <Route path="/session/config" element={<Configuration />} />
 
         </Routes>
