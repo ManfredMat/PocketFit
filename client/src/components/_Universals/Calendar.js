@@ -1,10 +1,9 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+
 import Styles from "./CalendarStyled";
 
 function Calendar({ year, month }) {
-  const pruebaEstado = useSelector((state) => state.counter);
-  const dispatch = useDispatch();
+  
   var daysMonth = new Date(year, month, 0).getDate();
   let firstDay = new Date(year, month, 1).getDay();
 

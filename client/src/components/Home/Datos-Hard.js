@@ -39,9 +39,9 @@ capacity:10}
     //personas: [mateo, cande, lucho, lean],
   },
 ];
-
-export default {
+let objeto = {
   actividades,
   actividadesMañana,
   turnos
-};
+}
+export default objeto;

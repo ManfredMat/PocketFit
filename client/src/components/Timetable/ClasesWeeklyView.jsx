@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import * as json from "./Hard-code.json";
 import {useSelector, useDispatch} from "react-redux"
 import {getLessons} from '../../redux/Actions/actions-Horarios';
 
@@ -12,7 +11,7 @@ function ClasesWeeklyView() {
 
   useEffect(() => {
     dispatch(getLessons())
-  }, []);
+  }, [dispatch]);
 
   console.log(lessons)
 

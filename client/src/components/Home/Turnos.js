@@ -1,7 +1,6 @@
 import React from "react";
 import Styles from "./TurnosStyled";
 
-const labelsNames = ["Clase", "Horario", "Profe"];
 
 function Clases({ turnos }) {
   return (

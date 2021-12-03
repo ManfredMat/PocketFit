@@ -10,7 +10,7 @@ function Detail() {
 
     useEffect(() => {
         dispatch(getEvents())
-    }, []);
+    }, [dispatch]);
 
     console.log(events)
 

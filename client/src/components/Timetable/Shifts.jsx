@@ -1,18 +1,10 @@
 import React, {useEffect} from 'react';
-import * as json from "./Hard-code.json";
 import { getWeekShifts } from "../../redux/Actions/actions-Horarios"
 import {useSelector, useDispatch} from "react-redux"
 
 
 
-//Es para cuando creamos los shift queda aca por ahora
-function getWeekNumber(month, day, year) {
-    var currentdate = new Date(`${month},${day},${year}`);
-    var oneJan = new Date(currentdate.getFullYear(), 0, 1);
-    var numberOfDays = Math.floor((currentdate - oneJan) / (24 * 60 * 60 * 1000));
-    var result = Math.ceil((currentdate.getDay() + 1 + numberOfDays) / 7);
-    return result
-}
+
 
 function getWeekNameDay(today) {
     let options = { weekday: 'long' }

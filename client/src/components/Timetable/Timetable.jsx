@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ClasesWeeklyView from "./ClasesWeeklyView";
 import Calendar from "../_Universals/Calendar";
 import Detail from "./Detail";
