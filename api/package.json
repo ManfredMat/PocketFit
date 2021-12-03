@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node.",
+    "start": "node.js",
     "test": "mocha -w ./tests/**/*.spec.js"
   },
   "author": "Henry",
