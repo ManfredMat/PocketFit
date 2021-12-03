@@ -12,22 +12,22 @@ const {
   updateRoutine,
   modifyUser,
   getUserPayStatus,
-  assignShift
+  assignShift,
+  uploadImage,
 } = require("../Controllers/User");
 
 router.post("/register_user", createUser);
 router.get("/", checkAuth, getAllUsers);
-router.get("/paystatus/:date" , getUserPayStatus)
-router.put("/:id/:prop", modifyUser);
+router.get("/paystatus/:date", getUserPayStatus);
+router.put("/:id", uploadImage, modifyUser);
 router.get("/:id", getSpeficicUser);
 router.post("/traine_plan/:id", createRoutine);
 router.post("/shift_user/:id", assignShift);
 router.get("/traine_plan/:id", getRoutine);
 router.delete("/traine_plan/:id", deleteRoutine);
 router.put("/traine_plan/:id/:prop", updateRoutine);
-router.post('/bulk', async (req, res) => {
-  res.json(await User.bulkCreate(req.body))
+router.post("/bulk", async (req, res) => {
+  res.json(await User.bulkCreate(req.body));
 });
-
 
 module.exports = router;
