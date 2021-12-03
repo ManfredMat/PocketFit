@@ -8,7 +8,6 @@ const green = '#6AE056'
 
 export const Container = styled.View`
     background-color: ${darkGrayBase};
-    align-items: center;
     width: 100%;
     height: 100%;
 `
@@ -46,6 +45,8 @@ export const Excercise = styled.View`
 export const ProxShifts = styled.View`
     background-color: ${green};
     border-radius: 15px;
+    justify-content: center;
+    align-items: center;
     margin: 5px;
     width: 300px;
     height: 100px;
