@@ -74,8 +74,9 @@ export const ButtonShifts = styled.TouchableOpacity`
 `
 export const ShiftsCont = styled.View`
     display: flex;
+    justify-content: center;
     flex-direction: row;
     align-items: center;
-    width: 370px;
+    width: 100%;
     height: 100px;
 `

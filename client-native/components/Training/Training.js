@@ -33,7 +33,6 @@ export default function Training() {
     setTimeout(() => {
         SetDay()
     }, 2021);
-    
     return (
         <Container>
             <TextT>Entrenamiento</TextT>
@@ -53,7 +52,7 @@ export default function Training() {
                   }
                 </Routines>
                 <View style={{marginTop: 15}}>
-                    <TouchableOpacity onPress={() => alert('próximamente solo en cines')}>
+                    <TouchableOpacity onPress={() => alert('estamos trabajando en esta seccion')}>
                         <Text style={{alignSelf: 'center', color: "#6AE056"}}>Ver Mas...</Text>
                     </TouchableOpacity>
                 </View>
@@ -80,7 +79,7 @@ export default function Training() {
                             </View>
                         </View>
                     </ProxShifts>
-                    <ButtonShifts onPress={() => alert('trae las palomitas')}>
+                    <ButtonShifts onPress={() => alert('estamos trabajando en esta seccion')}>
                         <Image source={arrow} style={{alignSelf: 'center', width:30, height:30, opacity: 0.8}}/>
                     </ButtonShifts>
                 </ShiftsCont>
