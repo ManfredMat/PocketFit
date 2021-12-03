@@ -76,6 +76,7 @@ const SignIn = () => {
     await AsyncStorage.setItem('recoEmail', state.email);
     Alert.alert("Mail enviado, revise su correo");
     setState({ email: "", password: "" });
+    setPassRecoRender(false);
     navigation.navigate("PassReco");
   }
 

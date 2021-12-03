@@ -261,7 +261,65 @@
       "weekday": "Jueves",
       "day": 30,
       "month": 11,
-      "year": 2021
+      "year": 2021,
+      "users": [
+        {
+            "id": "a42a0099-a490-40cc-9b9f-55d81a49f823",
+            "name": "Victoria",
+            "lastname": "Chouhy",
+            "email": "vchouhy@gmail.com ",
+            "age": null,
+            "height": null,
+            "weight": null,
+            "backsquat": 0,
+            "pushpress": 0,
+            "snatch": 0,
+            "clean": 0,
+            "running": "0",
+            "pullups": 0,
+            "password": "$2b$10$A2lc3VEjdpORXv7VFuVDQOGQdoLyutWc5mvU7xRhZMjw20704LbqS",
+            "isadmin": false,
+            "isprofessor": false,
+            "isuser": true,
+            "paymentday": null,
+            "createdAt": "2021-12-02T22:06:54.634Z",
+            "updatedAt": "2021-12-02T22:06:54.634Z",
+            "UserShift": {
+                "createdAt": "2021-12-02T22:08:40.144Z",
+                "updatedAt": "2021-12-02T22:08:40.144Z",
+                "userId": "a42a0099-a490-40cc-9b9f-55d81a49f823",
+                "shiftId": 7
+            }
+        },
+        {
+          "id": "a42a0099-a498-40cc-9b9f-55d81a49f825",
+          "name": "Mateo",
+          "lastname": "Manfredi",
+          "email": "vchouhy@gmail.com ",
+          "age": null,
+          "height": null,
+          "weight": null,
+          "backsquat": 0,
+          "pushpress": 0,
+          "snatch": 0,
+          "clean": 0,
+          "running": "0",
+          "pullups": 0,
+          "password": "$2b$10$A2lc3VEjdpORXv7VFuVDQOGQdoLyutWc5mvU7xRhZMjw20704LbqS",
+          "isadmin": false,
+          "isprofessor": false,
+          "isuser": true,
+          "paymentday": null,
+          "createdAt": "2021-12-02T22:06:54.634Z",
+          "updatedAt": "2021-12-02T22:06:54.634Z",
+          "UserShift": {
+              "createdAt": "2021-12-02T22:08:40.144Z",
+              "updatedAt": "2021-12-02T22:08:40.144Z",
+              "userId": "a42a0099-a490-40cc-9b9f-55d81a49f823",
+              "shiftId": 7
+          }
+      }
+    ]
     },
     {
       "kindOfShift": "dato",
