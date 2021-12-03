@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -L",
+    "start": "node.",
     "test": "mocha -w ./tests/**/*.spec.js"
   },
   "author": "Henry",
@@ -31,7 +31,6 @@
     "node": "^17.1.0",
     "node-fetch": "^3.1.0",
     "nodemailer": "^6.7.2",
-    "nodemon": "^2.0.15",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0",
     "pg": "^8.5.1",
