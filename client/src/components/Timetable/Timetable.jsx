@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import ClasesWeeklyView from "./ClasesWeeklyView";
 import Calendar from "../_Universals/Calendar";
 import Detail from "./Detail";
@@ -39,7 +40,9 @@ function Timetable() {
                 {console.log(configTurnos)}
               </div>
               <Shifts setShiftDetail={setShiftDetail}/>
+              <Link to="/session/timetable/ShiftsDetails">
               <button>Ver detalle</button>
+              </Link>
             </div>
             <div name="Row-2">
               <div name="Clases Semanales">
