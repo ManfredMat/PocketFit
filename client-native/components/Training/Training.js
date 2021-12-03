@@ -7,6 +7,7 @@ import { getAllWeekPlan } from '../../redux/Actions/actions-Training';
 import { useDispatch, useSelector } from 'react-redux';
 import loading from '../../assets/loading.gif'
 import CardExercise from './CardExercise'
+import { PreVieShifts } from '../Shifts/Shifts';
 
 export default function Training() {
     //basics
@@ -32,7 +33,6 @@ export default function Training() {
     setTimeout(() => {
         SetDay()
     }, 2021);
-    
     return (
         <Container>
             <TextT>Entrenamiento</TextT>
@@ -52,14 +52,14 @@ export default function Training() {
                   }
                 </Routines>
                 <View style={{marginTop: 15}}>
-                    <TouchableOpacity onPress={() => alert('próximamente solo en cines')}>
+                    <TouchableOpacity onPress={() => alert('estamos trabajando en esta seccion')}>
                         <Text style={{alignSelf: 'center', color: "#6AE056"}}>Ver Mas...</Text>
                     </TouchableOpacity>
                 </View>
                 <TextW>Próximo Turno</TextW>
                 <ShiftsCont>
                     <ProxShifts>
-                        <Text>todos los turnos</Text>
+                        <PreVieShifts/>
                     </ProxShifts>
                     <ButtonShifts onPress={() => navigation.navigate('Shifts')}>
                         <Image source={arrow} style={{alignSelf: 'center', width:30, height:30, opacity: 0.8}}/>
@@ -68,9 +68,18 @@ export default function Training() {
                 <TextW>Próxima Clase</TextW>
                 <ShiftsCont>
                     <ProxShifts>
-                        <Text>hoy</Text>
+                        <View style={{display: 'flex', flexDirection: 'row'}}>
+                            <View style={{marginRight: 20, alignItems: 'center'}}>
+                                <Text style={{fontSize: 20}}>Martes</Text>
+                                <Text>18/12</Text>
+                            </View>
+                            <View style={{alignItems: 'center'}}>
+                                <Text style={{fontSize: 20}}>Zumba</Text>
+                                <Text>13hrs - 14hrs</Text>
+                            </View>
+                        </View>
                     </ProxShifts>
-                    <ButtonShifts onPress={() => alert('trae las palomitas')}>
+                    <ButtonShifts onPress={() => alert('estamos trabajando en esta seccion')}>
                         <Image source={arrow} style={{alignSelf: 'center', width:30, height:30, opacity: 0.8}}/>
                     </ButtonShifts>
                 </ShiftsCont>
