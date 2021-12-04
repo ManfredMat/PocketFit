@@ -44,7 +44,7 @@ const newShift = async (req, res) => {
 }
 
 const getAllShifts = async (req, res) => {
-  const {day, month, year} = req.body
+  const {day, month, year} = req.query
     try {
       const allShift = await Shift.findAll()
       const allShiftFiltered = allShift.filter((shift)=> shift.year >= year && shift.month >= month && shift.day >= day)
