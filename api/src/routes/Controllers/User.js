@@ -14,14 +14,14 @@ const createUser = async (req, res) => {
   try {
     const duplicatedMail = await User.findOne({ where: { email: email } });
     if (duplicatedMail === null) {
-      const newUser = await User.create({
+      let newUser = await User.create({
         name,
         lastname,
         email,
         password,
         paymentday,
       });
-      //res.send("New user succesfully created!");
+
       res.json(newUser);
     } else {
       res.send("User is already registered");
@@ -34,7 +34,10 @@ const createUser = async (req, res) => {
 const getAllUsers = async (req, res) => {
   try {
     const allUsers = await User.findAll();
-    const filterAdmin = allUsers.filter((user) => user.isadmin === false);
+    let filterAdmin = allUsers.filter((user) => user.isadmin === false);
+    filterAdmin.map(
+      (users) => (users.imageData = users.imageData.toString("base64"))
+    );
     res.json(filterAdmin);
   } catch (err) {
     res.send(err);
@@ -73,6 +76,7 @@ const modifyUser = async (req, res) => {
   const imageType = req.file.mimetype;
   const imageName = req.file.originalname;
   const imageData = req.file.buffer;
+
   try {
     await User.update(
       {
