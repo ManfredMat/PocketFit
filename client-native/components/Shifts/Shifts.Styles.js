@@ -10,4 +10,5 @@ export const Cards = styled.View`
     border-radius: 10px;
     padding: 5px;
     width: 93%;
+    margin: 5px;
 `

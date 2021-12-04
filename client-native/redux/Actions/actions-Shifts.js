@@ -12,7 +12,7 @@ export const getAllShifts = (day, month, year) => {
     return async function(dispatch) {
     try {
       const res = await axios.get('http://192.168.1.109:3001/api/shift/all', { params:query })
-      console.log(res)
+      console.log(res.data)
       dispatch({
         type: ALL_SHIFTS,
         payload: res.data

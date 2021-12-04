@@ -25,8 +25,8 @@ export default function Shifts() {
             <Text style={{color: '#fff', fontSize: 20, marginLeft: 10, marginTop: 20 }}>Mis Turnos</Text>
             <View>
                 {
-            getAll.length > 0 
-            ? getAll.map(e =>{
+            getAllShift.length > 0 
+            ? getAllShift.map(e =>{
                 return(
                  <View key={e.id} style={{alignItems: 'center'}}>
                     <MyShiftsCard 
@@ -48,8 +48,8 @@ export default function Shifts() {
             <View>
                 <Text style={{color: '#fff', fontSize: 20, marginLeft: 10, marginTop: 20 }}>Turnos disponibles</Text>
                 <View>
-                    {/* {getAllShifts.length !==0 ?
-                     getAllShifts.map(e => {
+                    {getAll.length !==0 ?
+                     getAll.map(e => {
                          return (
                              <View key={e.id} style={{alignItems: 'center'}}>
                                  <ShiftsAvailable
@@ -67,7 +67,7 @@ export default function Shifts() {
                          )
                      })
                      : <Text style={{color: '#fff', alignSelf: 'center', marginTop: 50}}>Oops! hay turnos Disponibles...</Text>
-                    } */}
+                    }
                 </View>
             </View>
           </ScrollView>
