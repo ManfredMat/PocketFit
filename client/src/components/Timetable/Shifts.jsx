@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import * as json from "./Hard-code.json";
 import { getWeekShifts, selectShift } from "../../redux/Actions/actions-Horarios"
 import { useSelector, useDispatch } from "react-redux"
 
@@ -30,13 +29,13 @@ function Shifts({ setShiftDetail }) {
 
     useEffect(() => {
         dispatch(getWeekShifts())
-    }, [dispatch]);
+    }, []);
 
     function shiftPreview(shift) {
-        console.log("entre")
         dispatch(selectShift(shift))
         setShiftDetail(true)
     }
+
 
     return (
         <div>
