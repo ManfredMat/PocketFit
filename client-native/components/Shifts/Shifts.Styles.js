@@ -1,0 +1,13 @@
+import styled from "styled-components/native";
+
+const lemon = '#D9FB52'
+
+export const Cards = styled.View`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: ${lemon};
+    border-radius: 10px;
+    padding: 5px;
+    width: 93%;
+`

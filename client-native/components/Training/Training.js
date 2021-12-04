@@ -56,6 +56,7 @@ export default function Training() {
                         <Text style={{alignSelf: 'center', color: "#6AE056"}}>Ver Mas...</Text>
                     </TouchableOpacity>
                 </View>
+                
                 <TextW>Próximo Turno</TextW>
                 <ShiftsCont>
                     <ProxShifts>
@@ -65,6 +66,7 @@ export default function Training() {
                         <Image source={arrow} style={{alignSelf: 'center', width:30, height:30, opacity: 0.8}}/>
                     </ButtonShifts>
                 </ShiftsCont>
+        
                 <TextW>Próxima Clase</TextW>
                 <ShiftsCont>
                     <ProxShifts>

@@ -19,6 +19,7 @@ export const TextW = styled.Text`
     color: #fff;
     font-size: 20px;
     margin-top: 20px;
+    margin-left: 20px;
 `
 export const TextT = styled.Text`
     font-size: 40px;
