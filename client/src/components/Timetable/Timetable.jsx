@@ -37,9 +37,8 @@ function Timetable() {
 
                 <button onClick={() => setTakeShift(!takeShift)}>Agendar Turno</button>
                 <button onClick={() => setconfigTurnos(!configTurnos)}>Configurar Turnos</button>
-                {console.log(configTurnos)}
               </div>
-              <Shifts setShiftDetail={setShiftDetail}/>
+              {/* <Shifts setShiftDetail={setShiftDetail}/> */}
               <Link to="/session/timetable/ShiftsDetails">
               <button>Ver detalle</button>
               </Link>

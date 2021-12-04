@@ -24,4 +24,3 @@ router.post('/bulk', createBulk);
 router.post('/weekcreate', weekCreate);
 
 module.exports = router;
-1
