@@ -13,7 +13,6 @@ export default function ShiftsAvailable({weekday, day, month, availability, capa
         shiftRecord({
             idUser: getUserid,
             idShift: id,
-            availability: availability
         }) 
        dispatch(getShiftId(id))
     }  

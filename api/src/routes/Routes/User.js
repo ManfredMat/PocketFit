@@ -14,6 +14,7 @@ const {
   getUserPayStatus,
   assignShift,
   uploadImage,
+  getShift,
 } = require("../Controllers/User");
 
 router.post("/register_user", createUser);
@@ -23,6 +24,7 @@ router.put("/:id", uploadImage, modifyUser);
 router.get("/:id", getSpeficicUser);
 router.post("/traine_plan/:id", createRoutine);
 router.post("/shift_user/:id", assignShift);
+router.get("/shiftuser/:id", getShift);
 router.get("/traine_plan/:id", getRoutine);
 router.delete("/traine_plan/:id", deleteRoutine);
 router.put("/traine_plan/:id/:prop", updateRoutine);

@@ -9,10 +9,9 @@ export default function MyShiftsCard({weekday, day , month, beginning, ending, y
     const dispatch = useDispatch()
     const Remove = ()=> {
       dispatch(deleteShiftId(id))
-    }
+    }                                                                                                                           
 
-
-    return (
+    return (                                                               
         <Cards>
             <View style={{width: '60%'}}>
                 <Text style={{fontSize:20}}>{weekday} {day}/{month}/{year}</Text>

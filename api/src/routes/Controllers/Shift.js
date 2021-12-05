@@ -105,7 +105,7 @@ const updateShift = async (req, res) => {
         await oneShift.addUser(addUser)
         let newAvailability = oneShift.capacity -1
         oneShift.availability = newAvailability
-        //oneShift.update()
+        oneShift.save()
         res.send(oneShift)
     }
     catch (err) {
