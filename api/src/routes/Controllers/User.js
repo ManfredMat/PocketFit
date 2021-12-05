@@ -35,9 +35,9 @@ const getAllUsers = async (req, res) => {
   try {
     const allUsers = await User.findAll();
     let filterAdmin = allUsers.filter((user) => user.isadmin === false);
-    filterAdmin.map(
-      (users) => (users.imageData = users.imageData.toString("base64"))
-    );
+    filterAdmin.map((users) => {
+      if (users.imageData) users.imageData = users.imageData.toString("base64");
+    });
     res.json(filterAdmin);
   } catch (err) {
     res.send(err);
