@@ -4,6 +4,7 @@ import Home from '../Home/Home';
 import NavIcon from './NavIcons';
 import TestComponent from '../TestComponent';
 import Training from '../Training/Training';
+import Profile from '../Profile/Profile';
 
 const Stack = createBottomTabNavigator();
 
@@ -19,23 +20,23 @@ export default function InicioStack() {
                         options={{headerShown: false, tabBarIcon:() => <NavIcon imgSrc={1}/>}}
                     />
                     <Stack.Screen
-                        name="Stadistics"
+                        name="Estadísticas"
                         component={TestComponent}
                         options={{ headerShown: false, tabBarIcon:() => <NavIcon imgSrc={2}/>}}
                         
                     />
                     <Stack.Screen
-                        name="Profile"
-                        component={TestComponent}
+                        name="Perfil"
+                        component={Profile}
                         options={{ headerShown: false, tabBarIcon:() => <NavIcon imgSrc={3}/>}}
                     />
                     <Stack.Screen
-                        name="Training"
+                        name="Entrenamiento"
                         component={Training}
                         options={{ headerShown: false, tabBarIcon:() => <NavIcon imgSrc={4} size={35}/>}}
                         />
                     <Stack.Screen
-                        name="Notifications"
+                        name="Notificaciones"
                         component={TestComponent}
                         options={{ headerShown: false, tabBarIcon:() => <NavIcon imgSrc={5}/>}}
                     />

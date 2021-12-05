@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, Alert} from 'react-native';
+import { View, Text, Image, TouchableOpacity, Alert, ScrollView} from 'react-native';
 import { useSelector } from "react-redux";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from "@react-navigation/core";
+import Styles from './Home.styles';
 
 export default function Home() {
     const navigation = useNavigation();
@@ -20,31 +21,33 @@ export default function Home() {
     storeData("true")
 
     return (
-        <View>
-            <View style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                <Image 
-                    source={{uri:'https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-gris.png'}} 
-                    style={{width: 50, height: 50, margin: 3}}
-                />
-                <Text style={{marginLeft: 10, fontSize: 25}}>Hola {user?.name}!</Text>
-                <TouchableOpacity style={{marginLeft: 40}} onPress={() => logOut()}><Text>LOGOUT</Text></TouchableOpacity>
-            </View>
+        <Styles.Container>
+            <ScrollView>
+                <View style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                    <Image 
+                        source={{uri:'https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-gris.png'}} 
+                        style={{width: 50, height: 50, margin: 3}}
+                    />
+                    <Styles.TextWhite style={{marginLeft: 10, fontSize: 25}}>Hola {user?.name}!</Styles.TextWhite>
+                    <TouchableOpacity style={{marginLeft: 40}} onPress={() => logOut()}><Styles.TextWhite>LOGOUT</Styles.TextWhite></TouchableOpacity>
+                </View>
 
-            <View style={{backgroundColor: '#fff', padding: 20, margin: 10}}> 
-                <Text>Estadisticas</Text>
-            </View>
-            
-            <View style={{backgroundColor: '#fff', height:'20%' ,padding: 20, margin: 10}}>
-                <Text>Newsletter</Text>
-            </View>
+                <Styles.Card style={{backgroundColor: '#d81919', height: 150, padding: 20, margin: 10}}> 
+                    <Styles.TextWhite>Estadisticas</Styles.TextWhite>
+                </Styles.Card>
+                
+                <Styles.Card style={{backgroundColor: '#6AE056', height: 150, padding: 20, margin: 10}}>
+                    <Styles.TextBlack>Newsletter</Styles.TextBlack>
+                </Styles.Card>
 
-            <View style={{backgroundColor: '#fff', height:'20%', padding: 20, margin: 10}}>
-                <Text>Tu rutina</Text>
-            </View>
+                <Styles.Card style={{backgroundColor: '#CEFA1F', height: 150, padding: 20, margin: 10}}>
+                    <Styles.TextBlack>Tu rutina</Styles.TextBlack>
+                </Styles.Card>
 
-            <View style={{backgroundColor: '#fff', height:'20%', padding: 20, margin: 10}}>
-                <Text>Clases</Text>
-            </View>
-        </View>
+                <Styles.Card style={{backgroundColor: '#c4c4c4', height: 150, padding: 20, margin: 10}}>
+                    <Styles.TextBlack>Clases</Styles.TextBlack>
+                </Styles.Card>
+            </ScrollView>
+        </Styles.Container>
     )
 }

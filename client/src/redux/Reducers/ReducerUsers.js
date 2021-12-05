@@ -1,4 +1,5 @@
 import { GET_USERS, SEARCH_USERS } from "../Actions/actions-users";
+import * as json from "../../components/Users/Users.json";
 
 const initialState = {
     users: [],
@@ -8,9 +9,17 @@ const initialState = {
 function reducerUsers(state = initialState, action) {
     switch (action.type) {
       case GET_USERS:
+        //comentar el if de abajo si en la db se tiene menos de 3 users
+        if (action.payload.length < 3) {
+          return {
+            ...state,
+            users: json.users
+          }
+        }
+
         return {
           ...state,
-          users: action.payload,
+          users: action.payload
         };
 
       case SEARCH_USERS:

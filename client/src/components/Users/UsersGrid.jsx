@@ -31,7 +31,7 @@ function UsersGrid() {
                         key={key}
                         name={users.name}
                         lastname={users.lastname}
-                        image={`https://picsum.photos/200?random=${key}`}
+                        image={users.imageData? `data:image/jpeg;base64, ${users.imageData}` : `https://picsum.photos/200?random=${key}`}
                         pago="Pago" //{pago[Math.round(Math.random())]}
                         activo="Activo" //{activo[Math.round(Math.random())]}
                     />
@@ -41,7 +41,7 @@ function UsersGrid() {
                         key={key}
                         name={users.name}
                         lastname={users.lastname}
-                        image={`https://picsum.photos/200?random=${key}`}
+                        image={users.imageData? `data:image/jpeg;base64, ${users.imageData}` : `https://picsum.photos/200?random=${key}`}
                         pago="Pago" //{pago[Math.round(Math.random())]}
                         activo="Activo" //{activo[Math.round(Math.random())]}
                     />
