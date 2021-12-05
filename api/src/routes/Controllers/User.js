@@ -126,6 +126,15 @@ const assignShift = async (req, res) => {
     res.send(err);
   }
 };
+const getShift = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const getShift = await User.findAll({ where: { id: id }, include: Shift });
+    res.json(getShift);
+  } catch (err) {
+    res.send(err);
+  }
+};
 
 const getRoutine = async (req, res) => {
   const { id } = req.params;
@@ -209,4 +218,5 @@ module.exports = {
   getUserPayStatus,
   assignShift,
   uploadImage,
+  getShift
 };
