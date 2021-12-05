@@ -33,7 +33,7 @@ function Configuration() {
                 </Styles.CheckBoxWrapper>
             </Styles.Box>
 
-            <Styles.GreenButton onClick={logOut}>LOGOUT</Styles.GreenButton>
+            <Styles.GreenButton onClick={logOut}>Cerrar Sesión</Styles.GreenButton>
         </Styles.Container>
     )
 }
