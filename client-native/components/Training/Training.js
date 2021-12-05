@@ -82,7 +82,7 @@ export default function Training() {
                             </View>
                         </View>
                     </ProxShifts>
-                    <ButtonShifts onPress={() => alert('estamos trabajando en esta seccion')}>
+                    <ButtonShifts onPress={() => alert('estamos trabajando en esta sección')}>
                         <Image source={arrow} style={{alignSelf: 'center', width:30, height:30, opacity: 0.8}}/>
                     </ButtonShifts>
                 </ShiftsCont>

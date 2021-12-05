@@ -5,7 +5,7 @@ import NavIcon from './NavIcons';
 import TestComponent from '../TestComponent';
 import Training from '../Training/Training';
 import Profile from '../Profile/Profile';
-
+import Statistics from '../Statistics/Statistics';
 const Stack = createBottomTabNavigator();
 
 export default function InicioStack() {
@@ -21,7 +21,7 @@ export default function InicioStack() {
                     />
                     <Stack.Screen
                         name="Estadísticas"
-                        component={TestComponent}
+                        component={Statistics}
                         options={{ headerShown: false, tabBarIcon:() => <NavIcon imgSrc={2}/>}}
                         
                     />
