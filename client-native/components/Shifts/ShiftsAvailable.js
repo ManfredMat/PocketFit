@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, Alert, TouchableOpacity } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { Cards } from './Shifts.Styles'
+import { Avariable } from './Shifts.Styles'
 import {shiftRecord} from '../../api/put-shift'
 import { getShiftId } from '../../redux/Actions/actions-Shifts'
 
@@ -19,7 +19,7 @@ export default function ShiftsAvailable({weekday, day, month, availability, capa
     }  
     console.log()
     return (
-     <Cards>
+     <Avariable>
         <View style={{width: '60%'}}>
             <Text style={{fontSize:20}}>{weekday} {day}/{month}/{year}</Text>
             <Text>{beginning}hs - {ending}hs</Text>
@@ -31,6 +31,6 @@ export default function ShiftsAvailable({weekday, day, month, availability, capa
                 {text: 'Si', onPress: () => handleSubmmit()}],{ cancelable: false })}>
             <Text style={{fontSize:30 , alignSelf: 'flex-end'}}>+</Text>
         </TouchableOpacity> 
-    </Cards>
+    </Avariable>
     )
 }
