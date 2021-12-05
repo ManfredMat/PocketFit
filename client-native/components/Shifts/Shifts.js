@@ -18,7 +18,7 @@ export default function Shifts() {
     const dispatch = useDispatch()
     const getAll = useSelector((state)  => state.reducerShifts.allShifts)
     useEffect(() => {dispatch(getAllShifts(day, month, year))},[dispatch]);
-    
+    console.log()
     return ( 
         <Container>
             <ScrollView>
