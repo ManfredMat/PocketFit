@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux"
 function ShiftsPreview({ display }) {
     const shiftSelect = useSelector(state => state.timetable.shiftSelect)
 
+    console.log(shiftSelect)
     return (
         <div>
             <div style={{
@@ -31,6 +32,7 @@ function ShiftsPreview({ display }) {
                         <div>
                             <h3>Clientes</h3>
                             <button>Agendar Turno</button>
+                            {console.log(shiftSelect.users)}
                             {shiftSelect.users ? <div>
                                 {shiftSelect.users.map((user) => (
                                     <div>
