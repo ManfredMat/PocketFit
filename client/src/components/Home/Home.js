@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Calendar from "../_Universals/Calendar";
 import Clases from "./Clases";
 import Turnos from './Turnos'
 import Styles from "./HomeStyled";
 import datos from "./Datos-Hard";
+import { useDispatch } from "react-redux";
+import { getAdmin } from "../../redux/Actions/actions-login";
 
 const GymName = "FitnessGym";
 
@@ -13,6 +15,12 @@ function month(date) {
 }
 
 function Home() {
+  const dispatch = useDispatch();
+  const id = localStorage.getItem("number");
+
+  useEffect(() => {
+    dispatch(getAdmin(id))
+  }, [dispatch]);
   localStorage.setItem("isLogged", "true");
 
   const date = new Date();

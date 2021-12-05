@@ -14,8 +14,8 @@ function UsersGrid() {
         // eslint-disable-next-line 
     }, []);
 
-    const pago = ["Pago", "No pago"]
-    const activo = ["Activo", "Inactivo"]
+    // const pago = ["Pago", "No pago"]
+    // const activo = ["Activo", "Inactivo"]
     
     return (
         <Styles.UsersGridContainer>

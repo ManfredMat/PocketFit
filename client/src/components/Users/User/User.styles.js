@@ -27,7 +27,7 @@ const Styles = {
         }
     `,
 
-    h4User: styled.h4`
+    TextUser: styled.h4`
         color: white;
         margin-top: .5rem;
         margin-bottom: .2rem;
