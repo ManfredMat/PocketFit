@@ -1,21 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, Alert, TouchableOpacity } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { Cards } from './Shifts.Styles'
 import {shiftRecord} from '../../api/put-shift'
+import { getShiftId } from '../../redux/Actions/actions-Shifts'
 
 
 export default function ShiftsAvailable({weekday, day, month, availability, capacity, beginning, ending, week, year, id}) {
     const dispatch = useDispatch()
     const getUserid = useSelector((state) => state.reducerUser.user.id)
-    console.log()
     const handleSubmmit = () => {
         shiftRecord({
             idUser: getUserid,
             idShift: id,
-            availability: availability - 1
+            availability: availability
         }) 
-    }
+       dispatch(getShiftId(id))
+    }  
+    console.log()
     return (
      <Cards>
         <View style={{width: '60%'}}>

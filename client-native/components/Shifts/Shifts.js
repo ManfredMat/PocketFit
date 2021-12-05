@@ -6,10 +6,12 @@ import MyShiftsCard from './MyShiftsCard'
 import ShiftsAvailable from './ShiftsAvailable'
 import { getAllShifts } from '../../redux/Actions/actions-Shifts'
 import { useDispatch, useSelector } from 'react-redux';
-
+import { Cards } from './Shifts.Styles'
+//fake db
 const getAllShift = []
 let obj2 = {id: 12323, day: 19, availability: 10, capacity: 15, beginning: 14, ending: 16, weekday: 'Miercoles', week: 1, month: 12, year: 2021}
 getAllShift.push(obj2)
+
 export default function Shifts() {
     const date = new Date()
     const day = date.getDate()
@@ -17,16 +19,17 @@ export default function Shifts() {
     const year = date.getFullYear()
     const dispatch = useDispatch()
     const getAll = useSelector((state)  => state.reducerShifts.allShifts)
-    useEffect(() => {dispatch(getAllShifts(day, month, year))},[dispatch]);
+    const myShift = useSelector((state) => state.reducerShifts.myShifts)
     console.log()
+    useEffect(() => {dispatch(getAllShifts(day, month, year))},[dispatch]);
     return ( 
         <Container>
             <ScrollView>
             <Text style={{color: '#fff', fontSize: 20, marginLeft: 10, marginTop: 20 }}>Mis Turnos</Text>
             <View>
                 {
-            getAllShift.length > 0 
-            ? getAllShift.map(e =>{
+            myShift.length > 0 
+            ? myShift.map(e =>{
                 return(
                  <View key={e.id} style={{alignItems: 'center'}}>
                     <MyShiftsCard 
@@ -40,8 +43,10 @@ export default function Shifts() {
                  </View>
                 )      
             })
-            : <View  style={{display: 'flex', flexDirection: 'row' , width: '100%', backgroundColor: "#000", padding: 10}}>
-                <Text>loading...</Text>
+            : <View style={{alignItems: 'center'}}>
+                <Cards>
+                    <Image style={{width: 60, height: 60, alignSelf: 'center'}}source={loading}/>
+                </Cards>
               </View>
                 }
             </View>
@@ -66,7 +71,7 @@ export default function Shifts() {
                              </View>
                          )
                      })
-                     : <Text style={{color: '#fff', alignSelf: 'center', marginTop: 50}}>Oops! hay turnos Disponibles...</Text>
+                     : <Text style={{color: '#fff', alignSelf: 'center', marginTop: 50}}>Oops! No hay turnos Disponibles...</Text>
                     }
                 </View>
             </View>
