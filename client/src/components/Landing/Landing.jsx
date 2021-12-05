@@ -1,9 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import { LandingDiv, CargandoLanding, ContainerLanding } from "./Landing.styles";
-import LandingIcon from '../../assets/img/landingicon.svg'
-import { Container, Wave } from "../Login/Login.styles";
-import LogingWave from "../../assets/img/loginwave.svg";
+import { LandingDiv, ContainerLanding } from "./Landing.styles";
+import LandingIcon from '../../assets/img/landingicon.svg';
 
 function Landing() {
     const navigate = useNavigate();

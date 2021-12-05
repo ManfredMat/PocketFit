@@ -9,8 +9,10 @@ import SemanalPlanSelect from "../../assets/img/iconos/select-icons/plan-select.
 import FeedBackIco from "../../assets/img/iconos/feedback.svg";
 import FeedBackIcoSelect from "../../assets/img/iconos/select-icons/feedback-select.svg";
 import React from "react";
+import { useSelector } from "react-redux";
 
 function NavBar({screenHeight}) {
+  const adminProfileImage = useSelector(state => state.session.admin.imageData);
   let actual = window.location.pathname;
 
   return (
@@ -18,10 +20,10 @@ function NavBar({screenHeight}) {
       <Styles.GlobalStyle />
       <Styles.StyledBody screenHeight={screenHeight}>
         <Styles.StyledTopContainer>
-          <Link to="/profile">
+          <Link to="/session/profile">
             <Styles.StyledProfileImageContainer>
               <Styles.StyledProfileImage
-                src="https://picsum.photos/200"
+                src={adminProfileImage ? `data:image/jpeg;base64, ${adminProfileImage}` : "https://picsum.photos/200"}
                 alt="profile-photo"
               />
             </Styles.StyledProfileImageContainer>

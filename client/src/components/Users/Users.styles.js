@@ -23,6 +23,7 @@ const Styles = {
         border-radius: 2rem;
         border-style: hidden;
         margin-top: 2rem;
+        margin-bottom: 1rem;
         padding: .5rem;
         width: 20rem;
     `,
@@ -41,7 +42,6 @@ const Styles = {
 
     Filter: styled.select`
         background-color: var(--green);
-        margin-top: 1rem;
         margin-left: 40vw;
         margin-right: 40vw;
         margin-bottom: 1rem;

@@ -12,6 +12,7 @@ function Configuration() {
             withCredentials: true
         });
         localStorage.removeItem("isLogged");
+        localStorage.removeItem("number");
         navigate("/login")
     }
 
