@@ -39,7 +39,9 @@ export default function Training() {
             <ScrollView>
                 <TextW>Tu Rutina de hoy</TextW>
                 <Routines>
-                { today.length !== 0 
+                { 
+                typeof today === 'string' ? <Excercise><Text style={{alignSelf: 'center'}}>{today}</Text></Excercise> :
+                today.length !== 0 
                     ? today[0].blocks[0].exercises?.map(e => {
                      return <Excercise key={e[3]}>
                                 <CardExercise  reps={e[1]} exercise={e[0]}/>
@@ -51,11 +53,12 @@ export default function Training() {
                    </Excercise>
                   }
                 </Routines>
-                <View style={{marginTop: 15}}>
+                {/* <View style={{marginTop: 15}}>
                     <TouchableOpacity onPress={() => alert('estamos trabajando en esta seccion')}>
                         <Text style={{alignSelf: 'center', color: "#6AE056"}}>Ver Mas...</Text>
                     </TouchableOpacity>
-                </View>
+                </View> */}
+                
                 <TextW>Próximo Turno</TextW>
                 <ShiftsCont>
                     <ProxShifts>
