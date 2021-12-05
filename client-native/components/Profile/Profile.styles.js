@@ -20,6 +20,17 @@ const Styles = {
         border-radius: 20px;
         background-color: ${green};
     `,
+
+    GreenButton: styled.TouchableOpacity`
+        background-color: ${green};
+        border-radius: 18px;
+        align-self: center;
+        padding: 4px;
+        height: 30px;
+        width: 110px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    `,
 }
 
 export default Styles;
