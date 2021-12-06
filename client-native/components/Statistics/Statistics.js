@@ -5,10 +5,18 @@ import { useSelector } from 'react-redux';
 
 export default function Statistics() {
     const myShift = useSelector((state) => state.reducerShifts.myShifts)
-    let clases = myShift.length / 26
+    const clases = () => {
+        let total = myShift.length / 26 
+        if(total > 0.10){
+            return 0.10
+        } else {
+            return total
+        }
+    }
+
     const data = {
         labels: ["Rutinas", "Clases", "Ejercicios"],
-        data: [0.7, clases, 0.8]
+        data: [0.7, clases(), 0.8]
       };
     return (
         <View style={{backgroundColor: '#020E12', width: '100%', height: '100%', justifyContent: 'center'}}>
