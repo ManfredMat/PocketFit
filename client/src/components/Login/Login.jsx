@@ -21,8 +21,13 @@ function Login() {
       } else if (getSession === "Password mismatch") {
         alert("La contraseña ingresada es incorrecta"); setLoading(false)
       } else {
-        getSession.passport.user.isadmin ? navigate('/session/home')
-          : alert('Usted no es administrador, para continuar descargue PocketFit mobile'); setLoading(false)
+        if(getSession.passport.user.isadmin) {
+          const id = getSession.passport.user.id;
+          localStorage.setItem("number", id);
+          navigate('/session/home');
+        } else {
+          alert('Usted no es administrador, para continuar descargue PocketFit mobile'); setLoading(false)
+        }
       }
     } else alert("No se pudo iniciar sesión"); setLoading(false)
   }
@@ -56,7 +61,7 @@ function Login() {
   }
   let regularExprecion = "/^+([-]?+)*@+([-]?+)*({2,3})+$/"
   const validatorEmail = (email) => {
-    if (regularExprecion.test(email)) return true
+    if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) return true
     else return false
   }
 

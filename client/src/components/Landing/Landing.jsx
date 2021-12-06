@@ -1,11 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { LandingDiv, ContainerLanding } from "./Landing.styles";
-import LandingIcon from '../../assets/img/landingicon.svg'
-
-function Landing() {
     const navigate = useNavigate();
-    const isLogged = localStorage.getItem("isLogged");
 
     useEffect(() => {
         const timer = setTimeout(() => {

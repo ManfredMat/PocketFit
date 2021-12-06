@@ -1,6 +1,7 @@
 import axios from "axios";
 
-export const GET_USERS = "GET_USERS"
+export const GET_USERS = "GET_USERS";
+export const SEARCH_USERS = "SEARCH_USERS";
 
 export function getUsers() {
     return async function (dispatch) {
@@ -15,4 +16,11 @@ export function getUsers() {
         //     console.log(error)
         // })
     }
-}
+};
+
+export function searchUsers(search) {
+    return {
+        type: SEARCH_USERS,
+        payload: search
+    }
+};

@@ -5,55 +5,72 @@ const AddExcercise = (props) => {
 
     const [excercises, setExcercises] = useState(false);
     const [inputs, setInputs] = useState({
-        id: "default",
+        indexExercise: "default",
         reps: 0,
         description: ""
     })
 
     const handleInputs = (e) => {
 
-        setInputs({...inputs, [e.target.name]: e.target.value});
+        setInputs({ ...inputs, [e.target.name]: e.target.value });
 
     }
 
     const handleAddExcercise = () => {
 
-        props.setExcercises([...props.excercises,{...inputs, reps: parseInt(inputs.reps)}]);
+        props.setExercises(oldState => {
+            return {
+
+                ...oldState,
+                [props.api]: {
+                    ...oldState[props.api],
+                    [`block${props.block}`]: [
+                        ...oldState[props.api][`block${props.block}`],
+                        {
+                            id: excercises[inputs.indexExercise].id,
+                            name: excercises[inputs.indexExercise].name,
+                            repetitions: inputs.reps,
+                            notes: inputs.description
+                        }
+                    ]
+                }
+            }
+        });
         props.setRender(false);
 
     }
 
-    useEffect( async () => {
+    useEffect(async () => {
 
         const exerciseApi = await axios.get("http://127.0.0.1:3001/api/exercises/");
         setExcercises(exerciseApi.data);
 
-    },[])
+    }, [])
 
-    return(
+    return (
 
         <div>
 
             <h3>Agregando Ejercicio a {props.day} bloque {props.block}</h3>
 
             <label htmlFor="exercises">Ejercicio </label>
-            <select id="exercises" name="id" value={inputs.excercise} onChange={handleInputs}>
-                    <option value="default">-- Seleccione un ejercicio --</option>
-                {excercises 
-                ? excercises.map(excercise => 
-                    <option key = {excercise.id} value = {excercise.id}>{excercise.name}</option>    
-                )
-                :null}
+            <select id="exercises" name="indexExercise" value={inputs.excercise} onChange={handleInputs}>
+                <option value="default">-- Seleccione un ejercicio --</option>
+                {excercises
+                    ? excercises.map(excercise =>
+                        <option key={excercise.id} value={excercises.indexOf(excercise)}>{excercise.name}</option>
+                    )
+                    : null}
             </select>
 
-            <label htmlFor="repetitions">Repeticiones </label>            
-            <input type="number" min="0" name="reps" id="repetitions" value={inputs.repetitions} onChange={handleInputs}/>
+            <label htmlFor="repetitions">Repeticiones </label>
+            <input type="number" min="0" name="reps" id="repetitions" value={inputs.repetitions} onChange={handleInputs} />
 
-            <label htmlFor="description">Descripción </label>            
-            <input type="text" name="description" id="description" value={inputs.description} onChange={handleInputs}/>
+            <label htmlFor="description">Descripción </label>
+            <input type="text" name="description" id="description" value={inputs.description} onChange={handleInputs} />
 
-            <button onClick={handleAddExcercise}>Agregar</button>
-            <button >Cancelar</button>
+            <button disabled={inputs.indexExercise === 'default'} onClick={handleAddExcercise}>Agregar</button>
+            <button>Cancelar</button>
 
         </div>
     )

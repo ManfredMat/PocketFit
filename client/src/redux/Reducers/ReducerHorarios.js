@@ -1,13 +1,20 @@
 import {
   GET_LESSONS,
   GET_EVENTS,
-  GET_WEEK_SHIFTS
+  GET_WEEK_SHIFTS,
+  SELECT_SHIFT,
+  GET_ALL_SHIFTS,
+  GET_ACTUAL_TIMETABLE, PUT_SHIFT_USER, PUT_SHIFT_USER_CLEAN
 } from "../Actions/actions-Horarios";
 
 const initialState = {
   lessons: [],
   events: [],
-  weekShifts: []
+  weekShifts: [],
+  shiftSelect: undefined,
+  allShifts: [],
+  actualTimetable: [],
+  putShiftUser: []
 };
 
 function reducerHorario(state = initialState, action) {
@@ -22,11 +29,40 @@ function reducerHorario(state = initialState, action) {
         ...state,
         events: action.value,
       }
-      case GET_WEEK_SHIFTS:
-        return {
-          ...state,
-          weekShifts: action.value,
-        }
+    case GET_WEEK_SHIFTS:
+      return {
+        ...state,
+        weekShifts: action.value,
+      }
+    case SELECT_SHIFT:
+      return {
+        ...state,
+        shiftSelect: action.value,
+      }
+    case GET_ALL_SHIFTS:
+      return {
+        ...state,
+        allShifts: action.value,
+      }
+    case GET_ACTUAL_TIMETABLE:
+      return {
+        ...state,
+        actualTimetable: action.value,
+      }
+
+    case PUT_SHIFT_USER:
+      let array = []
+      array.push(action.value)
+      return {
+        ...state,
+        putShiftUser: array,
+      }
+
+    case PUT_SHIFT_USER_CLEAN:
+      return {
+        ...state,
+        putShiftUser: action.value,
+      }
 
     default:
       return state;

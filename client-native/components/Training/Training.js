@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import {View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
-import { 
-    Container, Routines, TextW, TextT, LemonContainer, Excercise, ProxShifts, 
-    ViewEX, Pesa, ButtonShifts, ShiftsCont} from './Training.Styles'
+import { Container, Routines, TextW, TextT, Excercise, ProxShifts, ButtonShifts, ShiftsCont} from './Training.Styles'
 import arrow from '../../assets/arrow.png'
-import {ButtonGreen} from '../Authentication/Authentication.styles'
 import { useNavigation } from '@react-navigation/core';
-import pesa from '../../assets/pesa.png'
 import { getAllWeekPlan } from '../../redux/Actions/actions-Training';
 import { useDispatch, useSelector } from 'react-redux';
 import loading from '../../assets/loading.gif'
-import {MultipleSwitch} from './MultipleSwitch';
-
+import CardExercise from './CardExercise'
+import { PreVieShifts } from '../Shifts/Shifts';
 
 export default function Training() {
-    let is = true
     //basics
     const dispatch = useDispatch()
     const getAll = useSelector((state)  => state.reducerTraining.weekPlan)
@@ -38,50 +33,45 @@ export default function Training() {
     setTimeout(() => {
         SetDay()
     }, 2021);
-    console.log()
     return (
         <Container>
             <TextT>Entrenamiento</TextT>
             <ScrollView>
                 <TextW>Tu Rutina de hoy</TextW>
                 <Routines>
-                  { 
-                    today.length !== 0 ? today[0].blocks[0].exercises?.map(e => {
-                        return (
-                          <Excercise key={e[0]}>
-                             {
-                            //  is
-                            //     ? <ViewEX>
-                            //         <Text>COMPLETADO!</Text>
-                            //         <Pesa source={pesa}/>
-                            //         </ViewEX>
-                            //     : 
-                                <ViewEX>
-                                    <Text>{e[0]}</Text>
-                                    <Text style={{marginLeft: 80}}>reps: {e[1]}</Text>
-                                </ViewEX>
-                             }
-                             <View style={{position: 'absolute', alignSelf: 'flex-end'}}>
-                                <MultipleSwitch/>
-                             </View>
-                          </Excercise>
-                        )
+                { 
+
+                typeof today === 'string' 
+                    ? <Excercise>
+                        <Text style={{alignSelf: 'center'}}>{today}</Text>
+                    </Excercise> :
+                today.length !== 0 
+                    ? today[0] === undefined
+                    ?  <Excercise>
+                         <Image style={{width: 100, height: 100, alignSelf: 'center'}}source={loading}/>
+                       </Excercise>
+                    :
+                    today[0].blocks[0].exercises?.map(e => {
+                     return <Excercise key={e[3]}>
+                                <CardExercise  reps={e[1]} exercise={e[0]}/>
+                            </Excercise>
                     })
-                          : 
-                         <Excercise>
-                             <Image style={{width: 100, height: 100, alignSelf: 'center'}}source={loading}/>
-                        </Excercise>
+                    : 
+                    <Excercise>
+                        <Image style={{width: 100, height: 100, alignSelf: 'center'}}source={loading}/>
+                   </Excercise>
                   }
                 </Routines>
-                <View style={{marginTop: 15}}>
-                    <TouchableOpacity onPress={() => alert('próximamente solo en cines')}>
+                {/* <View style={{marginTop: 15}}>
+                    <TouchableOpacity onPress={() => alert('estamos trabajando en esta seccion')}>
                         <Text style={{alignSelf: 'center', color: "#6AE056"}}>Ver Mas...</Text>
                     </TouchableOpacity>
-                </View>
+                </View> */}
+                
                 <TextW>Próximo Turno</TextW>
                 <ShiftsCont>
                     <ProxShifts>
-                        <Text>todos los turnos</Text>
+                        <PreVieShifts/>
                     </ProxShifts>
                     <ButtonShifts onPress={() => navigation.navigate('Shifts')}>
                         <Image source={arrow} style={{alignSelf: 'center', width:30, height:30, opacity: 0.8}}/>
@@ -90,9 +80,18 @@ export default function Training() {
                 <TextW>Próxima Clase</TextW>
                 <ShiftsCont>
                     <ProxShifts>
-                        <Text>hoy</Text>
+                        <View style={{display: 'flex', flexDirection: 'row'}}>
+                            <View style={{marginRight: 20, alignItems: 'center'}}>
+                                <Text style={{fontSize: 20}}>Martes</Text>
+                                <Text>18/12</Text>
+                            </View>
+                            <View style={{alignItems: 'center'}}>
+                                <Text style={{fontSize: 20}}>Zumba</Text>
+                                <Text>13hrs - 14hrs</Text>
+                            </View>
+                        </View>
                     </ProxShifts>
-                    <ButtonShifts onPress={() => alert('trae las palomitas')}>
+                    <ButtonShifts onPress={() => alert('estamos trabajando en esta sección')}>
                         <Image source={arrow} style={{alignSelf: 'center', width:30, height:30, opacity: 0.8}}/>
                     </ButtonShifts>
                 </ShiftsCont>

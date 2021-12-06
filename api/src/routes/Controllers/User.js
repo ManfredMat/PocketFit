@@ -1,7 +1,9 @@
-const { User, Routine, Exercise } = require("../../db");
+const { User, Routine, Exercise, Shift } = require("../../db");
 const bcrypt = require("bcrypt");
-
-
+const multer = require("multer");
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+const uploadImage = upload.single("photo");
 
 const createUser = async (req, res) => {
   const { name, lastname, paymentday } = req.body;
@@ -12,14 +14,14 @@ const createUser = async (req, res) => {
   try {
     const duplicatedMail = await User.findOne({ where: { email: email } });
     if (duplicatedMail === null) {
-      const newUser = await User.create({
+      let newUser = await User.create({
         name,
         lastname,
         email,
         password,
         paymentday,
       });
-      //res.send("New user succesfully created!");
+
       res.json(newUser);
     } else {
       res.send("User is already registered");
@@ -33,7 +35,7 @@ const getAllUsers = async (req, res) => {
   try {
     const allUsers = await User.findAll();
     const filterAdmin = allUsers.filter((user) => user.isadmin === false);
-    res.json(filterAdmin);
+    res.send(filterAdmin);
   } catch (err) {
     res.send(err);
   }
@@ -42,7 +44,9 @@ const getAllUsers = async (req, res) => {
 const getSpeficicUser = async (req, res) => {
   const { id } = req.params;
   try {
-    const specificUser = await User.findOne({ where: { id: id } });
+    let specificUser = await User.findOne({ where: { id: id } });
+    let userImg = specificUser.imageData.toString("base64");
+    specificUser["imageData"] = userImg;
     res.json(specificUser);
   } catch (err) {
     res.send(err);
@@ -66,6 +70,10 @@ const modifyUser = async (req, res) => {
     password,
     paymentday,
   } = req.body;
+  const imageType = req.file.mimetype;
+  const imageName = req.file.originalname;
+  const imageData = req.file.buffer;
+
   try {
     await User.update(
       {
@@ -83,6 +91,9 @@ const modifyUser = async (req, res) => {
         pullups,
         password,
         paymentday,
+        imageType,
+        imageName,
+        imageData,
       },
       { where: { id: id } }
     );
@@ -108,6 +119,15 @@ const assignShift = async (req, res) => {
   try {
     const getOneShift = await Shift.findOne({ where: { id: id } });
     res.json(getOneShift);
+  } catch (err) {
+    res.send(err);
+  }
+};
+const getShift = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const getShift = await User.findAll({ where: { id: id }, include: Shift });
+    res.json(getShift);
   } catch (err) {
     res.send(err);
   }
@@ -157,30 +177,31 @@ const updateRoutine = async (req, res) => {
   }
 };
 
-const getUserPayStatus = async(res , req)=>{
-  let {date} = req.
-  date = new Date(date)
+const getUserPayStatus = async (res, req) => {
+  let { date } = (req.date = new Date(date));
 
-  try{
-   let clients = await User.findAll({where:{isuser:true , isadmin:false , isprofessor:false}})
-   let alDia =[]
-   let fueraDeTermino =[]
+  try {
+    let clients = await User.findAll({
+      where: { isuser: true, isadmin: false, isprofessor: false },
+    });
+    let alDia = [];
+    let fueraDeTermino = [];
 
-   for(let i of clients){
-     if(clients[i].paymentday > date){
-      alDia.push(clients[i])
-     }else{
-      fueraDeTermino.push(clients[i])
-     }
-   }
-   return({
-    upToDate:alDia,
-    offToDate:fueraDeTermino
-   })
-
+    for (let i of clients) {
+      if (clients[i].paymentday > date) {
+        alDia.push(clients[i]);
+      } else {
+        fueraDeTermino.push(clients[i]);
+      }
+    }
+    return {
+      upToDate: alDia,
+      offToDate: fueraDeTermino,
+    };
+  } catch (error) {
+    res.send(error);
   }
-  catch(error){res.send(error)}
-}
+};
 
 module.exports = {
   createUser,
@@ -192,5 +213,7 @@ module.exports = {
   updateRoutine,
   modifyUser,
   getUserPayStatus,
-  assignShift
+  assignShift,
+  uploadImage,
+  getShift
 };

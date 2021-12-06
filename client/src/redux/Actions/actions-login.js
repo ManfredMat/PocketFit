@@ -2,10 +2,11 @@ import axios from 'axios'
 
 //ACTIONS NAMES
 export const LOG_IN = 'LOG_IN'
+export const GET_ADMIN = "GET_ADMIN"
 
-export function LogIn(payload) {
+export function LogIn(user) {
   return async function (dispatch) {
-    await axios.post('/api/login', payload, { withCredentials: true })
+    await axios.post('http://localhost:3001/api/login', user, { withCredentials: true })
       .then(res => {
         dispatch({
           type: LOG_IN,
@@ -13,4 +14,16 @@ export function LogIn(payload) {
         })
       });
   }
-}
+};
+
+export function getAdmin(id) {
+  return async function (dispatch) {
+    await axios.get(`http://localhost:3001/api/users/${id}`)
+    .then(res => {
+      dispatch({
+        type: GET_ADMIN,
+        payload: res.data
+      })
+    })
+  }
+};

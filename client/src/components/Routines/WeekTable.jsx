@@ -1,45 +1,208 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Day from "./Day";
+
+const weekDays = [
+    {
+        day: 'Lunes',
+        api: 'monday'
+    },
+    {
+        day: 'Martes',
+        api: 'tuesday'
+    },
+    {
+        day: 'Miércoles',
+        api: 'wendsday'
+    },
+    {
+        day: 'Jueves',
+        api: 'thursday'
+    },
+    {
+        day: 'Viernes',
+        api: 'friday'
+    },
+    {
+        day: 'Sábado',
+        api: 'saturday'
+    },
+]
 
 const WeekTable = () => {
 
     const [weekIds, setWeekIds] = useState({
-        monday:'',
+        monday: '',
         tuesday: '',
         wendsday: '',
         thursday: '',
         friday: '',
-        saturday: ''    
+        saturday: ''
+    })
+
+    const [weekChanges, setWeekChanges] = useState({
+        monday:{
+            dayRoutine:{},
+            blocks:{}
+        },
+        tuesday:{
+            dayRoutine:{},
+            blocks:{}
+        },
+        wendsday:{
+            dayRoutine:{},
+            blocks:{}
+        },
+        thursday:{
+            dayRoutine:{},
+            blocks:{}
+        },
+        friday:{
+            dayRoutine:{},
+            blocks:{}
+        },
+        saturday:{
+            dayRoutine:{},
+            blocks:{}
+        }
+    })
+
+    const [exercises, setExercises] = useState({
+
+        monday: {
+            block1: [],
+            block2: [],
+            block3: []
+        },
+        tuesday: {
+            block1: [],
+            block2: [],
+            block3: []
+        },
+        wendsday: {
+            block1: [],
+            block2: [],
+            block3: []
+        },
+        thursday: {
+            block1: [],
+            block2: [],
+            block3: []
+        },
+        friday: {
+            block1: [],
+            block2: [],
+            block3: []
+        },
+        saturday: {
+            block1: [],
+            block2: [],
+            block3: []
+        },
     })
 
     const saveChanges = async () => {
 
-        console.log(weekIds)
+        console.log( await postBlocks());
+ 
+     }
 
-        // const response = await axios.post("unaUrl", weekIds);
-        // console.log(response);
+    const postBlocks = async () => {
+
+        let weekIds = {};
+
+        for(const key in weekChanges){
+
+            let routinesPromises = []
+            let routinesIds = []
+
+            console.log("-----" + key + "-----")
+
+            for(const key2 in weekChanges[key].blocks){
+
+                routinesPromises.push(axios.post("http://127.0.0.1:3001/api/blocks/", weekChanges[key].blocks[key2]));
+
+            }
+
+            routinesIds = await Promise.all(routinesPromises);
+            routinesIds = routinesIds.map(routine => routine.data.id);
+            weekIds[key] = await postRoutine(routinesIds, weekChanges[key].dayRoutine);
+        }
+
+        return weekIds;
 
     }
 
-    const validateWeekIds = () => {
-        return (weekIds.monday.length === 0 || weekIds.tuesday.length === 0 || weekIds.wendsday.length === 0 || weekIds.thursday.length === 0 || weekIds.friday.length === 0 || weekIds.saturday.length === 0);
+    const postRoutine = async (blocksIds, dayRoutine) => {
+
+        const response = await axios.post("http://127.0.0.1:3001/api/routines", {...dayRoutine, blocks:blocksIds});
+        return response.data.id;
     }
+
+    useEffect(async () => {
+
+        let response = await axios.get('http://127.0.0.1:3001/api/routines/all');
+
+        if(response.data[0].day === "monday" && false){ 
+            
+            let auxState = {};
+
+            response.data.forEach(day => {
+    
+                auxState = {
+                    ...auxState, [day.day]: {
+    
+                        block1: day.blocks[0].exercises.map(exercise => {
+                            return {
+                                name: exercise[0],
+                                repetitions: exercise[1],
+                                notes: exercise[2],
+                                id: exercise[3]
+                            }
+                        }),
+    
+                        block2: day.blocks[1].exercises.map(exercise => {
+                            return {
+                                name: exercise[0],
+                                repetitions: exercise[1],
+                                notes: exercise[2],
+                                id: exercise[3]
+                            }
+                        }),
+    
+                        block3: day.blocks[2].exercises.map(exercise => {
+                            return {
+                                name: exercise[0],
+                                repetitions: exercise[1],
+                                notes: exercise[2],
+                                id: exercise[3]
+                            }
+                        })
+    
+                    }
+                }
+    
+            })
+    
+            setExercises(auxState);
+        }
+
+
+    }, [])
+
+    
 
     return (
         <>
-            <h1>Plan Semanal</h1>
-            <div style={{display:'flex'}}>
-                <Day day="Lunes" api="monday" setWeekIds={setWeekIds} weekIds={weekIds}></Day>
-                <Day day="Martes" api="tuesday" setWeekIds={setWeekIds} weekIds={weekIds}></Day>
-                <Day day="Miércoles" api="wendsday" setWeekIds={setWeekIds} weekIds={weekIds}></Day>
-                <Day day="Jueves" api="thursday" setWeekIds={setWeekIds} weekIds={weekIds}></Day>
-                <Day day="Viernes" api="friday" setWeekIds={setWeekIds} weekIds={weekIds}></Day>
-                <Day day="Sábado" api="saturday" setWeekIds={setWeekIds} weekIds={weekIds}></Day>
-            </div>
-            <button disabled={validateWeekIds()} onClick={saveChanges}>Guardar Cambios</button>
 
-           
+            <h1>Plan Semanal</h1>
+            <div style={{ display: 'flex' }}>
+                {weekDays.map((day) =>
+                    <Day {...day} key={day.api} setWeekChanges={setWeekChanges} setWeekIds={setWeekIds} weekIds={weekIds} exercises={exercises[day.api]} setExercises={setExercises}></Day>
+                )}
+            </div>
+            <button disabled={/*validateWeekIds()*/ false} onClick={saveChanges}>Guardar Cambios</button>
+
         </>
     )
 
