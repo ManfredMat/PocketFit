@@ -6,11 +6,11 @@ import { useSelector, useDispatch } from "react-redux"
 import ShiftsPreview from "./ShiftsPreview";
 
 
-function getWeekNameDay(today) {
-    let options = { weekday: 'long' }
-    let convert = today.toLocaleString(undefined, options)
-    return convert.charAt(0).toUpperCase() + convert.slice(1)
-}
+// function getWeekNameDay(today) {
+//     let options = { weekday: 'long' }
+//     let convert = today.toLocaleString(undefined, options)
+//     return convert.charAt(0).toUpperCase() + convert.slice(1)
+// }
 
 function ShiftWeeklyView() {
 
@@ -19,9 +19,9 @@ function ShiftWeeklyView() {
     const dispatch = useDispatch()
     let weekDays = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado"]
     //const weekNumsData = weekNums(weekShifts)
-    let startOfWeek = moment().startOf('week').add(1, 'days').format('M-DD-YYYY').split("-");
-    let startOfWeekMonthNum = parseInt(moment().endOf('Month').format('D'));
-    let endOfWeek = moment().endOf('week').add(1, 'days').format('M-D-YYYY').split("-");
+    // let startOfWeek = moment().startOf('week').add(1, 'days').format('M-DD-YYYY').split("-");
+    // let startOfWeekMonthNum = parseInt(moment().endOf('Month').format('D'));
+    // let endOfWeek = moment().endOf('week').add(1, 'days').format('M-D-YYYY').split("-");
     let week = parseInt(moment().format("w"))
 
 
@@ -33,7 +33,7 @@ function ShiftWeeklyView() {
     
     useEffect(() => {
         dispatch(getWeekShifts(week))
-    }, []);
+    }, [dispatch , week]);
 
     function shiftPreview(shift) {
         dispatch(selectShift(shift))

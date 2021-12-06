@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import moment from 'moment';
 import { useSelector, useDispatch } from "react-redux"
 import { getAllShifts } from "../../redux/Actions/actions-Horarios"
-let weekDays = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+
 
 function Mondays() {
     let mondays = []
@@ -16,7 +16,7 @@ function Mondays() {
 function ShiftActivate({ display }) {
     let today = moment().format('M-D-YYYY').split("-")
     const weekShifts = useSelector(state => state.timetable.weekShifts)
-    const allShifts = useSelector(state => state.timetable.allShifts)
+
     const dispatch = useDispatch()
     const [data, setData] = useState({
         weeks: "",
@@ -24,10 +24,7 @@ function ShiftActivate({ display }) {
     })
 
 
-    let startOfWeek = moment().startOf('week').add(1, 'days').format('M-DD-YYYY').split("-");
-    let startOfWeekMonthNum = parseInt(moment().endOf('Month').format('D'));
-    let endOfWeek = moment().endOf('week').add(1, 'days').format('M-D-YYYY').split("-");
-    let week = parseInt(moment().format("w"))
+    
     let mondays = Mondays()
     let end = moment(data.weeks,"D-M-YYYY").endOf('isoWeek').add(data.weekCount, 'week').format('D-M-YYYY')
 
@@ -40,15 +37,15 @@ function ShiftActivate({ display }) {
             }})
             return last
         }
-    
-        let lastShift = lastShiftGenerate() 
-    
+
+        let lastShift = lastShiftGenerate()
+
         console.log("Lastweek:",lastShift)
         */
 
     useEffect(() => {
         dispatch(getAllShifts(today[2], today[1], today[0]))
-    }, []);
+    }, [dispatch , today]);
 
     function handleOnChange(e) {
         e.preventDefault()
@@ -62,10 +59,7 @@ function ShiftActivate({ display }) {
     }
 
 
-    const handleOnSubmit = () => {
-
-    }
-
+    
 
     console.log(weekShifts)
     return (

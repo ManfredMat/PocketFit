@@ -1,5 +1,5 @@
 import axios from "axios";
-import * as json from "../../components/Timetable/Hard-code.json";
+
 
 //ACTIONS NAMES
 export const GET_LESSONS = "GET_LESSONS";

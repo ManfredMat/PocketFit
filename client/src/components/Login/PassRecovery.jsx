@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
 import footer from "../../assets/img/footer.svg";
 import LogingWave from "../../assets/img/loginwave.svg";
 import ProfilePhoto from "../../assets/img/profilephoto.svg"
@@ -7,7 +6,7 @@ import { Container, ContainerIn, Input, Wave, Btn } from "./Login.styles";
 import axios from "axios";
 
 function PassRecovery() {
-  const navigate = useNavigate();
+  
   const [input, setInput] = useState({
     email: ''
   })

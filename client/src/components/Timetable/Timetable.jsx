@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import ClasesWeeklyView from "./ClasesWeeklyView";
 import Calendar from "../_Universals/Calendar";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import Detail from "./Detail";
-import Shifts from "./Shifts";
+
 import ScheduleShift from "./ScheduleShift";
 import ShiftsConfig from "./ShiftsConfig";
 import ShiftsPreview from "./ShiftsPreview";
@@ -20,7 +20,7 @@ function Timetable() {
 
   useEffect(() => {
     dispatch(getTimetable())
-}, []);
+}, [dispatch]);
 
   console.log(configTurnos)
   return (

@@ -12,7 +12,7 @@ function Profile() {
     
     useEffect(() => {
       dispatch(getAdmin(id))
-    }, []);
+    }, [dispatch , id]);
 
     const onChange = (e) => {
         const file = e.target.files[0];

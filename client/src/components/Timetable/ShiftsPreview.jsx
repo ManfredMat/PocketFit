@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector} from "react-redux"
 
 
 function ShiftsPreview({ display }) {
@@ -36,7 +36,7 @@ function ShiftsPreview({ display }) {
                             {shiftSelect.users ? <div>
                                 {shiftSelect.users.map((user) => (
                                     <div>
-                                        <img src="https://picsum.photos/40"/>
+                                        <img src="https://picsum.photos/40" alt=""/>
                                         <h4>{user.name} {user.lastname}</h4>
                                     </div>
                                 ))}

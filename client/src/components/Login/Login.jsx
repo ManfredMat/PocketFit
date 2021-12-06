@@ -59,7 +59,7 @@ function Login() {
       alert("No se pudo iniciar sesión")
     }
   }
-  let regularExprecion = "/^+([-]?+)*@+([-]?+)*({2,3})+$/"
+ 
   const validatorEmail = (email) => {
     if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) return true
     else return false

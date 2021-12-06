@@ -22,7 +22,7 @@ function Shifts({ setShiftDetail }) {
 
     useEffect(() => {
         dispatch(getWeekShifts())
-    }, []);
+    }, [dispatch]);
 
     function shiftPreview(shift) {
         dispatch(selectShift(shift))

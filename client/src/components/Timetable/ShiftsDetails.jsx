@@ -19,7 +19,7 @@ function ShiftsDetails() {
 
     useEffect(() => {
         dispatch(getAllShifts(today[2], today[0], today[1]))
-    }, [])
+    }, [dispatch , today])
 
     console.log("hola", allShifts)
     return (
