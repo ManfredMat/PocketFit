@@ -1,14 +1,14 @@
 import { React, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from '../../redux/Actions/actions-users';
-import { getTimetable, getAllShifts } from '../../redux/Actions/actions-Horarios';
+import { getTimetable, getAllShifts, postShift, postShiftClean } from '../../redux/Actions/actions-Horarios';
 import moment from 'moment';
 
 
 function ScheduleShift({ display }) {
     let today = moment().format('M-D-YYYY').split("-")
     const users = useSelector(state => state.users.users)
-    const actualTimetable = useSelector(state => state.timetable.actualTimetable)
+    const putShiftUser = useSelector(state => state.timetable.putShiftUser)
     const allShifts = useSelector(state => state.timetable.allShifts)
     const days = []
     allShifts.forEach((shift) => {
@@ -17,12 +17,12 @@ function ScheduleShift({ display }) {
         }
     })
     const [data, setData] = useState({
-        /* cliente guarda el id de cliente */
-        client: "",
-        /* El intervalo guarda el shif id */
-        intervalo: "",
-        date: "",
+        client: "default",
+        intervalo: "default",
+        date: "default",
     })
+
+    console.log(users)
 
     function handleOnChange(e) {
         e.preventDefault()
@@ -32,14 +32,31 @@ function ScheduleShift({ display }) {
                 [e.target.name]: e.target.value
             }
         })
+
         console.log(data.intervalo)
         console.log(allShifts)
     }
 
     const handleOnSubmit = (e) => {
         e.preventDefault()
+        const body = {
+            idUser: data.client,
+            idShift: parseInt(data.intervalo)
+        }
+
+        dispatch(postShift(body))
+        console.log("body:", body)
     }
 
+    const handleOnShiftClean = (e) => {
+        e.preventDefault()
+        dispatch(postShiftClean())
+        setData({
+            client: "default",
+            intervalo: "default",
+            date: "default",
+        })
+    }
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -61,40 +78,50 @@ function ScheduleShift({ display }) {
                 <form>
                     <h2>Agendar Turno</h2>
                     <label>Cliente</label>
-                    <input list="users" placeholder='Escribe un Nombre'
+                    <select placeholder='Escribe un Nombre'
                         name="client" onChange={(e) => {
                             handleOnChange(e)
-                        }} />
-                    <datalist id="users">
+                        }} value={data.client}>
+                        <option value="default">Elige un cliente...</option>
                         {users.map((user) =>
                             <option value={user.id}>{user.name + " " + user.lastname}</option>
                         )}
-                    </datalist>
+                    </select>
                     <label>Horarios</label>
-                    <select  placeholder='Selecciona un horario' name="intervalo" value={data.beginning+"-"+ data.ending}onChange={(e) => {
+                    <select placeholder='Selecciona un horario' name="intervalo" value={data.intervalo} onChange={(e) => {
                         handleOnChange(e)
                     }}>
-                        <option>Elige un horario...</option>
-                        {allShifts.filter((shift, index) =>
-                            data.date === `${shift.day}-${shift.month}-${shift.year}`)
-                            .map((shift) => (
-                                <option value={shift.id}>{shift.beginning+"hs -"+ shift.ending + " hs"} </option>
-                            ))
+                        <option value="default">Elige un horario...</option>
+                        {
+                            allShifts.filter((shift, index) => (
+                                data.date === `${shift.day}-${shift.month}-${shift.year}`))
+                                .map((shift) => (
+                                    <option value={shift.id}>{shift.beginning + "hs -" + shift.ending + " hs"}</option>
+                                ))
                         }
+
                     </select>
                     <label>Fecha</label>
                     <select type="date" name="date"
                         onChange={(e) => {
                             handleOnChange(e)
-                        }} >
-                        <option>Elige una fecha...</option>
+                        }} value={data.date}>
+                        <option value="default">Elige una fecha...</option>
                         {days.map((date) => <option value={date}>{date}</option>
                         )}
                         {/* {days.map((shift) => <option value={shift.id}>{`${shift.weekday} ${shift.day}/${shift.month}/${shift.year}`}</option>
                         )} */}
                     </select>
 
-                    <button type="submit" onClick={() => display(false)}>Crear</button>
+                    <button type="submit" onClick={putShiftUser.length >= 1 ? (e) => (e.preventDefault(), console.log("Holas")) : (e) => handleOnSubmit(e)}>Crear</button>
+                    {console.log(putShiftUser)}
+                    {putShiftUser.length >= 1 && <div>
+                        <p>Turno Creado</p>
+                        <p>Cliente:</p>
+                        <div>{putShiftUser.map((shift) => shift.users ? shift.users.map((user) => <p>{`${user.name} ${user.lastname}`}</p>) : "No se creo")}</div>
+                        <p>Dia: {putShiftUser.map((shift) => shift.day)}/{putShiftUser.map((shift) => shift.month)}/{putShiftUser.map((shift) => shift.year)}</p>
+                    </div>}
+                    <button onClick={(e) => handleOnShiftClean(e)}>Crear Otro</button>
                     <button onClick={() => display(false)}>Cancelar</button>
                 </form>
             </div>
