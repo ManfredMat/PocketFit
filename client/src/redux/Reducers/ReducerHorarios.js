@@ -1,7 +1,10 @@
 import {
   GET_LESSONS,
   GET_EVENTS,
-  GET_WEEK_SHIFTS, SELECT_SHIFT, GET_ALL_SHIFTS, GET_ACTUAL_TIMETABLE
+  GET_WEEK_SHIFTS, 
+  SELECT_SHIFT, 
+  GET_ALL_SHIFTS,
+  GET_ACTUAL_TIMETABLE
 } from "../Actions/actions-Horarios";
 
 const initialState = {

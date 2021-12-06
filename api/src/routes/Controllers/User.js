@@ -35,7 +35,7 @@ const getAllUsers = async (req, res) => {
   try {
     const allUsers = await User.findAll();
     const filterAdmin = allUsers.filter((user) => user.isadmin === false);
-    res.json(filterAdmin);
+    res.send(filterAdmin);
   } catch (err) {
     res.send(err);
   }
