@@ -32,7 +32,7 @@ function ShiftWeeklyView() {
     } */
     
     useEffect(() => {
-        dispatch(getWeekShifts(startOfWeek[1],startOfWeek[0],startOfWeekMonthNum,endOfWeek[1],endOfWeek[0],week,startOfWeek[2],weekDays,1))
+        dispatch(getWeekShifts(week))
     }, []);
 
     function shiftPreview(shift) {
@@ -40,6 +40,7 @@ function ShiftWeeklyView() {
         setShiftDetail(true)
     }
 
+console.log(weekShifts)
 
     return (
         <div>
