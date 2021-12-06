@@ -69,7 +69,8 @@ const modifyUser = async (req, res) => {
     pullups,
     password,
     paymentday,
-    isadmin
+    isadmin,
+    isuser
   } = req.body;
   const imageType = req.file.mimetype;
   const imageName = req.file.originalname;
@@ -95,6 +96,8 @@ const modifyUser = async (req, res) => {
         imageType,
         imageName,
         imageData,
+        isadmin,
+        isuser
       },
       { where: { id: id } }
     );
