@@ -6,7 +6,7 @@ export const GET_ADMIN = "GET_ADMIN"
 
 export function LogIn(user) {
   return async function (dispatch) {
-    await axios.post('http://localhost:3001/api/login', user, { withCredentials: true })
+    await axios.post('/api/login', user, { withCredentials: true })
       .then(res => {
         dispatch({
           type: LOG_IN,
@@ -18,7 +18,7 @@ export function LogIn(user) {
 
 export function getAdmin(id) {
   return async function (dispatch) {
-    await axios.get(`http://localhost:3001/api/users/${id}`)
+    await axios.get(`/api/users/${id}`)
     .then(res => {
       dispatch({
         type: GET_ADMIN,

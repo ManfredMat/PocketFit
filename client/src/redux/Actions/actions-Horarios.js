@@ -42,7 +42,7 @@ export function getEvents() {
 export function getWeekShifts(week) {
 
   return async function (dispatch) {
-    await axios.get(`http://localhost:3001/api/shift/week/${week}`)
+    await axios.get(`/api/shift/week/${week}`)
       .then(res => {
       console.log("getWeek:",res.data)
         dispatch({
@@ -77,7 +77,7 @@ export function postWeekShifts(firstDay,
   console.log(body)
 
   return async function (dispatch) {
-    await axios.post('http://localhost:3001/api/shift/weekcreate', body)
+    await axios.post('/api/shift/weekcreate', body)
       .then(res => {
         //console.log(res.data)
         dispatch({
@@ -105,7 +105,7 @@ export function getAllShifts(year,month,day) {
 
   return async function (dispatch) {
     await axios
-      .get("http://localhost:3001/api/shift/all", {params:query})
+      .get("/api/shift/all", {params:query})
       .then((res) => {
         console.log(res.data)
         dispatch({
@@ -119,7 +119,7 @@ export function getAllShifts(year,month,day) {
 export function getTimetable() {
   return async function (dispatch) {
     await axios
-      .get("http://localhost:3001/api/timetables/1")
+      .get("/api/timetables/1")
       .then((res) => {
         dispatch({
           type: GET_ACTUAL_TIMETABLE,
@@ -132,7 +132,7 @@ export function getTimetable() {
 export function postShift(body) {
   return async function (dispatch) {
     await axios
-      .put("http://localhost:3001/api/shift/update",body)
+      .put("/api/shift/update",body)
       .then((create) => {
         console.log(create.data)
         /* dispatch({
@@ -141,7 +141,7 @@ export function postShift(body) {
         }); */
       })
       await axios
-      .get(`http://localhost:3001/api/shift/${body.idShift}`)
+      .get(`/api/shift/${body.idShift}`)
       .then((res) => {
         dispatch({
           type: PUT_SHIFT_USER,

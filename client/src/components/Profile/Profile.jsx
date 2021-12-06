@@ -23,7 +23,7 @@ function Profile() {
         const data = new FormData();
         data.append("photo", file);
 
-        await axios.put(`http://localhost:3001/api/users/${id}`, data, {withCredentials:true, headers: {"content-Type": `multipart/form-data; boundary=${data._boundary}`}})
+        await axios.put(`/api/users/${id}`, data, {withCredentials:true, headers: {"content-Type": `multipart/form-data; boundary=${data._boundary}`}})
             .then(res => console.log(res))
             .catch(err => console.log(err));
 

@@ -23,8 +23,8 @@ const createOrder = async (req, res) => {
 		  brand_name: "mycompany.com",
 		  landing_page: "NO_PREFERENCE",
 		  user_action: "PAY_NOW",
-		  return_url: 'localhost:3001/api/paypal/capture-order',
-		  cancel_url: 'localhost:3001/api/paypal/cancel-payment',
+		  return_url: '/api/paypal/capture-order',
+		  cancel_url: '/api/paypal/cancel-payment',
 		},
 	  };
   
