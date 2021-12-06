@@ -29,10 +29,11 @@ export const getAllShifts = (day, month, year) => {
 export const getShiftId = (id) => {
     return async function(dispatch) {
     try {
-      const res = await axios.get(`http://${IP}:3001/api/shift/${id}`)
+      const res = await axios.get(`http://${IP}:3001/api/shift/user/${id}`)
+      console.log(res.data.shifts)
       dispatch({
         type: GET_BY_ID,
-        payload: res.data
+        payload: res.data.shifts
       })
     } catch (error) {
       console.log(error)
