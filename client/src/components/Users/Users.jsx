@@ -1,30 +1,45 @@
-import { React, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { getUsers } from '../../redux/Actions/actions-users';
-import User from '../User/User';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { searchUsers } from '../../redux/Actions/actions-users';
+import Styles from './Users.styles';
+import UsersGrid from './UsersGrid';
+// import UsersList from './UsersList';
 
 function Users() {
-    const users = useSelector(state => state.users.users)
     const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getUsers())
-    }, [dispatch]);
-    
+    const [search, setSearch] = useState("");
+
+    function handleChange(e) {
+        setSearch(e.target.value);
+    };
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        dispatch(searchUsers(search))
+    }
+
     return (
-        <div>
-            <input type="text" placeholder="Buscar..."/>
-            <div>
-                {
-                    users.map((users, key) => {
-                        return <User 
-                            name={users.name}
-                            key={key}
-                        />
-                    })
-                }
-            </div>
-        </div>
+        <Styles.Container>
+            <Styles.NavBar>
+                <form style={{display: 'flex', flexDirection: 'row', justifyContent: "center", alignItems: "center"}} onSubmit={handleSubmit}>
+                    <Styles.SearchBar type="text" placeholder="Introduce un nombre o apellido..." autoCorrect="off" onChange={handleChange} value={search} />
+                    {/* <Styles.SearchButton type="submit" value="Buscar" /> */}
+                </form>
+                {/* <Styles.Filter name="filter">
+                    <option value="default" hidden>Filtrar por...</option>
+                    <option value="Rating" disabled>Estado de pago</option>
+                        <option value="0-5">Pago</option>
+                        <option value="5-0">No pago</option>
+                    <option value="Rating" disabled>Activo/Inactivo</option>
+                        <option value="0-5">Activo</option>
+                        <option value="5-0">Inactivo</option>
+                </Styles.Filter> */}
+            </Styles.NavBar>
+            <Styles.UsersContainer>
+                <UsersGrid />
+            </Styles.UsersContainer>
+        </Styles.Container>
     )
 }
 
-export default Users
+export default Users;

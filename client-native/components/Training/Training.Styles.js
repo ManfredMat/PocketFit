@@ -8,21 +8,18 @@ const green = '#6AE056'
 
 export const Container = styled.View`
     background-color: ${darkGrayBase};
-    align-items: center;
     width: 100%;
     height: 100%;
 `
 export const Routines = styled.View`
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 200px;
-
 `
 export const TextW = styled.Text`
     color: #fff;
     font-size: 20px;
     margin-top: 20px;
+    margin-left: 20px;
 `
 export const TextT = styled.Text`
     font-size: 40px;
@@ -49,6 +46,8 @@ export const Excercise = styled.View`
 export const ProxShifts = styled.View`
     background-color: ${green};
     border-radius: 15px;
+    justify-content: center;
+    align-items: center;
     margin: 5px;
     width: 300px;
     height: 100px;
@@ -59,6 +58,7 @@ export const ViewEX = styled.View`
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-right: 50px;
 `
 export const Pesa = styled.Image`
     width: 40px;
@@ -75,8 +75,9 @@ export const ButtonShifts = styled.TouchableOpacity`
 `
 export const ShiftsCont = styled.View`
     display: flex;
+    justify-content: center;
     flex-direction: row;
     align-items: center;
-    width: 370px;
+    width: 100%;
     height: 100px;
 `

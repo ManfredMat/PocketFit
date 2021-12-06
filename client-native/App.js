@@ -8,7 +8,7 @@ import RootStack from "./components/navigator/RootStack";
 import InicioStack from "./components/navigator/InicioStack";
 import store from "./redux/store";
 import { Provider } from "react-redux";
-import Shifts from "./components/Training/Shifts";
+import Shifts from "./components/Shifts/Shifts";
 import PassReco from "./components/Authentication/SignIn/PassReco";
 import {
   Poppins_100Thin,
