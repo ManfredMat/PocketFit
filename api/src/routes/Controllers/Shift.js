@@ -80,15 +80,16 @@ const getShiftById = async (req, res) => {
   catch (error) {
     res.send(error)
   }
+}
 
 const getShiftofUser = async (req, res) => {
   const { id } = req.params
   try {
-      const oneUser = await User.findOne({ where: { id: id }, include: Shift})
-      res.send(oneUser)
+    const oneUser = await User.findOne({ where: { id: id }, include: Shift })
+    res.send(oneUser)
   }
   catch (error) {
-      res.send(error)
+    res.send(error)
   }
 }
 
@@ -214,7 +215,7 @@ const weekCreate = async (req, res) => {
 
     //const intervalo = ["7-9", "9-11", "11-13", "14-16", "16-18", "18-20"]; //esto viene de timetable
     //const capacity = 10; //esto viene de timetable
-    let result =[]
+    let result = []
     for (let i = 0; i < weeks.length; i++) {
       const WeekDays = await WeekDaysGenerator(
         weeks[i].firstDay,
@@ -232,7 +233,7 @@ const weekCreate = async (req, res) => {
         WeekDays
       )
 
-      result = [...result,...create]
+      result = [...result, ...create]
     }
 
     const allShift = await Shift.findAll()
@@ -240,7 +241,7 @@ const weekCreate = async (req, res) => {
 
     let dates = []
     allShift.forEach(shift => dates.push(`${shift.day}/${shift.month}/${shift.year}|${shift.beginning}-${shift.ending}`))
-    const finalResult = combine.filter((shift)=>!dates.includes(`${shift.day}/${shift.month}/${shift.year}|${shift.beginning}-${shift.ending}`))
+    const finalResult = combine.filter((shift) => !dates.includes(`${shift.day}/${shift.month}/${shift.year}|${shift.beginning}-${shift.ending}`))
 
     res.json(await Shift.bulkCreate(finalResult))
   } catch (err) {
@@ -248,4 +249,4 @@ const weekCreate = async (req, res) => {
   }
 }
 
-module.exports = { getShiftofUser, weekCreate, createBulk, newShift, getAllShifts, getShiftByWeekNum, updateShift, deleteShift, getShiftById,getAllShiftsPlus };
+module.exports = { getShiftofUser, weekCreate, createBulk, newShift, getAllShifts, getShiftByWeekNum, updateShift, deleteShift, getShiftById, getAllShiftsPlus };
