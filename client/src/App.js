@@ -13,6 +13,7 @@ import ShiftsDetails from "./components/Timetable/ShiftsDetails"
 import Configuration from "./components/Configuration/Configuration.jsx";
 import ResetPassword from "./components/Login/ResetPassword";
 import Profile from "./components/Profile/Profile";
+import Routines from "./components/Routines/Routines";
 
 function App() {
 const [screenHeight, setScreenHeight] = useState("")
@@ -43,6 +44,7 @@ const [screenHeight, setScreenHeight] = useState("")
           <Route path="/session/timetable" element={<Timetable />} />
           <Route path="/session/timetable/ShiftsDetails" element={<ShiftsDetails />} />
           <Route path="/session/config" element={<Configuration />} />
+          <Route path="/session/routines" element={<Routines />} />
 
         </Routes>
       </main>

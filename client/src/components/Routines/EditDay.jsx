@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import EditBlock from "./EditBlock";
 
@@ -9,95 +8,143 @@ const EditDay = (props) => {
         block: 1
     });
 
-    const [idRoutine, setIdRoutine] = useState({
-        block1: '',
-        block2: '',
-        block3: ''
-    });
-
     const [input, setInput] = useState('')
 
     const handleOnclick = (block) => {
 
-        renderEditBlock.render
-            ? setRender({
-                render: false,
-                block: 1,
-            })
-            : setRender({
-                block: block,
-                render: true
-            });
+        setRender({ block: block, render: true });
+
     }
 
-    const submitChanges = async () => {
+    const submitChanges = () => {
 
         const dayRoutine = {
             kindOfRoutine: input,
-            //blocks: [idRoutine.block1, idRoutine.block2, idRoutine.block3],
             day: props.api
         }
 
-        props.setWeekChanges(oldState => {return { ...oldState, [props.api]:{...oldState[props.api], dayRoutine}}})
+        props.setWeekChanges(oldState => {
 
-        // const response = await axios.post("http://127.0.0.1:3001/api/routines", dayRoutine);
-        
-        // props.setWeekIds({ ...props.weekIds, [props.api]: response.data.id });
-        
+            return {
+                ...oldState,
+                [props.api]: {
+                    ...oldState[props.api],
+                    dayRoutine
+                }
+            }
+
+        })
+
         props.setRender(false)
+        props.setDisableButtons(false)
+
     }
 
     return (
 
-        <div>
+        <div style={{ backgroundColor: '#382506', position: 'fixed', width: '70vw', minHeight: '20rem', textAlign: 'center', top: '10vh', left: '15vw', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-evenly' }}>
 
-            <div>
-                <h3>Editando {props.day}</h3>
+            <h3>{props.day}</h3>
 
-                <input type="text" value={input} onChange={(e) => setInput(e.target.value)} />
+            <label htmlFor="kindOfRoutine">Tipo de Rutina</label>
+            <input
+                id="kindOfRoutine"
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)} />
+
+            <div style={{ display: "flex", width: '100%', justifyContent: 'space-evenly' }}>
 
                 <div>
-                    <h3>Bloque 1</h3>
-                    <button onClick={() => handleOnclick(1)}>editar</button>
+
+                    <div>
+                        <h3>Bloque 1</h3>
+                        <button onClick={() => handleOnclick(1)}>editar</button>
+                    </div>
+
+                    <div>
+
+                        {props.exercises.block1[0]
+                            ? <ul>{props.exercises.block1.map((excercise, i) =>
+                                <li key={i}>
+
+                                    {excercise.name}
+
+                                    <br />
+
+                                    repeticiones: {excercise.repetitions}
+
+                                </li>
+                            )}
+                            </ul>
+                            : <p>Sin ejercicios</p>}
+
+                    </div>
                 </div>
 
                 <div>
-                    {props.exercises.block1
-                        ? <ul>{props.exercises.block1.map((excercise, i) => <li key={i}>{excercise.name} <br /> repeticiones: {excercise.repetitions}</li>)}</ul>
-                        : <p>No hay ejercicios asignados para este día</p>}
-                </div>
-            </div>
+                    <div>
+                        <h3>Bloque 2</h3>
+                        <button onClick={() => handleOnclick(2)}>editar</button>
+                    </div>
 
-            <div>
-                <div>
-                    <h3>Bloque 2</h3>
-                    <button onClick={() => handleOnclick(2)}>editar</button>
-                </div>
+                    <div>
+                        {props.exercises.block2[0]
+                            ? <ul>{props.exercises.block2.map((excercise, i) =>
+                                <li key={i}>
 
-                <div>
-                    {props.exercises.block2
-                        ? <ul>{props.exercises.block2.map((excercise, i) => <li key={i}>{excercise.name} <br /> repeticiones: {excercise.repetitions}</li>)}</ul>
-                        : <p>No hay ejercicios asignados para este día</p>}
-                </div>
-            </div>
+                                    {excercise.name}
 
-            <div>
+                                    <br />
 
-                <div>
-                    <h3>Bloque 3</h3>
-                    <button onClick={() => handleOnclick(3)}>editar</button>
+                                    repeticiones: {excercise.repetitions}
+
+                                </li>
+                            )}
+                            </ul>
+                            : <p>Sin ejercicios</p>}
+                    </div>
                 </div>
 
                 <div>
-                    {props.exercises.block3
-                        ? <ul>{props.exercises.block3.map((excercise, i) => <li key={i}>{excercise.name} <br /> repeticiones: {excercise.repetitions}</li>)}</ul>
-                        : <p>No hay ejercicios asignados para este día</p>}
+
+                    <div>
+                        <h3>Bloque 3</h3>
+                        <button onClick={() => handleOnclick(3)}>editar</button>
+                    </div>
+
+                    <div>
+                        {props.exercises.block3[0]
+                            ? <ul>{props.exercises.block3.map((excercise, i) =>
+                                <li key={i}>
+
+                                    {excercise.name}
+
+                                    <br />
+
+                                    repeticiones: {excercise.repetitions}
+
+                                </li>
+                            )}
+                            </ul>
+                            : <p>Sin ejericios</p>}
+                    </div>
                 </div>
+
             </div>
 
             <button onClick={submitChanges} >Aceptar</button>
 
-            {renderEditBlock.render ? <EditBlock day={props.day} api={props.api} setWeekChanges={props.setWeekChanges} block={renderEditBlock.block} exercises={props.exercises[`block${renderEditBlock.block}`]} setIdRoutine={setIdRoutine} idRoutine={idRoutine} setRender={setRender} setExercises={props.setExercises}/> : null}
+            {renderEditBlock.render
+                ? <EditBlock
+                    day={props.day}
+                    api={props.api}
+                    setWeekChanges={props.setWeekChanges}
+                    block={renderEditBlock.block}
+                    exercises={props.exercises[`block${renderEditBlock.block}`]}
+                    setRender={setRender}
+                    setExercises={props.setExercises} />
+                : null}
 
         </div>
 

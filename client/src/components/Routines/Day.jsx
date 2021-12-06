@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import EditDay from "./EditDay";
 
 const Day = (props) => {
@@ -7,33 +7,95 @@ const Day = (props) => {
 
     const handleOnClick = () => {
 
-        renderEdit
-            ? setRender(false)
-            : setRender(true)
+        props.setDisableButtons(true)
+        setRender(true)
+
     }
 
     return (
-        <div style={{ margin: '1rem' }}>
-            <div style={{ display: 'flex' }}>
+
+        <div style={{ margin: '1rem', backgroundColor: "gray", color: 'white', textAlign: 'center' }}>
+
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between' }}>
+
                 <h3>{props.day}</h3>
-                <button onClick={handleOnClick}>editar</button>
+                <button disabled={props.disableButtons} onClick={handleOnClick}>editar</button>
+
             </div>
 
-            {renderEdit ? <EditDay day={props.day} api={props.api} setRender={setRender} setWeekChanges={props.setWeekChanges} setWeekIds={props.setWeekIds} weekIds={props.weekIds} exercises={props.exercises} setExercises={props.setExercises} /> : null}
+            {renderEdit
+                ? <EditDay
+                    setDisableButtons={props.setDisableButtons}
+                    day={props.day}
+                    api={props.api}
+                    setRender={setRender}
+                    setWeekChanges={props.setWeekChanges}
+                    exercises={props.exercises}
+                    setExercises={props.setExercises} />
+                : null}
 
-            <div>------------------------</div>
-            <div> -- Bloque 1 -- </div>
-            {props.exercises.block1
-                ? <ul>{props.exercises.block1.map((excercise, i) => <li key={i}>{excercise.name} <br /> repeticiones: {excercise.repetitions}</li>)}</ul>
-                : <p>No hay ejercicios asignados para este día</p>}
-            <div> -- Bloque 2 -- </div>
-            {props.exercises.block2
-                ? <ul>{props.exercises.block2.map((excercise, i) => <li key={i}>{excercise.name} <br /> repeticiones: {excercise.repetitions}</li>)}</ul>
-                : <p>No hay ejercicios asignados para este día</p>}
-            <div> -- Bloque 3 -- </div>
-            {props.exercises.block3
-                ? <ul>{props.exercises.block3.map((excercise, i) => <li key={i}>{excercise.name} <br /> repeticiones: {excercise.repetitions}</li>)}</ul>
-                : <p>No hay ejercicios asignados para este día</p>}
+            <p>-------------------</p>
+
+            <h3> -- Bloque 1 -- </h3>
+
+            {props.exercises.block1[0]
+                ? <ul>
+
+                    {props.exercises.block1.map((excercise, i) =>
+                        <li key={i}>
+
+                            {excercise.name}
+
+                            <br />
+
+                            repeticiones: {excercise.repetitions}
+
+                        </li>
+                    )}
+
+                </ul>
+                : <p>Sin ejercicios</p>
+            }
+
+            <h3> -- Bloque 2 -- </h3>
+
+            {props.exercises.block2[0]
+                ? <ul>
+
+                    {props.exercises.block2.map((excercise, i) =>
+                        <li key={i}>
+
+                            {excercise.name}
+
+                            <br />
+
+                            repeticiones: {excercise.repetitions}
+
+                        </li>
+                    )}
+
+                </ul>
+                : <p>Sin ejercicios</p>
+            }
+
+            <h3> -- Bloque 3 -- </h3>
+
+            {props.exercises.block3[0]
+                ? <ul>{props.exercises.block3.map((excercise, i) =>
+                    <li key={i}>
+
+                        {excercise.name}
+
+                        <br /> repeticiones:
+
+                        {excercise.repetitions}
+
+                    </li>
+                )}
+
+                </ul>
+                : <p>Sin ejercicios</p>
+            }
 
 
         </div>
