@@ -71,7 +71,6 @@ const getAllShiftsPlus = async (req, res) => {
 
 const getShiftById = async (req, res) => {
     const { id } = req.params
-
     try {
         const oneShift = await Shift.findOne({ where: { id: id }, include: User})
         res.send(oneShift)
@@ -79,7 +78,17 @@ const getShiftById = async (req, res) => {
     catch (error) {
         res.send(error)
     }
+}
 
+const getShiftofUser = async (req, res) => {
+  const { id } = req.params
+  try {
+      const oneUser = await User.findOne({ where: { id: id }, include: Shift})
+      res.send(oneUser)
+  }
+  catch (error) {
+      res.send(error)
+  }
 }
 
 const getShiftByWeekNum = async (req, res) => {
@@ -218,4 +227,4 @@ const WeekDaysGenerator = (
     }
   }
 
-module.exports = { weekCreate, createBulk, newShift, getAllShifts, getShiftByWeekNum, updateShift, deleteShift, getShiftById,getAllShiftsPlus };
+module.exports = { getShiftofUser, weekCreate, createBulk, newShift, getAllShifts, getShiftByWeekNum, updateShift, deleteShift, getShiftById,getAllShiftsPlus };
