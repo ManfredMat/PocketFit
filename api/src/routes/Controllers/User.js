@@ -6,7 +6,7 @@ const upload = multer({ storage: storage });
 const uploadImage = upload.single("photo");
 
 const createUser = async (req, res) => {
-  const { name, lastname, paymentday } = req.body;
+  const { name, lastname, paymentday , isadmin } = req.body;
 
   let { email, password } = req.body;
   password = await bcrypt.hash(password, 10);
@@ -20,6 +20,7 @@ const createUser = async (req, res) => {
         email,
         password,
         paymentday,
+        isadmin
       });
 
       res.json(newUser);
