@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import footer from "../../assets/img/footer.svg";
 import LogingWave from "../../assets/img/loginwave.svg";
 import ProfilePhoto from "../../assets/img/profilephoto.svg"
@@ -8,6 +8,7 @@ import axios from "axios"
 
 function ResetPassword() {
     const navigate = useNavigate();
+    const { id } = useParams();
 
     const [input, setInput] = useState({
         newPassword: "",
@@ -28,12 +29,10 @@ function ResetPassword() {
                 if (input.newPassword !== input.repeatNewPassword) return alert("Las contraseñas no coinciden")
             } else return alert("Por favor completa todos los campos");
 
-            const email = localStorage.getItem("recoEmail");
             changeUserPassword({
-                email: email,
+                id: id,
                 newPassword: input.newPassword
             });
-            localStorage.removeItem("recoEmail");
 
             alert("Contraseña cambiada satisfactoriamente");
             navigate('/login');
