@@ -67,7 +67,7 @@ function NavBar({screenHeight}) {
               />
             </Styles.StyledNavButton>
           </Link>
-          <Link to="/weeklyroutine">
+          <Link to="/session/routines">
             <Styles.StyledNavButton
               select={actual.includes("weeklyroutine") ? true : false}
             >
@@ -107,6 +107,8 @@ function NavBar({screenHeight}) {
               />
             </Styles.StyledNavButton>
           </Link>
+
+          
         </Styles.StyledNavContainer>
         <Styles.StyledBottomContainer>
           <Link to="/session/config">

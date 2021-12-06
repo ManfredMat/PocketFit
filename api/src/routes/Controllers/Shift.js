@@ -81,6 +81,15 @@ const getShiftById = async (req, res) => {
     res.send(error)
   }
 
+const getShiftofUser = async (req, res) => {
+  const { id } = req.params
+  try {
+      const oneUser = await User.findOne({ where: { id: id }, include: Shift})
+      res.send(oneUser)
+  }
+  catch (error) {
+      res.send(error)
+  }
 }
 
 const getShiftByWeekNum = async (req, res) => {
@@ -239,4 +248,4 @@ const weekCreate = async (req, res) => {
   }
 }
 
-module.exports = { weekCreate, createBulk, newShift, getAllShifts, getShiftByWeekNum, updateShift, deleteShift, getShiftById, getAllShiftsPlus };
+module.exports = { getShiftofUser, weekCreate, createBulk, newShift, getAllShifts, getShiftByWeekNum, updateShift, deleteShift, getShiftById,getAllShiftsPlus };
