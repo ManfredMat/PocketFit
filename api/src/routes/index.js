@@ -10,6 +10,8 @@ const weekplanRoute = require("./Routes/WeekPlan");
 const shiftRoute = require('./Routes/Shift');
 const paypalRoutes = require('./Routes/Paypal')
 const resetpasswordRoutes = require('./Routes/ResetPassword')
+const newsletterRoutes = require('./Routes/Newsletter')
+
 
 const { Router } = require("express");
 
@@ -28,6 +30,7 @@ router.use("/api/logout", logoutRoute);
 router.use('/api/shift', shiftRoute);
 router.use('/api/paypal', paypalRoutes)
 router.use('/api/resetpassword' , resetpasswordRoutes)
+router.use('/api/news',newsletterRoutes)
 
 
 module.exports = router;

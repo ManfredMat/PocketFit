@@ -77,6 +77,10 @@ module.exports = (sequelize) => {
     paymentday:{
       type: DataTypes.DATE,
       allowNull:true
+    },
+    newsletter:{
+      type: DataTypes.BOOLEAN,
+      defaultValue:false
     }
   });
 };
