@@ -1,10 +1,11 @@
-import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddExcercise from "./AddExcercise";
 
 const EditBlock = (props) => {
 
     const [renderAddExcercises, setRender] = useState(false);
+
+    const [exercises, setExercises] = useState(props.exercises);
 
     const [inputs, setInputs] = useState({
         rounds: 0,
@@ -19,39 +20,67 @@ const EditBlock = (props) => {
 
     const handleOnClick = () => {
 
-        renderAddExcercises
-            ? setRender(false)
-            : setRender(true)
+        setRender(true)
 
     }
 
-    const handleAccept = async () => {
+    const upgradeExercises = () => {
+
+        props.setExercises(oldState => {
+
+            return {
+
+                ...oldState,
+                [props.api]:
+                {
+                    ...oldState[props.api],
+                    [`block${props.block}`]: exercises
+                }
+            }
+        });
+
+    }
+    const handleAccept = () => {
+
+        upgradeExercises();
 
         const block = {
+
             ...inputs,
             rounds: parseInt(inputs.rounds),
-            exercises: props.exercises.map(exercise => {return {id: exercise.id, reps: exercise.repetitions, description: exercise.notes}}),
             day: props.api,
             order: props.block,
+            exercises: exercises.map(exercise => {
+
+                return {
+                    id: exercise.id,
+                    reps: exercise.repetitions,
+                    description: exercise.notes
+                }
+
+            })
+
         }
 
-        props.setWeekChanges(oldState => {return { ...oldState, [props.api]:{...oldState[props.api], blocks:{...oldState[props.api].blocks,[`block${props.block}`]:block}}}})
+        props.setWeekChanges(oldState => {
 
-        // try {
-
-        //     const response = await axios.post("http://127.0.0.1:3001/api/blocks/", block);
-        //     props.setIdRoutine({ ...props.idRoutine, [`block${props.block}`]: response.data.id });
-
-        // } catch (e) {
-        //     console.log("oups error")
-        //     console.log(e)
-        // }
+            return {
+                ...oldState,
+                [props.api]: {
+                    ...oldState[props.api],
+                    blocks: {
+                        ...oldState[props.api].blocks,
+                        [`block${props.block}`]: block
+                    }
+                }
+            }
+        })
 
         props.setRender({ render: false })
     }
 
     return (
-        <div>
+        <div style={{ backgroundColor: '#4a0808', position: 'fixed', width: '70vw', minHeight: '20rem', textAlign: 'center', top: '10vh', left: '15vw', display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'space-evenly' }}>
 
             <div>
                 <h3>Editar {props.day} Bloque: {props.block}</h3>
@@ -59,18 +88,52 @@ const EditBlock = (props) => {
             </div>
 
             <div>
-                {props.exercises
-                    ? <ul>{props.exercises.map((excercise, i) => <li key={i}>{excercise.name} <br /> repeticiones: {excercise.repetitions}</li>)}</ul>
-                    : <p>No hay ejercicios asignados para este día</p>}
+                <h3>Ejercicios:</h3>
+                {exercises[0]
+                    ? <ul>{exercises.map((excercise, i) =>
+                        <li key={i}>
+
+                            {excercise.name}
+
+                            <br />
+
+                            repeticiones: {excercise.repetitions}
+                            
+                        </li>
+                    )}
+                    </ul>
+                    : <p>Sin ejercicios</p>}
             </div>
 
-            <input type="text" name="kindOfBlock" value={inputs.kindOfBlock} onChange={handleInputs} />
-            <input type="number" min="0" name="rounds" value={inputs.rounds} onChange={handleInputs} />
+            <label htmlFor='kindOfBlock'>Tipo de bloque</label>
+            <input
+                id='kindOfBlock'
+                type="text"
+                name="kindOfBlock"
+                value={inputs.kindOfBlock}
+                onChange={handleInputs} />
+
+            <label htmlFor='rounds'>Repeticiones del bloque</label>
+            <input
+                id='rounds'
+                type="number"
+                min="0"
+                name="rounds"
+                value={inputs.rounds}
+                onChange={handleInputs} />
 
             <button onClick={handleAccept}>Aceptar Cambios</button>
-            <button >Cancelar</button>
+            <button onClick={() => props.setRender({render: false})}>Cancelar</button>
 
-            {renderAddExcercises ? <AddExcercise setRender={setRender} setExercises={props.setExercises} api={props.api} day={props.day} block={props.block} /> : null}
+            {renderAddExcercises
+                ? <AddExcercise
+                    setRender={setRender}
+                    setExercises={setExercises}
+                    api={props.api}
+                    day={props.day}
+                    block={props.block} />
+                : null
+            }
 
         </div>
     )
