@@ -87,9 +87,9 @@ const SignIn = () => {
     if (res.data === "Something went wrong") return alert("El Email ingresado no coincide con el registrado en la base de datos")
     await AsyncStorage.setItem('recoEmail', state.email);
     setRender(true);
-    Alert.alert("Mail enviado, revise su correo");
+    Alert.alert("Mail enviado, revise su correo y siga las instrucciones");
     setState({ email: "" });
-    navigation.navigate("PassReco");
+    navigation.navigate("Authentication");
   }
 
   return (

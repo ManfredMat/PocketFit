@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { searchUsers } from '../../redux/Actions/actions-users';
 import Styles from './Users.styles';
 import UsersGrid from './UsersGrid';
-import UsersList from './UsersList';
+// import UsersList from './UsersList';
 
 function Users() {
     const dispatch = useDispatch();
@@ -25,7 +25,7 @@ function Users() {
                     <Styles.SearchBar type="text" placeholder="Introduce un nombre o apellido..." autoCorrect="off" onChange={handleChange} value={search} />
                     {/* <Styles.SearchButton type="submit" value="Buscar" /> */}
                 </form>
-                <Styles.Filter name="filter">
+                {/* <Styles.Filter name="filter">
                     <option value="default" hidden>Filtrar por...</option>
                     <option value="Rating" disabled>Estado de pago</option>
                         <option value="0-5">Pago</option>
@@ -33,7 +33,7 @@ function Users() {
                     <option value="Rating" disabled>Activo/Inactivo</option>
                         <option value="0-5">Activo</option>
                         <option value="5-0">Inactivo</option>
-                </Styles.Filter>
+                </Styles.Filter> */}
             </Styles.NavBar>
             <Styles.UsersContainer>
                 <UsersGrid />
@@ -42,4 +42,4 @@ function Users() {
     )
 }
 
-export default Users
+export default Users;
