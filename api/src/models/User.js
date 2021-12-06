@@ -91,6 +91,6 @@ module.exports = (sequelize) => {
     },
     imageData: {
       type: DataTypes.BLOB,
-    },
+    }
   });
 };
