@@ -36,15 +36,7 @@ export default function Authentication() {
                     </TouchableOpacity>
                 </ContainerBar>
                 <ScrollView>
-                    {render ?
-                        (
-                            <SignIn />
-                        )
-                        :
-                        (
-                            <SignUp />
-                        )
-                    }
+                    {render ? <SignIn /> : <SignUp />}
                 </ScrollView>
             </Container>
         </ImageBackground>
