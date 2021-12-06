@@ -28,7 +28,7 @@ const [screenHeight, setScreenHeight] = useState("")
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/passreco" element={<PassRecovery />} />
-        <Route path="/resetpassword" element={<ResetPassword />} />
+        <Route path="/resetpassword/:id" element={<ResetPassword />} />
       </Routes>
       <main>
         <Routes>
