@@ -67,7 +67,7 @@ function NavBar({screenHeight}) {
               />
             </Styles.StyledNavButton>
           </Link>
-          <Link to="/weeklyroutine">
+          <Link to="/session/routines">
             <Styles.StyledNavButton
               select={actual.includes("weeklyroutine") ? true : false}
             >
@@ -94,16 +94,6 @@ function NavBar({screenHeight}) {
               <Styles.StyledNavButtonPay
                 select={actual.includes("payments") ? true : false}
                 className="payments"
-              />
-            </Styles.StyledNavButton>
-          </Link>
-          <Link to="/session/routines">
-            <Styles.StyledNavButton
-              select={actual.includes("routine") ? true : false}
-            >
-              <Styles.StyledNavButtonEvents
-                select={actual.includes("routine") ? true : false}
-                className="timetable"
               />
             </Styles.StyledNavButton>
           </Link>
