@@ -1,86 +1,96 @@
-
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('user', {
-    id:{
+  sequelize.define("user", {
+    id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     lastname: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     age: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     height: {
       type: DataTypes.FLOAT,
-      allowNull: true
+      allowNull: true,
     },
     weight: {
       type: DataTypes.FLOAT,
-      allowNull: true
+      allowNull: true,
     },
     backsquat: {
       type: DataTypes.INTEGER,
-      defaultValue: 0
+      defaultValue: 0,
     },
     pushpress: {
       type: DataTypes.INTEGER,
-      defaultValue: 0
-    }, 
+      defaultValue: 0,
+    },
     snatch: {
       type: DataTypes.INTEGER,
-      defaultValue: 0
+      defaultValue: 0,
     },
     clean: {
       type: DataTypes.INTEGER,
-      defaultValue: 0
+      defaultValue: 0,
     },
-    running: { 
+    running: {
       type: DataTypes.STRING,
-      defaultValue: 0
+      defaultValue: 0,
     },
     pullups: {
       type: DataTypes.INTEGER,
-      defaultValue: 0
+      defaultValue: 0,
     },
     password: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     isadmin: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false
+      defaultValue: false,
     },
     isprofessor: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false
+      defaultValue: false,
     },
     isuser: {
       type: DataTypes.BOOLEAN,
-      defaultValue: true
+      defaultValue: true,
     },
-    paymentday:{
+    paymentday: {
       type: DataTypes.DATE,
-      allowNull:true
+      allowNull: true,
     },
     newsletter:{
       type: DataTypes.BOOLEAN,
       defaultValue:false
-    }
+    },
+    imageType: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    imageName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    imageData: {
+      type: DataTypes.BLOB,
+    },
   });
 };
