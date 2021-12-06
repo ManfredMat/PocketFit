@@ -13,11 +13,9 @@ export default function Home() {
         await AsyncStorage.setItem('isLogged', value)
     };
 
-    useEffect(() => {
-        
-    }, [])
-
     storeData("true")
+
+    //la imagen del perfil no se actualiza al cambiarla en profile
 
     return (
         <Styles.Container>
