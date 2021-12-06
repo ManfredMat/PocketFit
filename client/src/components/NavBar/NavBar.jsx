@@ -97,6 +97,16 @@ function NavBar({screenHeight}) {
               />
             </Styles.StyledNavButton>
           </Link>
+          <Link to="/session/routines">
+            <Styles.StyledNavButton
+              select={actual.includes("routine") ? true : false}
+            >
+              <Styles.StyledNavButtonEvents
+                select={actual.includes("routine") ? true : false}
+                className="timetable"
+              />
+            </Styles.StyledNavButton>
+          </Link>
           <Link to="/feed">
             <Styles.StyledNavButton
               select={actual.includes("feed") ? true : false}
@@ -107,6 +117,8 @@ function NavBar({screenHeight}) {
               />
             </Styles.StyledNavButton>
           </Link>
+
+          
         </Styles.StyledNavContainer>
         <Styles.StyledBottomContainer>
           <Link to="/session/config">
