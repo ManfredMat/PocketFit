@@ -1,4 +1,4 @@
-const User = require('../../db');
+const {User} = require('../../db');
 const { transporter, mailOptions } = require('./Transporter');
 
 let model = `<!DOCTYPE html>
@@ -11,7 +11,7 @@ let model = `<!DOCTYPE html>
   
   <body style=" font-family: 'Open Sans', 'Arial Narrow', Arial, sans-serif; ">
    <h2>Hola %usuario% </h2>
-   <h2>Ya estas suscripto a las noticias del gimansio </h2>
+   <h2>Ya estas suscripto a las noticias del gimnasio </h2>
   
   </body>
   
@@ -99,8 +99,8 @@ const unsubscribeToNews = async (req , res)=>{
   const sendNewsletter = async (req , res)=>{
       let {news} = req.body
       try{
-        let users = User.findAll({where:{newsletter:true}})
-
+        let users = await User.findAll({where:{newsletter:true}})
+        console.log(users)
         users.forEach(user => {
 
             let message = modelNews
