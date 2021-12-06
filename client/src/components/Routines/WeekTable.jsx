@@ -29,103 +29,121 @@ const weekDays = [
     },
 ]
 
+const weekChangesDefaultValue = {
+
+    monday: {
+        dayRoutine: {},
+        blocks: {}
+    },
+    tuesday: {
+        dayRoutine: {},
+        blocks: {}
+    },
+    wendsday: {
+        dayRoutine: {},
+        blocks: {}
+    },
+    thursday: {
+        dayRoutine: {},
+        blocks: {}
+    },
+    friday: {
+        dayRoutine: {},
+        blocks: {}
+    },
+    saturday: {
+        dayRoutine: {},
+        blocks: {}
+    }
+}
+
+const exercisesDefaultValue = {
+
+    monday: {
+        block1: [],
+        block2: [],
+        block3: []
+    },
+    tuesday: {
+        block1: [],
+        block2: [],
+        block3: []
+    },
+    wendsday: {
+        block1: [],
+        block2: [],
+        block3: []
+    },
+    thursday: {
+        block1: [],
+        block2: [],
+        block3: []
+    },
+    friday: {
+        block1: [],
+        block2: [],
+        block3: []
+    },
+    saturday: {
+        block1: [],
+        block2: [],
+        block3: []
+    },
+}
+
 const WeekTable = () => {
 
-    const [weekIds, setWeekIds] = useState({
-        monday: '',
-        tuesday: '',
-        wendsday: '',
-        thursday: '',
-        friday: '',
-        saturday: ''
-    })
+    const [weekChanges, setWeekChanges] = useState(weekChangesDefaultValue)
 
-    const [weekChanges, setWeekChanges] = useState({
-        monday:{
-            dayRoutine:{},
-            blocks:{}
-        },
-        tuesday:{
-            dayRoutine:{},
-            blocks:{}
-        },
-        wendsday:{
-            dayRoutine:{},
-            blocks:{}
-        },
-        thursday:{
-            dayRoutine:{},
-            blocks:{}
-        },
-        friday:{
-            dayRoutine:{},
-            blocks:{}
-        },
-        saturday:{
-            dayRoutine:{},
-            blocks:{}
-        }
-    })
+    const [exercises, setExercises] = useState(exercisesDefaultValue)
 
-    const [exercises, setExercises] = useState({
-
-        monday: {
-            block1: [],
-            block2: [],
-            block3: []
-        },
-        tuesday: {
-            block1: [],
-            block2: [],
-            block3: []
-        },
-        wendsday: {
-            block1: [],
-            block2: [],
-            block3: []
-        },
-        thursday: {
-            block1: [],
-            block2: [],
-            block3: []
-        },
-        friday: {
-            block1: [],
-            block2: [],
-            block3: []
-        },
-        saturday: {
-            block1: [],
-            block2: [],
-            block3: []
-        },
-    })
+    const [disableButtons, setDisableButtons] = useState(false)
 
     const saveChanges = async () => {
 
-        console.log( await postBlocks());
- 
-     }
+        setDisableButtons(true);
+
+          if (validateWeekChanges()) {
+
+              let dayIds = await postBlocks();
+              await axios.post("http://127.0.0.1:3001/api/weekplan", dayIds);
+              await upgradeTable();
+
+          } else {
+
+              alert("Beta: Por el momento es necesario agregar ejercicios a cada bloque de la tabla.")
+
+          } 
+
+          setDisableButtons(false);
+
+    }
+
+    const deleteChanges = async () => {
+
+        setDisableButtons(true);
+
+        await upgradeTable();
+
+        setDisableButtons(false);
+
+    }
 
     const postBlocks = async () => {
 
         let weekIds = {};
 
-        for(const key in weekChanges){
+        for (const key in weekChanges) {
 
-            let routinesPromises = []
-            let routinesIds = []
+            let routinesIds = [];
 
-            console.log("-----" + key + "-----")
+            for (const key2 in weekChanges[key].blocks) {
+                
 
-            for(const key2 in weekChanges[key].blocks){
-
-                routinesPromises.push(axios.post("http://127.0.0.1:3001/api/blocks/", weekChanges[key].blocks[key2]));
-
+                let response = await axios.post("http://127.0.0.1:3001/api/blocks/", weekChanges[key].blocks[key2]);
+                routinesIds.push(response.data.id);
             }
 
-            routinesIds = await Promise.all(routinesPromises);
-            routinesIds = routinesIds.map(routine => routine.data.id);
             weekIds[key] = await postRoutine(routinesIds, weekChanges[key].dayRoutine);
         }
 
@@ -135,24 +153,29 @@ const WeekTable = () => {
 
     const postRoutine = async (blocksIds, dayRoutine) => {
 
-        const response = await axios.post("http://127.0.0.1:3001/api/routines", {...dayRoutine, blocks:blocksIds});
+        const response = await axios.post("http://127.0.0.1:3001/api/routines", { ...dayRoutine, blocks: blocksIds });
         return response.data.id;
     }
 
-    useEffect(async () => {
+    const upgradeTable = async () => {
 
-        let response = await axios.get('http://127.0.0.1:3001/api/routines/all');
+        let response = await axios.get('http://127.0.0.1:3001/api/weekplan/general');
+        response = response.data;
 
-        if(response.data[0].day === "monday" && false){ 
-            
-            let auxState = {};
+        let auxState = {};
+        let auxWeekChanges = {};
 
-            response.data.forEach(day => {
-    
+        if (response.monday) {
+
+
+            for (const key in response) {
+
                 auxState = {
-                    ...auxState, [day.day]: {
-    
-                        block1: day.blocks[0].exercises.map(exercise => {
+
+                    ...auxState,
+                    [response[key].day]: {
+
+                        block1: response[key].blocks[0].exercises.map(exercise => {
                             return {
                                 name: exercise[0],
                                 repetitions: exercise[1],
@@ -160,8 +183,8 @@ const WeekTable = () => {
                                 id: exercise[3]
                             }
                         }),
-    
-                        block2: day.blocks[1].exercises.map(exercise => {
+
+                        block2: response[key].blocks[1].exercises.map(exercise => {
                             return {
                                 name: exercise[0],
                                 repetitions: exercise[1],
@@ -169,8 +192,8 @@ const WeekTable = () => {
                                 id: exercise[3]
                             }
                         }),
-    
-                        block3: day.blocks[2].exercises.map(exercise => {
+
+                        block3: response[key].blocks[2].exercises.map(exercise => {
                             return {
                                 name: exercise[0],
                                 repetitions: exercise[1],
@@ -178,30 +201,132 @@ const WeekTable = () => {
                                 id: exercise[3]
                             }
                         })
-    
+
+                    }
+
+                }
+
+                auxWeekChanges = {
+                    ...auxWeekChanges,
+                    [response[key].day]: {
+
+                        blocks:{
+
+                            block1: {
+                                day: response[key].day,
+
+                                exercises: response[key].blocks[0].exercises.map(exercise => {
+                                    return {
+                                        reps: exercise[1],
+                                        description: exercise[2],
+                                        id: exercise[3]
+                                    }
+                                }), 
+
+                                kindOfBlock: response[key].blocks[0].kindOfBlock,
+                                order: response[key].blocks[0].order,
+                                rounds: response[key].blocks[0].rounds
+                            },
+
+                            block2: {
+                                day: response[key].day,
+                                
+                                exercises: response[key].blocks[1].exercises.map(exercise => {
+                                    return {
+                                        reps: exercise[1],
+                                        description: exercise[2],
+                                        id: exercise[3]
+                                    }
+                                }), 
+
+                                kindOfBlock: response[key].blocks[1].kindOfBlock,
+                                order: response[key].blocks[1].order,
+                                rounds: response[key].blocks[1].rounds
+                            },
+
+                            block3: {
+                                day: response[key].day,
+                                
+                                exercises: response[key].blocks[2].exercises.map(exercise => {
+                                    return {
+                                        reps: exercise[1],
+                                        description: exercise[2],
+                                        id: exercise[3]
+                                    }
+                                }), 
+
+                                kindOfBlock: response[key].blocks[2].kindOfBlock,
+                                order: response[key].blocks[2].order,
+                                rounds: response[key].blocks[2].rounds
+                            }
+
+                        },
+
+                        dayRoutine: {
+                            kindOfRoutine: response[key].kindOfRoutine,
+                            day: response[key].day
+                        }
+
                     }
                 }
-    
-            })
-    
+
+            }
+            
+            setWeekChanges(auxWeekChanges);
             setExercises(auxState);
+
+        } else setExercises(exercisesDefaultValue);
+
+    }
+
+    const validateWeekChanges = () => {
+
+        for (const key in weekChanges) {
+
+            if (
+                weekChanges[key].dayRoutine.kindOfRoutine === undefined ||
+                weekChanges[key].blocks.block1 === undefined ||
+                weekChanges[key].blocks.block2 === undefined ||
+                weekChanges[key].blocks.block3 === undefined
+                )
+
+
+                return false
+
         }
+        return true
+
+    }
+
+    useEffect(() => {
+
+        upgradeTable();
+
+    }, []);
 
 
-    }, [])
-
-    
 
     return (
         <>
 
             <h1>Plan Semanal</h1>
-            <div style={{ display: 'flex' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap' }}>
+
                 {weekDays.map((day) =>
-                    <Day {...day} key={day.api} setWeekChanges={setWeekChanges} setWeekIds={setWeekIds} weekIds={weekIds} exercises={exercises[day.api]} setExercises={setExercises}></Day>
+                    <Day
+                        {...day}
+                        setDisableButtons={setDisableButtons}
+                        disableButtons={disableButtons}
+                        key={day.api}
+                        setWeekChanges={setWeekChanges}
+                        exercises={exercises[day.api]}
+                        setExercises={setExercises}>
+                    </Day>
                 )}
+
             </div>
-            <button disabled={/*validateWeekIds()*/ false} onClick={saveChanges}>Guardar Cambios</button>
+            <button style={{ marginLeft: '1rem' }} disabled={disableButtons} onClick={saveChanges}>Guardar Cambios</button>
+            <button style={{ marginLeft: '1rem' }} disabled={disableButtons} onClick={deleteChanges}>Borrar Cambios</button>
 
         </>
     )
