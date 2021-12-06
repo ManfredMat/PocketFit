@@ -50,6 +50,7 @@ const Styles = {
         width: 8rem;
         margin-top: 1rem;
         margin-bottom: 1rem;
+        background-color: white;
     `
 }
 

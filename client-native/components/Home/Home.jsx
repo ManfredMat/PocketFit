@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, Alert, ScrollView } from 'react-native';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from "@react-navigation/core";
 import Styles from './Home.styles';
 
 export default function Home() {
+    const dispatch = useDispatch();
     const navigation = useNavigation();
     const user = useSelector((state) => state.reducerUser.user);
     const storeData = async (value) => {
@@ -14,13 +15,15 @@ export default function Home() {
 
     storeData("true")
 
+    //la imagen del perfil no se actualiza al cambiarla en profile
+
     return (
         <Styles.Container>
             <ScrollView>
                 <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <Image
                         source={{ uri: user.imageData ? `data:image/jpeg;base64, ${user.imageData}` : 'https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-gris.png' }}
-                        style={{ width: 50, height: 50, margin: 8, borderRadius: 9999 }}
+                        style={{ width: 50, height: 50, margin: 8, borderRadius: 9999, backgroundColor: "white" }}
                     />
                     <Styles.TextWhite style={{ marginLeft: 10, fontSize: 25 }}>Hola {user?.name}!</Styles.TextWhite>
                 </View>

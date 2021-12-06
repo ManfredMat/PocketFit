@@ -42,9 +42,8 @@ function PassRecovery() {
   const mailPassReco = async (mail) => {
     const res = await sendMailPassReco(mail);
     if (res.data === "Something went wrong") return alert("El Email ingresado no coincide con el registrado en la base de datos")
-    localStorage.setItem("recoEmail", input.email);
+    
     alert('Instrucciones enviadas, revise su bandeja de entrada');
-    navigate("/resetpassword");
   }
 
   const sendMailPassReco = async (datos) => {

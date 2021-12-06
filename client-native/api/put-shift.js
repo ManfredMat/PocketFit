@@ -1,9 +1,9 @@
 import axios  from 'axios'
-
+import IP from '../components/Ips'
 export const shiftRecord = async (datos) => {
     return await axios({
         method: "put",
-        url: `http://192.168.1.109:3001/api/shift/update`,
+        url: `http://${IP}:3001/api/shift/update`,
         data: datos,
         withCredentials: true
     });

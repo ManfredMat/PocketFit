@@ -75,7 +75,12 @@ module.exports = (sequelize) => {
     },
     paymentday: {
       type: DataTypes.DATE,
-      allowNull: true,
+      allowNull:true
+    },
+    newsletter:{
+      type: DataTypes.BOOLEAN,
+      defaultValue:false
+
     },
     imageType: {
       type: DataTypes.STRING,
@@ -87,6 +92,6 @@ module.exports = (sequelize) => {
     },
     imageData: {
       type: DataTypes.BLOB,
-    },
+    }
   });
 };

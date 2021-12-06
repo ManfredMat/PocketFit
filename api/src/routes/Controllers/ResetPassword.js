@@ -1,24 +1,7 @@
-const nodemailer = require('nodemailer')
 const { User } = require('../../db')
 const bcrypt = require("bcrypt");
+const { transporter, mailOptions } = require('./Transporter');
 
-//otjtefuzpkuuiief
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'pocketfitteam@gmail.com',
-    pass: 'henryft18a'
-  }
-})
-
-const mailOptions = (email, modelEmail) => {
-  return ({
-    from: 'pocketfitteam@gmail.com',
-    to: email,
-    subject: 'Recover you password',
-    html: modelEmail
-  })
-};
 let modelEmail = `<!DOCTYPE html>
   <html>
   
@@ -48,15 +31,15 @@ const sendEmailToRecover = async (req, res) => {
 
     let id = usuario.id
     let usuarioEmail = email
-    let link = `localhost:3000/reset_password/${id}`
+    let link = `https://pocket-fit.vercel.app/resetpassword/${id}`
     let otrolink = "https://www.youtube.com/watch?v=35XFAkwmU4c"
     let message = modelEmail
-    let resetButton = `<a style="padding:0.5em; display:inline-block; text-decoration:none; background-color: #507b00; color:#ffffff; margin:.5em; border-radius:.5em;" href=${otrolink} >Recuperar Contraseña</a>`
+    let resetButton = `<a style="padding:0.5em; display:inline-block; text-decoration:none; background-color: #507b00; color:#ffffff; margin:.5em; border-radius:.5em;" href=${link} >Recuperar Contraseña</a>`
 
     message = message.replace("%usuario%", usuario.name);
     message = message.replace("%link%", resetButton)
 
-    let emailOptions = mailOptions(usuarioEmail, message)
+    let emailOptions = mailOptions(usuarioEmail, message , 'Recover you password')
 
 
     let info = await transporter.sendMail(emailOptions, function (error, info) {
@@ -66,7 +49,7 @@ const sendEmailToRecover = async (req, res) => {
         console.log('Email sent: ' + info.response);
       }
     });
-    res.send("Everithing is awesome")
+    res.send("Everything is awesome")
 
   } catch (error) {
     res.send("Something went wrong")
@@ -77,10 +60,10 @@ const sendEmailToRecover = async (req, res) => {
 
 
 const changePassword = async (req, res) => {
-  let { email, newPassword } = req.body
+  let { id, newPassword } = req.body
   try {
 
-    let usuario = await User.findOne({ where: { email: email } })
+    let usuario = await User.findOne({ where: { id: id } })
 
     newPassword = await bcrypt.hash(newPassword, 10)
 

@@ -40,9 +40,18 @@ export default function Training() {
                 <TextW>Tu Rutina de hoy</TextW>
                 <Routines>
                 { 
-                typeof today === 'string' ? <Excercise><Text style={{alignSelf: 'center'}}>{today}</Text></Excercise> :
+
+                typeof today === 'string' 
+                    ? <Excercise>
+                        <Text style={{alignSelf: 'center'}}>{today}</Text>
+                    </Excercise> :
                 today.length !== 0 
-                    ? today[0].blocks[0].exercises?.map(e => {
+                    ? today[0] === undefined
+                    ?  <Excercise>
+                         <Image style={{width: 100, height: 100, alignSelf: 'center'}}source={loading}/>
+                       </Excercise>
+                    :
+                    today[0].blocks[0].exercises?.map(e => {
                      return <Excercise key={e[3]}>
                                 <CardExercise  reps={e[1]} exercise={e[0]}/>
                             </Excercise>
