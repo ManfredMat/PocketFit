@@ -6,7 +6,7 @@ export const GET_ADMIN = "GET_ADMIN"
 
 export function LogIn(user) {
   return async function (dispatch) {
-    await axios.post('/api/login', user, { withCredentials: true })
+    await axios.post('/api/login', user, { withCredentials: true , headers:{"Content-Type":'application/json'}} )
       .then(res => {
         dispatch({
           type: LOG_IN,
