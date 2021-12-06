@@ -30,24 +30,6 @@ const AddExcercise = (props) => {
                 }
             ]
 
-            return {
-
-                ...oldState,
-                [props.api]:
-                {
-                    ...oldState[props.api],
-                    [`block${props.block}`]:
-                        [
-                            ...oldState[props.api][`block${props.block}`],
-                            {
-                                id: excercises[inputs.indexExercise].id,
-                                name: excercises[inputs.indexExercise].name,
-                                repetitions: inputs.reps,
-                                notes: inputs.description
-                            }
-                        ]
-                }
-            }
         });
 
         props.setRender(false);
