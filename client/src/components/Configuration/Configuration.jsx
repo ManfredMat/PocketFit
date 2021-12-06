@@ -8,7 +8,7 @@ function Configuration() {
     const logOut = async () => {
         await axios({
             method: "get",
-            url: "/api/logout",
+            url: `${REACT_APP_API}/api/logout`,
             withCredentials: true
         });
         localStorage.removeItem("isLogged");

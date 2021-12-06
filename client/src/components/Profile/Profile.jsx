@@ -22,8 +22,8 @@ function Profile() {
     const sendImage = async(e) => {
         const data = new FormData();
         data.append("photo", file);
-
-        await axios.put(`/api/users/${id}`, data, {withCredentials:true, headers: {"content-Type": `multipart/form-data; boundary=${data._boundary}`}})
+        
+        await axios.put(`${REACT_APP_API}/api/users/${id}`, data, {withCredentials:true, headers: {"content-Type": `multipart/form-data; boundary=${data._boundary}`}})
             .then(res => console.log(res))
             .catch(err => console.log(err));
 

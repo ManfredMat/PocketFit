@@ -5,7 +5,7 @@ export const SEARCH_USERS = "SEARCH_USERS";
 
 export function getUsers() {
     return async function (dispatch) {
-        await axios.get("/api/users", {withCredentials: true})
+        await axios.get(`${REACT_APP_API}/api/users`, {withCredentials: true})
         .then((users) => {
             dispatch({
                 type: GET_USERS,

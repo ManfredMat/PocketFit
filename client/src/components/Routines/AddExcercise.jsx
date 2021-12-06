@@ -40,9 +40,9 @@ const AddExcercise = (props) => {
 
     }
 
-    useEffect(async () => {
+    useEffect(async () => { 
 
-        const exerciseApi = await axios.get("http://127.0.0.1:3001/api/exercises/");
+        const exerciseApi = await axios.get(`${REACT_APP_API}/api/exercises/`);
         setExcercises(exerciseApi.data);
 
     }, [])

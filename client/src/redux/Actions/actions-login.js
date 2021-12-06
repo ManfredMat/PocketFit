@@ -18,7 +18,7 @@ export function LogIn(user) {
 
 export function getAdmin(id) {
   return async function (dispatch) {
-    await axios.get(`/api/users/${id}`)
+    await axios.get(`${REACT_APP_API}/api/users/${id}`)
     .then(res => {
       dispatch({
         type: GET_ADMIN,

@@ -13,8 +13,8 @@ export const PUT_SHIFT_USER_CLEAN = "PUT_SHIFT_USER_CLEAN";
 
 export function getLessons() {
   return async function (dispatch) {
-    await axios
-      .get("/api/events/all")
+    await axios 
+      .get(`${REACT_APP_API}/api/events/all`)
       .then((res) => {
         let lessons = res.data.filter((cla) => cla.kindOfEvent === "Clases")
         dispatch({
@@ -28,7 +28,8 @@ export function getLessons() {
 export function getEvents() {
   return async function (dispatch) {
     await axios
-      .get("/api/events/all")
+    
+      .get(`${REACT_APP_API}/api/events/all`)
       .then((res) => {
         let events = res.data.filter((cla) => cla.kindOfEvent === "Eventos")
         dispatch({
@@ -42,7 +43,8 @@ export function getEvents() {
 export function getWeekShifts(week) {
 
   return async function (dispatch) {
-    await axios.get(`/api/shift/week/${week}`)
+ 
+    await axios.get(`${REACT_APP_API}/api/shift/week/${week}`)
       .then(res => {
       console.log("getWeek:",res.data)
         dispatch({
@@ -77,7 +79,7 @@ export function postWeekShifts(firstDay,
   console.log(body)
 
   return async function (dispatch) {
-    await axios.post('/api/shift/weekcreate', body)
+    await axios.post(`${REACT_APP_API}/api/shift/weekcreate`, body)
       .then(res => {
         //console.log(res.data)
         dispatch({
@@ -105,7 +107,7 @@ export function getAllShifts(year,month,day) {
 
   return async function (dispatch) {
     await axios
-      .get("/api/shift/all", {params:query})
+      .get(`${REACT_APP_API}/api/shift/all`, {params:query})
       .then((res) => {
         console.log(res.data)
         dispatch({
@@ -119,7 +121,7 @@ export function getAllShifts(year,month,day) {
 export function getTimetable() {
   return async function (dispatch) {
     await axios
-      .get("/api/timetables/1")
+      .get(`${REACT_APP_API}/api/timetables/1`)
       .then((res) => {
         dispatch({
           type: GET_ACTUAL_TIMETABLE,
@@ -132,7 +134,7 @@ export function getTimetable() {
 export function postShift(body) {
   return async function (dispatch) {
     await axios
-      .put("/api/shift/update",body)
+      .put(`${REACT_APP_API}/api/shift/update`,body)
       .then((create) => {
         console.log(create.data)
         /* dispatch({
@@ -141,7 +143,7 @@ export function postShift(body) {
         }); */
       })
       await axios
-      .get(`/api/shift/${body.idShift}`)
+      .get(`${REACT_APP_API}/api/shift/${body.idShift}`)
       .then((res) => {
         dispatch({
           type: PUT_SHIFT_USER,

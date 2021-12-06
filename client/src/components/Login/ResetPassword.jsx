@@ -45,7 +45,8 @@ function ResetPassword() {
     const changeUserPassword = async (datos) => {
         return await axios({
             method: "put",
-            url: "/api/resetpassword/reset_password",
+            
+            url: `${REACT_APP_API}/api/resetpassword/reset_password`,
             data: datos,
             withCredentials: true
         });

@@ -119,8 +119,8 @@ const WeekTable = () => {
             console.log("-----" + key + "-----")
 
             for(const key2 in weekChanges[key].blocks){
-
-                routinesPromises.push(axios.post("http://127.0.0.1:3001/api/blocks/", weekChanges[key].blocks[key2]));
+                
+                routinesPromises.push(axios.post(`${REACT_APP_API}/api/blocks/`, weekChanges[key].blocks[key2]));
 
             }
 
@@ -135,13 +135,13 @@ const WeekTable = () => {
 
     const postRoutine = async (blocksIds, dayRoutine) => {
 
-        const response = await axios.post("http://127.0.0.1:3001/api/routines", {...dayRoutine, blocks:blocksIds});
+        const response = await axios.post(`${REACT_APP_API}/api/routines`, {...dayRoutine, blocks:blocksIds});
         return response.data.id;
     }
 
     useEffect(async () => {
 
-        let response = await axios.get('http://127.0.0.1:3001/api/routines/all');
+        let response = await axios.get(`${REACT_APP_API}/api/routines/all`);
 
         if(response.data[0].day === "monday" && false){ 
             

@@ -48,7 +48,7 @@ function PassRecovery() {
   const sendMailPassReco = async (datos) => {
     return await axios({
       method: "post",
-      url: "/api/resetpassword/forgotten_password",
+      url: `${REACT_APP_API}/api/resetpassword/forgotten_password`,
       data: datos,
       withCredentials: true
     });
