@@ -154,6 +154,7 @@ const Styles = {
   StyledProfileImage: styled.img`
     width: -webkit-fill-available;
     height: -webkit-fill-available;
+    object-fit: cover;
     //border-radius: 50%;
   `,
   StyledNotifiImage: styled.div`

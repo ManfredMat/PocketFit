@@ -1,11 +1,11 @@
 import { React, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from '../../redux/Actions/actions-users';
-import User from './User/User';
+// import User from './User/User';
 import Styles from './UsersList.styles';
 
 function UsersList() {
-    const users = useSelector(state => state.users.users)
+    // const users = useSelector(state => state.users.users)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getUsers())

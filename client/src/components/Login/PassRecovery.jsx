@@ -35,16 +35,15 @@ function PassRecovery() {
   }
 
   const validatorEmail = (email) => {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) return true
+    if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) return true
     else return false
   }
 
   const mailPassReco = async (mail) => {
     const res = await sendMailPassReco(mail);
     if (res.data === "Something went wrong") return alert("El Email ingresado no coincide con el registrado en la base de datos")
-    localStorage.setItem("recoEmail", input.email);
+    
     alert('Instrucciones enviadas, revise su bandeja de entrada');
-    navigate("/resetpassword");
   }
 
   const sendMailPassReco = async (datos) => {

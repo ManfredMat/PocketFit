@@ -6,8 +6,8 @@ function User({name, lastname, image, pago, activo}) {
         <Styles.Card>
             <Styles.User>{name} {lastname}</Styles.User>
             <Styles.ProfilePhoto src={image} alt={name + "-profile"} />
-            <Styles.h4User>{activo}</Styles.h4User>
-            <Styles.h4User>{pago}</Styles.h4User>
+            <Styles.TextUser>{activo}</Styles.TextUser>
+            <Styles.TextUser>{pago}</Styles.TextUser>
             <Styles.Clases>Clases</Styles.Clases>
         </Styles.Card>
     )

@@ -4,28 +4,30 @@ const Styles = {
     Card: styled.div`
         display: flex;
         flex-direction: column;
-        flex-wrap: wrap;
+        justify-content: space-evenly;
         align-items: center;
         background-color: #588A58;
         border-radius: 2rem;
-        padding: .8rem;
         margin: .5rem;
-        /* cursor: pointer; */
+        width: 13rem;
+        padding: 1rem;
+        /* cursor: pointer;
         transition: .2s ease-in-out;
-        /* &:hover {
+        &:hover {
             transform: scale(1.05);
         } */
     `,
 
     User: styled.h2`
         color: white;
+        margin: auto;
         &:hover {
             color: var(--yellow);
             cursor: pointer;
         }
     `,
 
-    h4User: styled.h4`
+    TextUser: styled.h4`
         color: white;
         margin-top: .5rem;
         margin-bottom: .2rem;
@@ -43,9 +45,12 @@ const Styles = {
 
     ProfilePhoto: styled.img`
         border-radius: 50%;
-        width: 50%;
+        object-fit: cover;
+        height: 8rem;
+        width: 8rem;
         margin-top: 1rem;
         margin-bottom: 1rem;
+        background-color: white;
     `
 }
 

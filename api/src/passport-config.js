@@ -16,6 +16,10 @@ module.exports = function (passport) {
           bcrypt.compare(password, user.password, (err, isMatch) => {
             if (err) throw err;
             if (isMatch) {
+              if (user.imageData) {
+                const userImg = user.imageData.toString("base64");
+                user["imageData"] = userImg;
+              }
               return done(null, user);
             } else {
               return done(null, false, { message: "Password mismatch" });

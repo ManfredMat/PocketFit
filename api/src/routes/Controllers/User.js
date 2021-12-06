@@ -14,14 +14,14 @@ const createUser = async (req, res) => {
   try {
     const duplicatedMail = await User.findOne({ where: { email: email } });
     if (duplicatedMail === null) {
-      const newUser = await User.create({
+      let newUser = await User.create({
         name,
         lastname,
         email,
         password,
         paymentday,
       });
-      //res.send("New user succesfully created!");
+
       res.json(newUser);
     } else {
       res.send("User is already registered");
@@ -73,6 +73,7 @@ const modifyUser = async (req, res) => {
   const imageType = req.file.mimetype;
   const imageName = req.file.originalname;
   const imageData = req.file.buffer;
+
   try {
     await User.update(
       {
@@ -118,6 +119,15 @@ const assignShift = async (req, res) => {
   try {
     const getOneShift = await Shift.findOne({ where: { id: id } });
     res.json(getOneShift);
+  } catch (err) {
+    res.send(err);
+  }
+};
+const getShift = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const getShift = await User.findAll({ where: { id: id }, include: Shift });
+    res.json(getShift);
   } catch (err) {
     res.send(err);
   }
@@ -205,4 +215,5 @@ module.exports = {
   getUserPayStatus,
   assignShift,
   uploadImage,
+  getShift
 };
