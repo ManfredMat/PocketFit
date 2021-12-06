@@ -69,6 +69,7 @@ const modifyUser = async (req, res) => {
     pullups,
     password,
     paymentday,
+    isadmin
   } = req.body;
   const imageType = req.file.mimetype;
   const imageName = req.file.originalname;
