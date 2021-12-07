@@ -15,6 +15,7 @@ export default function InicioStack() {
         <>
                 <Stack.Navigator
                     //'#020E12' 
+                    initialRouteName= "Home"
                     screenOptions={{
                         tabBarActiveTintColor: '#6AE056', 
                         tabBarStyle: { 

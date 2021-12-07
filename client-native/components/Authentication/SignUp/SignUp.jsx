@@ -6,7 +6,7 @@ import postRegisterUser from "../../../api/post-register";
 import { ButtonGreen, Label } from "../Authentication.styles";
 import { Styles } from "../Authentication.styles";
 import { useSelector, useDispatch } from "react-redux";
-import signIn from "../../../redux/Actions/actions-User";
+import signIn from "../../../redux/Actions/actions-Login";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function SignUp() {
