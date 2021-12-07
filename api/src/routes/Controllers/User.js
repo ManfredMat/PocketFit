@@ -232,6 +232,28 @@ const getOneUserPayStatus = async (req, res) => {
   }
 };
 
+const switchStatus = async (req , res) =>{
+  let {id} = req.body
+  try{
+
+    let client = await User.findOne({where:{id:id}})
+
+    if(client.status === "ACTIVO"){
+
+      client.status = "INACTIVO"
+
+    }else{
+
+      client.status = "ACTIVO"
+
+    }
+
+    await client.save()
+
+    res.send({message:"Status changed"})
+  }
+  catch(error){res.send(error)}
+}
 
 module.exports = {
   createUser,
@@ -246,5 +268,6 @@ module.exports = {
   assignShift,
   uploadImage,
   getShift,
-  getOneUserPayStatus
+  getOneUserPayStatus,
+  switchStatus
 };
