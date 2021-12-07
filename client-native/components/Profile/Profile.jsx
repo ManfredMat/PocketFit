@@ -12,15 +12,14 @@ import editProfile from "../../assets/editprofilephoto.png"
 const Profile = () => {
     const navigation = useNavigation();
     const user = useSelector((state) => state.reducerUser.user);
-    const [image, setImage] = useState(null);
+    const [previewImage, setPreviewImage] = useState(null);
+    let image;
 
     const logOut = async () => {
         await AsyncStorage.removeItem("isLogged");
         navigation.navigate('Authentication')
         Alert.alert("", "Sesión cerrada exitosamente");
     }
-
-    //hay un problema con las promesas :(
 
     const imagePickerPermissions = async () => {
         if (Platform.OS !== 'web') {
@@ -30,7 +29,7 @@ const Profile = () => {
             }
         }
 
-        pickImage();
+        await pickImage();
     }
 
     const pickImage = async () => {
@@ -40,13 +39,14 @@ const Profile = () => {
             aspect: [3, 3],
             quality: 1,
         });
-
+        console.log(result, "RESULT")
+        
         if (!result.cancelled) {
-            setImage(result.uri)
+            image = result.uri
             sendImage()
-        }
+        } 
     };
-
+    
     const sendImage = async () => {
         const data = new FormData();
         data.append("photo", {
@@ -54,9 +54,10 @@ const Profile = () => {
             uri: image,
             type: "image/jpeg"
         });
-
+        
+        setPreviewImage(image);
         await axios.put(`http://${IP}:3001/api/users/${user.id}`, data, { headers: { "Content-Type": `multipart/form-data` } })
-
+        
     }
 
 
@@ -71,7 +72,7 @@ const Profile = () => {
                 </Styles.GreenButton>
             </View>
             <Image
-                source={{ uri: image ? image : user.imageData ? `data:image/jpeg;base64, ${user.imageData}` : 'https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-gris.png' }}
+                source={{ uri: previewImage ? previewImage : user.imageData ? `data:image/jpeg;base64, ${user.imageData}` : 'https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-gris.png' }}
                 style={{ width: 150, height: 150, marginTop: 40, alignSelf: 'center', borderRadius: 9999, backgroundColor: "white" }}
             />
             <TouchableOpacity onPress={() => imagePickerPermissions()} style={{ top: -35, right: -230 }}>
