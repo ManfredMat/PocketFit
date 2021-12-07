@@ -6,16 +6,12 @@ import { useNavigation } from "@react-navigation/core";
 import Styles from './Home.styles';
 
 export default function Home() {
-    const dispatch = useDispatch();
-    const navigation = useNavigation();
     const user = useSelector((state) => state.reducerUser.user);
     const storeData = async (value) => {
-        await AsyncStorage.setItem('isLogged', value)
+        await AsyncStorage.setItem('isLogged', value);
     };
 
-    storeData("true")
-
-    //la imagen del perfil no se actualiza al cambiarla en profile
+    storeData("true");
 
     return (
         <Styles.Container>

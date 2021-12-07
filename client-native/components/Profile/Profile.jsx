@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, Alert, TouchableOpacity } from 'react-native'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Styles from './Profile.styles';
 import { useNavigation } from "@react-navigation/core";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as ImagePicker from 'expo-image-picker';
 import axios from 'axios';
-import IP from "../Ips"
-import editProfile from "../../assets/editprofilephoto.png"
+import IP from "../Ips";
+import editProfile from "../../assets/editprofilephoto.png";
+import getUserId from "../../api/get-user";
+import getUser from '../../redux/Actions/actions-getUser';
 
 const Profile = () => {
+    const dispatch = useDispatch();
     const navigation = useNavigation();
     const user = useSelector((state) => state.reducerUser.user);
     const [previewImage, setPreviewImage] = useState(null);
+    
     let image;
 
     const logOut = async () => {
         await AsyncStorage.removeItem("isLogged");
-        navigation.navigate('Authentication')
+        navigation.navigate('Authentication');
         Alert.alert("", "Sesión cerrada exitosamente");
     }
 
@@ -29,7 +33,7 @@ const Profile = () => {
             }
         }
 
-        await pickImage();
+        pickImage();
     }
 
     const pickImage = async () => {
@@ -39,7 +43,6 @@ const Profile = () => {
             aspect: [3, 3],
             quality: 1,
         });
-        console.log(result, "RESULT")
         
         if (!result.cancelled) {
             image = result.uri
@@ -58,6 +61,8 @@ const Profile = () => {
         setPreviewImage(image);
         await axios.put(`http://${IP}:3001/api/users/${user.id}`, data, { headers: { "Content-Type": `multipart/form-data` } })
         
+        const res = await getUserId(user.id);
+        dispatch(getUser(res.data));
     }
 
 
