@@ -1,23 +1,85 @@
 import React from "react";
+import { View } from "react-native";
 import { Image } from "react-native-elements/dist/image/Image";
 
 // Este componente puede recibir el parametro "size" el cual definira el valor del tamaño de ese icono en especifico
 // Si modificas el valor de sz modificas el tamaño por defecto de los iconos de la barra de navegación
 
-const NavIcon = ({imgSrc,size}) => { 
+const NavIcon = ({imgSrc, focused}) => { 
 
     let sz = 25;
 
-    if(size) sz = size;
-
-
     return(
         <>
-             {imgSrc === 1 ? <Image style={{width: 26, height: sz}} source={require("../../assets/navIcons/home.png")}/> : null}
-             {imgSrc === 2 ? <Image style={{width: sz, height: sz}} source={require("../../assets/navIcons/analysis.png")}/> : null}
-             {imgSrc === 3 ? <Image style={{width: 17.56, height: sz}} source={require("../../assets/navIcons/user.png")}/> : null}
-             {imgSrc === 4 ? <Image style={{width: sz, height: sz}} source={require("../../assets/navIcons/weight.png")}/> : null}
-             {imgSrc === 5 ? <Image style={{width: 22.5, height: sz}} source={require("../../assets/navIcons/notification.png")}/> : null}
+             {imgSrc === 1 
+                ? <View style={{
+                            borderTopWidth: focused ? 2 : 0, 
+                            borderColor:'#6AE056', 
+                            padding:7}}>
+                    <Image 
+                        source={require("../../assets/navIcons/home.png")}
+                        style={{
+                            width: 26, 
+                            height: sz, 
+                            tintColor: focused ? '#6AE056' : '#fff'}} 
+                    />
+                </View> 
+                : 
+             imgSrc === 2 
+                ? <View style={{
+                            borderTopWidth: focused ? 2 : 0, 
+                            borderColor:'#6AE056', 
+                            padding:7}}>
+                    <Image 
+                        source={require("../../assets/navIcons/analysis.png")}
+                        style={{
+                            width: sz, 
+                            height: sz, 
+                            tintColor: focused ? '#6AE056' : '#fff'}} 
+                        /> 
+                 </View>
+                : 
+             imgSrc === 3 
+                ? <View style={{
+                            borderTopWidth: focused ? 2 : 0, 
+                            borderColor:'#6AE056', 
+                            padding:7}}>
+                    <Image 
+                        source={require("../../assets/navIcons/user.png")}
+                        style={{
+                            width: 17.56, 
+                            height: sz, 
+                            tintColor: focused ? '#6AE056' : '#fff'}} 
+                        /> 
+                 </View>
+                : 
+             imgSrc === 4 
+                ? <View style={{
+                            borderTopWidth: focused ? 2 : 0, 
+                            borderColor:'#6AE056', 
+                            padding:7}}>
+                    <Image 
+                        source={require("../../assets/navIcons/weight.png")}
+                        style={{
+                            width: sz, 
+                            height: sz, 
+                            tintColor: focused ? '#6AE056' : '#fff'}} 
+                        />
+                 </View>
+                :
+             imgSrc === 5 
+                ? <View style={{
+                            borderTopWidth: focused ? 2 : 0, 
+                            borderColor:'#6AE056', 
+                            padding:7}}>
+                    <Image 
+                        source={require("../../assets/navIcons/notification.png")}
+                        style={{
+                            width: 22.5, 
+                            height: sz, 
+                            tintColor: focused ? '#6AE056' : '#fff'}} 
+                    /> 
+                 </View> : null}
         </>
     )
 

@@ -16,7 +16,7 @@ export default function InicioStack() {
                 <Stack.Navigator
                     //'#020E12' 
                     screenOptions={{
-                        tabBarActiveTintColor: 'green', 
+                        tabBarActiveTintColor: '#6AE056', 
                         tabBarStyle: { 
                             borderTopColor: '#041D25',
                             position: 'absolute',
@@ -29,34 +29,46 @@ export default function InicioStack() {
                             paddingRight: 7,
                             paddingLeft:7,
                             margin: 15,
-                        }}}
+                        },
+                        indicatorStyle:{borderTopColor: '#6AE056'},
+                    }}
             
                 >
                      <Stack.Screen
                         name="Notificaciones"
                         component={notifications}
-                        options={{ headerShown: false, tabBarIcon:() => <NavIcon imgSrc={5}/>}}
+                        options={{ headerShown: false, 
+                            tabBarIcon:({focused}) => (
+                                <NavIcon imgSrc={5} focused={focused}/>)}}
                     />
                      <Stack.Screen
                         name="Perfil"
                         component={Profile}
-                        options={{ headerShown: false, tabBarIcon:() => <NavIcon imgSrc={3}/>}}
+                        options={{ headerShown: false, 
+                            tabBarIcon:({focused}) => (
+                                <NavIcon imgSrc={3} focused={focused}/>)}}
                     />
                     <Stack.Screen
                         name="Home"
                         component={Home}
-                        options={{headerShown: false, tabBarIcon:() => <NavIcon imgSrc={1}/>}}
+                        options={{headerShown: false, 
+                            tabBarIcon:({focused}) => (
+                                <NavIcon imgSrc={1} focused={focused}/>)}}
                     />
                      <Stack.Screen
                         name="Estadísticas"
                         component={Statistics}
-                        options={{ headerShown: false, tabBarIcon:() => <NavIcon imgSrc={2}/>}}
+                        options={{ headerShown: false, 
+                            tabBarIcon:({focused}) => (
+                                <NavIcon imgSrc={2} focused={focused}/>)}}
                         
                     />
                     <Stack.Screen
                         name="Entrenamiento"
                         component={Training}
-                        options={{ headerShown: false, tabBarIcon:() => <NavIcon imgSrc={4}/>}}
+                        options={{ headerShown: false, 
+                            tabBarIcon:({focused}) => (
+                                <NavIcon imgSrc={4} focused={focused}/>)}}
                         />
                 </Stack.Navigator>
                 </>
