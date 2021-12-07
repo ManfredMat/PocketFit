@@ -15,11 +15,14 @@ const {
   assignShift,
   uploadImage,
   getShift,
+  getOneUserPayStatus,
+  switchStatus
 } = require("../Controllers/User");
 
 router.post("/register_user", createUser);
 router.get("/", checkAuth, getAllUsers);
-router.get("/paystatus/:date", getUserPayStatus);
+router.get("/paystatus/all", getUserPayStatus);
+router.get("/paystatus", getOneUserPayStatus);
 router.put("/:id", uploadImage, modifyUser);
 router.get("/:id", getSpeficicUser);
 router.post("/traine_plan/:id", createRoutine);
@@ -31,5 +34,6 @@ router.put("/traine_plan/:id/:prop", updateRoutine);
 router.post("/bulk", async (req, res) => {
   res.json(await User.bulkCreate(req.body));
 });
+router.put("/status",switchStatus);
 
 module.exports = router;

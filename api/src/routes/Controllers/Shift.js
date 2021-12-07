@@ -139,21 +139,21 @@ const updateShift = async (req, res) => {
 //   }
 // }
 
-const deleteUserShift = async (req, res) => {
-  const { idShift } = req.params
-  try {
+// const deleteUserShift = async (req, res) => {
+//   const { idShift } = req.params
+//   try {
      
-      let oldShift = await Shift.findOne({where: {id: idShift}})
-      // let newAvailability = oldShift.capacity +1
-      // oldShift.availability = newAvailability
-      console.log(oldShift)
-      // oneShift.remove()
-      res.send(oldShift)
-  }
-  catch (err) {
-      res.send(err)
-  }
-}
+//       let oldShift = await Shift.findOne({where: {id: idShift}})
+//       // let newAvailability = oldShift.capacity +1
+//       // oldShift.availability = newAvailability
+//       console.log(oldShift)
+//       // oneShift.remove()
+//       res.send(oldShift)
+//   }
+//   catch (err) {
+//       res.send(err)
+//   }
+// }
 
 const deleteShift = async (req, res) => {
     const { id } = req.params
@@ -260,4 +260,4 @@ const WeekDaysGenerator = (
     }
   }
 
-module.exports = { deleteUserShift, getShiftofUser, weekCreate, createBulk, newShift, getAllShifts, getShiftByWeekNum, updateShift, deleteShift, getShiftById,getAllShiftsPlus };
+module.exports = { getShiftofUser, weekCreate, createBulk, newShift, getAllShifts, getShiftByWeekNum, updateShift, deleteShift, getShiftById,getAllShiftsPlus };

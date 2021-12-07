@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, Alert, ScrollView } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Alert, ScrollView, StatusBar } from 'react-native';
 import { useDispatch, useSelector } from "react-redux";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from "@react-navigation/core";
@@ -15,6 +15,7 @@ export default function Home() {
 
     return (
         <Styles.Container>
+            <StatusBar barStyle="dark-content" backgroundColor="#fafafa" />
             <ScrollView>
                 <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <Image
