@@ -9,6 +9,10 @@ import ShiftsPreview from "./ShiftsPreview";
 
 function ShiftWeeklyView({ render, week }) {
 
+    useEffect(() => {
+        dispatch(getWeekShifts(week))
+    }, [week]);
+
     const [shiftDetail, setShiftDetail] = React.useState(false)
     const weekShifts = useSelector(state => state.timetable.weekShifts)
     const dispatch = useDispatch()
@@ -19,16 +23,13 @@ function ShiftWeeklyView({ render, week }) {
     let lastDay = moment(week, "w").endOf("week").add(1, 'd').format('D/M')
     console.log(lastDay)
 
+
     function weekNums(weekShiftsActual) {
         let weekNums = []
         weekShiftsActual.filter((shift) => !weekNums.includes(shift.day.toLocaleString()) && weekNums.push(shift.day.toLocaleString()))
         weekNums.sort((a, b) => a - b)
         return weekNums
     }
-
-    useEffect(() => {
-        dispatch(getWeekShifts(week))
-    }, [week]);
 
     function shiftPreview(shift) {
         dispatch(selectShift(shift))
@@ -46,14 +47,15 @@ function ShiftWeeklyView({ render, week }) {
                         <h3 style={{ textAlign: "center" }}>{dayName}</h3>
                         <h4 style={{ textAlign: "center" }}>{weekNumsData[index]}</h4>
                         <div style={{ display: "flex", flexDirection: "column" }}>
-                            {weekShifts.length ? weekShifts.filter((shift) => shift.weekday === dayName)
+                            {console.log(weekShifts)}
+                            {/* {weekShifts.length ? weekShifts.filter((shift) => shift.weekday === dayName)
                                 .map((day) => (
                                     <button onClick={() => shiftPreview(day)}>
                                         <p>{day.availability}/{day.capacity}</p>
                                         <p>{day.beginning}hs a {day.ending}hs</p>
                                     </button>
                                 ))
-                                : <p>No hay shifts este dia</p>}
+                                : <p>No hay shifts este dia</p>} */}
                         </div>
                     </div>
                 ))}
