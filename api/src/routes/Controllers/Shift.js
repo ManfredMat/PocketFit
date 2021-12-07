@@ -1,5 +1,5 @@
 
-const { Shift, Timetable, User } = require('../../db')
+const { Shift, Timetable, User, UserShift } = require('../../db')
 
 const newShift = async (req, res) => {
   const { day,
@@ -122,6 +122,39 @@ const updateShift = async (req, res) => {
     }
 }
 
+// const deleteUserShift = async (req, res) => {
+//   const { idUser, idShift } = req.body
+//   try {
+//       let oneShift = await Shift.findOne({ where: { id: idShift }, include: User })
+//       let oneUser = await User.findOne({ where: {id: idUser}})
+//       await oneShift.oneUser(oneUser)
+//       let newAvailability = oneShift.capacity +1
+//       oneShift.availability = newAvailability
+//       oneUser.delete()
+//       oneShift.save()
+//       res.send(oneShift)
+//   }
+//   catch (err) {
+//       res.send(err)
+//   }
+// }
+
+const deleteUserShift = async (req, res) => {
+  const { idShift } = req.params
+  try {
+     
+      let oldShift = await Shift.findOne({where: {id: idShift}})
+      // let newAvailability = oldShift.capacity +1
+      // oldShift.availability = newAvailability
+      console.log(oldShift)
+      // oneShift.remove()
+      res.send(oldShift)
+  }
+  catch (err) {
+      res.send(err)
+  }
+}
+
 const deleteShift = async (req, res) => {
     const { id } = req.params
     try {
@@ -227,4 +260,4 @@ const WeekDaysGenerator = (
     }
   }
 
-module.exports = { getShiftofUser, weekCreate, createBulk, newShift, getAllShifts, getShiftByWeekNum, updateShift, deleteShift, getShiftById,getAllShiftsPlus };
+module.exports = { deleteUserShift, getShiftofUser, weekCreate, createBulk, newShift, getAllShifts, getShiftByWeekNum, updateShift, deleteShift, getShiftById,getAllShiftsPlus };
