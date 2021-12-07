@@ -7,7 +7,7 @@ import { Image } from "react-native-elements/dist/image/Image";
 
 const NavIcon = ({imgSrc, focused}) => { 
 
-    let sz = 25;
+    let sz = 20;
 
     return(
         <>
@@ -19,7 +19,7 @@ const NavIcon = ({imgSrc, focused}) => {
                     <Image 
                         source={require("../../assets/navIcons/home.png")}
                         style={{
-                            width: 26, 
+                            width: 21, 
                             height: sz, 
                             tintColor: focused ? '#6AE056' : '#fff'}} 
                     />
@@ -47,7 +47,7 @@ const NavIcon = ({imgSrc, focused}) => {
                     <Image 
                         source={require("../../assets/navIcons/user.png")}
                         style={{
-                            width: 17.56, 
+                            width: 12.56, 
                             height: sz, 
                             tintColor: focused ? '#6AE056' : '#fff'}} 
                         /> 
@@ -75,7 +75,7 @@ const NavIcon = ({imgSrc, focused}) => {
                     <Image 
                         source={require("../../assets/navIcons/notification.png")}
                         style={{
-                            width: 22.5, 
+                            width: 17.5, 
                             height: sz, 
                             tintColor: focused ? '#6AE056' : '#fff'}} 
                     /> 

@@ -29,9 +29,8 @@ export default function InicioStack() {
                             paddingTop: 5,
                             paddingRight: 7,
                             paddingLeft:7,
-                            margin: 15,
+                            margin: 10,
                         },
-                        indicatorStyle:{borderTopColor: '#6AE056'},
                     }}
             
                 >

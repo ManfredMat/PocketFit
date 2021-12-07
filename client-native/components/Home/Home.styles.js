@@ -18,6 +18,7 @@ const Styles = {
         width: 100%;
         background-color: ${darkGrayBase};
         margin-top: 25px;
+        padding-bottom: 103px;
     `,
 
     Card: styled.View`

@@ -10,6 +10,7 @@ export const Container = styled.View`
     background-color: ${darkGrayBase};
     width: 100%;
     height: 100%;
+    padding-bottom: 78px;
 `
 export const Routines = styled.View`
     align-items: center;
@@ -80,13 +81,4 @@ export const ShiftsCont = styled.View`
     align-items: center;
     width: 100%;
     height: 100px;
-`
-export const Cont = styled.View`
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    height: 100px;
-    margin-bottom: 100px;
 `
