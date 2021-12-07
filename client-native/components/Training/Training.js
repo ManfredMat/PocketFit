@@ -78,7 +78,7 @@ export default function Training() {
                     </ButtonShifts>
                 </ShiftsCont>
                 <TextW>Próxima Clase</TextW>
-                <Cont>
+                <ShiftsCont>
                     <ProxShifts>
                         <View style={{display: 'flex', flexDirection: 'row'}}>
                             <View style={{marginRight: 20, alignItems: 'center'}}>
@@ -94,7 +94,7 @@ export default function Training() {
                     <ButtonShifts onPress={() => alert('estamos trabajando en esta sección')}>
                         <Image source={arrow} style={{alignSelf: 'center', width:30, height:30, opacity: 0.8}}/>
                     </ButtonShifts>
-                </Cont>
+                </ShiftsCont>
             </ScrollView>
         </Container>
     )
