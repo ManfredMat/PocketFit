@@ -180,31 +180,58 @@ const updateRoutine = async (req, res) => {
   }
 };
 
-const getUserPayStatus = async (res, req) => {
-  let { date } = (req.date = new Date(date));
-
+const getUserPayStatus = async (req, res) => {
+  let { date } = req.body;
+  
+  date = new Date(date)
   try {
     let clients = await User.findAll({
-      where: { isuser: true, isadmin: false, isprofessor: false },
+      where: { isuser: true },
     });
+    
     let alDia = [];
     let fueraDeTermino = [];
 
-    for (let i of clients) {
-      if (clients[i].paymentday > date) {
+    for (let i = 0; i < clients.length ; i++) {
+      
+      if (clients[i].dataValues.paymentday > date) {
         alDia.push(clients[i]);
       } else {
         fueraDeTermino.push(clients[i]);
       }
     }
-    return {
+    let payStatus  = {
       upToDate: alDia,
       offToDate: fueraDeTermino,
     };
+
+    res.send(payStatus)
   } catch (error) {
     res.send(error);
   }
 };
+
+const getOneUserPayStatus = async (req, res) => {
+  let { date  , id } = req.body;
+  date = new Date(date)
+
+  try {
+    let client = await User.findOne({
+      where: { id:id },
+    });
+    console.log(client)
+    if(client.dataValues.paymentday < date){
+      client.dataValues["paystatus"] = "NO-PAGO"
+    }else{
+      client.dataValues["paystatus"] = "PAGO"
+    }
+    res.send(client)
+    
+  } catch (error) {
+    res.send(error);
+  }
+};
+
 
 module.exports = {
   createUser,
@@ -218,5 +245,6 @@ module.exports = {
   getUserPayStatus,
   assignShift,
   uploadImage,
-  getShift
+  getShift,
+  getOneUserPayStatus
 };
