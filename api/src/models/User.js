@@ -38,7 +38,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
-    pushpress: {
+    benchpress: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
@@ -76,6 +76,10 @@ module.exports = (sequelize) => {
     paymentday: {
       type: DataTypes.DATE,
       allowNull: true,
+    },
+    status:{
+      type: DataTypes.ENUM("ACTIVO" , "INACTIVO"),
+      defaultValue:"ACTIVO"
     },
     newsletter:{
       type: DataTypes.BOOLEAN,
