@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import moment from 'moment';
 import { useSelector, useDispatch } from "react-redux"
-import { getAllShifts,postWeekShifts } from "../../redux/Actions/actions-Horarios"
+import { getAllShifts, postWeekShifts } from "../../redux/Actions/actions-Horarios"
 let weekDays = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado", "Domingo"]
 
 function Mondays() {
@@ -13,31 +13,27 @@ function Mondays() {
     return mondays
 }
 
-function ShiftActivate({ display }) {
+function ShiftActivate({ display,setRender,render }) {
     let today = moment().format('M-D-YYYY').split("-")
     const weekShifts = useSelector(state => state.timetable.weekShifts)
     const allShifts = useSelector(state => state.timetable.allShifts)
     const dispatch = useDispatch()
     const [data, setData] = useState({
         weeks: "",
-        weekCount: 1
+        weekCount: 1,
+        end: []
     })
 
 
-    let startOfWeek = moment(data.weeks, "D-M-YYYY").startOf('week').add(1, 'days').format('M-DD-YYYY').split("-");
-    let startOfWeekMonthNum = parseInt(moment(data.weeks, "D-M-YYYY").endOf('Month').format('D'));
-    let endOfWeek = moment().endOf('week').add(1, 'days').format('M-D-YYYY').split("-");
-    let week = parseInt(moment(data.weeks, "D-M-YYYY").format("w"))
     let mondays = Mondays()
     let end = moment(data.weeks, "D-M-YYYY").endOf('isoWeek').add(data.weekCount, 'week').format('D-M-YYYY')
 
-    console.log(end)
 
     useEffect(() => {
         dispatch(getAllShifts(today[2], today[1], today[0]))
     }, []);
 
-    function handleOnChange(e) {
+    async function handleOnChange(e) {
         e.preventDefault()
         setData(() => {
             return {
@@ -45,7 +41,8 @@ function ShiftActivate({ display }) {
                 [e.target.name]: e.target.value
             }
         })
-        console.log(e.target.value)
+        await console.log("Data.weeks:", data.weeks)
+        await console.log("Data.weekCount:", data.weekCount)
     }
 
 
@@ -53,24 +50,57 @@ function ShiftActivate({ display }) {
         e.preventDefault()
         console.log(data)
 
-        let dayFirst = data.weeks.split("-")
-        let dayLast = end.split("-")
+        if (data.weekCount <= 0) {
+            let dayFirst = data.weeks.split("-")
+            let dayLast = end.split("-")
+            let startOfWeekMonthNum = parseInt(moment(data.weeks, "D-M-YYYY").endOf('Month').format('D'));
+            let week = parseInt(moment(data.weeks, "D-M-YYYY").format("w",'isoWeek'))
 
-        console.log(dayFirst)
+            const params = {
+                weeks: [
+                    {
+                        firstDay: parseInt(dayFirst[0]),
+                        firstDayMonth: parseInt(dayFirst[1]),
+                        firstDayMonthDays: startOfWeekMonthNum,
+                        lastDay: parseInt(dayLast[0]),
+                        lastDayMonth: parseInt(dayLast[1]),
+                        week: week,
+                        year: parseInt(dayFirst[2])
+                    }
+                ],
+                weekDaysNames: weekDays,
+                timetableId: 1
+            }
+            dispatch(postWeekShifts(params))
+        } else {
+            const params = {
+                weeks: [],
+                weekDaysNames: weekDays,
+                timetableId: 1
+            }
+            for (let i = 0; i <= data.weekCount; i++) {
+                let dayFirst = moment(data.weeks, "D-M-YYYY").startOf('isoWeek').add(i, 'week').format('D-M-YYYY').split("-")
+                let dayLast = moment(data.weeks, "D-M-YYYY").endOf('isoWeek').add(i, 'week').format('D-M-YYYY').split("-")
+                let startOfWeekMonthNum = parseInt(moment(dayFirst, "D-M-YYYY").endOf('Month').format('D'));
+                let week = parseInt(moment(dayFirst, "D-M-YYYY").format("w",'isoWeek'))
+                //console.log(`Semana n°${i} inicio:${dayFirst}`, `Semana n°${i} final:${dayLast}`)
 
-        const params = {
-            firstDay: parseInt(dayFirst[0]),
-            firstDayMonth:  parseInt(dayFirst[1]),
-            firstDayMonthDays:  startOfWeekMonthNum,
-            lastDay:  parseInt(dayLast[0]),
-            lastDayMonth:  parseInt(dayLast[1]),
-            week: week,
-            year:  parseInt(dayFirst[2]),
-            weekDaysNames: weekDays,
-            timetableId: 1
+                params.weeks.push({
+                    firstDay: parseInt(dayFirst[0]),
+                    firstDayMonth: parseInt(dayFirst[1]),
+                    firstDayMonthDays: startOfWeekMonthNum,
+                    lastDay: parseInt(dayLast[0]),
+                    lastDayMonth: parseInt(dayLast[1]),
+                    week: week,
+                    year: parseInt(dayFirst[2])
+                })
+            }
+
+            dispatch(postWeekShifts(params))
         }
 
-        dispatch(postWeekShifts(params))
+        setRender(!render)
+        display(false)
     }
 
     return (

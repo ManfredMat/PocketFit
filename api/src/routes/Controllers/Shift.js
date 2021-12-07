@@ -104,7 +104,7 @@ const getShiftByWeekNum = async (req, res) => {
     res.send(WeekShifts)
   }
   catch (error) {
-    next(error)
+    res.send(error)
   }
 }
 

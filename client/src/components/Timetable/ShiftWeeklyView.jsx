@@ -6,68 +6,63 @@ import { useSelector, useDispatch } from "react-redux"
 import ShiftsPreview from "./ShiftsPreview";
 
 
-function getWeekNameDay(today) {
-    let options = { weekday: 'long' }
-    let convert = today.toLocaleString(undefined, options)
-    return convert.charAt(0).toUpperCase() + convert.slice(1)
-}
 
-function ShiftWeeklyView() {
+function ShiftWeeklyView({ render, week }) {
 
     const [shiftDetail, setShiftDetail] = React.useState(false)
     const weekShifts = useSelector(state => state.timetable.weekShifts)
     const dispatch = useDispatch()
     let weekDays = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado"]
-    //const weekNumsData = weekNums(weekShifts)
-    let startOfWeek = moment().startOf('week').add(1, 'days').format('M-DD-YYYY').split("-");
-    let startOfWeekMonthNum = parseInt(moment().endOf('Month').format('D'));
-    let endOfWeek = moment().endOf('week').add(1, 'days').format('M-D-YYYY').split("-");
-    let week = parseInt(moment().format("w"))
+    const weekNumsData = weekNums(weekShifts)
+    let firstDay = moment(week,"w").add(1, 'd').format('D/M')
+    //.startOf('isoWeek')
+    let lastDay = moment(week, "w").endOf("week").add(1, 'd').format('D/M')
+    console.log(lastDay)
 
-
-   /*  function weekNums(weekShiftsActual) {
+    function weekNums(weekShiftsActual) {
         let weekNums = []
         weekShiftsActual.filter((shift) => !weekNums.includes(shift.day.toLocaleString()) && weekNums.push(shift.day.toLocaleString()))
+        weekNums.sort((a, b) => a - b)
         return weekNums
-    } */
-    
+    }
+
     useEffect(() => {
         dispatch(getWeekShifts(week))
-    }, []);
+    }, [week]);
 
     function shiftPreview(shift) {
         dispatch(selectShift(shift))
         setShiftDetail(true)
     }
 
-console.log(weekShifts)
 
-    return (
+    return (render && (
         <div>
-             <div style={{ display: "flex" }}>
+            <h2>Semana</h2>
+            <h3>{firstDay} al {lastDay}</h3>
+            <div style={{ display: "flex" }}>
                 {weekDays.map((dayName, index) => (
                     <div>
-                        <h3 style={{textAlign:"center"}}>{dayName}</h3>
-                        {/* <h4>{weekNumsData[index]}</h4> */}
+                        <h3 style={{ textAlign: "center" }}>{dayName}</h3>
+                        <h4 style={{ textAlign: "center" }}>{weekNumsData[index]}</h4>
                         <div style={{ display: "flex", flexDirection: "column" }}>
                             {weekShifts.length ? weekShifts.filter((shift) => shift.weekday === dayName)
                                 .map((day) => (
                                     <button onClick={() => shiftPreview(day)}>
-                                        <p>{day.day}</p>
                                         <p>{day.availability}/{day.capacity}</p>
                                         <p>{day.beginning}hs a {day.ending}hs</p>
                                     </button>
                                 ))
-                            : <p>No hay shifts</p>}
+                                : <p>No hay shifts este dia</p>}
                         </div>
                     </div>
                 ))}
             </div>
 
             {shiftDetail &&
-                <ShiftsPreview display={setShiftDetail} />} 
+                <ShiftsPreview display={setShiftDetail} />}
         </div>
-    )
+    ))
 }
 
 export default ShiftWeeklyView

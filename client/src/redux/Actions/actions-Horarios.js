@@ -55,7 +55,7 @@ export function getWeekShifts(week) {
   }}
 
 export function postWeekShifts(params) {
-
+  console.log(params)
   return async function (dispatch) {
     await axios.post('http://localhost:3001/api/shift/weekcreate', params)
       .then(res => {
@@ -115,10 +115,6 @@ export function postShift(body) {
       .put("http://localhost:3001/api/shift/update",body)
       .then((create) => {
         console.log(create.data)
-        /* dispatch({
-          type: PUT_SHIFT_USER,
-          value: res.data,
-        }); */
       })
       await axios
       .get(`http://localhost:3001/api/shift/${body.idShift}`)
