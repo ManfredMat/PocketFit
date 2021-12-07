@@ -81,3 +81,12 @@ export const ShiftsCont = styled.View`
     width: 100%;
     height: 100px;
 `
+export const Cont = styled.View`
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 100px;
+`
