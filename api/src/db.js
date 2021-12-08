@@ -40,7 +40,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 
 
-const { Event , Exercise  , Routine , Timetable , User  , Block, Shift , Weekplan} = sequelize.models;
+const { Event , Exercise  , Routine , Timetable , User  , Block, Shift , Weekplan , Review} = sequelize.models;
 
 
 

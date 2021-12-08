@@ -1,7 +1,7 @@
-const User = require('../../db');
+const {User} = require('../../db');
 const { transporter, mailOptions } = require('./Transporter');
 
-let model = `<!DOCTYPE html>
+let subscribed = `<!DOCTYPE html>
   <html>
   
   <head>
@@ -11,11 +11,27 @@ let model = `<!DOCTYPE html>
   
   <body style=" font-family: 'Open Sans', 'Arial Narrow', Arial, sans-serif; ">
    <h2>Hola %usuario% </h2>
-   <h2>Ya estas suscripto a las noticias del gimansio </h2>
+   <h2>Ya estas suscripto a las noticias del gimnasio </h2>
   
   </body>
   
   </html>`
+
+let unsubscribed = `<!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  </head>
+  
+  <body style=" font-family: 'Open Sans', 'Arial Narrow', Arial, sans-serif; ">
+   <h2>Hola %usuario% </h2>
+   <h2>Ya estas desuscrito de las noticias del gimnasio </h2>
+  
+  </body>
+  
+  </html>`  
 
 let modelNews = `<!DOCTYPE html>
   <html>
@@ -45,11 +61,11 @@ const subscribeToNews = async (req , res)=>{
 
     await user.save()
 
-    let message = model
+    let message = subscribed
 
     message = message.replace("%usuario%", user.name);
 
-    let emailOptions = mailOptions(user.email, message , 'You`re now subscribe to te newsletter')
+    let emailOptions = mailOptions(user.email, message , 'Ya estas suscripto a las noticias de tu gimnasio')
 
     let info = transporter.sendMail(emailOptions, function (error, info) {
         if (error) {
@@ -76,11 +92,11 @@ const unsubscribeToNews = async (req , res)=>{
   
       await user.save()
   
-      let message = model
+      let message = unsubscribed
   
       message = message.replace("%usuario%", user.name);
   
-      let emailOptions = mailOptions(user.email, message , 'You`re now unsubscribe to te newsletter')
+      let emailOptions = mailOptions(user.email, message , 'Ya estas desuscripto')
   
       let info = await transporter.sendMail(emailOptions, function (error, info) {
           if (error) {
@@ -97,10 +113,10 @@ const unsubscribeToNews = async (req , res)=>{
   }
 
   const sendNewsletter = async (req , res)=>{
-      let {news} = req.body
+      let {news , subject} = req.body
       try{
-        let users = User.findAll({where:{newsletter:true}})
-
+        let users = await User.findAll({where:{newsletter:true}})
+        console.log(users)
         users.forEach(user => {
 
             let message = modelNews
@@ -109,7 +125,7 @@ const unsubscribeToNews = async (req , res)=>{
             message = message.replace("%message%", news);
 
 
-            let emailOptions = mailOptions(user.email, message , 'What is going on at your gym')
+            let emailOptions = mailOptions(user.email, message , subject?subject:'Que hay de nuevo en tu gimnasio local')
         
             let info = transporter.sendMail(emailOptions, function (error, info) {
                 if (error) {

@@ -9,6 +9,7 @@ const Styles = {
         height: 100%;
         width: 100%;
         background-color: ${darkGrayBase};
+        padding-bottom: 80px;
     `,
 
     Text: styled.Text`
