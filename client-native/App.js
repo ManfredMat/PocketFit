@@ -79,7 +79,7 @@ export default function App() {
             }} />
             <Stack.Screen name='Shifts' component={Shifts} options={{
               title: 'Turnos',
-              headerTitleStyle: { color: '#fff' },
+              headerTintColor:'#fff',
               headerStyle: { backgroundColor: '#041D25' },
             }} />
           </Stack.Navigator>
