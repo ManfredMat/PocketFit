@@ -9,14 +9,13 @@ import { getShiftId } from '../../redux/Actions/actions-Shifts'
 export default function ShiftsAvailable({weekday, day, month, availability, capacity, beginning, ending, week, year, id}) {
     const dispatch = useDispatch()
     const getUserid = useSelector((state) => state.reducerUser.user.id)
+    useEffect(()=>{dispatch(getShiftId(getUserid))},[dispatch])
     const handleSubmmit = () => {
         shiftRecord({
             idUser: getUserid,
             idShift: id,
         }) 
-       dispatch(getShiftId(id))
     }  
-    console.log()
     return (
      <Avariable>
         <View style={{width: '60%'}}>

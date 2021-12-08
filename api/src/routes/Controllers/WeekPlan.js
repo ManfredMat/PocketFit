@@ -18,16 +18,14 @@ const structureWeekPlan=(weekplan , name)=>{
 const createWeekPlan = async (req , res)=>{
     let {name , monday , tuesday ,wendsday , thursday , friday , saturday} = req.body
     
-
+     try{
+        
+        if(!name){
     
+            await Weekplan.destroy({where:{name:NOMBRE_GENERAL}})        
+            name = NOMBRE_GENERAL
+        }
 
-    if(!name){
-
-        Weekplan.destroy({where:{name:NOMBRE_GENERAL}})        
-        name = NOMBRE_GENERAL
-    }
-
-    try{
         let newWeekPlan = await Weekplan.create(
             {
                 name,

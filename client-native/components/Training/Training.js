@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
-import { Container, Routines, TextW, TextT, Excercise, ProxShifts, ButtonShifts, ShiftsCont} from './Training.Styles'
+import { Container, Routines, TextW, TextT, Excercise, ProxShifts, ButtonShifts, ShiftsCont, Cont} from './Training.Styles'
 import arrow from '../../assets/arrow.png'
 import { useNavigation } from '@react-navigation/core';
 import { getAllWeekPlan } from '../../redux/Actions/actions-Training';

@@ -10,6 +10,7 @@ export const Container = styled.View`
     background-color: ${darkGrayBase};
     width: 100%;
     height: 100%;
+    padding-bottom: 78px;
 `
 export const Routines = styled.View`
     align-items: center;
