@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { getEvents } from "../../redux/Actions/actions-Horarios"
+import { getEvents } from "../../redux/Actions/actions-Activities"
 
 
 function Detail() {
-    const events = useSelector(state => state.timetable.events)
+    const events = useSelector(state => state.activities.events)
     const dispatch = useDispatch()
     const labels = ["Evento", "Fecha", "Horario", "Profesor"]
 
