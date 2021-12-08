@@ -22,7 +22,6 @@ function Timetable() {
     dispatch(getTimetable())
 }, []);
 
-  console.log(configTurnos)
   return (
     <div style={{ position: "relative", width: "-webkit-fill-available", height: "-webkit-fill-available" }}>
       <div style={{ padding: "1rem", position: "relative" }}>
@@ -46,7 +45,7 @@ function Timetable() {
                 <button onClick={() => setTakeShift(!takeShift)}>Agendar Turno</button>
                 <button onClick={() => setconfigTurnos(!configTurnos)}>Configurar Turnos</button>
               </div>
-              {/* <Shifts setShiftDetail={setShiftDetail}/> */}
+              <Shifts setShiftDetail={setShiftDetail}/>
               <Link to="/session/timetable/ShiftsDetails">
               <button>Ver detalle</button>
               </Link>
