@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { getWeekShifts, selectShift } from "../../redux/Actions/actions-Horarios"
 import { useSelector, useDispatch } from "react-redux"
+import moment from 'moment';
+
 
 
 
@@ -21,6 +23,7 @@ function getWeekNameDay(today) {
 
 function Shifts({ setShiftDetail }) {
     const today = new Date()
+    let week = parseInt(moment().format("w",'isoWeek'))
     const nextDay = new Date(today);
     nextDay.setDate(nextDay.getDate() + 1);
     const weekShifts = useSelector(state => state.timetable.weekShifts)
@@ -28,7 +31,7 @@ function Shifts({ setShiftDetail }) {
 
 
     useEffect(() => {
-        dispatch(getWeekShifts())
+        dispatch(getWeekShifts(week))
     }, []);
 
     function shiftPreview(shift) {

@@ -31,9 +31,9 @@ const createBlock = async (req , res)=>{
         let exercisesDb = await Exercise.findAll();
         let checkBlockDb = await Block.findOne({where:{day:day , order:order , rounds:rounds}})
 
-        if(checkBlockDb !== null){
-            Block.destroy({where:{day:day , order:order , rounds:rounds}})
-        }
+        // if(checkBlockDb !== null){
+        //     Block.destroy({where:{day:day , order:order , rounds:rounds}})
+        // }
 
         exercisesDb = exercisesDb.map((exercise)=> exercise = {id:exercise.dataValues.id , name:exercise.dataValues.name})
 

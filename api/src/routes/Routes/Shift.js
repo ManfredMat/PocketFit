@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const { weekCreate, createBulk,getAllShiftsPlus, newShift, getAllShifts,getShiftByWeekNum, updateShift, deleteShift, getShiftById } = require('../Controllers/Shift')
+const { getShiftofUser, weekCreate, createBulk,getAllShiftsPlus, newShift, getAllShifts,getShiftByWeekNum, updateShift, deleteShift, getShiftById } = require('../Controllers/Shift')
 
 
 router.post("/create", newShift);
@@ -13,6 +13,8 @@ router.get("/allPlus", getAllShiftsPlus);
 
 router.get('/:id', getShiftById)
 
+router.get('/user/:id', getShiftofUser)
+
 router.get('/week/:week', getShiftByWeekNum)
 
 router.put("/update", updateShift);
@@ -22,5 +24,7 @@ router.delete("/:id", deleteShift);
 router.post('/bulk', createBulk);
 
 router.post('/weekcreate', weekCreate);
+
+// router.delete("/deleteusershift", deleteUserShift)
 
 module.exports = router;

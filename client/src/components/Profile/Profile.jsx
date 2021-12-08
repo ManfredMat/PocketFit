@@ -19,11 +19,11 @@ function Profile() {
         setFile(file);
     }
 
-    const sendImage = (e) => {
+    const sendImage = async(e) => {
         const data = new FormData();
         data.append("photo", file);
 
-        axios.put(`http://localhost:3001/api/users/${id}`, data, {withCredentials:true ,headers: {"content-Type": `multipart/form-data; boundary=${data._boundary}`}})
+        await axios.put(`http://localhost:3001/api/users/${id}`, data, {withCredentials:true, headers: {"content-Type": `multipart/form-data; boundary=${data._boundary}`}})
             .then(res => console.log(res))
             .catch(err => console.log(err));
 
@@ -36,7 +36,12 @@ function Profile() {
                 <input type="file" accept=".jpg, .jpeg" onChange={(e) => onChange(e)}/>
             </form>
             <button onClick={sendImage}>Enviar</button>
-            <img style={{width:"20rem", height: "20rem", objectFit:"cover", borderRadius:"50%"}} src={`data:image/jpeg;base64, ${adminProfileImage}`} alt="admin-profile-img"/>
+            {
+                adminProfileImage ? 
+                <img style={{width:"20rem", height: "20rem", objectFit:"cover", borderRadius:"50%"}} src={`data:image/jpeg;base64, ${adminProfileImage}`} alt="admin-profile-img"/>
+                :
+                <h3>Elija una imagen de perfil</h3>
+            }
         </div>
     )
 }

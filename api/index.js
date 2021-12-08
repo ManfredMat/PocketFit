@@ -32,7 +32,7 @@ const generatorEx = (n) => {
 
 const exerArray = generatorEx(10);
 
-conn.sync({ force: false }).then(async () => {
+conn.sync({ force: true }).then(async () => {
   let newPassword = await bcrypt.hash("1234", 10);
   let adminAcount = {
     name: "Admin",
@@ -45,7 +45,7 @@ conn.sync({ force: false }).then(async () => {
   };
 
   await Timetable.create();
-  //await User.create(adminAcount)
+  await User.create(adminAcount)
   await Exercise.bulkCreate(exerArray);
 
   server.listen(3001, () => {

@@ -3,7 +3,7 @@ import React from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import { useEffect } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import signIn from "../../redux/Actions/actions-User";
+import signIn from "../../redux/Actions/actions-Login";
 import postLoginUser from "../../api/post-login";
 import { useDispatch } from "react-redux";
 

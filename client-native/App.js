@@ -10,6 +10,7 @@ import store from "./redux/store";
 import { Provider } from "react-redux";
 import Shifts from "./components/Shifts/Shifts";
 import PassReco from "./components/Authentication/SignIn/PassReco";
+import Configuration from "./components/Profile/Configuration/Configuration";
 import {
   Poppins_100Thin,
   Poppins_100Thin_Italic,
@@ -71,13 +72,16 @@ export default function App() {
             <Stack.Screen name='Auth' component={RootStack} options={{ headerShown: false }} />
             <Stack.Screen name='PassReco' component={PassReco} options={{ headerShown: false }} />
             <Stack.Screen name='Inicio' component={InicioStack} options={{ headerShown: false }} />
+            <Stack.Screen name="Configuration" component={Configuration} options={{
+              title: "Configuración",
+              headerStyle: { backgroundColor: "#041D25", marginTop: 20 },
+              headerTintColor: "white"
+            }} />
             <Stack.Screen name='Shifts' component={Shifts} options={{
-
               title: 'Turnos',
-              headerTitleStyle: { color: '#fff' },
+              headerTintColor:'#fff',
               headerStyle: { backgroundColor: '#041D25' },
-            }}
-            />
+            }} />
           </Stack.Navigator>
           <StatusBar />
         </NavigationContainer>

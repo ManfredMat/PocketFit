@@ -41,5 +41,12 @@ module.exports = (sequelize) => {
       year:{        
         type: DataTypes.INTEGER,
         allowNull: false}
+    },{
+      indexes: [
+          {
+              unique: true,
+              fields: ['day', 'month', 'year','beginning','ending']
+          }
+      ]
     })
   };

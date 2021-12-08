@@ -10,12 +10,12 @@ function reducerUsers(state = initialState, action) {
     switch (action.type) {
       case GET_USERS:
         //comentar el if de abajo si en la db se tiene menos de 3 users
-        if (action.payload.length < 3) {
+        /* if (action.payload.length < 3) {
           return {
             ...state,
             users: json.users
           }
-        }
+        } */
 
         return {
           ...state,

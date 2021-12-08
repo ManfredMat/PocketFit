@@ -8,6 +8,10 @@ export const GET_WEEK_SHIFTS = "GET_WEEK_SHIFTS";
 export const SELECT_SHIFT = "SELECT_SHIFT";
 export const GET_ALL_SHIFTS = "GET_ALL_SHIFTS";
 export const GET_ACTUAL_TIMETABLE = "GET_ACTUAL_TIMETABLE";
+export const PUT_SHIFT_USER = "PUT_SHIFT_USER";
+export const PUT_SHIFT_USER_CLEAN = "PUT_SHIFT_USER_CLEAN";
+export const CREATED_WEEK_SHIFTS = "CREATED_WEEK_SHIFTS";
+
 
 export function getLessons() {
   return async function (dispatch) {
@@ -37,72 +41,28 @@ export function getEvents() {
   };
 }
 
-export function getWeekShifts(firstDay,
-  firstDayMonth,
-  firstDayMonthDays,
-  lastDay,
-  lastDayMonth,
-  week,
-  year,
-  weekDaysNames,
-  timetableId) {
-
-
-  const body = {
-    firstDay: parseInt(firstDay),
-    firstDayMonth:parseInt(firstDayMonth),
-    lastDay: parseInt(lastDay),
-    lastDayMonth: parseInt(lastDayMonth),
-    year: parseInt(year),
-    firstDayMonthDays,
-    week,
-    weekDaysNames,
-    timetableId
-  }
-  console.log(body)
+export function getWeekShifts(week) {
 
   return async function (dispatch) {
-    await axios.post('http://localhost:3001/api/shift/weekcreate', body)
+    await axios.get(`http://localhost:3001/api/shift/week/${week}`)
       .then(res => {
-        //console.log(res.data)
+      console.log("getWeek:",res.data)
         dispatch({
           type: GET_WEEK_SHIFTS,
           value: res.data,
         })
-      });
+      }); 
   }}
 
-export function postWeekShifts(firstDay,
-  firstDayMonth,
-  firstDayMonthDays,
-  lastDay,
-  lastDayMonth,
-  week,
-  year,
-  weekDaysNames,
-  timetableId) {
-
-
-  const body = {
-    firstDay: parseInt(firstDay),
-    firstDayMonth:parseInt(firstDayMonth),
-    lastDay: parseInt(lastDay),
-    lastDayMonth: parseInt(lastDayMonth),
-    year: parseInt(year),
-    firstDayMonthDays,
-    week,
-    weekDaysNames,
-    timetableId
-  }
-  console.log(body)
-
+export function postWeekShifts(params) {
+  console.log(params)
   return async function (dispatch) {
-    await axios.post('http://localhost:3001/api/shift/weekcreate', body)
+    await axios.post('http://localhost:3001/api/shift/weekcreate', params)
       .then(res => {
-        //console.log(res.data)
+        console.log("Created:",res.data)
         dispatch({
           type: GET_WEEK_SHIFTS,
-          value: res.data,
+          value: true,
         })
       });
   }
@@ -147,4 +107,29 @@ export function getTimetable() {
         });
       });
   };
+}
+
+export function postShift(body) {
+  return async function (dispatch) {
+    await axios
+      .put("http://localhost:3001/api/shift/update",body)
+      .then((create) => {
+        console.log(create.data)
+      })
+      await axios
+      .get(`http://localhost:3001/api/shift/${body.idShift}`)
+      .then((res) => {
+        dispatch({
+          type: PUT_SHIFT_USER,
+          value: res.data,
+        });
+      })
+  };
+}
+
+export function postShiftClean() {
+  return {
+    type: PUT_SHIFT_USER_CLEAN,
+    value: [],
+  }
 }

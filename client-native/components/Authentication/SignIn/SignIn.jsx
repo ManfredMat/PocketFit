@@ -5,7 +5,7 @@ import { Input } from "react-native-elements";
 import { ButtonGreen, Label } from "../Authentication.styles";
 import { Styles } from '../Authentication.styles';
 import { useSelector, useDispatch } from "react-redux";
-import signIn from "../../../redux/Actions/actions-User";
+import signIn from "../../../redux/Actions/actions-Login";
 import postLoginUser from "../../../api/post-login";
 import sendMailPassReco from "../../../api/post-passreco-mail";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -87,9 +87,9 @@ const SignIn = () => {
     if (res.data === "Something went wrong") return alert("El Email ingresado no coincide con el registrado en la base de datos")
     await AsyncStorage.setItem('recoEmail', state.email);
     setRender(true);
-    Alert.alert("Mail enviado, revise su correo");
+    Alert.alert("Mail enviado, revise su correo y siga las instrucciones");
     setState({ email: "" });
-    navigation.navigate("PassReco");
+    navigation.navigate("Authentication");
   }
 
   return (

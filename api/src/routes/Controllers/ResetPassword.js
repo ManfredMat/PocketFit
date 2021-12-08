@@ -60,10 +60,10 @@ const sendEmailToRecover = async (req, res) => {
 
 
 const changePassword = async (req, res) => {
-  let { email, newPassword } = req.body
+  let { id, newPassword } = req.body
   try {
 
-    let usuario = await User.findOne({ where: { email: email } })
+    let usuario = await User.findOne({ where: { id: id } })
 
     newPassword = await bcrypt.hash(newPassword, 10)
 
