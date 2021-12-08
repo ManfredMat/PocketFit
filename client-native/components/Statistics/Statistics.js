@@ -15,9 +15,9 @@ export default function Statistics() {
         }
     }
     const ejercicios = () => {
-        let total = exercise ? exercise / 365 : 0
-        if(total > 0.10){
-            return 0.10
+        let total = exercise ? exercise / 7 / 4 / 26 / 12 * 2 : 0
+        if(total > 1){
+            return 1
         } else {
             return total
         }
