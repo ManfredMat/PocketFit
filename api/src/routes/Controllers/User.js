@@ -261,19 +261,25 @@ const sortAllUsers = async (req , res)=>{
   allUsers = allUsers.sort((a,b)=>{
     if(a[prop] < b[prop]){
       if(order === "a-z"){
-      return  (-1) 
+
+      return(1) 
+
       }else{
 
-      return  1 
+      return(-1 )
+
       }
     }
     if(a[prop] > b[prop]){
 
       if(order === "a-z"){
-        return  1 
+
+        return(-1 )
+
         }else{
   
-        return  (-1) 
+        return(1) 
+        
         }
         
     }
