@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import ClasesWeeklyView from "./ClasesWeeklyView";
-import Calendar from "../_Universals/Calendar";
+import Calendar from "./Calendar";
 import { useDispatch, useSelector } from 'react-redux';
-import Detail from "./Detail";
+import Detail from "./DetailEvents";
 import Shifts from "./Shifts";
 import ScheduleShift from "./ScheduleShift";
 import ShiftsConfig from "./ShiftsConfig";
