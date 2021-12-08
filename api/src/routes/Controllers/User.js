@@ -260,7 +260,7 @@ const sortAllUsers = async (req , res)=>{
   let allUsers = await User.findAll();
   allUsers = allUsers.sort((a,b)=>{
     if(a[prop] < b[prop]){
-      if(order === "a-z"){
+      if(order === "z-a"){
 
       return(1) 
 
@@ -272,7 +272,7 @@ const sortAllUsers = async (req , res)=>{
     }
     if(a[prop] > b[prop]){
 
-      if(order === "a-z"){
+      if(order === "z-a"){
 
         return(-1 )
 
