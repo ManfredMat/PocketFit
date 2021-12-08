@@ -8,12 +8,15 @@ const flash = require("express-flash");
 const session = require("express-session");
 let SequelizeStore = require("connect-session-sequelize")(session.Store);
 const { conn } = require("./db.js");
+import Expo from 'expo-server-sdk';
 
 require("./passport-config.js")(passport);
 
 require("./db.js");
 
 const server = express();
+const expo = new Expo();
+
 
 server.name = "API";
 
