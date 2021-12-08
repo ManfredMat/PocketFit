@@ -57,9 +57,9 @@ const getAllWeekPlans = async (req , res)=>{
 const getWeekPlanById = async (req , res)=>{
 
     let {id}=req.params
-    console.log(typeof id)
+    
     try{
-        let weekplan = await Weekplan.findOne({where:{id:id}})
+        let weekplan = await Weekplan.findOne({where:{id:id}}) 
 
         let {monday , tuesday ,wendsday , thursday , friday , saturday} = weekplan
 
@@ -83,8 +83,8 @@ const getWeekPlanById = async (req , res)=>{
        
        
         }
+    
         weekplan = await Promise.all(newStructure , name)
-
         weekplan = structureWeekPlan(weekplan)
 
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Calendar from "../_Universals/Calendar";
+import Calendar from "./Calendar";
 import Clases from "./Clases";
 import Turnos from './Turnos'
 import Styles from "./HomeStyled";
