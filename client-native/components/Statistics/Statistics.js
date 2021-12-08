@@ -5,8 +5,17 @@ import { useSelector } from 'react-redux';
 
 export default function Statistics() {
     const myShift = useSelector((state) => state.reducerShifts.myShifts)
+    const exercise = useSelector((state) => state.reducerTraining.stats)
     const clases = () => {
         let total = myShift.length / 26 
+        if(total > 1){
+            return 1
+        } else {
+            return total
+        }
+    }
+    const ejercicios = () => {
+        let total = exercise ? exercise / 365 : 0
         if(total > 0.10){
             return 0.10
         } else {
@@ -16,7 +25,7 @@ export default function Statistics() {
 
     const data = {
         labels: ["Rutinas", "Clases", "Ejercicios"],
-        data: [0.7, clases(), 0.8]
+        data: [0.3, clases(), ejercicios()]
       };
     return (
         <View style={{backgroundColor: '#020E12', width: '100%', height: '100%', justifyContent: 'center'}}>
