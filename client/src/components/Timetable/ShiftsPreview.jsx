@@ -32,7 +32,6 @@ function ShiftsPreview({ display }) {
                         <div>
                             <h3>Clientes</h3>
                             <button>Agendar Turno</button>
-                            {console.log(shiftSelect.users)}
                             {shiftSelect.users ? <div>
                                 {shiftSelect.users.map((user) => (
                                     <div>

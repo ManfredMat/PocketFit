@@ -113,7 +113,9 @@ function ScheduleShift({ display }) {
                         )} */}
                     </select>
 
-                    <button type="submit" onClick={putShiftUser.length >= 1 ? (e) => (e.preventDefault(), console.log("Holas")) : (e) => handleOnSubmit(e)}>Crear</button>
+                    <button type="submit" onClick={putShiftUser.length >= 1 ? ((e) => e.preventDefault(), console.log("Holas")) : ((e) => handleOnSubmit(e))}>
+                    Crear
+                    </button>
                     {console.log(putShiftUser)}
                     {putShiftUser.length >= 1 && <div>
                         <p>Turno Creado</p>
