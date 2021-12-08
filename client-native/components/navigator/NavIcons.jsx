@@ -47,7 +47,7 @@ const NavIcon = ({imgSrc, focused}) => {
                     <Image 
                         source={require("../../assets/navIcons/user.png")}
                         style={{
-                            width: 12.56, 
+                            width: 12.86, 
                             height: sz, 
                             tintColor: focused ? '#6AE056' : '#fff'}} 
                         /> 

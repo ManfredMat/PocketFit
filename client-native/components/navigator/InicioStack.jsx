@@ -12,7 +12,7 @@ const Stack = createBottomTabNavigator();
 
 export default function InicioStack() {
     return (
-        <>
+            <>
                 <Stack.Navigator
                     //'#020E12' 
                     initialRouteName= "Home"
@@ -39,28 +39,48 @@ export default function InicioStack() {
                         component={notifications}
                         options={{ headerShown: false, 
                             tabBarIcon:({focused}) => (
-                                <NavIcon imgSrc={5} focused={focused}/>)}}
+                                <NavIcon 
+                                    imgSrc={5} 
+                                    focused={focused}
+                                />
+                            )
+                        }}
                     />
                      <Stack.Screen
                         name="Perfil"
                         component={Profile}
                         options={{ headerShown: false, 
                             tabBarIcon:({focused}) => (
-                                <NavIcon imgSrc={3} focused={focused}/>)}}
+                                <NavIcon 
+                                    imgSrc={3} 
+                                    focused={focused}
+                                />
+                            )
+                        }}
                     />
                     <Stack.Screen
                         name="Home"
                         component={Home}
                         options={{headerShown: false, 
                             tabBarIcon:({focused}) => (
-                                <NavIcon imgSrc={1} focused={focused}/>)}}
+                                <NavIcon 
+                                    imgSrc={1} 
+                                    focused={focused}
+                                />
+                            )
+                        }}
                     />
                      <Stack.Screen
                         name="Estadísticas"
                         component={Statistics}
                         options={{ headerShown: false, 
                             tabBarIcon:({focused}) => (
-                                <NavIcon imgSrc={2} focused={focused}/>)}}
+                                <NavIcon 
+                                    imgSrc={2} 
+                                    focused={focused}
+                                />
+                            )
+                        }}
                         
                     />
                     <Stack.Screen
@@ -68,10 +88,15 @@ export default function InicioStack() {
                         component={Training}
                         options={{ headerShown: false, 
                             tabBarIcon:({focused}) => (
-                                <NavIcon imgSrc={4} focused={focused}/>)}}
-                        />
+                                <NavIcon 
+                                    imgSrc={4} 
+                                    focused={focused}
+                                />
+                            )
+                        }}
+                    />
                 </Stack.Navigator>
-                </>
+            </>
         
     )
 }
