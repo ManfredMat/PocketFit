@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { getEvents } from "../../redux/Actions/actions-Activities"
+import { getEvents } from "../../redux/Actions/actions-Activities";
+import Styles from "./Styles/DetailEventsStyled";
 
 
 function Detail() {
@@ -15,23 +16,24 @@ function Detail() {
     console.log(events)
 
     return (
-        <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "2rem ",
-          }}>
+        <Styles.StyledContainer>
+            <Styles.table>
+                <Styles.tableTr  border={true}>
             {labels.map((label) => (
-                <div>{label}</div>
+                <Styles.labels>{label}</Styles.labels>
             ))}
-            {events.map((eve) => (
-                <>
-                    <div>{eve.name}</div>
-                    <div>{eve.day}/{eve.month}</div>
-                    <div>{eve.hour} hs</div>
-                    <div>{eve.profesor}</div>
-                </>
+            </Styles.tableTr>
+            {events.map((eve,index) => (
+                index <= 3 &&
+                <Styles.tableTr border={index === 3 ? false : true}>
+                    <Styles.tableTd>{eve.name}</Styles.tableTd>
+                    <Styles.tableTd>{eve.day}/{eve.month}</Styles.tableTd>
+                    <Styles.tableTd>{eve.hour} hs</Styles.tableTd>
+                    <Styles.tableTd>{eve.profesor}</Styles.tableTd>
+                </Styles.tableTr>
             ))}
-        </div>
+            </Styles.table>    
+        </Styles.StyledContainer>
     )
 }
 
