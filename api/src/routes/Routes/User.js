@@ -17,10 +17,12 @@ const {
   getShift,
   getOneUserPayStatus,
   switchStatus,
+  sortAllUsers
 } = require("../Controllers/User");
 
 router.post("/register_user", createUser);
 router.get("/", getAllUsers);
+router.get("/sort", sortAllUsers);
 router.get("/paystatus/all", getUserPayStatus);
 router.get("/paystatus", getOneUserPayStatus);
 router.put("/:id", uploadImage, modifyUser);
