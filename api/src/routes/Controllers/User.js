@@ -254,6 +254,40 @@ const switchStatus = async (req , res) =>{
   }
   catch(error){res.send(error)}
 }
+const sortAllUsers = async (req , res)=>{
+  let {prop , order} = req.query
+  try{
+  let allUsers = await User.findAll();
+  allUsers = allUsers.sort((a,b)=>{
+    if(a[prop] < b[prop]){
+      if(order === "z-a"){
+
+      return(1) 
+
+      }else{
+
+      return(-1 )
+
+      }
+    }
+    if(a[prop] > b[prop]){
+
+      if(order === "z-a"){
+
+        return(-1 )
+
+        }else{
+  
+        return(1) 
+        
+        }
+        
+    }
+    return 0
+})
+  res.send(allUsers)
+  }catch(error){res.send(error)}
+}
 
 module.exports = {
   createUser,
@@ -269,5 +303,6 @@ module.exports = {
   uploadImage,
   getShift,
   getOneUserPayStatus,
-  switchStatus
+  switchStatus,
+  sortAllUsers
 };

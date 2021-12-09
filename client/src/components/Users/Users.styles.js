@@ -10,6 +10,12 @@ const Styles = {
         overflow-y: scroll;
     `,
 
+    Title: styled.h1`
+        color: white;
+        margin-left: 5rem;
+        margin-top: 1rem;
+    `,
+
     NavBar: styled.div`
         background-color: var(--darkGray-base);
         position: sticky;
@@ -19,13 +25,20 @@ const Styles = {
     `,
 
     SearchBar: styled.input`
-        background-color: #C4C4C4;
+        align-self: flex-start;
+        background-color: var(--green);
         border-radius: 2rem;
         border-style: hidden;
         margin-top: 2rem;
         margin-bottom: 1rem;
         padding: .5rem;
         width: 20rem;
+        &::placeholder {
+            color: black;
+        }
+        &:focus{
+            outline: none;
+        }
     `,
 
     SearchButton: styled.input`

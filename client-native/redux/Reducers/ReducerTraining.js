@@ -1,9 +1,11 @@
 import {
-  WEEK_PLAN
+  WEEK_PLAN,
+  TRAINING_STATS
   } from "../Actions/actions-Training";
   
   const initialState = {
-    weekPlan: []
+    weekPlan: [],
+    stats: 1
   };
   
   function reducerTraining(state = initialState, action) {
@@ -13,7 +15,12 @@ import {
           ...state,
           weekPlan: action.payload
         };
-        
+        case TRAINING_STATS:
+          console.log(state.stats)
+          return{
+            ...state,
+            stats: state.stats + action.payload
+          }
       default:
         return state;
     }

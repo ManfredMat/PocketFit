@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
 import { View, Text } from 'react-native'
 import { Switch } from 'react-native-elements';
-import { Excercise, ViewEX, Pesa } from './Training.Styles';
+import { ViewEX, Pesa } from './Training.Styles';
 import pesa from '../../assets/pesa.png'
-
+import { trainingStats } from '../../redux/Actions/actions-Training';
+import { useDispatch } from 'react-redux';
 export default function CardExercise({reps, exercise}) {
+    const dispatch = useDispatch()
     const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    const toggleSwitch = () => {
+        setIsEnabled(true);
+        isEnabled ? dispatch(trainingStats(1)) : null;
+    }
+ 
     return (
         <View style={{display: 'flex', flexDirection: 'row-reverse'}}>
         <View>

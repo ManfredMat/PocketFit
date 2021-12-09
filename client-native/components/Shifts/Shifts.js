@@ -45,7 +45,7 @@ export default function Shifts() {
             })
             : <View style={{alignItems: 'center'}}>
                 <Cards>
-                    <Image style={{width: 60, height: 60, alignSelf: 'center'}}source={loading}/>
+                    <Text style={{fontSize: 18, padding: 9}}>Parece que no tienes turnos agendados...</Text>
                 </Cards>
               </View>
                 }
