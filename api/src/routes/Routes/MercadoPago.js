@@ -13,7 +13,7 @@ mercadopago.configure({
   // public key credencial real- APP_USR-9f808268-1ab7-42af-956f-15043288021f
 
   router.post('/mercadopago', async (req, res) => {
-    const { title, total } = req.body;
+    const { title, /*total*/ } = req.body;
     mercadopago.configure({
         access_token: 'TEST-4584026682195569-100518-6865fd891a74a50438b28e4a07dae8f4-835549336',
     });
@@ -22,7 +22,7 @@ mercadopago.configure({
         items: [
             {
                 title: title,
-                unit_price: total,
+                unit_price: 10000,
                 quantity: 1,
             },
         ],
