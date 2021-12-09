@@ -23,15 +23,16 @@ function Detail() {
                 <Styles.labels>{label}</Styles.labels>
             ))}
             </Styles.tableTr>
-            {events.map((eve,index) => (
-                index <= 3 &&
-                <Styles.tableTr border={index === 3 ? false : true}>
+            {events.length ? events.map((eve,index) => (
+                index <= 2 &&
+                <Styles.tableTr border={index === 2 ? false : true}>
                     <Styles.tableTd>{eve.name}</Styles.tableTd>
                     <Styles.tableTd>{eve.day}/{eve.month}</Styles.tableTd>
                     <Styles.tableTd>{eve.hour} hs</Styles.tableTd>
                     <Styles.tableTd>{eve.profesor}</Styles.tableTd>
                 </Styles.tableTr>
-            ))}
+            ))
+        : <p> No hay eventos proximos </p>}
             </Styles.table>    
         </Styles.StyledContainer>
     )

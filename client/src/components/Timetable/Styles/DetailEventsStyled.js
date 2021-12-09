@@ -27,7 +27,7 @@ const Styles = {
     padding: 0.2em 0 0.2em 0;
   `,
   tableTr: styled.tr`
-    font-size: 0.8em;
+    font-size: 1em;
     height: 2.5em;
     border-collapse: collapse;
     border-bottom: ${(props) =>

@@ -58,11 +58,21 @@ const Styles = {
 `,
 eventsContainer: styled.div`
     height:-webkit-fill-available;
-    width:4.8em;
+    width:6.5em;
 `,
 EventeInCalendarContainer: styled.div`
 width:auto;
+height: 0.8em;
 overflow: hidden;
+background-color: var(--yellow);
+padding: 0.4em;
+border-radius: 0.5em;
+`,
+EventParaghrap: styled.p`
+color: var(--darkGray-base);
+hyphens: auto;
+font-size: 0.75em;
+font-weight:600;
 `
 };
 
