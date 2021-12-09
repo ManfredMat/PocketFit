@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const { deleteUserShift, getShiftofUser, weekCreate, createBulk,getAllShiftsPlus, newShift, getAllShifts,getShiftByWeekNum, updateShift, deleteShift, getShiftById } = require('../Controllers/Shift')
+const { getShiftofUser, weekCreate, createBulk,getAllShiftsPlus, newShift, getAllShifts,getShiftByWeekNum, updateShift, deleteShift, getShiftById, deleteUserShift } = require('../Controllers/Shift')
 
 
 router.post("/create", newShift);

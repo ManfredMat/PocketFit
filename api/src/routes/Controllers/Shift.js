@@ -78,8 +78,9 @@ const getShiftById = async (req, res) => {
               for(let i of oneShift){
                 shiftUser.push(Shift.findOne({
                       where:{id:i}}))
-              oneShift = await Promise.all(Shift.shiftUser)
+             
         }
+        oneShift =  Promise.all(Shift.shiftUser)
         res.send(oneShift)
     }}
     catch (error) {
