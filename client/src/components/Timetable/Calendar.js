@@ -1,32 +1,52 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Styles from "./CalendarStyled";
+import Styles from "./Styles/CalendarStyled";
+import moment from 'moment';
+import { getEvents } from "../../redux/Actions/actions-Activities"
+
+
 
 function Calendar({ year, month }) {
-  const pruebaEstado = useSelector((state) => state.counter);
+  const events = useSelector(state => state.activities.events)
   const dispatch = useDispatch();
-  var daysMonth = new Date(year, month, 0).getDate();
-  let firstDay = new Date(year, month, 1).getDay();
-
+  var daysMonth = parseInt(moment(month, "M").endOf("month").format("D"));
+  var StartName = parseInt(moment(month, "M").startOf("month").format("d"));
+  let firstDay = parseInt(moment(month, "M").startOf("month").format("D"));
   //Function to create an array with all the days of the month
-  const range = (start, stop, step) =>
-    Array.from(
-      { length: (stop - start) / step + 1 },
-      (_, i) => start + i * step
-    );
+
+  function range(start, end, nameDay) {
+    return [...Array((nameDay - 1) - 1 + 1).fill().map((_, idx) => 1 + idx), ...Array(end - start + 1).fill().map((_, idx) => start + idx)]
+  }
   var weekDays = ["Lun", "Mar", "Mie", "Jue", "Vie", "Sab", "Dom"];
 
+  useEffect(() => {
+    dispatch(getEvents())
+  }, []);
+
+  console.log(events)
+  console.log("Filtrados",events.filter((event)=> event.month === parseInt(month)))
   return (
     <Styles.StyledContainer>
       <Styles.GlobalStyle />
       <Styles.StyledGrid>
         {weekDays.map((day) => (
-          <div>{day}</div>
+          <Styles.StyledDaysContainers>{day}</Styles.StyledDaysContainers>
         ))}
 
-        {Array.from(range(-firstDay + 2, daysMonth, 1)).map((day) =>
-          day >= 1 ? <div>{day}</div> : <div>x</div>
-        )}
+        {range(firstDay, daysMonth, StartName).map((day, index) => index >= StartName - 1 ? <Styles.StyledCalendarContainers>
+          <Styles.eventsContainer name="Eventos">
+          {events.filter((event)=> event.month === parseInt(month))
+         .map((event)=> event.day === day && <Styles.EventeInCalendarContainer>
+           <Styles.EventParaghrap>{event.name.length >= 11 ? event.name.substr(0,11) + "..." : event.name}</Styles.EventParaghrap>
+           </Styles.EventeInCalendarContainer>)
+          }
+          </Styles.eventsContainer>
+
+          <Styles.NumContainer>
+            <Styles.Num>{day}</Styles.Num>
+          </Styles.NumContainer>
+        </Styles.StyledCalendarContainers> : <div></div>)
+        }
       </Styles.StyledGrid>
     </Styles.StyledContainer>
   );
