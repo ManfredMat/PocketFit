@@ -16,8 +16,6 @@ function ClasesWeeklyView() {
     dispatch(getLessons())
   }, []);
 
-  console.log(lessons)
-
   return (
     <Styles.StyledGrid
     >

@@ -17,6 +17,9 @@ const Styles = {
     font-weight: 500;
     height: 1.6em;
     border-radius: 0.4em;
+    position: sticky;
+    top: 0;
+    left: 0;
   `,
   StyledGrid: styled.div`
     margin-top: 0.6em;
@@ -27,13 +30,13 @@ const Styles = {
     overflow-y: scroll;
     padding-right: 0.3em;
     &::-webkit-scrollbar {
-      width: 1em;
+      width: 0.8em;
     }
     ::-webkit-scrollbar-track {
       background: transparent;
     }
     ::-webkit-scrollbar-thumb {
-      background: var(--yellow);
+      background: var(--green-medium);
       border-radius: 0.4em;
     }
     ::-webkit-scrollbar-thumb:hover {

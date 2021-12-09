@@ -72,7 +72,10 @@ function Timetable({ screenHeight }) {
                 <Shifts setShiftDetail={setShiftDetail} />
               </Styles.RigthColumnStyledRow1>
               <Styles.RigthColumnStyledRow2 >
-                  <Styles.TitleH2Styled>Clases Semanales</Styles.TitleH2Styled>
+                <Styles.EventosHead>
+                <Styles.TitleH2Styled>Clases Semanales</Styles.TitleH2Styled>
+                <Styles.YellowButton>Nueva Clase</Styles.YellowButton>
+                  </Styles.EventosHead>
                   <ClasesWeeklyView />
               </Styles.RigthColumnStyledRow2>
             </Styles.RigthColumnStyled>
