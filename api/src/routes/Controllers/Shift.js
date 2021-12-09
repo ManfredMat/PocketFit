@@ -1,5 +1,5 @@
 
-const { Shift, Timetable, User, UserShift } = require('../../db')
+const { Shift, Timetable, User } = require('../../db')
 
 const newShift = async (req, res) => {
   const { day,
@@ -73,8 +73,15 @@ const getShiftById = async (req, res) => {
     const { id } = req.params
     try {
         const oneShift = await Shift.findOne({ where: { id: id }, include: User})
+        Shift.userId = function(){
+              let shiftUser=[]
+              for(let i of oneShift){
+                shiftUser.push(Shift.findOne({
+                      where:{id:i}}))
+              oneShift = await Promise.all(Shift.shiftUser)
+        }
         res.send(oneShift)
-    }
+    }}
     catch (error) {
         res.send(error)
     }
@@ -112,9 +119,10 @@ const updateShift = async (req, res) => {
         let oneShift = await Shift.findOne({ where: { id: idShift }, include: User })
         let addUser = await User.findOne({ where: {id: idUser}})
         await oneShift.addUser(addUser)
+        await oneShift.userId.push(idUser)
         let newAvailability = oneShift.capacity -1
         oneShift.availability = newAvailability
-        oneShift.save()
+        oneShift.save()  
         res.send(oneShift)
     }
     catch (err) {
@@ -122,22 +130,21 @@ const updateShift = async (req, res) => {
     }
 }
 
-// const deleteUserShift = async (req, res) => {
-//   const { idUser, idShift } = req.body
-//   try {
-//       let oneShift = await Shift.findOne({ where: { id: idShift }, include: User })
-//       let oneUser = await User.findOne({ where: {id: idUser}})
-//       await oneShift.oneUser(oneUser)
-//       let newAvailability = oneShift.capacity +1
-//       oneShift.availability = newAvailability
-//       oneUser.delete()
-//       oneShift.save()
-//       res.send(oneShift)
-//   }
-//   catch (err) {
-//       res.send(err)
-//   }
-// }
+const deleteUserShift = async (req, res) => {
+  const { idShift } = req.body
+  try {
+      let oneShift = await Shift.findOne({ where: { id: idShift }})
+      await Shift.userId(oneShift)
+      let newAvailability = oneShift.capacity +1
+      oneShift.availability = newAvailability
+      Shift.userId.pop()
+      oneShift.save()
+      res.send(oneShift)
+  }
+  catch (err) {
+      res.send(err)
+  }
+}
 
 // const deleteUserShift = async (req, res) => {
 //   const { idShift } = req.params
@@ -260,4 +267,4 @@ const WeekDaysGenerator = (
     }
   }
 
-module.exports = { getShiftofUser, weekCreate, createBulk, newShift, getAllShifts, getShiftByWeekNum, updateShift, deleteShift, getShiftById,getAllShiftsPlus };
+module.exports = { deleteUserShift, getShiftofUser, weekCreate, createBulk, newShift, getAllShifts, getShiftByWeekNum, updateShift, deleteShift, getShiftById,getAllShiftsPlus };
