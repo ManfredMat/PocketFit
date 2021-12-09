@@ -37,8 +37,7 @@ function ShiftsDetails({view}) {
                     <button onClick={() => setTakeShift(!takeShift)}>Agendar Turno</button>
                 </header>
                 <div>
-                    <ShiftWeeklyView render={render} week={week === 0 ? parseInt(moment()
-                        .format("w", 'isoWeek')) : parseInt(moment().add(week, 'week').format("w", 'isoWeek'))} />
+                    <ShiftWeeklyView render={render} week={week} />
                     <button onClick={() => setWeek(week !== 0 && week - 1)}>{"<<"}</button>
                     <button onClick={() => setWeek(week + 1)}>{">>"}</button>
 
