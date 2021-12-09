@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Day from "./Day";
+import { DayContainer, LeftBarContainer, SaveDeleteChanges } from "./Routines.styles";
 
 const weekDays = [
     {
@@ -103,19 +104,19 @@ const WeekTable = () => {
 
         setDisableButtons(true);
 
-          if (validateWeekChanges()) {
+        if (validateWeekChanges()) {
 
-              let dayIds = await postBlocks();
-              await axios.post("http://127.0.0.1:3001/api/weekplan", dayIds);
-              await upgradeTable();
+            let dayIds = await postBlocks();
+            await axios.post("http://127.0.0.1:3001/api/weekplan", dayIds);
+            await upgradeTable();
 
-          } else {
+        } else {
 
-              alert("Beta: Por el momento es necesario agregar ejercicios a cada bloque de la tabla.")
+            alert("Beta: Por el momento es necesario agregar ejercicios a cada bloque de la tabla.")
 
-          } 
+        }
 
-          setDisableButtons(false);
+        setDisableButtons(false);
 
     }
 
@@ -138,7 +139,7 @@ const WeekTable = () => {
             let routinesIds = [];
 
             for (const key2 in weekChanges[key].blocks) {
-                
+
 
                 let response = await axios.post("http://127.0.0.1:3001/api/blocks/", weekChanges[key].blocks[key2]);
                 routinesIds.push(response.data.id);
@@ -165,117 +166,266 @@ const WeekTable = () => {
         let auxState = {};
         let auxWeekChanges = {};
 
-        if (response.monday) {
+        weekDays.forEach(day => {
 
+            let key = day.api;
 
-            for (const key in response) {
+            auxState = {
 
-                auxState = {
+                ...auxState,
+                [key]: response[key]
+                    ? response[key].blocks
+                        ? {
 
-                    ...auxState,
-                    [response[key].day]: {
+                            block1: response[key].blocks[0]
+                                ? response[key].blocks[0].exercises
+                                    ? response[key].blocks[0].exercises.map(exercise => {
+                                        return {
+                                            name: exercise[0],
+                                            repetitions: exercise[1],
+                                            notes: exercise[2],
+                                            id: exercise[3]
+                                        }
+                                    })
+                                    : []
+                                : [],
 
-                        block1: response[key].blocks[0].exercises.map(exercise => {
-                            return {
-                                name: exercise[0],
-                                repetitions: exercise[1],
-                                notes: exercise[2],
-                                id: exercise[3]
-                            }
-                        }),
+                            block2: response[key].blocks[1]
+                                ? response[key].blocks[1].exercises
+                                    ? response[key].blocks[1].exercises.map(exercise => {
+                                        return {
+                                            name: exercise[0],
+                                            repetitions: exercise[1],
+                                            notes: exercise[2],
+                                            id: exercise[3]
+                                        }
+                                    })
+                                    : []
+                                : [],
 
-                        block2: response[key].blocks[1].exercises.map(exercise => {
-                            return {
-                                name: exercise[0],
-                                repetitions: exercise[1],
-                                notes: exercise[2],
-                                id: exercise[3]
-                            }
-                        }),
-
-                        block3: response[key].blocks[2].exercises.map(exercise => {
-                            return {
-                                name: exercise[0],
-                                repetitions: exercise[1],
-                                notes: exercise[2],
-                                id: exercise[3]
-                            }
-                        })
-
+                            block3: response[key].blocks[2]
+                                ? response[key].blocks[2].exercises
+                                    ? response[key].blocks[2].exercises.map(exercise => {
+                                        return {
+                                            name: exercise[0],
+                                            repetitions: exercise[1],
+                                            notes: exercise[2],
+                                            id: exercise[3]
+                                        }
+                                    })
+                                    : []
+                                : []
+                        }
+                        : {
+                            block1: [],
+                            block2: [],
+                            block3: []
+                        }
+                    : {
+                        block1: [],
+                        block2: [],
+                        block3: []
                     }
 
-                }
+            }
 
-                auxWeekChanges = {
-                    ...auxWeekChanges,
-                    [response[key].day]: {
+            auxWeekChanges = {
+                ...auxWeekChanges,
+                [key]: response[key]
+                    ? {
 
-                        blocks:{
+                        blocks: response[key].blocks
+                            ? {
+
+                                block1: response[key].blocks[0]
+                                    ? {
+                                        day: key,
+
+                                        exercises: response[key].blocks[0].exercises
+                                            ? response[key].blocks[0].exercises.map(exercise => {
+                                                return {
+                                                    reps: exercise[1],
+                                                    description: exercise[2],
+                                                    id: exercise[3]
+                                                }
+                                            })
+                                            : [],
+
+                                        kindOfBlock: response[key].blocks[0].kindOfBlock
+                                            ? response[key].blocks[0].kindOfBlock
+                                            : '',
+                                        order: 1,
+                                        rounds: response[key].blocks[0].rounds
+                                            ? response[key].blocks[0].rounds
+                                            : 0
+                                    }
+                                    : {
+                                        day: key,
+
+                                        exercises: [],
+
+                                        kindOfBlock: '',
+                                        order: 1,
+                                        rounds: 0
+                                    },
+
+                                block2: response[key].blocks[1]
+                                    ? {
+                                        day: key,
+
+                                        exercises: response[key].blocks[1].exercises
+                                            ? response[key].blocks[1].exercises.map(exercise => {
+                                                return {
+                                                    reps: exercise[1],
+                                                    description: exercise[2],
+                                                    id: exercise[3]
+                                                }
+                                            })
+                                            : [],
+
+                                        kindOfBlock: response[key].blocks[1].kindOfBlock
+                                            ? response[key].blocks[1].kindOfBlock
+                                            : '',
+                                        order: 2,
+                                        rounds: response[key].blocks[1].rounds
+                                            ? response[key].blocks[1].rounds
+                                            : 0
+                                    }
+                                    : {
+                                        day: key,
+
+                                        exercises: [],
+
+                                        kindOfBlock: '',
+                                        order: 2,
+                                        rounds: 0
+                                    },
+
+                                    block3: response[key].blocks[2]
+                                    ? {
+                                        day: key,
+
+                                        exercises: response[key].blocks[2].exercises
+                                            ? response[key].blocks[2].exercises.map(exercise => {
+                                                return {
+                                                    reps: exercise[1],
+                                                    description: exercise[2],
+                                                    id: exercise[3]
+                                                }
+                                            })
+                                            : [],
+
+                                        kindOfBlock: response[key].blocks[2].kindOfBlock
+                                            ? response[key].blocks[2].kindOfBlock
+                                            : '',
+                                        order: 3,
+                                        rounds: response[key].blocks[2].rounds
+                                            ? response[key].blocks[2].rounds
+                                            : 0
+                                    }
+                                    : {
+                                        day: key,
+
+                                        exercises: [],
+
+                                        kindOfBlock: '',
+                                        order: 3,
+                                        rounds: 0
+                                    },
+
+                            }
+                            : {
+
+                                block1: {
+                                    day: key,
+
+                                    exercises: [],
+
+                                    kindOfBlock: '',
+                                    order: 1,
+                                    rounds: 0
+                                },
+
+                                block2: {
+                                    day: key,
+
+                                    exercises: [],
+
+                                    kindOfBlock: '',
+                                    order: 2,
+                                    rounds: 0
+                                },
+
+                                block3: {
+                                    day: key,
+
+                                    exercises: [],
+
+                                    kindOfBlock: '',
+                                    order: 3,
+                                    rounds: 0
+                                }
+
+                            },
+
+                        dayRoutine: {
+                            kindOfRoutine: response[key].kindOfRoutine
+                            ? response[key].kindOfRoutine
+                            : '',
+                            day: key
+                        }
+
+                    }
+                    : {
+
+                        blocks: {
 
                             block1: {
-                                day: response[key].day,
+                                day: key,
 
-                                exercises: response[key].blocks[0].exercises.map(exercise => {
-                                    return {
-                                        reps: exercise[1],
-                                        description: exercise[2],
-                                        id: exercise[3]
-                                    }
-                                }), 
+                                exercises: [],
 
-                                kindOfBlock: response[key].blocks[0].kindOfBlock,
-                                order: response[key].blocks[0].order,
-                                rounds: response[key].blocks[0].rounds
+                                kindOfBlock: '',
+                                order: 1,
+                                rounds: 0
                             },
 
                             block2: {
-                                day: response[key].day,
-                                
-                                exercises: response[key].blocks[1].exercises.map(exercise => {
-                                    return {
-                                        reps: exercise[1],
-                                        description: exercise[2],
-                                        id: exercise[3]
-                                    }
-                                }), 
+                                day: key,
 
-                                kindOfBlock: response[key].blocks[1].kindOfBlock,
-                                order: response[key].blocks[1].order,
-                                rounds: response[key].blocks[1].rounds
+                                exercises: [],
+
+                                kindOfBlock: '',
+                                order: 2,
+                                rounds: 0
                             },
 
                             block3: {
-                                day: response[key].day,
-                                
-                                exercises: response[key].blocks[2].exercises.map(exercise => {
-                                    return {
-                                        reps: exercise[1],
-                                        description: exercise[2],
-                                        id: exercise[3]
-                                    }
-                                }), 
+                                day: key,
 
-                                kindOfBlock: response[key].blocks[2].kindOfBlock,
-                                order: response[key].blocks[2].order,
-                                rounds: response[key].blocks[2].rounds
+                                exercises: [],
+
+                                kindOfBlock: '',
+                                order: 3,
+                                rounds: 0
                             }
 
                         },
 
                         dayRoutine: {
-                            kindOfRoutine: response[key].kindOfRoutine,
-                            day: response[key].day
+                            kindOfRoutine: '',
+                            day: key
                         }
 
                     }
-                }
-
             }
-            
-            setWeekChanges(auxWeekChanges);
-            setExercises(auxState);
 
-        } else setExercises(exercisesDefaultValue);
+        })
+
+        setWeekChanges(auxWeekChanges);
+        setExercises(auxState);
+
+
 
     }
 
@@ -288,7 +438,7 @@ const WeekTable = () => {
                 weekChanges[key].blocks.block1 === undefined ||
                 weekChanges[key].blocks.block2 === undefined ||
                 weekChanges[key].blocks.block3 === undefined
-                )
+            )
 
 
                 return false
@@ -304,14 +454,29 @@ const WeekTable = () => {
 
     }, []);
 
+    useEffect(() => {
 
+        console.log(weekChanges);
+
+    }, [weekChanges]);
 
     return (
         <>
 
             <h1>Plan Semanal</h1>
-            <div style={{ display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap' }}>
-
+            <DayContainer>
+                <LeftBarContainer>
+                    <div className='LeftBar-FirstBlock'></div>
+                    <div className='LeftBar-SecondBlock'>
+                        <p>1</p>
+                    </div>
+                    <div className='LeftBar-ThirdBlock'>
+                        <p>2</p>
+                    </div>
+                    <div className='LeftBar-FourthBlock'>
+                        <p>3</p>
+                    </div>
+                </LeftBarContainer>
                 {weekDays.map((day) =>
                     <Day
                         {...day}
@@ -324,9 +489,9 @@ const WeekTable = () => {
                     </Day>
                 )}
 
-            </div>
-            <button style={{ marginLeft: '1rem' }} disabled={disableButtons} onClick={saveChanges}>Guardar Cambios</button>
-            <button style={{ marginLeft: '1rem' }} disabled={disableButtons} onClick={deleteChanges}>Borrar Cambios</button>
+            </DayContainer>
+            <SaveDeleteChanges action='save' disabled={disableButtons} onClick={saveChanges}>Guardar Cambios</SaveDeleteChanges>
+            <SaveDeleteChanges action='delete' disabled={disableButtons} onClick={deleteChanges}>Borrar Cambios</SaveDeleteChanges>
 
         </>
     )
