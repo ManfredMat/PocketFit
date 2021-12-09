@@ -124,38 +124,6 @@ const updateShift = async (req, res) => {
   }
 }
 
-const deleteUserShift = async (req, res) => {
-  const { idShift } = req.body
-  try {
-      let oneShift = await Shift.findOne({ where: { id: idShift }})
-      await Shift.userId(oneShift)
-      let newAvailability = oneShift.capacity +1
-      oneShift.availability = newAvailability
-      Shift.userId.pop()
-      oneShift.save()
-      res.send(oneShift)
-  }
-  catch (err) {
-      res.send(err)
-  }
-}
-
-// const deleteUserShift = async (req, res) => {
-//   const { idShift } = req.params
-//   try {
-     
-//       let oldShift = await Shift.findOne({where: {id: idShift}})
-//       // let newAvailability = oldShift.capacity +1
-//       // oldShift.availability = newAvailability
-//       console.log(oldShift)
-//       // oneShift.remove()
-//       res.send(oldShift)
-//   }
-//   catch (err) {
-//       res.send(err)
-//   }
-// }
-
 const deleteShift = async (req, res) => {
   const { id } = req.params
   try {
