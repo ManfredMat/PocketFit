@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const { User } = require("../../db");
 const router = Router();
-const { checkAuth } = require("../Controllers/auth");
+//const { checkAuth } = require("../Controllers/auth");
 const {
   createUser,
   getAllUsers,
@@ -16,11 +16,13 @@ const {
   uploadImage,
   getShift,
   getOneUserPayStatus,
-  switchStatus
+  switchStatus,
+  sortAllUsers
 } = require("../Controllers/User");
 
 router.post("/register_user", createUser);
-router.get("/", checkAuth, getAllUsers);
+router.get("/", getAllUsers);
+router.get("/sort", sortAllUsers);
 router.get("/paystatus/all", getUserPayStatus);
 router.get("/paystatus", getOneUserPayStatus);
 router.put("/:id", uploadImage, modifyUser);
@@ -34,6 +36,6 @@ router.put("/traine_plan/:id/:prop", updateRoutine);
 router.post("/bulk", async (req, res) => {
   res.json(await User.bulkCreate(req.body));
 });
-router.put("/status",switchStatus);
+router.put("/status", switchStatus);
 
 module.exports = router;

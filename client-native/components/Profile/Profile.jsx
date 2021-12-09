@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, Alert, TouchableOpacity } from 'react-native'
+import { View, Text, Image, Alert, TouchableOpacity, StatusBar } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux';
 import Styles from './Profile.styles';
 import { useNavigation } from "@react-navigation/core";
@@ -68,6 +68,7 @@ const Profile = () => {
 
     return (
         <Styles.Container>
+            <StatusBar barStyle="dark-content" backgroundColor="#fafafa" />
             <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-around", marginTop: 10 }}>
                 <Styles.GreenButton style={{ margin: 15 }} onPress={() => logOut()}>
                     <Styles.Text style={{ alignSelf: "center", color: "black" }}>Cerrar Sesión</Styles.Text>
@@ -78,7 +79,7 @@ const Profile = () => {
             </View>
             <Image
                 source={{ uri: previewImage ? previewImage : user.imageData ? `data:image/jpeg;base64, ${user.imageData}` : 'https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-gris.png' }}
-                style={{ width: 150, height: 150, marginTop: 40, alignSelf: 'center', borderRadius: 9999, backgroundColor: "white" }}
+                style={{ width: 150, height: 150, marginTop: 40, alignSelf: 'center', borderRadius: 9999, backgroundColor: "white", borderColor: "#6AE056", borderWidth: 5 }}
             />
             <TouchableOpacity onPress={() => imagePickerPermissions()} style={{ top: -35, right: -230 }}>
                 <Image source={editProfile} style={{ height: 35, width: 35 }} />
@@ -93,9 +94,14 @@ const Profile = () => {
 
             {/* <Styles.Text style={{alignSelf:"center", fontSize: 15, marginTop: 30}}>Pagar</Styles.Text> */}
 
-            <View style={{ marginTop: 55, flex: 1, flexDirection: "row", justifyContent: "space-between", marginHorizontal: 40 }}>
-                <Styles.Text style={{ fontSize: 15 }}>Feedback</Styles.Text>
-                <Styles.Text style={{ fontSize: 15 }}>Configuración</Styles.Text>
+            <View style={{ marginTop: 40, flex: 1, flexDirection: "row", justifyContent: "space-between", marginHorizontal: 40 }}>
+                <Styles.GreenButton style={{ marginBottom: 40 }}>
+                    <Styles.Text style={{ alignSelf: "center", color: "black" }}>Feedback</Styles.Text>
+                </Styles.GreenButton>
+
+                <Styles.GreenButton style={{ marginBottom: 40 }} onPress={() => navigation.navigate("Configuration")}>
+                    <Styles.Text style={{ alignSelf: "center", color: "black" }}>Configuración</Styles.Text>
+                </Styles.GreenButton>
             </View>
         </Styles.Container>
     )

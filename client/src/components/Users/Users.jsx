@@ -21,7 +21,8 @@ function Users() {
     return (
         <Styles.Container>
             <Styles.NavBar>
-                <form style={{display: 'flex', flexDirection: 'row', justifyContent: "center", alignItems: "center"}} onSubmit={handleSubmit}>
+                <Styles.Title>Usuarios</Styles.Title>
+                <form style={{display: 'flex', flexDirection: 'row', alignItems: "center", marginLeft: "5rem"}} onSubmit={handleSubmit}>
                     <Styles.SearchBar type="text" placeholder="Introduce un nombre o apellido..." autoCorrect="off" onChange={handleChange} value={search} />
                     {/* <Styles.SearchButton type="submit" value="Buscar" /> */}
                 </form>

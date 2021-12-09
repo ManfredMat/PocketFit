@@ -40,11 +40,13 @@ module.exports = (sequelize) => {
       },
       year:{        
         type: DataTypes.INTEGER,
-        allowNull: false},
-      userId:{
-        type: DataTypes.ARRAY(DataTypes.STRING)
-      }  
-        //agregar shift con array de strings con los ID de las clases que va a tener
-  
+        allowNull: false}
+    },{
+      indexes: [
+          {
+              unique: true,
+              fields: ['day', 'month', 'year','beginning','ending']
+          }
+      ]
     })
   };

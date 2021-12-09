@@ -7,7 +7,7 @@ function ShiftsPreview({ display }) {
 
     console.log(shiftSelect)
     return (
-        <div>
+        <>
             <div style={{
                 display: "flex", position: "absolute", width: "-webkit-fill-available", height: "100vh", backgroundColor: "#00000070", top: 0, alignItems: "center",
                 justifyContent: "center"
@@ -32,7 +32,6 @@ function ShiftsPreview({ display }) {
                         <div>
                             <h3>Clientes</h3>
                             <button>Agendar Turno</button>
-                            {console.log(shiftSelect.users)}
                             {shiftSelect.users ? <div>
                                 {shiftSelect.users.map((user) => (
                                     <div>
@@ -47,7 +46,7 @@ function ShiftsPreview({ display }) {
                     <button onClick={() => display(false)}>volver</button>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

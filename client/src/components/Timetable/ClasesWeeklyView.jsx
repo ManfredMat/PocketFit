@@ -1,33 +1,28 @@
 import React, { useEffect } from "react";
 import * as json from "./Hard-code.json";
 import {useSelector, useDispatch} from "react-redux"
-import {getLessons} from '../../redux/Actions/actions-Horarios';
+import {getLessons} from '../../redux/Actions/actions-Activities';
+import Styles from "./Styles/ClasesWeeklyViewStyled";
+
 
 
 var weekDays = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
 
 function ClasesWeeklyView() {
-    const lessons = useSelector(state => state.timetable.lessons)
+    const lessons = useSelector(state => state.activities.lessons)
     const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getLessons())
   }, []);
 
-  console.log(lessons)
-
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(6, 1fr)",
-        gap: "2rem ",
-      }}
+    <Styles.StyledGrid
     >
       {weekDays.map((day) => (
         <div>
-          <div>{day}</div>
-          <div>
+          <Styles.StyledDaysContainers>{day}</Styles.StyledDaysContainers>
+          <Styles.StyledContainer>
             {lessons
               .filter((cla) => cla.nameday === day)
               .sort(function (a, b) {
@@ -36,15 +31,15 @@ function ClasesWeeklyView() {
                 return 0;
               })
               .map((cla) => (
-                <div>
-                  <h3>{cla.name}</h3>
+                <Styles.StyledClasesContainers>
+                  <Styles.TitleH3Styled>{cla.name}</Styles.TitleH3Styled>
                   <p>{cla.hour} hs</p>
-                </div>
+                </Styles.StyledClasesContainers>
               ))}
-          </div>
+          </Styles.StyledContainer>
         </div>
       ))}
-    </div>
+    </Styles.StyledGrid>
   );
 }
 

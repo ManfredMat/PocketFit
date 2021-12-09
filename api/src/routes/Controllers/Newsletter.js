@@ -1,7 +1,7 @@
 const {User} = require('../../db');
 const { transporter, mailOptions } = require('./Transporter');
 
-let model = `<!DOCTYPE html>
+let subscribed = `<!DOCTYPE html>
   <html>
   
   <head>
@@ -16,6 +16,22 @@ let model = `<!DOCTYPE html>
   </body>
   
   </html>`
+
+let unsubscribed = `<!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  </head>
+  
+  <body style=" font-family: 'Open Sans', 'Arial Narrow', Arial, sans-serif; ">
+   <h2>Hola %usuario% </h2>
+   <h2>Ya estas desuscrito de las noticias del gimnasio </h2>
+  
+  </body>
+  
+  </html>`  
 
 let modelNews = `<!DOCTYPE html>
   <html>
@@ -45,11 +61,11 @@ const subscribeToNews = async (req , res)=>{
 
     await user.save()
 
-    let message = model
+    let message = subscribed
 
     message = message.replace("%usuario%", user.name);
 
-    let emailOptions = mailOptions(user.email, message , 'Ya estas suscripto a las noticias de tu gimansio')
+    let emailOptions = mailOptions(user.email, message , 'Ya estas suscripto a las noticias de tu gimnasio')
 
     let info = transporter.sendMail(emailOptions, function (error, info) {
         if (error) {
@@ -76,7 +92,7 @@ const unsubscribeToNews = async (req , res)=>{
   
       await user.save()
   
-      let message = model
+      let message = unsubscribed
   
       message = message.replace("%usuario%", user.name);
   

@@ -1035,47 +1035,5 @@
         "createdAt": "2021-12-03T13:01:22.585Z",
         "updatedAt": "2021-12-03T13:01:22.585Z"
     }
-],
- "eventos": [
-  {
-    "kindOfEvent": "Clases",
-    "name": "GAP Especial",
-    "nameday": "Lunes",
-    "month": 12,
-    "hour": 18,
-    "day": 13,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis egestas integer eget aliquet nibh praesent tristique. Viverra mauris in aliquam sem fringilla ut. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Amet risus nullam eget felis eget nunc lobortis. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. ",
-    "profesor": "Cande"
-  },
-  {
-    "kindOfEvent": "Clases",
-    "name": "Competencia Flexiones",
-    "nameday": "Viernes",
-    "month": 12,
-    "hour": 10,
-    "day": 10,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis egestas integer eget aliquet nibh praesent tristique. Viverra mauris in aliquam sem fringilla ut. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Amet risus nullam eget felis eget nunc lobortis. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. ",
-    "profesor": "Mateo"
-  },
-  {
-    "kindOfEvent": "Clases",
-    "name": "Evento Karate",
-    "nameday": "Martes",
-    "month": 12,
-    "hour": 20,
-    "day": 21,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis egestas integer eget aliquet nibh praesent tristique. Viverra mauris in aliquam sem fringilla ut. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Amet risus nullam eget felis eget nunc lobortis. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. ",
-    "profesor": "Steve"
-  },
-  {
-    "kindOfEvent": "Clases",
-    "name": "Maraton Spinning",
-    "nameday": "Jueves",
-    "month": 12,
-    "hour": 20,
-    "day": 23,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis egestas integer eget aliquet nibh praesent tristique. Viverra mauris in aliquam sem fringilla ut. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Amet risus nullam eget felis eget nunc lobortis. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. ",
-    "profesor": "Vicky"
-  }
 ]
 }
