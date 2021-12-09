@@ -1,3 +1,6 @@
+const Expo = require('expo-server-sdk').Expo;
+const expo = new Expo();
+
 let savedPushTokens =[];
 
 const saveToken = (token) => {

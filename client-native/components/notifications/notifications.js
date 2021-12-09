@@ -3,7 +3,7 @@ import { View, Text, Button } from 'react-native'
 import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
 import axios from 'axios';
-
+import IP from '../Ips'
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
       shouldShowAlert: true,
@@ -19,41 +19,31 @@ export default function notifications() {
     const notificationListener = useRef();
     const responseListener = useRef();
     useEffect(() => {
-        registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
-    
-        notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-          setNotification(notification);
-        });
-    
-        responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-          console.log(response);
-        });
-    
-        return () => {
-          Notifications.removeNotificationSubscription(notificationListener.current);
-          Notifications.removeNotificationSubscription(responseListener.current);
-        };
-      }, []);
+      registerForPushNotificationsAsync().then(token => setExpoPushToken(token))
+      async (token = expoPushToken) => await axios.post(`http://${IP}:3001/api/notification/token`, token);
+
+      notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+        setNotification(notification);
+      });
+  
+      responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+        console.log(response);
+      });
+      return () => {
+        Notifications.removeNotificationSubscription(notificationListener.current);
+        Notifications.removeNotificationSubscription(responseListener.current);
+      }
+    }, [])
 
     return (
         <View style={{ backgroundColor: '#020E12', width: '100%', height: '100%', justifyContent: 'center' }}>
-            <Text style={{ color: '#fff', alignSelf: "center" }}>Estamos trabajando en esta sección</Text>
-            <Button title='press me' onPress={()=> schedulePushNotification()}/>
+            <Text style={{ color: '#fff', alignSelf: "center" }}>{notification}</Text>
+            <Button title='press me' onPress={()=> console.log('nada')}/>
+            
         </View>
     )
 }
-async function schedulePushNotification() {
-  await Notifications.scheduleNotificationAsync({
-    content: {
-      title: "Hola! 📬",
-      body: 'funciona?',
-      data: { data: 'goes here' },
-    },
-    trigger: { seconds: 2 },
-  });
-}
-
-async function registerForPushNotificationsAsync() {
+const registerForPushNotificationsAsync = async () => {
   let token;
   if (Constants.isDevice) {
     const { status: existingStatus } = await Notifications.getPermissionsAsync();
@@ -71,7 +61,7 @@ async function registerForPushNotificationsAsync() {
   } else {
     alert('Must use physical device for Push Notifications');
   }
-
+  console.log(token)
   if (Platform.OS === 'android') {
     Notifications.setNotificationChannelAsync('default', {
       name: 'default',
@@ -80,6 +70,6 @@ async function registerForPushNotificationsAsync() {
       lightColor: '#FF231F7C',
     });
   }
-
+  console.log(token)
   return token;
 }
