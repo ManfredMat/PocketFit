@@ -20,7 +20,7 @@ export default function Home() {
                 <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <Image
                         source={{ uri: user.imageData ? `data:image/jpeg;base64, ${user.imageData}` : 'https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-gris.png' }}
-                        style={{ width: 50, height: 50, margin: 8, borderRadius: 9999, backgroundColor: "white" }}
+                        style={{ width: 50, height: 50, margin: 8, borderRadius: 9999, backgroundColor: "white", borderColor: "#6AE056", borderWidth: 2.5 }}
                     />
                     <Styles.TextWhite style={{ marginLeft: 10, fontSize: 25 }}>Hola {user?.name}!</Styles.TextWhite>
                 </View>
