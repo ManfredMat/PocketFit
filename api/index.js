@@ -45,7 +45,7 @@ conn.sync({ force: false }).then(async () => {
   };
 
   await Timetable.create();
-  await User.create(adminAcount)
+  await User.create(adminAcount);
   await Exercise.bulkCreate(exerArray);
 
   server.listen(3001, () => {
