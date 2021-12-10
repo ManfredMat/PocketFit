@@ -1,5 +1,7 @@
 import { useState } from "react";
 import EditBlock from "./EditBlock";
+import { AcceptButton, BackPop, BlockContainer, BlockEditDayContainer, ButtonContainer, EditButton, EditDayContainer, ExcerciseContainer, ExerciseP, InputStyle, PopUpContainer, WeekDayContainer } from "./Routines.styles";
+import editIcon from '../../assets/img/iconos/editIcon.svg';
 
 const EditDay = (props) => {
 
@@ -42,98 +44,116 @@ const EditDay = (props) => {
 
     return (
 
-        <div style={{ backgroundColor: '#382506', position: 'fixed', width: '70vw', minHeight: '20rem', textAlign: 'center', top: '10vh', left: '15vw', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-evenly' }}>
+        <BackPop>
 
-            <h3>{props.day}</h3>
+            <PopUpContainer>
 
-            <label htmlFor="kindOfRoutine">Tipo de Rutina</label>
-            <input
-                id="kindOfRoutine"
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)} />
+                <EditDayContainer>
 
-            <div style={{ display: "flex", width: '100%', justifyContent: 'space-evenly' }}>
+                    <h3>{props.day}</h3>
 
-                <div>
-
-                    <div>
-                        <h3>Bloque 1</h3>
-                        <button onClick={() => handleOnclick(1)}>editar</button>
+                    <div className='InputContainer'>
+                        <label htmlFor="kindOfRoutine">Tipo de Rutina</label>
+                        <InputStyle
+                            id="kindOfRoutine"
+                            type="text"
+                            value={input}
+                            placeholder='Escriba un tipo de rutina...'
+                            onChange={(e) => setInput(e.target.value)} />
                     </div>
 
-                    <div>
+                    <BlockEditDayContainer>
 
-                        {props.exercises.block1[0]
-                            ? <ul>{props.exercises.block1.map((excercise, i) =>
-                                <li key={i}>
+                        <div>
 
-                                    {excercise.name}
+                            <WeekDayContainer>
 
-                                    <br />
+                                <p className='number'>1</p>
+                                <EditButton onClick={() => handleOnclick(1)}>
+                                    <img height='25rem' src={editIcon} alt="" />
+                                </EditButton>
 
-                                    repeticiones: {excercise.repetitions}
+                            </WeekDayContainer>
 
-                                </li>
-                            )}
-                            </ul>
-                            : <p>Sin ejercicios</p>}
+                            <BlockContainer block='1'>
+                                <ExcerciseContainer>
+                                    {props.exercises.block1[0]
+                                        ? props.exercises.block1.map((excercise, i) =>
+                                            <ExerciseP key={i}>
 
-                    </div>
-                </div>
+                                                {excercise.name} x {excercise.repetitions}
 
-                <div>
-                    <div>
-                        <h3>Bloque 2</h3>
-                        <button onClick={() => handleOnclick(2)}>editar</button>
-                    </div>
+                                            </ExerciseP>
+                                        )
+                                        : <ExerciseP inactive={true}>Sin ejercicios</ExerciseP>}
+                                </ExcerciseContainer>
+                            </BlockContainer>
 
-                    <div>
-                        {props.exercises.block2[0]
-                            ? <ul>{props.exercises.block2.map((excercise, i) =>
-                                <li key={i}>
+                        </div>
 
-                                    {excercise.name}
+                        <div>
 
-                                    <br />
+                            <WeekDayContainer block='2'>
 
-                                    repeticiones: {excercise.repetitions}
+                                <p className='number'>2</p>
+                                <EditButton onClick={() => handleOnclick(2)}>
+                                    <img height='25rem' src={editIcon} alt="" />
+                                </EditButton>
 
-                                </li>
-                            )}
-                            </ul>
-                            : <p>Sin ejercicios</p>}
-                    </div>
-                </div>
+                            </WeekDayContainer>
 
-                <div>
+                            <BlockContainer block='2'>
+                                <ExcerciseContainer>
+                                    {props.exercises.block2[0]
+                                        ? props.exercises.block2.map((excercise, i) =>
+                                            <ExerciseP key={i}>
 
-                    <div>
-                        <h3>Bloque 3</h3>
-                        <button onClick={() => handleOnclick(3)}>editar</button>
-                    </div>
+                                                {excercise.name} x {excercise.repetitions}
 
-                    <div>
-                        {props.exercises.block3[0]
-                            ? <ul>{props.exercises.block3.map((excercise, i) =>
-                                <li key={i}>
+                                            </ExerciseP>
+                                        )
+                                        : <ExerciseP inactive={true}>Sin ejercicios</ExerciseP>}
+                                </ExcerciseContainer>
+                            </BlockContainer>
 
-                                    {excercise.name}
+                        </div>
 
-                                    <br />
+                        <div>
 
-                                    repeticiones: {excercise.repetitions}
+                            <WeekDayContainer block='3'>
 
-                                </li>
-                            )}
-                            </ul>
-                            : <p>Sin ejericios</p>}
-                    </div>
-                </div>
+                                <p className='number'>3</p>
+                                <EditButton onClick={() => handleOnclick(3)}>
+                                    <img height='25rem' src={editIcon} alt="" />
+                                </EditButton>
 
-            </div>
+                            </WeekDayContainer>
 
-            <button onClick={submitChanges} >Aceptar</button>
+                            <BlockContainer block='3'>
+                                <ExcerciseContainer>
+                                    {props.exercises.block3[0]
+                                        ? props.exercises.block3.map((excercise, i) =>
+                                            <ExerciseP key={i}>
+
+                                                {excercise.name} x {excercise.repetitions}
+
+                                            </ExerciseP>
+                                        )
+                                        : <ExerciseP inactive={true}>Sin ejericios</ExerciseP>}
+                                </ExcerciseContainer>
+                            </BlockContainer>
+
+                        </div>
+
+                    </BlockEditDayContainer>
+
+                    <ButtonContainer>
+                        <AcceptButton onClick={submitChanges} >Aceptar</AcceptButton>
+                    </ButtonContainer>
+
+                </EditDayContainer>
+
+            </PopUpContainer>
 
             {renderEditBlock.render
                 ? <EditBlock
@@ -146,8 +166,7 @@ const EditDay = (props) => {
                     setExercises={props.setExercises} />
                 : null}
 
-        </div>
-
+        </BackPop>
 
     )
 }

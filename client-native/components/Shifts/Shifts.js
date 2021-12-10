@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, ScrollView, TouchableOpacity, Image, Alert } from 'react-native'
-import {Container} from '../Training/Training.Styles'
+import { View, Text, ScrollView, Image } from 'react-native'
 import loading from '../../assets/loading.gif'
 import MyShiftsCard from './MyShiftsCard'
 import ShiftsAvailable from './ShiftsAvailable'
-import { getAllShifts } from '../../redux/Actions/actions-Shifts'
+import { getAllShifts, getShiftId } from '../../redux/Actions/actions-Shifts'
 import { useDispatch, useSelector } from 'react-redux';
-import { Cards } from './Shifts.Styles'
-//fake db
-const getAllShift = []
-let obj2 = {id: 12323, day: 19, availability: 10, capacity: 15, beginning: 14, ending: 16, weekday: 'Miercoles', week: 1, month: 12, year: 2021}
-getAllShift.push(obj2)
+import { Cards, ContainerS } from './Shifts.Styles'
 
 export default function Shifts() {
     const date = new Date()
@@ -18,12 +13,13 @@ export default function Shifts() {
     const month = date.getMonth()
     const year = date.getFullYear()
     const dispatch = useDispatch()
-    const getAll = useSelector((state)  => state.reducerShifts.allShifts)
+    const getUserid = useSelector((state) => state.reducerUser.user.id)
+    useEffect(()=>{dispatch(getShiftId(getUserid))},[dispatch])
     const myShift = useSelector((state) => state.reducerShifts.myShifts)
-    console.log()
+    const getAll = useSelector((state)  => state.reducerShifts.allShifts)
     useEffect(() => {dispatch(getAllShifts(day, month, year))},[dispatch]);
     return ( 
-        <Container>
+        <ContainerS>
             <ScrollView>
             <Text style={{color: '#fff', fontSize: 20, marginLeft: 10, marginTop: 20 }}>Mis Turnos</Text>
             <View>
@@ -76,22 +72,29 @@ export default function Shifts() {
                 </View>
             </View>
           </ScrollView>
-        </Container>
+        </ContainerS>
     )
 }
 
 export function PreVieShifts() {
+    const dispatch = useDispatch()
+    const getUserid = useSelector((state) => state.reducerUser.user.id)
+    useEffect(()=>{dispatch(getShiftId(getUserid))},[dispatch])
+    const myShift = useSelector((state) => state.reducerShifts.myShifts)
     return(
         <View>
             {
-            getAllShift.length !== 0 ? getAllShift.map(e => {
-                return <View key={e.id}>
-                     <Text style={{fontSize: 20}}>{e.weekday} {e.day}/{e.month}</Text>
-                     <Text>{e.beginning}hs - {e.ending}hs</Text>
+                myShift.length !== 0
+                ?   <View>
+                        <Text style={{fontSize: 20}}>{myShift[0].weekday} {myShift[0].day}/{myShift[0].month}</Text>
+                        <Text>{myShift[0].beginning}hs - {myShift[0].ending}hs</Text>
+                   </View>
+                :
+                <View>
+                    <Image  style={{width: 100, height: 100, alignSelf: 'center'}} source={loading}/>
                 </View>
-            })
-            : <Image style={{width: 100, height: 100, alignSelf: 'center'}}source={loading}/>
             }
+          
         </View>
     )
 }

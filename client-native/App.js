@@ -32,7 +32,10 @@ import {
   Poppins_900Black_Italic
 } from '@expo-google-fonts/poppins';
 import { useFonts } from "expo-font";
-import AppLoading from "expo-app-loading"
+import AppLoading from "expo-app-loading";
+import { Notification } from "expo-notifications";
+import * as Permissions from 'expo-permissions'
+
 
 export default function App() {
   const Stack = createNativeStackNavigator();

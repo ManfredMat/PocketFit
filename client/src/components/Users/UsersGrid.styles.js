@@ -6,10 +6,8 @@ const Styles = {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-evenly;
+        justify-content: center;
         margin-top: .5rem;
-        margin-left: 3rem;
-        margin-right: 3rem;
         height: auto;
     `,
 

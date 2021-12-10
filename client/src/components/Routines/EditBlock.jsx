@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AddExcercise from "./AddExcercise";
+import { AcceptButton, BlockContainer, ButtonContainer, CancelButton, EditBlockContainer, EditDayContainer, ExcerciseContainer, ExerciseP, InputStyle, PopUpContainer, WeekDayContainer } from "./Routines.styles";
 
 const EditBlock = (props) => {
 
@@ -80,62 +81,90 @@ const EditBlock = (props) => {
     }
 
     return (
-        <div style={{ backgroundColor: '#4a0808', position: 'fixed', width: '70vw', minHeight: '20rem', textAlign: 'center', top: '10vh', left: '15vw', display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'space-evenly' }}>
+        <>
+            <PopUpContainer>
+                <EditDayContainer>
 
-            <div>
-                <h3>Editar {props.day} Bloque: {props.block}</h3>
-                <button onClick={handleOnClick}>Agregar Ejercicio</button>
-            </div>
+                    <h3>Bloque {props.block} <span>| {props.day} </span> </h3>
 
-            <div>
-                <h3>Ejercicios:</h3>
-                {exercises[0]
-                    ? <ul>{exercises.map((excercise, i) =>
-                        <li key={i}>
+                    <EditBlockContainer>
 
-                            {excercise.name}
+                        <div className='Block'>
+                            <div className='Scale'>
+                                <WeekDayContainer center={true} block={`${props.block}`}>
+                                    <p className='number'>{props.block}</p>
+                                </WeekDayContainer>
 
-                            <br />
+                                <BlockContainer block={`${props.block}`}>
+                                    <ExcerciseContainer>
+                                        {exercises[0]
+                                            ? exercises.map((excercise, i) =>
+                                                <ExerciseP key={i}>
 
-                            repeticiones: {excercise.repetitions}
-                            
-                        </li>
-                    )}
-                    </ul>
-                    : <p>Sin ejercicios</p>}
-            </div>
+                                                    {excercise.name} x {excercise.repetitions}
 
-            <label htmlFor='kindOfBlock'>Tipo de bloque</label>
-            <input
-                id='kindOfBlock'
-                type="text"
-                name="kindOfBlock"
-                value={inputs.kindOfBlock}
-                onChange={handleInputs} />
+                                                </ExerciseP>
+                                            )
+                                            : <ExerciseP inactive={true}>Sin ejercicios</ExerciseP>}
+                                    </ExcerciseContainer>
+                                </BlockContainer>
+                            </div>
+                        </div>
 
-            <label htmlFor='rounds'>Repeticiones del bloque</label>
-            <input
-                id='rounds'
-                type="number"
-                min="0"
-                name="rounds"
-                value={inputs.rounds}
-                onChange={handleInputs} />
+                        <div className='Inputs'>
 
-            <button onClick={handleAccept}>Aceptar Cambios</button>
-            <button onClick={() => props.setRender({render: false})}>Cancelar</button>
+                            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                <AcceptButton onClick={handleOnClick}>Agregar Ejercicio</AcceptButton>
+                            </div>
 
-            {renderAddExcercises
-                ? <AddExcercise
-                    setRender={setRender}
-                    setExercises={setExercises}
-                    api={props.api}
-                    day={props.day}
-                    block={props.block} />
-                : null
+                            <div>
+                                <div className='InputsContainer'>
+                                    <label htmlFor='kindOfBlock'>Tipo de bloque</label>
+                                    <InputStyle
+                                        id='kindOfBlock'
+                                        type="text"
+                                        name="kindOfBlock"
+                                        placeholder='Ingresa el tipo de bloque...'
+                                        value={inputs.kindOfBlock}
+                                        onChange={handleInputs} />
+                                </div>
+                                <div className='InputsContainer'>
+                                    <label htmlFor='rounds'>Repeticiones del bloque</label>
+                                    <InputStyle
+                                        id='rounds'
+                                        type="number"
+                                        min="0"
+                                        name="rounds"
+                                        value={inputs.rounds}
+                                        onChange={handleInputs} />
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </EditBlockContainer>
+
+                    <ButtonContainer>
+                        <AcceptButton onClick={handleAccept}>Aceptar</AcceptButton>
+                        <CancelButton onClick={() => props.setRender({ render: false })}>Cancela</CancelButton>
+                    </ButtonContainer>
+
+                </EditDayContainer>
+
+            </PopUpContainer>
+
+            {
+                renderAddExcercises
+                    ? <AddExcercise
+                        setRender={setRender}
+                        setExercises={setExercises}
+                        api={props.api}
+                        day={props.day}
+                        block={props.block} />
+                    : null
             }
 
-        </div>
+        </>
     )
 
 }

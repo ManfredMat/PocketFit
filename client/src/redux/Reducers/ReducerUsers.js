@@ -1,21 +1,23 @@
-import { GET_USERS, SEARCH_USERS } from "../Actions/actions-users";
+import { GET_USERS, RENDER_USER_DETAIL, SEARCH_USERS, GET_USER_DETAIL } from "../Actions/actions-users";
 import * as json from "../../components/Users/Users.json";
 
 const initialState = {
     users: [],
-    searchedUsers: []
+    searchedUsers: [],
+    renderUserDetail: false,
+    userDetail: {}
   };
 
 function reducerUsers(state = initialState, action) {
     switch (action.type) {
       case GET_USERS:
         //comentar el if de abajo si en la db se tiene menos de 3 users
-        /* if (action.payload.length < 3) {
-          return {
-            ...state,
-            users: json.users
-          }
-        } */
+        // if (action.payload.length < 3) {
+        //   return {
+        //     ...state,
+        //     users: json.users
+        //   }
+        // }
 
         return {
           ...state,
@@ -43,6 +45,26 @@ function reducerUsers(state = initialState, action) {
           }
         }
 
+      case RENDER_USER_DETAIL:
+        return {
+          ...state,
+          renderUserDetail: action.payload
+        }
+
+      case GET_USER_DETAIL: {
+        if (action.payload === "CLEAR") {
+          return {
+            ...state,
+            userDetail: {}
+          }
+        } else {
+          return {
+            ...state,
+            userDetail: action.payload
+          }
+        }
+
+      }
       default:
         return state;
     }
