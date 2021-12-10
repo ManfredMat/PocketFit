@@ -1,49 +1,52 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { View, Text, Button } from 'react-native'
-import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
-import axios from 'axios';
+import * as Notifications from 'expo-notifications';
+import React, { useState, useEffect, useRef } from 'react';
+import { Text, View, Button, Platform } from 'react-native';
+import axios from 'axios'
 import IP from '../Ips'
+import { useDispatch } from 'react-redux';
+
+
+
+
 Notifications.setNotificationHandler({
-    handleNotification: async () => ({
-      shouldShowAlert: true,
-      shouldPlaySound: true,
-      shouldSetBadge: false,
-    }),
-  });
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
 
-export default function notifications() {
+export default function Notify() {
+  const dispatch = useDispatch()
+  const [expoPushToken, setExpoPushToken] = useState('');
+  const [notification, setNotification] = useState(false);
+  const notificationListener = useRef();
+  const responseListener = useRef();
 
-    const [expoPushToken, setExpoPushToken] = useState('');
-    const [notification, setNotification] = useState(false);
-    const notificationListener = useRef();
-    const responseListener = useRef();
-    useEffect(() => {
-      registerForPushNotificationsAsync().then(token => setExpoPushToken(token))
-      async (token = expoPushToken) => await axios.post(`http://${IP}:3001/api/notification/token`, token);
-
-      notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-        setNotification(notification);
+  useEffect(() => {
+    if(Constants.isDevice && Platform.OS !== 'web') {
+      registerForPushNotificationsAsync().then(token => {
+         axios.post(`https://nativenotify.com/api/expo/key`, { 
+           appId: 667, appToken: 'IONltqu86xwT3H5l2OSLtu', expoToken: token })
       });
-  
       responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-        console.log(response);
+          console.log(response.notification.request.content.data);
       });
-      return () => {
-        Notifications.removeNotificationSubscription(notificationListener.current);
-        Notifications.removeNotificationSubscription(responseListener.current);
-      }
-    }, [])
+      return () => { 
+        Notifications.removeNotificationSubscription(responseListener); 
+      };
+    }
+  }, []);
 
-    return (
-        <View style={{ backgroundColor: '#020E12', width: '100%', height: '100%', justifyContent: 'center' }}>
-            <Text style={{ color: '#fff', alignSelf: "center" }}>{notification}</Text>
-            <Button title='press me' onPress={()=> console.log('nada')}/>
-            
-        </View>
-    )
+  return (
+    <View style={{backgroundColor:'#020E12', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+      <Text style={{color:'#fff'}}>Notificaciones</Text>
+    </View>
+  );
 }
-const registerForPushNotificationsAsync = async () => {
+
+async function registerForPushNotificationsAsync() {
   let token;
   if (Constants.isDevice) {
     const { status: existingStatus } = await Notifications.getPermissionsAsync();
@@ -61,7 +64,7 @@ const registerForPushNotificationsAsync = async () => {
   } else {
     alert('Must use physical device for Push Notifications');
   }
-  console.log(token)
+
   if (Platform.OS === 'android') {
     Notifications.setNotificationChannelAsync('default', {
       name: 'default',
@@ -70,6 +73,6 @@ const registerForPushNotificationsAsync = async () => {
       lightColor: '#FF231F7C',
     });
   }
-  console.log(token)
+
   return token;
 }

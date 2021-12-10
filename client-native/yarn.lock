@@ -2969,6 +2969,13 @@
     "unimodules-task-manager-interface" "~7.0.3"
     "uuid" "^3.4.0"
 
+"expo-permissions@^13.0.3":
+  "integrity" "sha512-bVjdnhYDZy06jX0J+0fGuXzEJ7r+ibl9yCAsumd3S/ELrs1wbR8/zOkQBaSyoYk0z9MiGCC4ul6UB10wEiMPmw=="
+  "resolved" "https://registry.npmjs.org/expo-permissions/-/expo-permissions-13.0.3.tgz"
+  "version" "13.0.3"
+  dependencies:
+    "expo-modules-core" "~0.4.4"
+
 "expo-splash-screen@~0.13.3":
   "integrity" "sha512-L/L0XlmmxSoyuooCVvbPBO4xUF9kAs+F0+fML3pf7miBOnTd/v9j5riKSmaDthNtM4AarXxgi0AXzSHQ1M3rZg=="
   "resolved" "https://registry.npmjs.org/expo-splash-screen/-/expo-splash-screen-0.13.5.tgz"
