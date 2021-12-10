@@ -53,6 +53,7 @@ const NewClass = ({ display, name, kind }) => {
     dispatch(postEvent(input));
     alert("Clase Creada!");
     display(false);
+    window.location.reload(true);
   }
 
   return (

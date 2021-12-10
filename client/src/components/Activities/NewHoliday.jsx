@@ -2,9 +2,13 @@ import React from "react";
 import { useState } from "react";
 import moment from "moment";
 import "moment/locale/es";
+import { useDispatch } from "react-redux";
+import { postEvent } from "../../redux/Actions/actions-Activities";
 
 const NewHoliday = ({ display, name, kind }) => {
+  const dispatch = useDispatch();
   moment.locale();
+
   const [input, setInput] = useState({
     kindOfEvent: kind,
     name: name,
@@ -25,6 +29,14 @@ const NewHoliday = ({ display, name, kind }) => {
     mes = parseInt(mes);
 
     setInput({ ...input, nameday: nombreDia, month: mes, day: dia });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(postEvent(input));
+    alert("Feriado Creado!");
+    display(false);
+    window.location.reload(true);
   }
 
   return (
@@ -53,7 +65,7 @@ const NewHoliday = ({ display, name, kind }) => {
       >
         <button onClick={() => display(false)}>Cancelar</button>
         <h2>Crear Nuevo Feriado</h2>
-        <form>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <label>Fecha</label>
           <input type="date" onChange={(e) => parseDate(e)} />
 

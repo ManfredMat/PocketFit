@@ -66,6 +66,7 @@ const NewEvent = ({ display, name, kind }) => {
     dispatch(postEvent(data));
     alert("Evento Creado!");
     display(false);
+    window.location.reload(true);
   }
 
   return (
