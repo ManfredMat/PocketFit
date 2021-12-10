@@ -21,7 +21,7 @@ import { ALL_SHIFTS, GET_BY_ID, DELETE_SHIFTS } from "../Actions/actions-Shifts"
         } else {
         return {
           ...state,
-          myShifts: state.myShifts.concat(action.payload)
+          myShifts: action.payload
         }
       }
       case DELETE_SHIFTS:
