@@ -89,6 +89,14 @@ const Styles = {
             border-color: var;
         } */
     `,
+
+    ProfileButton: styled.button`
+        border-style: none;
+        padding: 0;
+        background-color: transparent;
+        font-family: "Poppins";
+        text-align: left;
+    `,
 }
 
 export default Styles;

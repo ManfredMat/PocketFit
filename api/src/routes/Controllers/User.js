@@ -48,8 +48,10 @@ const getSpeficicUser = async (req, res) => {
   const { id } = req.params;
   try {
     let specificUser = await User.findOne({ where: { id: id } });
-    let userImg = specificUser.imageData.toString("base64");
-    specificUser["imageData"] = userImg;
+    if (specificUser.imageData) {
+      let userImg = specificUser.imageData.toString("base64");
+      specificUser["imageData"] = userImg;
+    }
     res.json(specificUser);
   } catch (err) {
     res.send(err);
