@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { searchUsers } from '../../redux/Actions/actions-users';
 import Styles from './Users.styles';
 import UsersGrid from './UsersGrid';
+import SearchIcon from "../../assets/img/iconos/users/search.svg"
 // import UsersList from './UsersList';
 
 function Users() {
@@ -22,19 +23,40 @@ function Users() {
         <Styles.Container>
             <Styles.NavBar>
                 <Styles.Title>Usuarios</Styles.Title>
-                <form style={{display: 'flex', flexDirection: 'row', alignItems: "center", marginLeft: "5rem"}} onSubmit={handleSubmit}>
-                    <Styles.SearchBar type="text" placeholder="Introduce un nombre o apellido..." autoCorrect="off" onChange={handleChange} value={search} />
-                    {/* <Styles.SearchButton type="submit" value="Buscar" /> */}
-                </form>
-                {/* <Styles.Filter name="filter">
-                    <option value="default" hidden>Filtrar por...</option>
-                    <option value="Rating" disabled>Estado de pago</option>
-                        <option value="0-5">Pago</option>
-                        <option value="5-0">No pago</option>
-                    <option value="Rating" disabled>Activo/Inactivo</option>
-                        <option value="0-5">Activo</option>
-                        <option value="5-0">Inactivo</option>
-                </Styles.Filter> */}
+                <Styles.NavBarContainer>
+                    <Styles.SearchBarContainer onSubmit={handleSubmit}>
+                        <Styles.SearchBar type="text" placeholder="Introduce un nombre o apellido..." autoCorrect="off" onChange={handleChange} value={search} />
+                        <Styles.SearchButton>
+                            <img src={SearchIcon} alt="search-icon" />
+                        </Styles.SearchButton>
+                    </Styles.SearchBarContainer>
+
+                    <Styles.SortContainer>
+                        <Styles.NavBarLabel>Ordenar</Styles.NavBarLabel>
+                        <Styles.Sort name="sort">
+                            <option value="default" hidden>Elige una opción...</option>
+                            <option value="Name" disabled>Nombre</option>
+                                <option value="a-z">A-Z</option>
+                                <option value="z-a">Z-A</option>
+                            <option value="Lastname" disabled>Apellido</option>
+                                <option value="a-z">A-Z</option>
+                                <option value="z-a">Z-A</option>
+                        </Styles.Sort>
+                    </Styles.SortContainer>
+
+                    <Styles.FilterContainer>
+                        <Styles.NavBarLabel>Filtrar</Styles.NavBarLabel>
+                        <Styles.Filter name="filter">
+                            <option value="default" hidden>Elige una opción...</option>
+                            <option value="paystatus" disabled>Estado de pago</option>
+                                <option value="PAGO">Pago</option>
+                                <option value="NO-PAGO">No pago</option>
+                            <option value="status" disabled>Activo/Inactivo</option>
+                                <option value="ACTIVO">Activo</option>
+                                <option value="INACTIVO">Inactivo</option>
+                        </Styles.Filter>
+                    </Styles.FilterContainer>
+                </Styles.NavBarContainer>
             </Styles.NavBar>
             <Styles.UsersContainer>
                 <UsersGrid />

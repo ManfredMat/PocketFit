@@ -41,7 +41,8 @@ module.exports = (sequelize) => {
       year:{        
         type: DataTypes.INTEGER,
         allowNull: false}
-    },{
+    },
+    {
       indexes: [
           {
               unique: true,

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import EditDay from "./EditDay";
+import { BlockContainer, EditButton, ExcerciseContainer, ExerciseP, WeekDayContainer } from "./Routines.styles";
+import editIcon from '../../assets/img/iconos/editIcon.svg'
 
 const Day = (props) => {
 
@@ -14,14 +16,16 @@ const Day = (props) => {
 
     return (
 
-        <div style={{ margin: '1rem', backgroundColor: "gray", color: 'white', textAlign: 'center' }}>
+        <div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between' }}>
+            <WeekDayContainer>
 
-                <h3>{props.day}</h3>
-                <button disabled={props.disableButtons} onClick={handleOnClick}>editar</button>
+                <p>{props.day}</p>
+                <EditButton disabled={props.disableButtons} onClick={handleOnClick}>
+                    <img height='25rem' src={editIcon} alt="" />
+                </EditButton>
 
-            </div>
+            </WeekDayContainer>
 
             {renderEdit
                 ? <EditDay
@@ -33,69 +37,53 @@ const Day = (props) => {
                     exercises={props.exercises}
                     setExercises={props.setExercises} />
                 : null}
+            <BlockContainer block='1'>
 
-            <p>-------------------</p>
+                <ExcerciseContainer>
+                    {props.exercises.block1[0]
+                        ? props.exercises.block1.map((excercise, i) =>
+                            <ExerciseP key={i}>
 
-            <h3> -- Bloque 1 -- </h3>
+                                {excercise.name} x {excercise.repetitions}
 
-            {props.exercises.block1[0]
-                ? <ul>
+                            </ExerciseP>
+                        )
+                        : <ExerciseP inactive={true}>Sin ejercicios</ExerciseP>
+                    }
+                </ExcerciseContainer>
 
-                    {props.exercises.block1.map((excercise, i) =>
-                        <li key={i}>
+            </BlockContainer>
 
-                            {excercise.name}
+            <BlockContainer block='2'>
 
-                            <br />
+                <ExcerciseContainer>
+                    {props.exercises.block2[0]
+                        ? props.exercises.block2.map((excercise, i) =>
+                            <ExerciseP key={i}>
 
-                            repeticiones: {excercise.repetitions}
+                                {excercise.name} x {excercise.repetitions}
 
-                        </li>
-                    )}
+                            </ExerciseP>
+                        )
+                        : <ExerciseP inactive={true}>Sin ejercicios</ExerciseP>
+                    }
+                </ExcerciseContainer>
+            </BlockContainer>
 
-                </ul>
-                : <p>Sin ejercicios</p>
-            }
+            <BlockContainer block='3'>
+                <ExcerciseContainer>
+                    {props.exercises.block3[0]
+                        ? props.exercises.block3.map((excercise, i) =>
+                            <ExerciseP key={i}>
 
-            <h3> -- Bloque 2 -- </h3>
+                                {excercise.name} x {excercise.repetitions}
 
-            {props.exercises.block2[0]
-                ? <ul>
-
-                    {props.exercises.block2.map((excercise, i) =>
-                        <li key={i}>
-
-                            {excercise.name}
-
-                            <br />
-
-                            repeticiones: {excercise.repetitions}
-
-                        </li>
-                    )}
-
-                </ul>
-                : <p>Sin ejercicios</p>
-            }
-
-            <h3> -- Bloque 3 -- </h3>
-
-            {props.exercises.block3[0]
-                ? <ul>{props.exercises.block3.map((excercise, i) =>
-                    <li key={i}>
-
-                        {excercise.name}
-
-                        <br /> repeticiones:
-
-                        {excercise.repetitions}
-
-                    </li>
-                )}
-
-                </ul>
-                : <p>Sin ejercicios</p>
-            }
+                            </ExerciseP>
+                        )
+                        : <ExerciseP inactive={true}>Sin ejercicios</ExerciseP>
+                    }
+                </ExcerciseContainer>
+            </BlockContainer>
 
 
         </div>
