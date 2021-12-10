@@ -2,70 +2,90 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import ClasesWeeklyView from "./ClasesWeeklyView";
 import Calendar from "./Calendar";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import Detail from "./DetailEvents";
 import Shifts from "./Shifts";
 import ScheduleShift from "./ScheduleShift";
 import ShiftsConfig from "./ShiftsConfig";
 import ShiftsPreview from "./ShiftsPreview";
-import { getTimetable } from '../../redux/Actions/actions-Horarios';
+import { getTimetable } from "../../redux/Actions/actions-Horarios";
+import Styles from "./Styles/TimetableStyled";
+import moment from "moment";
+import "moment/locale/es";
+moment.locale("es");
 
+function Timetable({ screenHeight }) {
+  const [configTurnos, setconfigTurnos] = React.useState(false);
+  const [takeShift, setTakeShift] = React.useState(false);
+  const [shiftDetail, setShiftDetail] = React.useState(false);
+  //"5-21","M-YY"
+  const month = moment().format("M");
+  const monthName = moment().format("MMMM");
+  const year = moment().format("YYYY");
 
-function Timetable() {
-  const [configTurnos, setconfigTurnos] = React.useState(false)
-  const [takeShift, setTakeShift] = React.useState(false)
-  const [shiftDetail, setShiftDetail] = React.useState(false)
-  const date = new Date();
+  console.log(month);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTimetable())
-}, []);
+    dispatch(getTimetable());
+  }, []);
 
   return (
-    <div style={{ position: "relative", width: "-webkit-fill-available", height: "-webkit-fill-available" }}>
-      <div style={{ padding: "1rem", position: "relative" }}>
-        <h1>Horarios</h1>
-        <div name="content" style={{ display: "flex" }}>
-          <div name="Column-left">
-            <div name="Eventos">
-              <h2>Eventos del Mes</h2>
-              <Calendar year={date.getFullYear()} month={date.getMonth()} />
-            </div>
-            <div name="detalle">
-              <h2>Detalle</h2>
-              <Detail />
-            </div>
-          </div>
-          <div name="Column-right">
-            <div name="row-1">
-              <div>
-                <h2>Turnos</h2>
-
-                <button onClick={() => setTakeShift(!takeShift)}>Agendar Turno</button>
-                <button onClick={() => setconfigTurnos(!configTurnos)}>Configurar Turnos</button>
+    <>
+      <Styles.GlobalStyle />
+      <Styles.BodyStyled screenHeight={screenHeight}>
+        <Styles.StartBodyStyled>
+          <Styles.TitleH1Styled>Horarios</Styles.TitleH1Styled>
+          <Styles.ContentBodyStyled>
+            <Styles.LeftColumnStyled>
+              <div name="Eventos">
+                <Styles.EventosHead>
+                  <Styles.TitleH2Styled>
+                    Eventos | {monthName}
+                  </Styles.TitleH2Styled>
+                  <Styles.LinkGreen>Ver Mas</Styles.LinkGreen>
+                </Styles.EventosHead>
+                <Calendar year={year} month={month} />
               </div>
-              <Shifts setShiftDetail={setShiftDetail}/>
-              <Link to="/session/timetable/ShiftsDetails">
-              <button>Ver detalle</button>
-              </Link>
-            </div>
-            <div name="Row-2">
-              <div name="Clases Semanales">
-                <h2>Clases Semanales</h2>
-                <ClasesWeeklyView />
+              <div name="detalle">
+                <Styles.EventosHead>
+                  <Styles.TitleH2Styled>Detalle</Styles.TitleH2Styled>
+                  <Styles.YellowButton>Nuevo Evento</Styles.YellowButton>
+                </Styles.EventosHead>
+                <Detail />
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {takeShift &&
-        <ScheduleShift display={setTakeShift} />}
-      {configTurnos &&
-        <ShiftsConfig display={setconfigTurnos} />}
-        {shiftDetail &&
-        <ShiftsPreview display={setShiftDetail} />}
-    </div>
+            </Styles.LeftColumnStyled>
+            <Styles.RigthColumnStyled screenHeight={screenHeight}>
+              <Styles.RigthColumnStyledRow1>
+                <Styles.EventosHead>
+                  <Styles.TitleH2Styled>Turnos</Styles.TitleH2Styled>
+                  <div>
+                  <Link to="/session/timetable/ShiftsDetails">
+                    <Styles.LinkGreen>Ver detalle</Styles.LinkGreen>
+                  </Link>
+                  <Styles.GreenButton onClick={() => setTakeShift(!takeShift)}>
+                    Agendar Turno
+                  </Styles.GreenButton>
+                  </div>
+                  {/* <button onClick={() => setconfigTurnos(!configTurnos)}>Configurar Turnos</button> */}
+                </Styles.EventosHead>
+                <Shifts setShiftDetail={setShiftDetail} />
+              </Styles.RigthColumnStyledRow1>
+              <Styles.RigthColumnStyledRow2 >
+                <Styles.EventosHead>
+                <Styles.TitleH2Styled>Clases Semanales</Styles.TitleH2Styled>
+                <Styles.YellowButton>Nueva Clase</Styles.YellowButton>
+                  </Styles.EventosHead>
+                  <ClasesWeeklyView />
+              </Styles.RigthColumnStyledRow2>
+            </Styles.RigthColumnStyled>
+          </Styles.ContentBodyStyled>
+        </Styles.StartBodyStyled>
+        {takeShift && <ScheduleShift display={setTakeShift} />}
+        {configTurnos && <ShiftsConfig display={setconfigTurnos} />}
+        {shiftDetail && <ShiftsPreview display={setShiftDetail} />}
+      </Styles.BodyStyled>
+    </>
   );
 }
 
