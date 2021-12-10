@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "387023582963",
+    "project_id": "notifications-pocketfit",
+    "storage_bucket": "notifications-pocketfit.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:387023582963:android:948568b30a29b832b2a986",
+        "android_client_info": {
+          "package_name": "com.pocketfit.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "387023582963-lr4s742o0g9f4dput0ms421q2n34n3cr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDX9oEUzyiCT4L6LG4q6khOF8SGrgOsdx0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "387023582963-lr4s742o0g9f4dput0ms421q2n34n3cr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

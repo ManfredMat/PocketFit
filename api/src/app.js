@@ -8,9 +8,8 @@ const flash = require("express-flash");
 const session = require("express-session");
 let SequelizeStore = require("connect-session-sequelize")(session.Store);
 const { conn } = require("./db.js");
-const {Expo} = require('expo-server-sdk');
+const Expo = require('expo-server-sdk').Expo;
 const cors = require("cors");
-
 
 require("./passport-config.js")(passport);
 
