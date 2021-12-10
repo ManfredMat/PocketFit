@@ -1,14 +1,16 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { searchUsers } from '../../redux/Actions/actions-users';
 import Styles from './Users.styles';
 import UsersGrid from './UsersGrid';
 import SearchIcon from "../../assets/img/iconos/users/search.svg"
+import UserDetail from './UserDetail/UserDetail';
 // import UsersList from './UsersList';
 
 function Users() {
     const dispatch = useDispatch();
     const [search, setSearch] = useState("");
+    const renderUserDetail = useSelector(state => state.users.renderUserDetail);
 
     function handleChange(e) {
         setSearch(e.target.value);
@@ -21,12 +23,15 @@ function Users() {
 
     return (
         <Styles.Container>
-            <Styles.NavBar>
+            {
+                renderUserDetail ? <UserDetail /> : null
+            }
+            <Styles.NavBar sticky={renderUserDetail ? true : false}>
                 <Styles.Title>Usuarios</Styles.Title>
                 <Styles.NavBarContainer>
                     <Styles.SearchBarContainer onSubmit={handleSubmit}>
                         <Styles.SearchBar type="text" placeholder="Introduce un nombre o apellido..." autoCorrect="off" onChange={handleChange} value={search} />
-                        <Styles.SearchButton>
+                        <Styles.SearchButton onClick={handleSubmit}>
                             <img src={SearchIcon} alt="search-icon" />
                         </Styles.SearchButton>
                     </Styles.SearchBarContainer>

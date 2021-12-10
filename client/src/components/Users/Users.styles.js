@@ -18,7 +18,9 @@ const Styles = {
 
     NavBar: styled.div`
         background-color: var(--darkGray-base);
-        position: sticky;
+        /* position: sticky; */
+        position: ${(props) =>
+            props.sticky ? "static" : "sticky"};
         top: 0;
         display: flex;
         flex-direction: column;
@@ -31,7 +33,7 @@ const Styles = {
         margin-bottom: 1rem;
         padding-left: 5rem;
         padding-right: 5rem;
-        justify-content: space-between;
+        justify-content: space-evenly;
     `,
 
     SearchBarContainer: styled.form`
