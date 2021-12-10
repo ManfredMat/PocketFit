@@ -43,6 +43,7 @@ const Styles = {
 
     UserNames: styled.h2`
         margin: auto;
+        font-weight: 600;
     `,
 
     TextUserContainer: styled.div`
@@ -75,8 +76,8 @@ const Styles = {
     ProfilePhoto: styled.img`
         border-radius: 50%;
         object-fit: cover;
-        height: 6rem;
-        width: 6rem;
+        height: 5rem;
+        width: 5rem;
         margin-top: 1rem;
         margin-bottom: 1rem;
         background-color: white;

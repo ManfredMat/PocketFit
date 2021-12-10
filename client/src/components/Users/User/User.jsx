@@ -1,17 +1,20 @@
-import React from 'react'
-import Styles from './User.styles'
+import React from 'react';
+import Styles from './User.styles';
+import { Link } from "react-router-dom";
 
-function User({name, lastname, image, customRoutine, paymentday, status}) {
+function User({id, name, lastname, image, customRoutine, paymentday, status}) {
     return (
         <Styles.Card>
             <Styles.CardBanner>
                 <Styles.ProfilePhoto src={image} alt={name + "-profile"} />
-                <Styles.UserNamesContainer>
-                    <Styles.UserNames>{name}</Styles.UserNames>
-                    <Styles.UserNames>{lastname}</Styles.UserNames>
-                </Styles.UserNamesContainer>
+                <Link to={`/session/users/${id}`}>
+                    <Styles.UserNamesContainer>
+                        <Styles.UserNames>{name}</Styles.UserNames>
+                        <Styles.UserNames>{lastname}</Styles.UserNames>
+                    </Styles.UserNamesContainer>
+                </Link>
             </Styles.CardBanner>
-            <Styles.TextUserContainer>
+            <Styles.TextUserContainer style={{marginTop: "1rem"}}>
                 <Styles.TextUserKeys>Plan Personalizado</Styles.TextUserKeys>
                 <Styles.TextUserValues>{customRoutine}</Styles.TextUserValues>
             </Styles.TextUserContainer>
