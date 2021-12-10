@@ -46,7 +46,7 @@ const Activities = () => {
         <option value="" disabled selected>
           Escoja uno ...
         </option>
-        <option value="Clase">Clase</option>
+        <option value="Clases">Clase</option>
         <option value="Evento">Evento</option>
         <option value="Feriado">Feriado</option>
       </select>
