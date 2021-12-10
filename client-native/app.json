@@ -20,10 +20,12 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.pocketfit.app" ,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      } ,
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"

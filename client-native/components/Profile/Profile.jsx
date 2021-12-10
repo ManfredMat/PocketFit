@@ -79,7 +79,7 @@ const Profile = () => {
             </View>
             <Image
                 source={{ uri: previewImage ? previewImage : user.imageData ? `data:image/jpeg;base64, ${user.imageData}` : 'https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-gris.png' }}
-                style={{ width: 150, height: 150, marginTop: 40, alignSelf: 'center', borderRadius: 9999, backgroundColor: "white" }}
+                style={{ width: 150, height: 150, marginTop: 40, alignSelf: 'center', borderRadius: 9999, backgroundColor: "white", borderColor: "#6AE056", borderWidth: 5 }}
             />
             <TouchableOpacity onPress={() => imagePickerPermissions()} style={{ top: -35, right: -230 }}>
                 <Image source={editProfile} style={{ height: 35, width: 35 }} />
@@ -95,13 +95,13 @@ const Profile = () => {
             {/* <Styles.Text style={{alignSelf:"center", fontSize: 15, marginTop: 30}}>Pagar</Styles.Text> */}
 
             <View style={{ marginTop: 40, flex: 1, flexDirection: "row", justifyContent: "space-between", marginHorizontal: 40 }}>
-                <TouchableOpacity>
-                    <Styles.Text style={{ fontSize: 15 }}>Feedback</Styles.Text>
-                </TouchableOpacity>
+                <Styles.GreenButton style={{ marginBottom: 40 }}>
+                    <Styles.Text style={{ alignSelf: "center", color: "black" }}>Feedback</Styles.Text>
+                </Styles.GreenButton>
 
-                <TouchableOpacity onPress={() => navigation.navigate("Configuration")}>
-                    <Styles.Text style={{ fontSize: 15 }}>Configuración</Styles.Text>
-                </TouchableOpacity>
+                <Styles.GreenButton style={{ marginBottom: 40 }} onPress={() => navigation.navigate("Configuration")}>
+                    <Styles.Text style={{ alignSelf: "center", color: "black" }}>Configuración</Styles.Text>
+                </Styles.GreenButton>
             </View>
         </Styles.Container>
     )

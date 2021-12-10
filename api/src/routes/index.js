@@ -12,6 +12,8 @@ const paypalRoutes = require('./Routes/Paypal')
 const resetpasswordRoutes = require('./Routes/ResetPassword')
 const newsletterRoutes = require('./Routes/Newsletter')
 const reviewRoutes = require('./Routes/Review')
+const notificationRoutes =require('./Routes/Notification')
+
 
 const { Router } = require("express");
 
@@ -32,5 +34,6 @@ router.use('/api/paypal', paypalRoutes)
 router.use('/api/resetpassword' , resetpasswordRoutes)
 router.use('/api/news',newsletterRoutes)
 router.use('/api/reviews',reviewRoutes)
+router.use('/api/notification' , notificationRoutes)
 
 module.exports = router;

@@ -19,7 +19,7 @@ export function getLessons() {
 export function getEvents() {
   return async function (dispatch) {
     await axios.get("http://localhost:3001/api/events/all").then((res) => {
-      let events = res.data.filter((cla) => cla.kindOfEvent === "Eventos");
+      let events = res.data.filter((cla) => cla.kindOfEvent === "Evento");
       dispatch({
         type: GET_EVENTS,
         value: events,

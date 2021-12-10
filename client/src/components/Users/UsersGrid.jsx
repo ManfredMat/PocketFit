@@ -29,21 +29,25 @@ function UsersGrid() {
                 users.map((users, key) => {
                     return <User 
                         key={key}
+                        id={users.id}
                         name={users.name}
                         lastname={users.lastname}
                         image={users.imageData? `data:image/jpeg;base64, ${users.imageData}` : `https://picsum.photos/200?random=${key}`}
-                        pago="Pago" //{pago[Math.round(Math.random())]}
-                        activo="Activo" //{activo[Math.round(Math.random())]}
+                        customRoutine={users.customRoutine ? "Si" : "No"}
+                        paymentday={users.paymentday.slice(5, 10).split("-").reverse().join("/")} //{pago[Math.round(Math.random())]}
+                        status={users.status === "ACTIVO" ? "Activo" : "Inactivo"} //{activo[Math.round(Math.random())]}
                     />
                 }) : 
                 searchedUsers.map((users, key) => {
                     return <User 
                         key={key}
+                        id={users.id}
                         name={users.name}
                         lastname={users.lastname}
                         image={users.imageData? `data:image/jpeg;base64, ${users.imageData}` : `https://picsum.photos/200?random=${key}`}
-                        pago="Pago" //{pago[Math.round(Math.random())]}
-                        activo="Activo" //{activo[Math.round(Math.random())]}
+                        customRoutine={users.customRoutine ? "Si" : "No"}
+                        paymentday={users.paymentday.slice(5, 10).split("-").reverse().join("/")} //{pago[Math.round(Math.random())]}
+                        status={users.status === "ACTIVO" ? "Activo" : "Inactivo"} //{activo[Math.round(Math.random())]}
                     />
                 })
             }

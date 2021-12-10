@@ -21,9 +21,8 @@ function App() {
 
   useEffect(() => {
     setScreenHeight(window.screen.availHeight);
-  }, []);
+  }, [screenHeight]);
 
-  console.log(screenHeight);
   return (
     <>
       <Routes>
@@ -45,7 +44,10 @@ function App() {
           <Route path="/session/profile" element={<Profile />} />
           <Route path="/session/payments" element={<Payments />} />
           <Route path="/session/users" element={<Users />} />
-          <Route path="/session/timetable" element={<Timetable />} />
+          <Route
+            path="/session/timetable"
+            element={<Timetable screenHeight={screenHeight} />}
+          />
           <Route
             path="/session/timetable/ShiftsDetails"
             element={<ShiftsDetails />}
