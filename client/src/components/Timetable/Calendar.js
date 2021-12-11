@@ -37,7 +37,7 @@ function Calendar({ year, month }) {
           <Styles.eventsContainer name="Eventos">
           {events.filter((event)=> event.month === parseInt(month))
          .map((event)=> event.day === day && <Styles.EventeInCalendarContainer>
-           <Styles.EventParaghrap>{event.name.length >= 11 ? event.name.substr(0,11) + "..." : event.name}</Styles.EventParaghrap>
+           <Styles.EventParaghrap>{event.name.length >= 11 ? event.name.substr(0,8) + "..." : event.name}</Styles.EventParaghrap>
            </Styles.EventeInCalendarContainer>)
           }
           </Styles.eventsContainer>

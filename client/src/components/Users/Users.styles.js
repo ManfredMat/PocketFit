@@ -18,19 +18,34 @@ const Styles = {
 
     NavBar: styled.div`
         background-color: var(--darkGray-base);
-        position: sticky;
+        /* position: sticky; */
+        position: ${(props) =>
+            props.sticky ? "static" : "sticky"};
         top: 0;
         display: flex;
         flex-direction: column;
     `,
 
+    NavBarContainer: styled.div`
+        display: flex;
+        flex-direction: row;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        padding-left: 5rem;
+        padding-right: 5rem;
+        justify-content: space-evenly;
+    `,
+
+    SearchBarContainer: styled.form`
+        display: flex; 
+        flex-direction: row; 
+        align-items: center;
+    `,
+
     SearchBar: styled.input`
-        align-self: flex-start;
         background-color: var(--green);
         border-radius: 2rem;
         border-style: hidden;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
         padding: .5rem;
         width: 20rem;
         &::placeholder {
@@ -41,23 +56,58 @@ const Styles = {
         }
     `,
 
-    SearchButton: styled.input`
-        background-color: var(--green);
-        border-radius: 1rem;
+    SearchButton: styled.button`
+        background-color: transparent;
         border: none;
-        padding: .6rem;
-        width: 8rem;
-        margin-top: 2rem;
+        margin-left: .3rem;
         &:hover {
             cursor: pointer;
         }
     `,
 
+    NavBarLabel: styled.h3`
+        color: var(--green);
+        margin-right: 1rem;
+    `,
+
+    SortContainer: styled.div`
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    `,
+
+    Sort: styled.select`
+        background-color: var(--green);
+        border-radius: 2rem;
+        border-style: hidden;
+        padding: .5rem;
+        width: 12rem;
+        &::placeholder {
+            color: black;
+        }
+        &:focus{
+            outline: none;
+        }
+    `,
+
+    FilterContainer: styled.div`
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    `,
+
     Filter: styled.select`
         background-color: var(--green);
-        margin-left: 40vw;
-        margin-right: 40vw;
-        margin-bottom: 1rem;
+        border-radius: 2rem;
+        border-style: hidden;
+        padding: .5rem;
+        width: 12rem;
+        &::placeholder {
+            color: black;
+        }
+        &:focus{
+            outline: none;
+        }
     `,
 
     UsersContainer: styled.div`

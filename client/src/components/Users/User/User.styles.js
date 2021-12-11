@@ -43,6 +43,7 @@ const Styles = {
 
     UserNames: styled.h2`
         margin: auto;
+        font-weight: 600;
     `,
 
     TextUserContainer: styled.div`
@@ -75,11 +76,12 @@ const Styles = {
     ProfilePhoto: styled.img`
         border-radius: 50%;
         object-fit: cover;
-        height: 6rem;
-        width: 6rem;
+        height: 5rem;
+        width: 5rem;
         margin-top: 1rem;
         margin-bottom: 1rem;
-        background-color: white;
+        background-color: ${(props) =>
+            props.imageBackground ? "white" : "none"};
         border-width: .25rem;
         border-color: var(--green);
         border-style: solid;
@@ -87,6 +89,14 @@ const Styles = {
             cursor: pointer;
             border-color: var;
         } */
+    `,
+
+    ProfileButton: styled.button`
+        border-style: none;
+        padding: 0;
+        background-color: transparent;
+        font-family: "Poppins";
+        text-align: left;
     `,
 }
 

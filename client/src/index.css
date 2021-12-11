@@ -10,7 +10,6 @@
   --darkGray-base: #020E12;
   --darkGray-medium: #041D25;
   --darkBlue: #083645;
-  --green-medium: #588A58;
 
   /* Font */
   --mainFont: 'Poppins', sans-serif; 
@@ -21,6 +20,15 @@ body {
   font-family: 'Poppins', sans-serif;
   font-size: 12px;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
