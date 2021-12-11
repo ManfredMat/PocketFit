@@ -259,6 +259,15 @@ const getUserPayStatus = async (req, res) => {
         fueraDeTermino.push(clients[i]);
       }
     }
+
+    alDia.map((users) => {
+      if (users.imageData) users.imageData = users.imageData.toString("base64");
+    });
+
+    fueraDeTermino.map((users) => {
+      if (users.imageData) users.imageData = users.imageData.toString("base64");
+    });
+
     let payStatus = {
       upToDate: alDia,
       offToDate: fueraDeTermino,

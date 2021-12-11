@@ -26,6 +26,13 @@ function UsersGrid() {
                     <Styles.NoUsersText>No existen usuarios con ese nombre o apellido</Styles.NoUsersText> 
                     <Styles.BackButton onClick={() => dispatch(searchUsers("Reset"))}>Volver</Styles.BackButton>
                 </Styles.NoUsersContainer> :
+                
+                searchedUsers === "No filters" ? 
+                <Styles.NoUsersContainer>
+                    <Styles.NoUsersText>No existen usuarios que cumplan con el filtro elegido</Styles.NoUsersText> 
+                    <Styles.BackButton onClick={() => dispatch(searchUsers("Reset"))}>Volver</Styles.BackButton>
+                </Styles.NoUsersContainer> :
+
                 searchedUsers === "Reset"  || searchedUsers.length === 0 ?
                 users.map((users, key) => {
                     return <User 
