@@ -344,6 +344,15 @@ const sortAllUsers = async (req, res) => {
   }
 };
 
+const getProfessors = async (req, res) => {
+  try {
+    let allProfessors = await User.findAll({ where: { isprofessor: true } });
+    res.send(allProfessors);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
 module.exports = {
   createUser,
   getSpeficicUser,
@@ -360,4 +369,5 @@ module.exports = {
   getOneUserPayStatus,
   switchStatus,
   sortAllUsers,
+  getProfessors,
 };

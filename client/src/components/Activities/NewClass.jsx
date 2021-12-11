@@ -1,13 +1,20 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
 import "moment/locale/es";
-import { useDispatch } from "react-redux";
-import { postEvent } from "../../redux/Actions/actions-Activities";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getProfessors,
+  postEvent,
+} from "../../redux/Actions/actions-Activities";
 
 const NewClass = ({ display, name, kind }) => {
   const dispatch = useDispatch();
+  const professors = useSelector((state) => state.activities.professors);
   moment.locale();
+
+  useEffect(() => {
+    dispatch(getProfessors());
+  }, [dispatch]);
 
   const [input, setInput] = useState({
     kindOfEvent: kind,
@@ -82,14 +89,20 @@ const NewClass = ({ display, name, kind }) => {
       >
         <button onClick={() => display(false)}>Cancelar</button>
         <h2>Crear Nueva Clase</h2>
+
         <form onSubmit={(e) => handleSubmit(e)}>
           <label>Profesor</label>
-          <input
-            type="text"
-            name="profesor"
-            placeholder="Escribe un nombre... "
-            onChange={(e) => handleChange(e)}
-          />
+          <select name="profesor" onChange={(e) => handleChange(e)}>
+            <option value="" disabled selected>
+              Escoja uno ...
+            </option>
+            {professors?.map((professor) => (
+              <option key={professor.id} value={professor.name}>
+                {" "}
+                {professor.name}{" "}
+              </option>
+            ))}
+          </select>
 
           <label>Fecha</label>
           <input type="date" onChange={(e) => parseDate(e)} />
