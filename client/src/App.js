@@ -58,8 +58,8 @@ function App() {
           <Route path="/session/routines" element={<Routines />} />
           <Route path="/session/exercises" element={<ExerciseListComplete />} />
           <Route path="/session/exercises_detail/:id" element={<ExerciseDetail />} />
-          
           <Route path="/session/new-event" element={<Activities />} />
+
         </Routes>
       </main>
     </>
