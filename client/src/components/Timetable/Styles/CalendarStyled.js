@@ -58,7 +58,6 @@ const Styles = {
 `,
 eventsContainer: styled.div`
     height:-webkit-fill-available;
-    width:6.5em;
 `,
 EventeInCalendarContainer: styled.div`
 width:auto;

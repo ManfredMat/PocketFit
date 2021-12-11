@@ -46,14 +46,8 @@ function App() {
           <Route path="/session/profile" element={<Profile />} />
           <Route path="/session/payments" element={<Payments />} />
           <Route path="/session/users" element={<Users />} />
-          <Route
-            path="/session/timetable"
-            element={<Timetable screenHeight={screenHeight} />}
-          />
-          <Route
-            path="/session/timetable/ShiftsDetails"
-            element={<ShiftsDetails />}
-          />
+          <Route path="/session/timetable" element={<Timetable screenHeight={screenHeight}/>} />
+          <Route path="/session/timetable/ShiftsDetails" element={<ShiftsDetails screenHeight={screenHeight} />} />
           <Route path="/session/config" element={<Configuration />} />
           <Route path="/session/routines" element={<Routines />} />
           <Route path="/session/exercises" element={<ExerciseListComplete />} />
