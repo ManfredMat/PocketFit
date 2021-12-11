@@ -1,5 +1,5 @@
 import { GET_USERS, RENDER_USER_DETAIL, SEARCH_USERS, GET_USER_DETAIL } from "../Actions/actions-users";
-import * as json from "../../components/Users/Users.json";
+//import * as json from "../../components/Users/Users.json";
 
 const initialState = {
     users: [],

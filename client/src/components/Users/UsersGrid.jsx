@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUsers, searchUsers } from '../../redux/Actions/actions-users';
 import User from './User/User';
 import Styles from './UsersGrid.styles';
+import defaultProfilePhoto from "../../assets/img/profilephoto.svg";
 
 function UsersGrid() {
     const dispatch = useDispatch();
@@ -32,9 +33,10 @@ function UsersGrid() {
                         id={users.id}
                         name={users.name}
                         lastname={users.lastname}
-                        image={users.imageData? `data:image/jpeg;base64, ${users.imageData}` : `https://picsum.photos/200?random=${key}`}
+                        image={users.imageData? `data:image/jpeg;base64, ${users.imageData}` : defaultProfilePhoto}
+                        imageBackground={users.imageData ? true : false}
                         customRoutine={users.customRoutine ? "Si" : "No"}
-                        paymentday={users.paymentday.slice(5, 10).split("-").reverse().join("/")} //{pago[Math.round(Math.random())]}
+                        paymentday={users.paymentday ? users.paymentday.slice(5, 10).split("-").reverse().join("/") : "-"} //{pago[Math.round(Math.random())]}
                         status={users.status === "ACTIVO" ? "Activo" : "Inactivo"} //{activo[Math.round(Math.random())]}
                     />
                 }) : 
@@ -44,9 +46,10 @@ function UsersGrid() {
                         id={users.id}
                         name={users.name}
                         lastname={users.lastname}
-                        image={users.imageData? `data:image/jpeg;base64, ${users.imageData}` : `https://picsum.photos/200?random=${key}`}
+                        image={users.imageData? `data:image/jpeg;base64, ${users.imageData}` : defaultProfilePhoto}
+                        imageBackground={users.imageData ? true : false}
                         customRoutine={users.customRoutine ? "Si" : "No"}
-                        paymentday={users.paymentday.slice(5, 10).split("-").reverse().join("/")} //{pago[Math.round(Math.random())]}
+                        paymentday={users.paymentday ? users.paymentday.slice(5, 10).split("-").reverse().join("/") : "-"} //{pago[Math.round(Math.random())]}
                         status={users.status === "ACTIVO" ? "Activo" : "Inactivo"} //{activo[Math.round(Math.random())]}
                     />
                 })
