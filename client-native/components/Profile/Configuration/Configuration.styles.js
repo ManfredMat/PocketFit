@@ -8,13 +8,15 @@ const Styles = {
         height: 100%;
         width: 100%;
         background-color: ${darkGrayBase};
+        align-items: center;
     `,
 
     NewsletterContainer: styled.View`
         display: flex;
+        height: 60px;
+        width: 350px;
         flex-direction: row;
         align-items: center;
-        justify-content: space-around;
     `,
 
     Text: styled.Text`

@@ -9,8 +9,10 @@ export default function CardExercise({reps, exercise}) {
     const dispatch = useDispatch()
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => {
-        setIsEnabled(true);
-        isEnabled ? dispatch(trainingStats(1)) : null;
+        setIsEnabled(previousState => !previousState);
+        setTimeout(() => {
+            !isEnabled ? dispatch(trainingStats(1)) : null;   
+        }, 1000);
     }
  
     return (
@@ -20,6 +22,7 @@ export default function CardExercise({reps, exercise}) {
             trackColor={{ false: "#767577", true: "#6AE056" }}
             thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"}
             onValueChange={toggleSwitch}
+            disabled={isEnabled}
             value={isEnabled}/>
         </View>
             {
