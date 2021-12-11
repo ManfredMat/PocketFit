@@ -80,7 +80,8 @@ const Styles = {
         width: 5rem;
         margin-top: 1rem;
         margin-bottom: 1rem;
-        background-color: white;
+        background-color: ${(props) =>
+            props.imageBackground ? "white" : "none"};
         border-width: .25rem;
         border-color: var(--green);
         border-style: solid;

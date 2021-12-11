@@ -14,6 +14,8 @@ import Configuration from "./components/Configuration/Configuration.jsx";
 import ResetPassword from "./components/Login/ResetPassword";
 import Profile from "./components/Profile/Profile";
 import Routines from "./components/Routines/Routines";
+import ExerciseListComplete from "./components/Exercises/ExerciseListComplete";
+import ExerciseDetail from "./components/Exercises/ExerciseDetail";
 import Activities from "./components/Activities/Activities";
 
 function App() {
@@ -54,7 +56,10 @@ function App() {
           />
           <Route path="/session/config" element={<Configuration />} />
           <Route path="/session/routines" element={<Routines />} />
+          <Route path="/session/exercises" element={<ExerciseListComplete />} />
+          <Route path="/session/exercises_detail/:id" element={<ExerciseDetail />} />
           <Route path="/session/new-event" element={<Activities />} />
+
         </Routes>
       </main>
     </>

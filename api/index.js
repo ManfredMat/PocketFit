@@ -23,7 +23,7 @@ const generatorEx = (n) => {
     array.push({
       name: `ejercicio n ${[i + 1]}`,
       description,
-      video: "un url",
+      video: "https://www.youtube.com/watch?v=35XFAkwmU4c",
       discipline,
     });
   }
