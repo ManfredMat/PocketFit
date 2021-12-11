@@ -10,6 +10,7 @@ import UserDetail from './UserDetail/UserDetail';
 function Users() {
     const dispatch = useDispatch();
     const [search, setSearch] = useState("");
+    const [isSearch, setIsSearch] = useState(false);
     const renderUserDetail = useSelector(state => state.users.renderUserDetail);
     const filter = useSelector(state => state.users.filter);
     let sort = useRef();
@@ -26,6 +27,7 @@ function Users() {
     function handleSubmit(e) {
         e.preventDefault();
         dispatch(searchUsers(search))
+        setIsSearch(previousState => !previousState)
     };
 
     function sortOnChange(e) {
@@ -81,7 +83,7 @@ function Users() {
                 </Styles.NavBarContainer>
             </Styles.NavBar>
             <Styles.UsersContainer>
-                <UsersGrid />
+                <UsersGrid search={isSearch}/>
             </Styles.UsersContainer>
         </Styles.Container>
     )
