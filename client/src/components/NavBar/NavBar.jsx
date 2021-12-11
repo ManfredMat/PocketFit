@@ -11,6 +11,7 @@ import FeedBackIcoSelect from "../../assets/img/iconos/select-icons/feedback-sel
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAdmin } from "../../redux/Actions/actions-login";
+import defaultProfilePhoto from "../../assets/img/profilephoto.svg";
 
 function NavBar({ screenHeight }) {
   const dispatch = useDispatch();
@@ -34,9 +35,9 @@ function NavBar({ screenHeight }) {
             <Styles.StyledProfileImageContainer>
               <Styles.StyledProfileImage
                 src={
-                  adminProfileImage
-                    ? `data:image/jpeg;base64, ${adminProfileImage}`
-                    : "https://picsum.photos/200"
+                  adminProfileImage 
+                    ? `data:image/jpeg;base64, ${adminProfileImage}` 
+                    : defaultProfilePhoto
                 }
                 alt="profile-photo"
               />
