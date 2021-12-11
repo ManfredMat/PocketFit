@@ -23,7 +23,7 @@ const generatorEx = (n) => {
     array.push({
       name: `ejercicio n ${[i + 1]}`,
       description,
-      video: "un url",
+      video: "https://www.youtube.com/watch?v=35XFAkwmU4c",
       discipline,
     });
   }
@@ -45,7 +45,7 @@ conn.sync({ force: false }).then(async () => {
   };
 
   await Timetable.create();
-  await User.create(adminAcount)
+  await User.create(adminAcount);
   await Exercise.bulkCreate(exerArray);
 
   server.listen(3001, () => {

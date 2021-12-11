@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Styles from './User.styles';
 import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { getUserDetail, renderUserDetail } from '../../../redux/Actions/actions-users';
 
-function User({id, name, lastname, image, customRoutine, paymentday, status}) {
+function User({id, name, lastname, image, customRoutine, paymentday, status, imageBackground}) {
+    const dispatch = useDispatch();
+
+    const userDetail = () => {
+        dispatch(getUserDetail(id));
+        dispatch(renderUserDetail(true));
+    }
+
     return (
         <Styles.Card>
             <Styles.CardBanner>
-                <Styles.ProfilePhoto src={image} alt={name + "-profile"} />
-                <Link to={`/session/users/${id}`}>
+                <Styles.ProfilePhoto src={image} alt={name + "-profile"} imageBackground={imageBackground ? true : false}/>
+                <Styles.ProfileButton onClick={()=> userDetail()}>
                     <Styles.UserNamesContainer>
                         <Styles.UserNames>{name}</Styles.UserNames>
                         <Styles.UserNames>{lastname}</Styles.UserNames>
                     </Styles.UserNamesContainer>
-                </Link>
+                </Styles.ProfileButton>
             </Styles.CardBanner>
             <Styles.TextUserContainer style={{marginTop: "1rem"}}>
                 <Styles.TextUserKeys>Plan Personalizado</Styles.TextUserKeys>
@@ -26,8 +35,6 @@ function User({id, name, lastname, image, customRoutine, paymentday, status}) {
                 <Styles.TextUserKeys>Estado</Styles.TextUserKeys>
                 <Styles.TextUserValues>{status}</Styles.TextUserValues>
             </Styles.TextUserContainer>
-            
-            
             
             {/* <Styles.Clases>Clases</Styles.Clases> */}
         </Styles.Card>

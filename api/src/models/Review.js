@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
           allowNull:false
       },
       value:{
-          type: DataTypes.INTEGER,
+          type: DataTypes.ENUM("1","2","3","4","5"),
           allowNull:false
       },
       profesor:{
@@ -24,8 +24,11 @@ module.exports = (sequelize) => {
       event:{
         type:DataTypes.STRING,
         allowNull:true
+      },
+      gym:{
+        type: DataTypes.STRING,
+        allowNull:true
       }
-
    }
   );
 };
