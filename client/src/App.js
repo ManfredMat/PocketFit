@@ -14,6 +14,8 @@ import Configuration from "./components/Configuration/Configuration.jsx";
 import ResetPassword from "./components/Login/ResetPassword";
 import Profile from "./components/Profile/Profile";
 import Routines from "./components/Routines/Routines";
+import ExerciseListComplete from "./components/Exercises/ExerciseListComplete";
+import ExerciseDetail from "./components/Exercises/ExerciseDetail";
 
 function App() {
 const [screenHeight, setScreenHeight] = useState("")
@@ -45,7 +47,9 @@ const [screenHeight, setScreenHeight] = useState("")
           <Route path="/session/timetable/ShiftsDetails" element={<ShiftsDetails />} />
           <Route path="/session/config" element={<Configuration />} />
           <Route path="/session/routines" element={<Routines />} />
-
+          <Route path="/session/exercises" element={<ExerciseListComplete />} />
+          <Route path="/session/exercises_detail/:id" element={<ExerciseDetail />} />
+          
         </Routes>
       </main>
     </>
