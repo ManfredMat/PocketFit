@@ -13,7 +13,7 @@ const Activities = () => {
 
   function handleSelect(e) {
     switch (e.target.value) {
-      case "Clase":
+      case "Clases":
         setNuevaClase(!nuevaClase);
         setEtype(e.target.value);
         break;
