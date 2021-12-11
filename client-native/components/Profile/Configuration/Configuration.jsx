@@ -5,6 +5,8 @@ import { Switch } from 'react-native-elements/dist/switch/switch';
 import { useSelector } from 'react-redux';
 import Styles from './Configuration.styles';
 import IP from "../../Ips"
+import NotificationsComponent from './Notifications';
+
 
 const Configuration = () => {
     const user = useSelector(state => state.reducerUser.user)
@@ -30,11 +32,15 @@ const Configuration = () => {
             <Styles.NewsletterContainer>
                 <Styles.Text>Newsletter</Styles.Text>
                 <Switch
+                    style={{marginLeft: "50%"}}
                     trackColor={{ false: "#767577", true: "#6AE056" }}
                     thumbColor="white"
                     onValueChange={() => toggleSwitch()}
                     value={isEnabled}
                 />
+            </Styles.NewsletterContainer>
+            <Styles.NewsletterContainer>
+                <NotificationsComponent/>
             </Styles.NewsletterContainer>
         </Styles.Container>
     )

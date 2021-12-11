@@ -1,42 +1,21 @@
-const Expo = require('expo-server-sdk').Expo;
-const expo = new Expo();
+const axios = require("axios")
 
-let savedPushTokens =[];
-
-const saveToken = (token) => {
-    if (savedPushTokens.indexOf(token === -1)) {
-      savedPushTokens.push(token);
+const sendNotification = async (req, res) => {
+    const { title, message } = req.body
+    try {
+       await axios.post(`https://nativenotify.com/api/indie/notification`, {
+          subID: 'fb5f05d5-dbd0-4425-ba0f-a176e866e30f',
+          appId: 667,
+          appToken: 'IONltqu86xwT3H5l2OSLtu',
+          title: title,
+          message: message
+      });
+      res.send({ message: "done" })
+    } catch (error) {
+      res.send(error)
     }
-  }
-const handlePushTokens = (message) => {
-    let notifications = [];
-    for (let pushToken of savedPushTokens) {
-      if (!Expo.isExpoPushToken(pushToken)) {
-        console.error(`Push token ${pushToken} is not a valid Expo push token`);
-        continue;
-      }
-      notifications.push({
-        to: pushToken,
-        sound: 'default',
-        title: 'Message received!',
-        body: message,
-        data: { message }
-      })
-    }
-    let chunks = expo.chunkPushNotifications(notifications);
-  (async () => {
-    for (let chunk of chunks) {
-      try {
-        let receipts = await expo.sendPushNotificationsAsync(chunk);
-        console.log(receipts);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  })();
-  }
+}
 
 module.exports = {
-    saveToken,
-    handlePushTokens,
-  };
+    sendNotification
+   };
