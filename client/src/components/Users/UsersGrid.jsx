@@ -29,6 +29,7 @@ function UsersGrid() {
                 users.map((users, key) => {
                     return <User 
                         key={key}
+                        id={users.id}
                         name={users.name}
                         lastname={users.lastname}
                         image={users.imageData? `data:image/jpeg;base64, ${users.imageData}` : `https://picsum.photos/200?random=${key}`}
@@ -40,6 +41,7 @@ function UsersGrid() {
                 searchedUsers.map((users, key) => {
                     return <User 
                         key={key}
+                        id={users.id}
                         name={users.name}
                         lastname={users.lastname}
                         image={users.imageData? `data:image/jpeg;base64, ${users.imageData}` : `https://picsum.photos/200?random=${key}`}
