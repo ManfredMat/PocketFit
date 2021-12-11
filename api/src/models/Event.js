@@ -1,51 +1,64 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('event', {
-
-      id:{
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        allowNull: false,
-        primaryKey: true
-      },
-
-    kindOfEvent:{
-        type: DataTypes.STRING,
-        defaultValue: false,
-        allowNull: false,
-    },
-  
-    name:{
-        type: DataTypes.STRING,
-        allowNull: false,
+  sequelize.define("event", {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+      primaryKey: true,
     },
 
-    month:{
-      type: DataTypes.INTEGER,
-      allowNull:true,
-    },
-    nameday:{
+    kindOfEvent: {
       type: DataTypes.STRING,
-      allowNull:false
+      defaultValue: false,
+      allowNull: false,
     },
-    day:{
+
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
+    month: {
       type: DataTypes.INTEGER,
-      allowNull:true,
+      allowNull: true,
     },
-    hour:{
+    nameday: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    day: {
       type: DataTypes.INTEGER,
-      allowNull:false
+      allowNull: true,
     },
-    description:{
-    type: DataTypes.TEXT,
-    allowNull: false
+    hour: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
-    profesor:{
-      type: DataTypes.STRING
-    }
-   }
-  );
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    profesor: {
+      type: DataTypes.STRING,
+    },
+    capacity: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    imageType: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    imageName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    imageData: {
+      type: DataTypes.BLOB,
+    },
+  });
 };
