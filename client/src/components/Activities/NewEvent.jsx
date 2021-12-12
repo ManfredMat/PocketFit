@@ -4,6 +4,7 @@ import moment from "moment";
 import "moment/locale/es";
 import { useDispatch } from "react-redux";
 import { postEvent } from "../../redux/Actions/actions-Activities";
+import Styles from "./NewEvent.styles";
 
 const NewEvent = ({ display, name, kind }) => {
   const dispatch = useDispatch();
@@ -70,68 +71,60 @@ const NewEvent = ({ display, name, kind }) => {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        position: "absolute",
-        width: "-webkit-fill-available",
-        height: "100vh",
-        backgroundColor: "#00000070",
-        top: 0,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          width: "40%",
-          height: "25%",
-          padding: "2em",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          backgroundColor: "grey",
-        }}
-      >
-        <button onClick={() => display(false)}>Cancelar</button>
-        <h2>Crear Nuevo Evento</h2>
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <label>Imagen</label>
-          <input
-            type="file"
-            name="photo"
-            accept=".jpg, .jpeg"
-            onChange={(e) => setInput({ ...input, photo: e.target.files[0] })}
-          />
-          <br />
+    <Styles.Container>
+      {/* <button onClick={() => display(false)}>Cancelar</button>
+      <h2>Crear Nuevo Evento</h2> */}
 
-          <label>Descripción</label>
-          <textarea
-            name="description"
-            onChange={(e) => handleChange(e)}
-          ></textarea>
-          <br />
+      <Styles.Form onSubmit={(e) => handleSubmit(e)}>
+        <Styles.SubContainer>
+          <Styles.Column1>
+            <Styles.InputContainer>
+              <Styles.Label>Imagen</Styles.Label>
+              <Styles.InputImage
+                type="file"
+                name="photo"
+                accept=".jpg, .jpeg"
+                onChange={(e) => setInput({ ...input, photo: e.target.files[0] })}
+              />
+            </Styles.InputContainer>
+            <Styles.InputContainer>
+              <Styles.Label>Descripción</Styles.Label>
+              <Styles.Description
+                name="description"
+                onChange={(e) => handleChange(e)}
+                placeholder=""
+                rows="5"
+                cols="40"
+              ></Styles.Description>
+            </Styles.InputContainer>
+          </Styles.Column1>
 
-          <label>Fecha</label>
-          <input type="date" onChange={(e) => parseDate(e)} />
-          <br />
+          <Styles.Column2>
+            <Styles.InputContainer>
+              <Styles.Label>Fecha</Styles.Label>
+              <Styles.Input type="date" onChange={(e) => parseDate(e)} />
+            </Styles.InputContainer>
+            <Styles.InputContainer>
+              <Styles.Label>Horario</Styles.Label>
+              <Styles.Input type="time" name="hour" onChange={(e) => parseHour(e)} />
+            </Styles.InputContainer>
+            <Styles.InputContainer>
+              <Styles.Label>Capacidad</Styles.Label>
+              <Styles.Input
+                placeholder="Capacidad de la clase..."
+                type="number"
+                name="capacity"
+                onChange={(e) => parseCapacity(e)}
+              />
+            </Styles.InputContainer>
+          </Styles.Column2>
+        </Styles.SubContainer>
 
-          <label>Horario</label>
-          <input type="time" name="hour" onChange={(e) => parseHour(e)} />
-          <br />
-
-          <label>Capacidad</label>
-          <input
-            type="number"
-            name="capacity"
-            onChange={(e) => parseCapacity(e)}
-          />
-          <br />
-
-          <button type="submit">Crear</button>
-        </form>
-      </div>
-    </div>
+        <Styles.ButtonContainer>
+          <Styles.SubmitButton type="submit">Crear</Styles.SubmitButton>
+        </Styles.ButtonContainer>
+      </Styles.Form>
+    </Styles.Container>
   );
 };
 

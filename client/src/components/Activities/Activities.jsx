@@ -1,28 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NewClass from "./NewClass";
 import NewEvent from "./NewEvent";
 import NewHoliday from "./NewHoliday";
 import { useState } from "react";
+import Styles from "./Activities.styles";
 
-const Activities = () => {
+//render con prop
+const Activities = ({ select, display }) => {
   const [nuevoEvento, setNuevoEvento] = React.useState(false);
   const [nuevaClase, setNuevaClase] = React.useState(false);
   const [nuevoFeriado, setNuevoFeriado] = React.useState(false);
   const [ename, setEname] = useState("");
   const [etype, setEtype] = useState("");
 
+  useEffect(() => {
+    if(select === "Clase") setNuevaClase(true);
+    if(select === "Evento") setNuevoEvento(true);
+  }, [])
+
   function handleSelect(e) {
     switch (e.target.value) {
       case "Clases":
-        setNuevaClase(!nuevaClase);
+        setNuevoEvento(false);
+        setNuevoFeriado(false);
+        setNuevaClase(true);
         setEtype(e.target.value);
         break;
       case "Evento":
-        setNuevoEvento(!nuevoEvento);
+        setNuevaClase(false);
+        setNuevoFeriado(false);
+        setNuevoEvento(true);
         setEtype(e.target.value);
         break;
       case "Feriado":
-        setNuevoFeriado(!nuevoFeriado);
+        setNuevaClase(false);
+        setNuevoEvento(false);
+        setNuevoFeriado(true);
         setEtype(e.target.value);
         break;
       default:
@@ -31,38 +44,66 @@ const Activities = () => {
   }
 
   return (
-    <div>
-      <h1>Crear Actividad</h1>
+    <Styles.Container>
+      <Styles.Card>
+        <Styles.CloseButton onClick={() => display(false)}>X</Styles.CloseButton>
+        <Styles.CardTop>
+          <Styles.CardTitle>Crear Actividad</Styles.CardTitle>
+          <Styles.CardTopInputsContainer>
+            <Styles.CardTopLabel>Nombre</Styles.CardTopLabel>
+            <Styles.CardTopInput
+              type="text"
+              placeholder="Escribe un nombre..."
+              onChange={(e) => setEname(e.target.value)}
+            />
 
-      <label>Nombre</label>
-      <input
-        type="text"
-        placeholder="Escribe un nombre... "
-        onChange={(e) => setEname(e.target.value)}
-      />
+            <Styles.CardTopLabel>Tipo</Styles.CardTopLabel>
+            {
+              select === "Clase" ?
+              <Styles.CardTopSelect onChange={(e) => handleSelect(e)}>
+                <option value="" disabled>
+                  Elija una opción...
+                </option>
+                <option value="Clases" selected>Clase</option>
+                <option value="Evento">Evento</option>
+                <option value="Feriado">Feriado</option>
+              </Styles.CardTopSelect> :
 
-      <label>Tipo</label>
-      <select onChange={(e) => handleSelect(e)}>
-        <option value="" disabled selected>
-          Escoja uno ...
-        </option>
-        <option value="Clases">Clase</option>
-        <option value="Evento">Evento</option>
-        <option value="Feriado">Feriado</option>
-      </select>
+              select === "Evento" ? 
+              <Styles.CardTopSelect onChange={(e) => handleSelect(e)}>
+                <option value="" disabled>
+                  Elija una opción...
+                </option>
+                <option value="Clases">Clase</option>
+                <option value="Evento" selected>Evento</option>
+                <option value="Feriado">Feriado</option>
+              </Styles.CardTopSelect> :
 
-      <div>
-        {nuevaClase && (
-          <NewClass display={setNuevaClase} name={ename} kind={etype} />
-        )}
-        {nuevoEvento && (
-          <NewEvent display={setNuevoEvento} name={ename} kind={etype} />
-        )}
-        {nuevoFeriado && (
-          <NewHoliday display={setNuevoFeriado} name={ename} kind={etype} />
-        )}
-      </div>
-    </div>
+              <Styles.CardTopSelect onChange={(e) => handleSelect(e)}>
+                <option value="" disabled selected>
+                  Elija una opción...
+                </option>
+                <option value="Clases">Clase</option>
+                <option value="Evento">Evento</option>
+                <option value="Feriado">Feriado</option>
+              </Styles.CardTopSelect>
+            }
+          </Styles.CardTopInputsContainer>
+        </Styles.CardTop>
+
+        <Styles.CardBottom>
+          {nuevaClase && (
+            <NewClass display={setNuevaClase} name={ename} kind={etype} />
+          )}
+          {nuevoEvento && (
+            <NewEvent display={setNuevoEvento} name={ename} kind={etype} />
+          )}
+          {nuevoFeriado && (
+            <NewHoliday display={setNuevoFeriado} name={ename} kind={etype} />
+          )}
+        </Styles.CardBottom>
+      </Styles.Card>
+    </Styles.Container>
   );
 };
 
