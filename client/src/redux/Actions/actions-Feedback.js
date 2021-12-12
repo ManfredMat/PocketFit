@@ -6,10 +6,12 @@ export const ASCDES_REVIEWS = 'ASCDES_REVIEWS'
 
 export function getReviews(){
     return async function(dispatch){
-            let reviews = await axios.get("http://localhost:3001/api/reviews/all")
-            return dispatch({
-                type: GET_REVIEWS,
-                payload: reviews.data
+            await axios.get("http://localhost:3001/api/reviews/all")
+            .then((reviews) => {
+                dispatch({
+                    type: GET_REVIEWS,
+                    payload : reviews.data
+                })
             })
 }
 }
