@@ -76,7 +76,7 @@ export default function Shifts() {
     )
 }
 
-export function PreVieShifts() {
+export function PreViewShifts() {
     const dispatch = useDispatch()
     const getUserid = useSelector((state) => state.reducerUser.user.id)
     useEffect(()=>{dispatch(getShiftId(getUserid))},[dispatch])

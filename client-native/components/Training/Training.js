@@ -7,7 +7,7 @@ import { getAllWeekPlan } from '../../redux/Actions/actions-Training';
 import { useDispatch, useSelector } from 'react-redux';
 import loading from '../../assets/loading.gif'
 import CardExercise from './CardExercise'
-import { PreVieShifts } from '../Shifts/Shifts';
+import { PreViewShifts } from '../Shifts/Shifts';
 
 export default function Training() {
     //basics
@@ -71,7 +71,7 @@ export default function Training() {
                 <TextW>Próximo Turno</TextW>
                 <ShiftsCont>
                     <ProxShifts>
-                        <PreVieShifts/>
+                        <PreViewShifts/>
                     </ProxShifts>
                     <ButtonShifts onPress={() => navigation.navigate('Shifts')}>
                         <Image source={arrow} style={{alignSelf: 'center', width:30, height:30, opacity: 0.8}}/>
