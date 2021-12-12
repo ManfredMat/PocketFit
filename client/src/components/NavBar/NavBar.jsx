@@ -104,7 +104,7 @@ function NavBar({ screenHeight }) {
               />
             </Styles.StyledNavButton>
           </Link>
-          <Link to="/feed">
+          <Link to="/session/feedback">
             <Styles.StyledNavButton
               select={actual.includes("feed") ? true : false}
             >

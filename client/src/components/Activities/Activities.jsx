@@ -61,31 +61,31 @@ const Activities = ({ select, display }) => {
             {
               select === "Clase" ?
               <Styles.CardTopSelect onChange={(e) => handleSelect(e)}>
-                <option value="" disabled>
+                <Styles.CardSelectOption value="" disabled>
                   Elija una opción...
-                </option>
-                <option value="Clases" selected>Clase</option>
-                <option value="Evento">Evento</option>
-                <option value="Feriado">Feriado</option>
+                </Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Clases" selected>Clase</Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Evento">Evento</Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Feriado">Feriado</Styles.CardSelectOption>
               </Styles.CardTopSelect> :
 
               select === "Evento" ? 
               <Styles.CardTopSelect onChange={(e) => handleSelect(e)}>
-                <option value="" disabled>
+                <Styles.CardSelectOption value="" disabled>
                   Elija una opción...
-                </option>
-                <option value="Clases">Clase</option>
-                <option value="Evento" selected>Evento</option>
-                <option value="Feriado">Feriado</option>
+                </Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Clases">Clase</Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Evento" selected>Evento</Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Feriado">Feriado</Styles.CardSelectOption>
               </Styles.CardTopSelect> :
 
               <Styles.CardTopSelect onChange={(e) => handleSelect(e)}>
-                <option value="" disabled selected>
+                <Styles.CardSelectOption value="" disabled selected>
                   Elija una opción...
-                </option>
-                <option value="Clases">Clase</option>
-                <option value="Evento">Evento</option>
-                <option value="Feriado">Feriado</option>
+                </Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Clases">Clase</Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Evento">Evento</Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Feriado">Feriado</Styles.CardSelectOption>
               </Styles.CardTopSelect>
             }
           </Styles.CardTopInputsContainer>
@@ -93,13 +93,13 @@ const Activities = ({ select, display }) => {
 
         <Styles.CardBottom>
           {nuevaClase && (
-            <NewClass display={setNuevaClase} name={ename} kind={etype} />
+            <NewClass close={display} display={setNuevaClase} name={ename} kind={etype} />
           )}
           {nuevoEvento && (
-            <NewEvent display={setNuevoEvento} name={ename} kind={etype} />
+            <NewEvent close={display} display={setNuevoEvento} name={ename} kind={etype} />
           )}
           {nuevoFeriado && (
-            <NewHoliday display={setNuevoFeriado} name={ename} kind={etype} />
+            <NewHoliday close={display} display={setNuevoFeriado} name={ename} kind={etype} />
           )}
         </Styles.CardBottom>
       </Styles.Card>

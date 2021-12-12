@@ -13,13 +13,13 @@ const Styles = {
         width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 1rem
+        gap: 1rem;
     `,
 
     SubContainer: styled.div`
         display: flex;
         flex-direction: row;
-        gap: 1rem
+        gap: 1rem;
     `,
 
     Column1: styled.div`
@@ -51,6 +51,7 @@ const Styles = {
         border-radius: .5rem;
         border-style: hidden;
         background-color: var(--green);
+        color: black;
         &::placeholder {
             color: black;
         }
@@ -64,6 +65,7 @@ const Styles = {
         border-radius: .5rem;
         border-style: hidden;
         background-color: var(--green);
+        color: black;
         &::placeholder {
             color: black;
         }
@@ -89,6 +91,7 @@ const Styles = {
         border-radius: 1rem;
         background-color: var(--green);
         border: none;
+        color: black;
         &:focus{
             outline: none;
         }
@@ -98,7 +101,8 @@ const Styles = {
         width: 100%;
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-end;
+        gap: 1rem;
     `,
 
     SubmitButton: styled.button`
@@ -108,6 +112,19 @@ const Styles = {
         border: none;
         padding: .5rem;
         width: 4rem;
+        margin-top: .5rem;
+        &:hover {
+            cursor: pointer;
+        }
+    `,
+
+    CancelButton: styled.button`
+        color: white;
+        background-color: var(--darkBlue);
+        border-radius: .5rem;
+        border: none;
+        padding: .5rem;
+        width: 5rem;
         margin-top: .5rem;
         &:hover {
             cursor: pointer;
