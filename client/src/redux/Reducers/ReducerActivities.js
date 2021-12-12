@@ -15,12 +15,12 @@ function reducerActivities(state = initialState, action) {
     case GET_LESSONS:
       return {
         ...state,
-        lessons: action.value,
+        lessons: action.value.length ? action.value.filter((cla) => cla.kindOfEvent === "Clases") : [],
       };
     case GET_EVENTS:
       return {
         ...state,
-        events: action.value,
+        events: action.value.length ? action.value.filter((cla) => cla.kindOfEvent === "Evento") : [],
       };
     case GET_PROFESSORS:
       return {

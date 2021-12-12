@@ -23,7 +23,7 @@ function Detail() {
                 <Styles.labels>{label}</Styles.labels>
             ))}
             </Styles.tableTr>
-            {events.length ? events.map((eve,index) => (
+            {events || events.length ? events.map((eve,index) => (
                 index <= 2 &&
                 <Styles.tableTr border={index === 2 ? false : true}>
                     <Styles.tableTd>{eve.name}</Styles.tableTd>

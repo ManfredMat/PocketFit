@@ -10,7 +10,7 @@ export function getLessons() {
     await axios.get("http://localhost:3001/api/events/all").then((res) => {
       dispatch({
         type: GET_LESSONS,
-        value: res.data.filter((cla) => cla.kindOfEvent === "Clases")
+        value: res.data
       });
     });
   };
@@ -18,12 +18,11 @@ export function getLessons() {
 
 export function getEvents() {
   return async function (dispatch) {
-    await axios.get("http://localhost:3001/api/events/all").then((res) => {
-      dispatch({
+    let response = await axios.get("http://localhost:3001/api/events/all")
+    dispatch({
         type: GET_EVENTS,
-        value: res.data.filter((cla) => cla.kindOfEvent === "Evento")
+        value:response.data
       });
-    });
   };
 }
 
