@@ -70,9 +70,11 @@ const WeekTable = (props) => {
 
     const [weekChanges, setWeekChanges] = useState({});
 
-    const [exercises, setExercises] = useState(exercisesDefaultValue)
+    const [exercises, setExercises] = useState(exercisesDefaultValue);
 
-    const [disableButtons, setDisableButtons] = useState(false)
+    const [disableButtons, setDisableButtons] = useState(false);
+
+    const [userName, setUserName] = useState(props.name);
 
     const saveChanges = async () => {
 
@@ -82,14 +84,8 @@ const WeekTable = (props) => {
 
             if(props.id) dayIds.user = props.id;
 
-            console.log('+++ DayIDs +++');
-            console.log(dayIds);
-
-            let response = await axios.post(routineRoute, dayIds);
-            response = await axios.post(routineRoute, dayIds);
-
-            console.log('Response de la week table');
-            console.log(response.data);
+            await axios.post(routineRoute, dayIds);
+            await axios.post(routineRoute, dayIds);
 
             await upgradeTable();
 
@@ -110,31 +106,23 @@ const WeekTable = (props) => {
     const postBlocks = async () => {
 
         let weekIds = {};
-        console.log("---------- New post ----------")
+
         for (const key in weekChanges) {
 
             let routinesIds = [];
 
-            console.log('-----'+key+'-----')
+
 
             for (const key2 in weekChanges[key].blocks) {
 
-                console.log('--- Bloque '+key2+' ---')
-                console.log(weekChanges[key].blocks[key2])
 
                 let response = await axios.post("http://127.0.0.1:3001/api/blocks/", weekChanges[key].blocks[key2]);
-
-                console.log('--Response--')
-                console.log(response.data)
 
                 routinesIds.push(response.data.id);
             }
 
             weekIds[key] = await postRoutine(routinesIds, weekChanges[key].dayRoutine);
         }
-
-        console.log('+++++weekIds+++++')
-        console.log(weekIds)
         return weekIds;
 
     }
@@ -152,13 +140,8 @@ const WeekTable = (props) => {
         if(props.id) getRoute += '/user/' + props.id;
             else getRoute += '/general';
 
-            console.log(getRoute)
-
         let response = await axios.get(getRoute);
         response = response.data;
-
-        console.log('----- Se llamo a la base de datos -----');
-        console.log(response)
 
         let auxState = {};
         let auxWeekChanges = {};
@@ -427,13 +410,17 @@ const WeekTable = (props) => {
     useEffect(() => {
 
         upgradeTable();
+        if(!props.id) setUserName('');
 
-    }, []);
+
+    }, [props.id]);
+
+ 
 
     return (
         <>
 
-            <h1>Plan Semanal <span style={{fontWeight: '400'}}>{props.name ? `de ${props.name}` :'General'}</span></h1>
+            <h1>Plan Semanal <span style={{fontWeight: '400'}}>{userName ? `de ${userName}` :'General'}</span></h1>
             <DayContainer>
                 <LeftBarContainer>
                     <div className='LeftBar-FirstBlock'></div>

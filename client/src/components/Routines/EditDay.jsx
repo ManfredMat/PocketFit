@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EditBlock from "./EditBlock";
-import { AcceptButton, BackPop, BlockContainer, BlockEditDayContainer, ButtonContainer, EditButton, EditDayContainer, ExcerciseContainer, ExerciseP, InputStyle, PopUpContainer, WeekDayContainer } from "./Routines.styles";
+import { AcceptButton, BackPop, BlockContainer, BlockEditDayContainer, ButtonContainer, EditButton, EditDayContainer, ExcerciseContainer, ExerciseP, InputStyle, KindOfBlockContainer, PopUpContainer, RoundsContainer, WeekDayContainer } from "./Routines.styles";
 import editIcon from '../../assets/img/iconos/editIcon.svg';
 
 const EditDay = (props) => {
@@ -10,7 +10,7 @@ const EditDay = (props) => {
         block: 1
     });
 
-    const [input, setInput] = useState('')
+    const [input, setInput] = useState('');
 
     const handleOnclick = (block) => {
 
@@ -41,6 +41,12 @@ const EditDay = (props) => {
         props.setDisableButtons(false)
 
     }
+
+    useEffect(() => {
+
+        setInput(props.weekChanges[props.api].dayRoutine.kindOfRoutine);
+
+    }, [])
 
     return (
 
@@ -77,6 +83,13 @@ const EditDay = (props) => {
 
                             <BlockContainer block='1'>
                                 <ExcerciseContainer>
+
+                                    {props.weekChanges[props.api]
+                                        ? props.weekChanges[props.api].blocks.block1.kindOfBlock
+                                            ? <KindOfBlockContainer>{props.weekChanges[props.api].blocks.block1.kindOfBlock}</KindOfBlockContainer>
+                                            : null
+                                        : null}
+
                                     {props.exercises.block1[0]
                                         ? props.exercises.block1.map((excercise, i) =>
                                             <ExerciseP key={i}>
@@ -85,7 +98,14 @@ const EditDay = (props) => {
 
                                             </ExerciseP>
                                         )
-                                        : <ExerciseP inactive={true}>Sin ejercicios</ExerciseP>}
+                                        : <ExerciseP inactive={true}>Sin ejercicios</ExerciseP>
+                                    }
+
+                                    {
+                                        props.weekChanges[props.api]
+                                            ? <RoundsContainer>Rounds: {props.weekChanges[props.api].blocks.block1.rounds}</RoundsContainer>
+                                            : null
+                                    }
                                 </ExcerciseContainer>
                             </BlockContainer>
 
@@ -104,6 +124,13 @@ const EditDay = (props) => {
 
                             <BlockContainer block='2'>
                                 <ExcerciseContainer>
+
+                                    {props.weekChanges[props.api]
+                                        ? props.weekChanges[props.api].blocks.block2.kindOfBlock
+                                            ? <KindOfBlockContainer>{props.weekChanges[props.api].blocks.block2.kindOfBlock}</KindOfBlockContainer>
+                                            : null
+                                        : null}
+
                                     {props.exercises.block2[0]
                                         ? props.exercises.block2.map((excercise, i) =>
                                             <ExerciseP key={i}>
@@ -113,6 +140,12 @@ const EditDay = (props) => {
                                             </ExerciseP>
                                         )
                                         : <ExerciseP inactive={true}>Sin ejercicios</ExerciseP>}
+
+                                    {
+                                        props.weekChanges[props.api]
+                                            ? <RoundsContainer>Rounds: {props.weekChanges[props.api].blocks.block2.rounds}</RoundsContainer>
+                                            : null
+                                    }
                                 </ExcerciseContainer>
                             </BlockContainer>
 
@@ -131,6 +164,13 @@ const EditDay = (props) => {
 
                             <BlockContainer block='3'>
                                 <ExcerciseContainer>
+
+                                    {props.weekChanges[props.api]
+                                        ? props.weekChanges[props.api].blocks.block3.kindOfBlock
+                                            ? <KindOfBlockContainer>{props.weekChanges[props.api].blocks.block3.kindOfBlock}</KindOfBlockContainer>
+                                            : null
+                                        : null}
+
                                     {props.exercises.block3[0]
                                         ? props.exercises.block3.map((excercise, i) =>
                                             <ExerciseP key={i}>
@@ -140,6 +180,12 @@ const EditDay = (props) => {
                                             </ExerciseP>
                                         )
                                         : <ExerciseP inactive={true}>Sin ejericios</ExerciseP>}
+
+{
+                        props.weekChanges[props.api]
+                            ? <RoundsContainer>Rounds: {props.weekChanges[props.api].blocks.block3.rounds}</RoundsContainer>
+                            : null
+                    }
                                 </ExcerciseContainer>
                             </BlockContainer>
 
@@ -160,6 +206,7 @@ const EditDay = (props) => {
                     day={props.day}
                     api={props.api}
                     setWeekChanges={props.setWeekChanges}
+                    weekChanges={props.weekChanges}
                     block={renderEditBlock.block}
                     exercises={props.exercises[`block${renderEditBlock.block}`]}
                     setRender={setRender}
