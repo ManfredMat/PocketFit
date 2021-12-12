@@ -15,6 +15,10 @@ module.exports = (sequelize) => {
         type:DataTypes.STRING,
         allownull:false
       },
+      user:{
+        type:DataTypes.STRING,
+        allownull:true,
+      },
 
       monday:{
         type:DataTypes.INTEGER,
