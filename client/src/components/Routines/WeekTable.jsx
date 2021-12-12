@@ -430,6 +430,13 @@ const WeekTable = (props) => {
 
     }, []);
 
+    useEffect(() => {
+
+        console.log(weekChanges)
+
+    }, [weekChanges]);
+
+
     return (
         <>
 

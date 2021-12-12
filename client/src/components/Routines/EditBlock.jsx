@@ -9,8 +9,8 @@ const EditBlock = (props) => {
     const [exercises, setExercises] = useState(props.exercises);
 
     const [inputs, setInputs] = useState({
-        rounds: 0,
-        kindOfBlock: ""
+        rounds: props.weekChanges[props.api].blocks[`block${props.block}`].rounds,
+        kindOfBlock: props.weekChanges[props.api].blocks[`block${props.block}`].kindOfBlock
     })
 
     const handleInputs = (e) => {
