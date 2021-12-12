@@ -14,8 +14,14 @@ const Activities = ({ select, display }) => {
   const [etype, setEtype] = useState("");
 
   useEffect(() => {
-    if(select === "Clase") setNuevaClase(true);
-    if(select === "Evento") setNuevoEvento(true);
+    if(select === "Clase") {
+      setEtype("Clases");
+      setNuevaClase(true);
+    }
+    if(select === "Evento") {
+      setEtype("Evento");
+      setNuevoEvento(true);
+    } 
   }, [])
 
   function handleSelect(e) {
@@ -91,17 +97,26 @@ const Activities = ({ select, display }) => {
           </Styles.CardTopInputsContainer>
         </Styles.CardTop>
 
-        <Styles.CardBottom>
-          {nuevaClase && (
-            <NewClass close={display} display={setNuevaClase} name={ename} kind={etype} />
-          )}
-          {nuevoEvento && (
-            <NewEvent close={display} display={setNuevoEvento} name={ename} kind={etype} />
-          )}
-          {nuevoFeriado && (
-            <NewHoliday close={display} display={setNuevoFeriado} name={ename} kind={etype} />
-          )}
-        </Styles.CardBottom>
+        {
+          etype === "" ?
+          <Styles.CardBottom>
+            <Styles.SelectEmpty>
+              Seleccione un tipo de actividad...
+            </Styles.SelectEmpty>
+          </Styles.CardBottom> :
+          <Styles.CardBottom>
+            {nuevaClase && (
+              <NewClass close={display} display={setNuevaClase} name={ename} kind={etype} />
+            )}
+            {nuevoEvento && (
+              <NewEvent close={display} display={setNuevoEvento} name={ename} kind={etype} />
+            )}
+            {nuevoFeriado && (
+              <NewHoliday close={display} display={setNuevoFeriado} name={ename} kind={etype} />
+            )}
+          </Styles.CardBottom>
+        }
+
       </Styles.Card>
     </Styles.Container>
   );

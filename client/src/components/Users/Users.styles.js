@@ -18,10 +18,9 @@ const Styles = {
 
     NavBar: styled.div`
         background-color: var(--darkGray-base);
-        /* position: sticky; */
-        position: ${(props) =>
+        /* position: ${(props) =>
             props.sticky ? "static" : "sticky"};
-        top: 0;
+        top: 0; */
         display: flex;
         flex-direction: column;
     `,

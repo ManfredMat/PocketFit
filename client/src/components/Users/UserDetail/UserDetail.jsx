@@ -52,7 +52,7 @@ function UserDetail() {
                             <Styles.DataInfoContainer>
                                 <Styles.DataKey>Plan Personalizado</Styles.DataKey>
                                 <Styles.DataValueContainer>
-                                    <Styles.DataValue>Si</Styles.DataValue>
+                                    <Styles.DataValue>No</Styles.DataValue>
                                     <Link to={`/session/routines/${user.id}`}>
                                         <Styles.DataButton>
                                             <img src={editRoutineIcon} alt="edit-custom-routine" />
