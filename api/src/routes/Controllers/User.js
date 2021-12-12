@@ -78,6 +78,8 @@ const modifyUser = async (req, res) => {
       isadmin,
       isprofessor,
       isuser,
+      newsletter,
+      notifications
     } = req.body;
     const imageType = req.file.mimetype;
     const imageName = req.file.originalname;
@@ -106,6 +108,8 @@ const modifyUser = async (req, res) => {
           imageType,
           imageName,
           imageData,
+          newsletter,
+          notifications
         },
         { where: { id: id } }
       );
@@ -134,6 +138,8 @@ const modifyUser = async (req, res) => {
       isadmin,
       isprofessor,
       isuser,
+      notifications,
+      newsletter
     } = req.body;
 
     try {
@@ -156,6 +162,8 @@ const modifyUser = async (req, res) => {
           isadmin,
           isprofessor,
           isuser,
+          notifications,
+          newsletter
         },
         { where: { id: id } }
       );

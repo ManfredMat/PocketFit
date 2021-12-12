@@ -17,6 +17,8 @@ import Routines from "./components/Routines/Routines";
 import ExerciseListComplete from "./components/Exercises/ExerciseListComplete";
 import ExerciseDetail from "./components/Exercises/ExerciseDetail";
 import Activities from "./components/Activities/Activities";
+import Reviews from "./components/Reviews/Reviews"
+
 
 function App() {
   const [screenHeight, setScreenHeight] = useState("");
@@ -53,7 +55,7 @@ function App() {
           <Route path="/session/routines/:id" element={<Routines />} />
           <Route path="/session/exercises" element={<ExerciseListComplete />} />
           <Route path="/session/exercises_detail/:id" element={<ExerciseDetail />} />
-
+          <Route path="/session/feedback" element={<Reviews />} />
         </Routes>
       </main>
     </>
