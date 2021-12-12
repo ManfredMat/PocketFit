@@ -79,10 +79,11 @@ const WeekTable = (props) => {
         setDisableButtons(true);
 
             let dayIds = await postBlocks();
+
+            if(props.id) dayIds.user = props.id;
+
             console.log('+++ DayIDs +++');
             console.log(dayIds);
-
-            if(props.id) dayIds.id = props.id;
 
             let response = await axios.post(routineRoute, dayIds);
             response = await axios.post(routineRoute, dayIds);
@@ -148,8 +149,10 @@ const WeekTable = (props) => {
 
         let getRoute = routineRoute;
 
-        if(props.id) getRoute += '/' + props.id;
+        if(props.id) getRoute += '/user/' + props.id;
             else getRoute += '/general';
+
+            console.log(getRoute)
 
         let response = await axios.get(getRoute);
         response = response.data;
