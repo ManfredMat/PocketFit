@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { getReviews, orderAscDes, filterReviews } from "../../redux/Actions/actions-Feedback";
 import Pagination from './Paginado'
-import Review from './Review'
 
 function Reviews(){
     const dispatch = useDispatch();
