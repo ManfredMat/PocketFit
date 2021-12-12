@@ -28,6 +28,9 @@ const createWeekPlan = async (req , res)=>{
 
         if(user){
             await Weekplan.destroy({where:{user:user}})
+            if(!name){
+                name = "Plan semanal personalizado Usuario"
+            } 
         }
 
         let newWeekPlan = await Weekplan.create(
