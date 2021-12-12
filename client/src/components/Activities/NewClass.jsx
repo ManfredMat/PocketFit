@@ -8,7 +8,7 @@ import {
 } from "../../redux/Actions/actions-Activities";
 import Styles from "./NewClass.styles";
 
-const NewClass = ({ display, name, kind }) => {
+const NewClass = ({ display, name, kind, close }) => {
   const dispatch = useDispatch();
   const professors = useSelector((state) => state.activities.professors);
   moment.locale();
@@ -121,6 +121,7 @@ const NewClass = ({ display, name, kind }) => {
 
         <Styles.ButtonContainer>
           <Styles.SubmitButton type="submit">Crear</Styles.SubmitButton>
+          <Styles.CancelButton onClick={() => close(false)}>Cancelar</Styles.CancelButton>
         </Styles.ButtonContainer>
       </Styles.Form>
     </Styles.Container>

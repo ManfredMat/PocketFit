@@ -73,6 +73,7 @@ const Styles = {
         width: 30%;
         background-color: var(--green);
         margin-left: 1rem;
+        color: black;
         &::placeholder {
             color: black;
         }
@@ -88,12 +89,17 @@ const Styles = {
         padding: .5rem;
         width: 30%;
         background-color: var(--green);
+        color: black;
         &::placeholder {
             color: black;
         }
         &:focus{
             outline: none;
         }
+    `,
+
+    CardSelectOption: styled.option`
+        color: black;
     `,
 
     CardBottom: styled.div`

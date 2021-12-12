@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { postEvent } from "../../redux/Actions/actions-Activities";
 import Styles from "./NewClass.styles";
 
-const NewHoliday = ({ display, name, kind }) => {
+const NewHoliday = ({ display, name, kind, close }) => {
   const dispatch = useDispatch();
   moment.locale();
 
@@ -52,6 +52,7 @@ const NewHoliday = ({ display, name, kind }) => {
         </Styles.InputContainer>
         <Styles.ButtonContainer>
           <Styles.SubmitButton type="submit">Crear</Styles.SubmitButton>
+          <Styles.CancelButton onClick={() => close(false)}>Cancelar</Styles.CancelButton>
         </Styles.ButtonContainer>
       </Styles.Form>
     </div>
