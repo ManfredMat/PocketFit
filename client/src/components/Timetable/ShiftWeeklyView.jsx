@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Styles from "./Styles/ShiftWeekViewStyled";
 
 import ShiftsPreview from "./ShiftsPreview";
+import styled from "styled-components";
 
 function weekNums(weekShiftsActual) {
   let weekNums = [];
@@ -64,34 +65,42 @@ function ShiftWeeklyView({ render, week }) {
   return (
     render && (
       <Styles.BodyStyled>
-        <h2>Semana</h2>
-        <h3>
-          {firstDay} al {lastDay}
-        </h3>
+          
         <Styles.ContainerStyled style={{ display: "flex" }}>
-          <Styles.CardShiftContainer>
+        <Styles.semanaContainer>
+          <Styles.semanaText>Semana {firstDay} al {lastDay}</Styles.semanaText>
+          </Styles.semanaContainer>
+          <Styles.SubContainerStyled>
+          <Styles.CardShiftContainer flag={true}>
             {numbers.map((num) => (
-              <Styles.CardNums>
-                <p>{num === 0 ? "" : num}</p>
+              <Styles.CardNums flag={num === 0 ? true : false}>
+                <Styles.Nums flag={num === 0 ? true : false}>{num === 0 ? "" : num}</Styles.Nums>
               </Styles.CardNums>
             ))}
           </Styles.CardShiftContainer>
           {weekDays.map((dayName, index) => (
             <Styles.ColumnsStyle>
-              <h3 style={{ textAlign: "center" }}>{dayName}</h3>
-              <h4 style={{ textAlign: "center" }}>{weekNumsData[index]}</h4>
-              <Styles.CardShiftContainer>
+              <Styles.head>
+                <Styles.headText>{dayName}</Styles.headText>
+                <Styles.headText>{weekNumsData[index]}</Styles.headText>
+              </Styles.head>
+
+              <Styles.CardShiftContainer flag={false}>
                 {weekShifts.length ? (
                   weekShifts
                     .filter((shift) => shift.weekday === dayName)
+                    .sort(function (a, b) {
+                        if (parseInt(a.beginning) > parseInt(b.beginning)) return 1;
+                        if (parseInt(a.beginning) < parseInt(b.beginning)) return -1;
+                        return 0;})
                     .map((day) => (
                       <Styles.CardShift onClick={() => shiftPreview(day)}>
-                        <p>
+                        <Styles.capacityTag>
                           {day.availability}/{day.capacity}
-                        </p>
-                        <p>
+                        </Styles.capacityTag>
+                        <Styles.timeTag>
                           {day.beginning}hs a {day.ending}hs
-                        </p>
+                        </Styles.timeTag>
                       </Styles.CardShift>
                     ))
                 ) : (
@@ -100,6 +109,7 @@ function ShiftWeeklyView({ render, week }) {
               </Styles.CardShiftContainer>
             </Styles.ColumnsStyle>
           ))}
+          </Styles.SubContainerStyled>
         </Styles.ContainerStyled>
 
         {shiftDetail && <ShiftsPreview display={setShiftDetail} />}

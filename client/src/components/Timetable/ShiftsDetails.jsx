@@ -30,28 +30,34 @@ function ShiftsDetails({ screenHeight }) {
 
     render && (
       <>
-          <Styles.GlobalStyle/>
-        <Styles.BodyStyled screenHeight={screenHeight}
-        >
+        <Styles.GlobalStyle />
+        <Styles.BodyStyled screenHeight={screenHeight}>
           <Styles.StartBodyStyled>
             <header>
               <h2>Turnos Sala de Gimnasio</h2>
-              <button onClick={() => setActivateShifts(!activateShifts)}>
-                Activar Turnos
-              </button>
-              <button onClick={() => setconfigTurnos(!configTurnos)}>
-                Configurar Turnos
-              </button>
-              <button onClick={() => setTakeShift(!takeShift)}>
+              <Styles.GreenButton onClick={() => setTakeShift(!takeShift)}>
                 Agendar Turno
-              </button>
+              </Styles.GreenButton>
+              <Styles.YellowButton onClick={() => setActivateShifts(!activateShifts)}>
+                Activar Turnos
+              </Styles.YellowButton>
+              <Styles.YellowButton onClick={() => setconfigTurnos(!configTurnos)}>
+                Configurar Turnos
+              </Styles.YellowButton>
+              
             </header>
             <div>
+              <Styles.genWeekContainer>
+                  <Styles.buttonsContainer>
+                  <Styles.buttons onClick={() => setWeek(week !== 0 && week - 1)}>
+                  {"<<"}
+                </Styles.buttons>
+                <Styles.buttons onClick={() => setWeek(week + 1)}>{">>"}</Styles.buttons>
+                  </Styles.buttonsContainer>
+                
               <ShiftWeeklyView render={render} week={week} />
-              <button onClick={() => setWeek(week !== 0 && week - 1)}>
-                {"<<"}
-              </button>
-              <button onClick={() => setWeek(week + 1)}>{">>"}</button>
+              </Styles.genWeekContainer>
+
             </div>
             <div>
               <h2>Todos los Turnos</h2>
