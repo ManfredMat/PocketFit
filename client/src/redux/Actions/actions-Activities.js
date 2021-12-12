@@ -8,10 +8,9 @@ export const GET_PROFESSORS = "GET_PROFESSORS";
 export function getLessons() {
   return async function (dispatch) {
     await axios.get("http://localhost:3001/api/events/all").then((res) => {
-      let lessons = res.data.filter((cla) => cla.kindOfEvent === "Clases");
       dispatch({
         type: GET_LESSONS,
-        value: lessons,
+        value: res.data.filter((cla) => cla.kindOfEvent === "Clases")
       });
     });
   };
@@ -20,10 +19,9 @@ export function getLessons() {
 export function getEvents() {
   return async function (dispatch) {
     await axios.get("http://localhost:3001/api/events/all").then((res) => {
-      let events = res.data.filter((cla) => cla.kindOfEvent === "Evento");
       dispatch({
         type: GET_EVENTS,
-        value: events,
+        value: res.data.filter((cla) => cla.kindOfEvent === "Evento")
       });
     });
   };

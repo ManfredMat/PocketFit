@@ -12,12 +12,15 @@ import { getTimetable } from "../../redux/Actions/actions-Horarios";
 import Styles from "./Styles/TimetableStyled";
 import moment from "moment";
 import "moment/locale/es";
+import Activities from "../Activities/Activities";
 moment.locale("es");
 
 function Timetable({ screenHeight }) {
   const [configTurnos, setconfigTurnos] = React.useState(false);
   const [takeShift, setTakeShift] = React.useState(false);
   const [shiftDetail, setShiftDetail] = React.useState(false);
+  const [newClass, setNewClass] = React.useState(false);
+  const [newEvent, setNewEvent] = React.useState(false);
   //"5-21","M-YY"
   const month = moment().format("M");
   const monthName = moment().format("MMMM");
@@ -50,7 +53,9 @@ function Timetable({ screenHeight }) {
               <div name="detalle">
                 <Styles.EventosHead>
                   <Styles.TitleH2Styled>Detalle</Styles.TitleH2Styled>
-                  <Styles.YellowButton>Nuevo Evento</Styles.YellowButton>
+                  <Styles.YellowButton onClick={() => setNewEvent(!newEvent)}>
+                    Nuevo Evento
+                  </Styles.YellowButton>
                 </Styles.EventosHead>
                 <Detail />
               </div>
@@ -74,7 +79,9 @@ function Timetable({ screenHeight }) {
               <Styles.RigthColumnStyledRow2 >
                 <Styles.EventosHead>
                 <Styles.TitleH2Styled>Clases Semanales</Styles.TitleH2Styled>
-                <Styles.YellowButton>Nueva Clase</Styles.YellowButton>
+                <Styles.YellowButton onClick={() => setNewClass(!newClass)}>
+                  Nueva Clase
+                </Styles.YellowButton>
                   </Styles.EventosHead>
                   <ClasesWeeklyView />
               </Styles.RigthColumnStyledRow2>
@@ -84,6 +91,8 @@ function Timetable({ screenHeight }) {
         {takeShift && <ScheduleShift display={setTakeShift} />}
         {configTurnos && <ShiftsConfig display={setconfigTurnos} />}
         {shiftDetail && <ShiftsPreview display={setShiftDetail} />}
+        {newClass && <Activities display={setNewClass} select="Clase" />}
+        {newEvent && <Activities display={setNewEvent} select="Evento" />}
       </Styles.BodyStyled>
     </>
   );
