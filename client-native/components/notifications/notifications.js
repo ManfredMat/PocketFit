@@ -1,10 +1,9 @@
 import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
 import React, { useState, useEffect, useRef } from 'react';
-import { Text, View, Button, Platform } from 'react-native';
+import { Text, View, Platform } from 'react-native';
 import axios from 'axios'
-import IP from '../Ips'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 
@@ -12,23 +11,33 @@ import { useDispatch } from 'react-redux';
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
-    shouldPlaySound: false,
+    shouldPlaySound: true,
     shouldSetBadge: false,
   }),
 });
 
 export default function Notify() {
+  const getUserid = useSelector((state) => state.reducerUser.user.id)
   const dispatch = useDispatch()
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
 
+  console.log(getUserid)
   useEffect(() => {
     if(Constants.isDevice && Platform.OS !== 'web') {
       registerForPushNotificationsAsync().then(token => {
          axios.post(`https://nativenotify.com/api/expo/key`, { 
            appId: 667, appToken: 'IONltqu86xwT3H5l2OSLtu', expoToken: token })
+        if(getUserid) {
+          axios.post(`https://nativenotify.com/api/indie/push/id`, {
+            subID: getUserid,
+            appId: 667,
+            appToken: 'IONltqu86xwT3H5l2OSLtu',
+            expoToken: token
+         });
+        }
       });
       responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
           console.log(response.notification.request.content.data);

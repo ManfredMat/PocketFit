@@ -23,8 +23,8 @@ function Calendar({ year, month }) {
     dispatch(getEvents())
   }, []);
 
-  console.log(events)
-  console.log("Filtrados",events.filter((event)=> event.month === parseInt(month)))
+  //console.log(events)
+  //console.log("Filtrados",events.filter((event)=> event.month === parseInt(month)))
   return (
     <Styles.StyledContainer>
       <Styles.GlobalStyle />
@@ -35,9 +35,9 @@ function Calendar({ year, month }) {
 
         {range(firstDay, daysMonth, StartName).map((day, index) => index >= StartName - 1 ? <Styles.StyledCalendarContainers>
           <Styles.eventsContainer name="Eventos">
-          {events.filter((event)=> event.month === parseInt(month))
+          {events && events.filter((event)=> event.month === parseInt(month))
          .map((event)=> event.day === day && <Styles.EventeInCalendarContainer>
-           <Styles.EventParaghrap>{event.name.length >= 11 ? event.name.substr(0,11) + "..." : event.name}</Styles.EventParaghrap>
+           <Styles.EventParaghrap>{event.name.length >= 11 ? event.name.substr(0,8) + "..." : event.name}</Styles.EventParaghrap>
            </Styles.EventeInCalendarContainer>)
           }
           </Styles.eventsContainer>

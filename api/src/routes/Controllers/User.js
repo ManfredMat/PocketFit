@@ -58,54 +58,112 @@ const getSpeficicUser = async (req, res) => {
   }
 };
 const modifyUser = async (req, res) => {
-  const { id } = req.params;
-  const {
-    name,
-    lastname,
-    email,
-    age,
-    height,
-    weight,
-    backsquat,
-    pushpress,
-    snatch,
-    clean,
-    running,
-    pullups,
-    password,
-    paymentday,
-  } = req.body;
-  const imageType = req.file.mimetype;
-  const imageName = req.file.originalname;
-  const imageData = req.file.buffer;
+  if (req.file) {
+    const { id } = req.params;
+    const {
+      name,
+      lastname,
+      email,
+      age,
+      height,
+      weight,
+      backsquat,
+      pushpress,
+      snatch,
+      clean,
+      running,
+      pullups,
+      password,
+      paymentday,
+      isadmin,
+      isprofessor,
+      isuser,
+    } = req.body;
+    const imageType = req.file.mimetype;
+    const imageName = req.file.originalname;
+    const imageData = req.file.buffer;
 
-  try {
-    await User.update(
-      {
-        name,
-        lastname,
-        email,
-        age,
-        height,
-        weight,
-        backsquat,
-        pushpress,
-        snatch,
-        clean,
-        running,
-        pullups,
-        password,
-        paymentday,
-        imageType,
-        imageName,
-        imageData,
-      },
-      { where: { id: id } }
-    );
-    const newUser = await User.findOne({ where: { id: id } });
-    res.json(newUser);
-  } catch (error) {
-    res.send(error);
+    try {
+      await User.update(
+        {
+          name,
+          lastname,
+          email,
+          age,
+          height,
+          weight,
+          backsquat,
+          pushpress,
+          snatch,
+          clean,
+          running,
+          pullups,
+          password,
+          paymentday,
+          isadmin,
+          isprofessor,
+          isuser,
+          imageType,
+          imageName,
+          imageData,
+        },
+        { where: { id: id } }
+      );
+      const newUser = await User.findOne({ where: { id: id } });
+      res.json(newUser);
+    } catch (error) {
+      res.send(error);
+    }
+  } else {
+    const { id } = req.params;
+    const {
+      name,
+      lastname,
+      email,
+      age,
+      height,
+      weight,
+      backsquat,
+      pushpress,
+      snatch,
+      clean,
+      running,
+      pullups,
+      password,
+      paymentday,
+      isadmin,
+      isprofessor,
+      isuser,
+    } = req.body;
+
+    try {
+      await User.update(
+        {
+          name,
+          lastname,
+          email,
+          age,
+          height,
+          weight,
+          backsquat,
+          pushpress,
+          snatch,
+          clean,
+          running,
+          pullups,
+          password,
+          paymentday,
+          isadmin,
+          isprofessor,
+          isuser,
+        },
+        { where: { id: id } }
+      );
+      const newUser = await User.findOne({ where: { id: id } });
+      res.json(newUser);
+    } catch (error) {
+      res.send(error);
+    }
   }
 };
 
@@ -184,112 +242,116 @@ const updateRoutine = async (req, res) => {
 
 const getUserPayStatus = async (req, res) => {
   let { date } = req.body;
-  
-  date = new Date(date)
+
+  date = new Date(date);
   try {
     let clients = await User.findAll({
       where: { isuser: true },
     });
-    
+
     let alDia = [];
     let fueraDeTermino = [];
 
-    for (let i = 0; i < clients.length ; i++) {
-      
+    for (let i = 0; i < clients.length; i++) {
       if (clients[i].dataValues.paymentday > date) {
         alDia.push(clients[i]);
       } else {
         fueraDeTermino.push(clients[i]);
       }
     }
-    let payStatus  = {
+
+    alDia.map((users) => {
+      if (users.imageData) users.imageData = users.imageData.toString("base64");
+    });
+
+    fueraDeTermino.map((users) => {
+      if (users.imageData) users.imageData = users.imageData.toString("base64");
+    });
+
+    let payStatus = {
       upToDate: alDia,
       offToDate: fueraDeTermino,
     };
 
-    res.send(payStatus)
+    res.send(payStatus);
   } catch (error) {
     res.send(error);
   }
 };
 
 const getOneUserPayStatus = async (req, res) => {
-  let { date  , id } = req.body;
-  date = new Date(date)
+  let { date, id } = req.body;
+  date = new Date(date);
 
   try {
     let client = await User.findOne({
-      where: { id:id },
+      where: { id: id },
     });
-    console.log(client)
-    if(client.dataValues.paymentday < date){
-      client.dataValues["paystatus"] = "NO-PAGO"
-    }else{
-      client.dataValues["paystatus"] = "PAGO"
+    console.log(client);
+    if (client.dataValues.paymentday < date) {
+      client.dataValues["paystatus"] = "NO-PAGO";
+    } else {
+      client.dataValues["paystatus"] = "PAGO";
     }
-    res.send(client)
-    
+    res.send(client);
   } catch (error) {
     res.send(error);
   }
 };
 
-const switchStatus = async (req , res) =>{
-  let {id} = req.body
-  try{
+const switchStatus = async (req, res) => {
+  let { id } = req.body;
+  try {
+    let client = await User.findOne({ where: { id: id } });
 
-    let client = await User.findOne({where:{id:id}})
-
-    if(client.status === "ACTIVO"){
-
-      client.status = "INACTIVO"
-
-    }else{
-
-      client.status = "ACTIVO"
-
+    if (client.status === "ACTIVO") {
+      client.status = "INACTIVO";
+    } else {
+      client.status = "ACTIVO";
     }
 
-    await client.save()
+    await client.save();
 
-    res.send({message:"Status changed"})
+    res.send({ message: "Status changed" });
+  } catch (error) {
+    res.send(error);
   }
-  catch(error){res.send(error)}
-}
-const sortAllUsers = async (req , res)=>{
-  let {prop , order} = req.query
-  try{
-  let allUsers = await User.findAll();
-  allUsers = allUsers.sort((a,b)=>{
-    if(a[prop] < b[prop]){
-      if(order === "z-a"){
-
-      return(1) 
-
-      }else{
-
-      return(-1 )
-
-      }
-    }
-    if(a[prop] > b[prop]){
-
-      if(order === "z-a"){
-
-        return(-1 )
-
-        }else{
-  
-        return(1) 
-        
+};
+const sortAllUsers = async (req, res) => {
+  let { prop, order } = req.query;
+  try {
+    let allUsers = await User.findAll();
+    allUsers = allUsers.sort((a, b) => {
+      if (a[prop] < b[prop]) {
+        if (order === "z-a") {
+          return 1;
+        } else {
+          return -1;
         }
-        
-    }
-    return 0
-})
-  res.send(allUsers)
-  }catch(error){res.send(error)}
-}
+      }
+      if (a[prop] > b[prop]) {
+        if (order === "z-a") {
+          return -1;
+        } else {
+          return 1;
+        }
+      }
+      return 0;
+    });
+    res.send(allUsers);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+const getProfessors = async (req, res) => {
+  try {
+    let allProfessors = await User.findAll({ where: { isprofessor: true } });
+    res.send(allProfessors);
+  } catch (error) {
+    res.send(error);
+  }
+};
 
 module.exports = {
   createUser,
@@ -306,5 +368,6 @@ module.exports = {
   getShift,
   getOneUserPayStatus,
   switchStatus,
-  sortAllUsers
+  sortAllUsers,
+  getProfessors,
 };

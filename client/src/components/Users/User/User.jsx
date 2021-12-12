@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { getUserDetail, renderUserDetail } from '../../../redux/Actions/actions-users';
 
-function User({id, name, lastname, image, customRoutine, paymentday, status}) {
+function User({id, name, lastname, image, customRoutine, paymentday, status, imageBackground}) {
     const dispatch = useDispatch();
 
     const userDetail = () => {
@@ -15,7 +15,7 @@ function User({id, name, lastname, image, customRoutine, paymentday, status}) {
     return (
         <Styles.Card>
             <Styles.CardBanner>
-                <Styles.ProfilePhoto src={image} alt={name + "-profile"} />
+                <Styles.ProfilePhoto src={image} alt={name + "-profile"} imageBackground={imageBackground ? true : false}/>
                 <Styles.ProfileButton onClick={()=> userDetail()}>
                     <Styles.UserNamesContainer>
                         <Styles.UserNames>{name}</Styles.UserNames>

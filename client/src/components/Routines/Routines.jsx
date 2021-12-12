@@ -4,10 +4,12 @@ import WeekTable from "./WeekTable";
 
 const Routines = () => {
 
+    let name;
+
     return (
         <PageContainer>
             <div style={{marginLeft:'4rem', marginRight:'4rem'}}>
-                <WeekTable />
+                <WeekTable name={name}/>
                 <ExerciseList />
             </div>
         </PageContainer>

@@ -9,7 +9,7 @@ const Styles = {
         height: 100%;
         width: 100%;
         background-color: ${darkGrayBase};
-        padding-bottom: 80px;
+        padding-bottom: 100px;
     `,
 
     Text: styled.Text`
@@ -26,9 +26,10 @@ const Styles = {
         background-color: ${green};
         border-radius: 18px;
         align-self: center;
-        padding: 4px;
+        justify-content: center;
+        align-items: center;
         height: 30px;
-        width: 110px;
+        width: 120px;
         margin-top: 10px;
         margin-bottom: 20px;
     `,

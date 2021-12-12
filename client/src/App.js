@@ -14,6 +14,8 @@ import Configuration from "./components/Configuration/Configuration.jsx";
 import ResetPassword from "./components/Login/ResetPassword";
 import Profile from "./components/Profile/Profile";
 import Routines from "./components/Routines/Routines";
+import ExerciseListComplete from "./components/Exercises/ExerciseListComplete";
+import ExerciseDetail from "./components/Exercises/ExerciseDetail";
 import Activities from "./components/Activities/Activities";
 
 function App() {
@@ -44,17 +46,14 @@ function App() {
           <Route path="/session/profile" element={<Profile />} />
           <Route path="/session/payments" element={<Payments />} />
           <Route path="/session/users" element={<Users />} />
-          <Route
-            path="/session/timetable"
-            element={<Timetable screenHeight={screenHeight} />}
-          />
-          <Route
-            path="/session/timetable/ShiftsDetails"
-            element={<ShiftsDetails />}
-          />
+          <Route path="/session/timetable" element={<Timetable screenHeight={screenHeight}/>} />
+          <Route path="/session/timetable/ShiftsDetails" element={<ShiftsDetails screenHeight={screenHeight} />} />
           <Route path="/session/config" element={<Configuration />} />
           <Route path="/session/routines" element={<Routines />} />
+          <Route path="/session/exercises" element={<ExerciseListComplete />} />
+          <Route path="/session/exercises_detail/:id" element={<ExerciseDetail />} />
           <Route path="/session/new-event" element={<Activities />} />
+
         </Routes>
       </main>
     </>

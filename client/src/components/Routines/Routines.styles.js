@@ -141,6 +141,36 @@ export const ExerciseP = styled.p`
 
 `
 
+export const ExerciseDelete = styled.p`
+
+    background-color: red;
+    height: 2vw;
+    width: 95%;
+    border-radius: 0.6rem;
+
+    margin-bottom: 0.6rem;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 0.80rem;
+    margin-top: 0.6rem;
+    
+
+    position: absolute;
+    opacity: 0%;
+    transition: opacity 0.25s;
+    
+    &:hover{
+        
+        cursor: pointer;
+        opacity: 95%;
+        
+    }
+
+`
+
 export const LeftBarContainer = styled.div`
 
     .LeftBar-FirstBlock{
@@ -462,4 +492,32 @@ export const InputLabelContainer = styled.div`
     color: #8BE855;
         }
 
+`
+
+export const KindOfBlockContainer = styled.p`
+
+        color: black;
+        font-size: 1rem;
+        width: 100%;
+        margin-left: 1.5rem;
+        font-weight: bold;
+
+`
+
+export const RoundsContainer = styled.div`
+
+    background-color: #6AE056;
+    color: #020E12;
+    font-weight: bold;
+    height: 2vw;
+    width: 70%;
+    border-radius: 0.6rem;
+
+    margin-bottom: 0.6rem;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 0.80rem;
 `
