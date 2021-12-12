@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const {createWeekPlan, getAllWeekPlans ,getWeekPlanById,updateWeekPlan ,deleteWeekPlan , getGeneralWeekPlan} =require("../Controllers/WeekPlan")
+const {createWeekPlan, getAllWeekPlans ,getWeekPlanById,getWeekPlanByUser,updateWeekPlan ,deleteWeekPlan , getGeneralWeekPlan} =require("../Controllers/WeekPlan")
     
 const router = Router();
 
@@ -12,6 +12,7 @@ router.get("/general", getGeneralWeekPlan)
 
 router.get("/:id", getWeekPlanById)
 
+router.get("/user/:user", getWeekPlanByUser)
 
 router.put("/:id/:prop", updateWeekPlan)
 
