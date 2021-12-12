@@ -30,34 +30,6 @@ const weekDays = [
     },
 ]
 
-const weekChangesDefaultValue = {
-
-    monday: {
-        dayRoutine: {},
-        blocks: {}
-    },
-    tuesday: {
-        dayRoutine: {},
-        blocks: {}
-    },
-    wendsday: {
-        dayRoutine: {},
-        blocks: {}
-    },
-    thursday: {
-        dayRoutine: {},
-        blocks: {}
-    },
-    friday: {
-        dayRoutine: {},
-        blocks: {}
-    },
-    saturday: {
-        dayRoutine: {},
-        blocks: {}
-    }
-}
-
 const exercisesDefaultValue = {
 
     monday: {
@@ -92,9 +64,11 @@ const exercisesDefaultValue = {
     },
 }
 
-const WeekTable = () => {
+const WeekTable = (props) => {
 
-    const [weekChanges, setWeekChanges] = useState(weekChangesDefaultValue)
+    let routineRoute = "http://127.0.0.1:3001/api/weekplan";
+
+    const [weekChanges, setWeekChanges] = useState({});
 
     const [exercises, setExercises] = useState(exercisesDefaultValue)
 
@@ -104,17 +78,19 @@ const WeekTable = () => {
 
         setDisableButtons(true);
 
-        if (validateWeekChanges()) {
-
             let dayIds = await postBlocks();
-            await axios.post("http://127.0.0.1:3001/api/weekplan", dayIds);
+            console.log('+++ DayIDs +++');
+            console.log(dayIds);
+
+            if(props.id) dayIds.id = props.id;
+
+            let response = await axios.post(routineRoute, dayIds);
+            response = await axios.post(routineRoute, dayIds);
+
+            console.log('Response de la week table');
+            console.log(response.data);
+
             await upgradeTable();
-
-        } else {
-
-            alert("Beta: Por el momento es necesario agregar ejercicios a cada bloque de la tabla.")
-
-        }
 
         setDisableButtons(false);
 
@@ -133,21 +109,31 @@ const WeekTable = () => {
     const postBlocks = async () => {
 
         let weekIds = {};
-
+        console.log("---------- New post ----------")
         for (const key in weekChanges) {
 
             let routinesIds = [];
 
+            console.log('-----'+key+'-----')
+
             for (const key2 in weekChanges[key].blocks) {
 
+                console.log('--- Bloque '+key2+' ---')
+                console.log(weekChanges[key].blocks[key2])
 
                 let response = await axios.post("http://127.0.0.1:3001/api/blocks/", weekChanges[key].blocks[key2]);
+
+                console.log('--Response--')
+                console.log(response.data)
+
                 routinesIds.push(response.data.id);
             }
 
             weekIds[key] = await postRoutine(routinesIds, weekChanges[key].dayRoutine);
         }
 
+        console.log('+++++weekIds+++++')
+        console.log(weekIds)
         return weekIds;
 
     }
@@ -160,8 +146,16 @@ const WeekTable = () => {
 
     const upgradeTable = async () => {
 
-        let response = await axios.get('http://127.0.0.1:3001/api/weekplan/general');
+        let getRoute = routineRoute;
+
+        if(props.id) getRoute += '/' + props.id;
+            else getRoute += '/general';
+
+        let response = await axios.get(getRoute);
         response = response.data;
+
+        console.log('----- Se llamo a la base de datos -----');
+        console.log(response)
 
         let auxState = {};
         let auxWeekChanges = {};
@@ -425,27 +419,6 @@ const WeekTable = () => {
         setWeekChanges(auxWeekChanges);
         setExercises(auxState);
 
-
-
-    }
-
-    const validateWeekChanges = () => {
-
-        for (const key in weekChanges) {
-
-            if (
-                weekChanges[key].dayRoutine.kindOfRoutine === undefined ||
-                weekChanges[key].blocks.block1 === undefined ||
-                weekChanges[key].blocks.block2 === undefined ||
-                weekChanges[key].blocks.block3 === undefined
-            )
-
-
-                return false
-
-        }
-        return true
-
     }
 
     useEffect(() => {
@@ -454,16 +427,10 @@ const WeekTable = () => {
 
     }, []);
 
-    useEffect(() => {
-
-        console.log(weekChanges);
-
-    }, [weekChanges]);
-
     return (
         <>
 
-            <h1>Plan Semanal</h1>
+            <h1>Plan Semanal <span style={{fontWeight: '400'}}>{props.name ? `de ${props.name}` :'General'}</span></h1>
             <DayContainer>
                 <LeftBarContainer>
                     <div className='LeftBar-FirstBlock'></div>
@@ -484,6 +451,7 @@ const WeekTable = () => {
                         disableButtons={disableButtons}
                         key={day.api}
                         setWeekChanges={setWeekChanges}
+                        weekChanges={weekChanges}
                         exercises={exercises[day.api]}
                         setExercises={setExercises}>
                     </Day>
