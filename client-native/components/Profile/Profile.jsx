@@ -69,9 +69,9 @@ const Profile = () => {
     return (
         <Styles.Container>
             <StatusBar barStyle="dark-content" backgroundColor="#fafafa" />
-            <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-around", marginTop: 10 }}>
-                <Styles.GreenButton style={{ margin: 15 }} onPress={() => logOut()}>
-                    <Styles.Text style={{ alignSelf: "center", color: "black" }}>Cerrar Sesión</Styles.Text>
+            <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-around", marginTop: 20 }}>
+                <Styles.GreenButton style={{ margin: 15 }} onPress={() => navigation.navigate('Payments')}>
+                    <Styles.Text style={{ alignSelf: "center", color: "black" }}>Pagos</Styles.Text>
                 </Styles.GreenButton>
                 <Styles.GreenButton style={{ margin: 15 }}>
                     <Styles.Text style={{ alignSelf: "center", color: "black" }}>Editar Perfil</Styles.Text>
