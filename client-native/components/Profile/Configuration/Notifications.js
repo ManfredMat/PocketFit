@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
 import { Switch } from 'react-native-elements'
-
+import Styles from './Configuration.styles';
 
 // import Constants from 'expo-constants';
 // import * as Notifications from 'expo-notifications';
@@ -36,13 +36,15 @@ export default function NotificationsComponent() {
     //     }
     return (
         <>
-            <Text style={{color: "#fff", fontSize: 17}}>Notificaciones</Text>
-            <Switch  style={{marginLeft: "45%"}}
-                    trackColor={{ false: "#767577", true: "#6AE056" }}
-                    thumbColor="white"
-                    onValueChange={() => toggleSwitch()}
-                    value={isEnabled}
-                />
+            <Styles.Text>Notificaciones</Styles.Text>
+            <View>
+                <Switch 
+                        trackColor={{ false: "#767577", true: "#6AE056" }}
+                        thumbColor="white"
+                        onValueChange={() => toggleSwitch()}
+                        value={isEnabled}
+                    />
+            </View>
         </>
     )
 }
