@@ -8,6 +8,7 @@ import emailIcon from "../../../assets/img/iconos/users/email.svg";
 import phoneIcon from "../../../assets/img/iconos/users/phone.svg";
 import whatsappIcon from "../../../assets/img/iconos/users/whatsapp.svg";
 import editRoutineIcon from "../../../assets/img/iconos/editIcon.svg";
+import { Link } from 'react-router-dom';
 
 function UserDetail() {
     const dispatch = useDispatch();
@@ -52,9 +53,11 @@ function UserDetail() {
                                 <Styles.DataKey>Plan Personalizado</Styles.DataKey>
                                 <Styles.DataValueContainer>
                                     <Styles.DataValue>Si</Styles.DataValue>
-                                    <Styles.DataButton>
-                                        <img src={editRoutineIcon} alt="edit-custom-routine" />
-                                    </Styles.DataButton>
+                                    <Link to={`/session/routines/${user.id}`}>
+                                        <Styles.DataButton>
+                                            <img src={editRoutineIcon} alt="edit-custom-routine" />
+                                        </Styles.DataButton>
+                                    </Link>
                                 </Styles.DataValueContainer>
                             </Styles.DataInfoContainer>
                             <Styles.DataInfoContainer>
@@ -69,9 +72,9 @@ function UserDetail() {
                                 <Styles.DataKey>Pagado</Styles.DataKey>
                                 <Styles.DataValue>Si</Styles.DataValue>
                             </Styles.DataInfoContainer>
-                            <Styles.DataClassKey>Clases</Styles.DataClassKey>
+                            {/* <Styles.DataClassKey>Clases</Styles.DataClassKey>
                             <Styles.DataClassValue>Zumba - Martes 18hs</Styles.DataClassValue>
-                            <Styles.DataClassValue>Bachata - Jueves 16hs</Styles.DataClassValue>
+                            <Styles.DataClassValue>Bachata - Jueves 16hs</Styles.DataClassValue> */}
                         </Styles.Data>
                     </Styles.DataContainer>
                     <Styles.StadisticsContainer>
@@ -124,8 +127,8 @@ function UserDetail() {
                     </Styles.StadisticsContainer>
                 </Styles.CardMiddle>
                 <Styles.CardBottom>
-                    <Styles.GreenButton>Editar</Styles.GreenButton>
-                    <Styles.GreenButton>Eliminar</Styles.GreenButton>
+                    {/* <Styles.GreenButton>Editar</Styles.GreenButton>
+                    <Styles.GreenButton>Eliminar</Styles.GreenButton> */}
                 </Styles.CardBottom>
             </Styles.Card>
         </Styles.Container>
