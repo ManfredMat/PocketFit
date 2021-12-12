@@ -6,7 +6,7 @@ const Styles = {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-evenly;
+        justify-content: center;
         margin-top: .5rem;
         height: auto;
     `,
@@ -34,6 +34,34 @@ const Styles = {
         }
     `,
 
+    PaginationContainer: styled.div`
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+    `,
+
+    Pagination: styled.div`
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: .5rem;
+    `,
+
+    PaginationButton: styled.button`
+        border: none;
+        width: 2rem;
+        height: 2rem;
+        border-radius: .3rem;
+        font-family: "Poppins";
+        font-weight: 500;
+        font-size: 1rem;
+        color: var(--darkBlue);
+        background-color: ${(props) =>
+            props.currentButton ? "var(--green)" : "var(--green-medium)"};
+        &:hover{
+            cursor: pointer;
+        }
+    `,
 }
 
 export default Styles;
