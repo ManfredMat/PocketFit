@@ -6,8 +6,9 @@ import {
   getProfessors,
   postEvent,
 } from "../../redux/Actions/actions-Activities";
+import Styles from "./NewClass.styles";
 
-const NewClass = ({ display, name, kind }) => {
+const NewClass = ({ display, name, kind, close }) => {
   const dispatch = useDispatch();
   const professors = useSelector((state) => state.activities.professors);
   moment.locale();
@@ -64,73 +65,66 @@ const NewClass = ({ display, name, kind }) => {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        position: "absolute",
-        width: "-webkit-fill-available",
-        height: "100vh",
-        backgroundColor: "#00000070",
-        top: 0,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          width: "40%",
-          height: "25%",
-          padding: "2em",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          backgroundColor: "grey",
-        }}
-      >
-        <button onClick={() => display(false)}>Cancelar</button>
-        <h2>Crear Nueva Clase</h2>
+    <Styles.Container>
+      {/* <button onClick={() => display(false)}>Cancelar</button>
+      <h2>Crear Nueva Clase</h2> */}
 
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <label>Profesor</label>
-          <select name="profesor" onChange={(e) => handleChange(e)}>
-            <option value="" disabled selected>
-              Escoja uno ...
-            </option>
-            {professors?.map((professor) => (
-              <option key={professor.id} value={professor.name}>
-                {" "}
-                {professor.name}{" "}
+      <Styles.Form onSubmit={(e) => handleSubmit(e)}>
+        <Styles.Grid>
+          <Styles.InputContainer>
+            <Styles.Label>Profesor</Styles.Label>
+            <Styles.Select name="profesor" onChange={(e) => handleChange(e)}>
+              <option value="" disabled selected>
+                Elija uno...
               </option>
-            ))}
-          </select>
-
-          <label>Fecha</label>
-          <input type="date" onChange={(e) => parseDate(e)} />
-
-          <br />
-
-          <label>Horario de inicio</label>
-          <input type="time" name="hour" onChange={(e) => parseHour(e)} />
-          <br />
-
-          <label>Descripción</label>
-          <textarea
+              {professors?.map((professor) => (
+                <option key={professor.id} value={professor.name}>
+                  {" "}
+                  {professor.name}{" "}
+                </option>
+              ))}
+            </Styles.Select>
+          </Styles.InputContainer>
+          
+          <Styles.InputContainer>
+            <Styles.Label>Capacidad</Styles.Label>
+            <Styles.Input
+              placeholder="Capacidad de la clase..."
+              type="number"
+              name="capacity"
+              onChange={(e) => parseCapacity(e)}
+            />
+          </Styles.InputContainer>
+          
+          <Styles.InputContainer>
+            <Styles.Label>Fecha</Styles.Label>
+            <Styles.Input type="date" onChange={(e) => parseDate(e)} />
+          </Styles.InputContainer>
+          
+          <Styles.InputContainer>
+            <Styles.Label>Horario de inicio</Styles.Label>
+            <Styles.Input type="time" name="hour" onChange={(e) => parseHour(e)} />
+          </Styles.InputContainer>
+        </Styles.Grid>
+        
+        <Styles.InputContainer>
+          <Styles.Label>Descripción</Styles.Label>
+          <Styles.Description
             name="description"
             onChange={(e) => handleChange(e)}
-          ></textarea>
-          <br />
+            type="text"
+            placeholder=""
+            rows="4"
+            cols="50"
+          ></Styles.Description>
+        </Styles.InputContainer>
 
-          <label>Capacidad</label>
-          <input
-            type="number"
-            name="capacity"
-            onChange={(e) => parseCapacity(e)}
-          />
-
-          <button type="submit">Crear</button>
-        </form>
-      </div>
-    </div>
+        <Styles.ButtonContainer>
+          <Styles.SubmitButton type="submit">Crear</Styles.SubmitButton>
+          <Styles.CancelButton onClick={() => close(false)}>Cancelar</Styles.CancelButton>
+        </Styles.ButtonContainer>
+      </Styles.Form>
+    </Styles.Container>
   );
 };
 

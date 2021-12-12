@@ -10,7 +10,8 @@ function reviewsReducer(state = initialState, action){
         case GET_REVIEWS: 
         return{
             ...state,
-            reviews: action.payload
+            reviews: action.payload,
+            allReviews: action.payload
         }
         case ASCDES_REVIEWS:
                 let sortArray = action.payload === 'ascendent'?

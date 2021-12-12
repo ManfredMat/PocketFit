@@ -81,6 +81,9 @@ const Styles = {
     //width: 8em;
     height: 2em;
     font-weight:700;
+    &:hover {
+      cursor: pointer;
+    }
   `,
   GreenButton: styled.button`
     background-color: var(--green);

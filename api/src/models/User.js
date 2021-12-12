@@ -85,6 +85,10 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       defaultValue:false
     },
+    notifications:{
+      type: DataTypes.BOOLEAN,
+      defaultValue:false
+    },
     imageType: {
       type: DataTypes.STRING,
       allowNull: true,

@@ -42,6 +42,11 @@ const Styles = {
     margin-left: 0.3em;
     z-index: 2;
   `,
+  TitleH1Styled: styled.h1`
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 2em;
+  `,
   YellowButton: styled.button`
     background-color: var(--yellow);
     padding: 0.5em 0.7em;
