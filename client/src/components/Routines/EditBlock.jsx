@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AddExcercise from "./AddExcercise";
-import { AcceptButton, BlockContainer, ButtonContainer, CancelButton, EditBlockContainer, EditDayContainer, ExcerciseContainer, ExerciseP, InputStyle, PopUpContainer, WeekDayContainer } from "./Routines.styles";
+import { AcceptButton, BlockContainer, ButtonContainer, CancelButton, EditBlockContainer, EditDayContainer, ExcerciseContainer, ExerciseDelete, ExerciseP, InputStyle, PopUpContainer, WeekDayContainer } from "./Routines.styles";
 
 const EditBlock = (props) => {
 
@@ -80,6 +80,19 @@ const EditBlock = (props) => {
         props.setRender({ render: false })
     }
 
+    const deleteExercise = (indexDelete) => {
+
+        let filteredExcercises = exercises.filter((excercise, index) => {
+
+            if(index !== indexDelete) return true;
+            else return false
+
+        })
+
+        setExercises(filteredExcercises);
+
+    }
+
     return (
         <>
             <PopUpContainer>
@@ -102,6 +115,8 @@ const EditBlock = (props) => {
                                                 <ExerciseP key={i}>
 
                                                     {excercise.name} x {excercise.repetitions}
+
+                                                    <ExerciseDelete onClick={() => deleteExercise(i)}>Eliminar</ExerciseDelete>
 
                                                 </ExerciseP>
                                             )
