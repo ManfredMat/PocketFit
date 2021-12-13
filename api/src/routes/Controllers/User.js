@@ -67,6 +67,8 @@ const modifyUser = async (req, res) => {
       age,
       height,
       weight,
+      phoneNumber,
+      customRoutine,
       backsquat,
       pushpress,
       snatch,
@@ -78,6 +80,8 @@ const modifyUser = async (req, res) => {
       isadmin,
       isprofessor,
       isuser,
+      newsletter,
+      notifications
     } = req.body;
     const imageType = req.file.mimetype;
     const imageName = req.file.originalname;
@@ -92,6 +96,8 @@ const modifyUser = async (req, res) => {
           age,
           height,
           weight,
+          phoneNumber,
+          customRoutine,
           backsquat,
           pushpress,
           snatch,
@@ -106,6 +112,8 @@ const modifyUser = async (req, res) => {
           imageType,
           imageName,
           imageData,
+          newsletter,
+          notifications
         },
         { where: { id: id } }
       );
@@ -123,6 +131,8 @@ const modifyUser = async (req, res) => {
       age,
       height,
       weight,
+      phoneNumber,
+      customRoutine,
       backsquat,
       pushpress,
       snatch,
@@ -134,6 +144,8 @@ const modifyUser = async (req, res) => {
       isadmin,
       isprofessor,
       isuser,
+      notifications,
+      newsletter
     } = req.body;
 
     try {
@@ -145,6 +157,8 @@ const modifyUser = async (req, res) => {
           age,
           height,
           weight,
+          phoneNumber,
+          customRoutine,
           backsquat,
           pushpress,
           snatch,
@@ -156,6 +170,8 @@ const modifyUser = async (req, res) => {
           isadmin,
           isprofessor,
           isuser,
+          notifications,
+          newsletter
         },
         { where: { id: id } }
       );
@@ -282,18 +298,21 @@ const getUserPayStatus = async (req, res) => {
 const getOneUserPayStatus = async (req, res) => {
   let { date, id } = req.body;
   date = new Date(date);
-
+  
   try {
     let client = await User.findOne({
       where: { id: id },
     });
-    console.log(client);
-    if (client.dataValues.paymentday < date) {
-      client.dataValues["paystatus"] = "NO-PAGO";
+    
+    if (client.paymentday < date) {
+      client.paystatus = "NO-PAGO";
     } else {
-      client.dataValues["paystatus"] = "PAGO";
+      client.paystatus = "PAGO";
     }
-    res.send(client);
+
+    await client.save();
+
+    res.send({ message: "PayStatus changed" });
   } catch (error) {
     res.send(error);
   }

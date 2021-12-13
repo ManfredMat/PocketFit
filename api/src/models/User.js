@@ -34,6 +34,14 @@ module.exports = (sequelize) => {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
+    phoneNumber: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    customRoutine: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
     backsquat: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
@@ -77,11 +85,19 @@ module.exports = (sequelize) => {
       type: DataTypes.DATE,
       allowNull: true,
     },
+    paystatus:{
+      type: DataTypes.ENUM("PAGO" , "NO-PAGO"),
+      defaultValue:"NO-PAGO"
+    },
     status:{
       type: DataTypes.ENUM("ACTIVO" , "INACTIVO"),
       defaultValue:"ACTIVO"
     },
     newsletter:{
+      type: DataTypes.BOOLEAN,
+      defaultValue:false
+    },
+    notifications:{
       type: DataTypes.BOOLEAN,
       defaultValue:false
     },

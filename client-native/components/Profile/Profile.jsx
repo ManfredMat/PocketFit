@@ -16,7 +16,7 @@ const Profile = () => {
     const navigation = useNavigation();
     const user = useSelector((state) => state.reducerUser.user);
     const [previewImage, setPreviewImage] = useState(null);
-    
+
     let image;
 
     const logOut = async () => {
@@ -43,13 +43,13 @@ const Profile = () => {
             aspect: [3, 3],
             quality: 1,
         });
-        
+
         if (!result.cancelled) {
             image = result.uri
             sendImage()
-        } 
+        }
     };
-    
+
     const sendImage = async () => {
         const data = new FormData();
         data.append("photo", {
@@ -57,10 +57,12 @@ const Profile = () => {
             uri: image,
             type: "image/jpeg"
         });
-        
+
         setPreviewImage(image);
-        await axios.put(`http://${IP}:3001/api/users/${user.id}`, data, { headers: { "Content-Type": `multipart/form-data` } })
-        
+        await axios.put(`http://${IP}:3001/api/users/${user.id}`, data, {
+            headers: { "Content-Type": `multipart/form-data` }
+        })
+
         const res = await getUserId(user.id);
         dispatch(getUser(res.data));
     }
@@ -68,41 +70,69 @@ const Profile = () => {
 
     return (
         <Styles.Container>
-            <StatusBar barStyle="dark-content" backgroundColor="#fafafa" />
-            <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-around", marginTop: 20 }}>
-                <Styles.GreenButton style={{ margin: 15 }} onPress={() => navigation.navigate('Payments')}>
-                    <Styles.Text style={{ alignSelf: "center", color: "black" }}>Pagos</Styles.Text>
-                </Styles.GreenButton>
-                <Styles.GreenButton style={{ margin: 15 }}>
-                    <Styles.Text style={{ alignSelf: "center", color: "black" }}>Editar Perfil</Styles.Text>
-                </Styles.GreenButton>
-            </View>
-            <Image
-                source={{ uri: previewImage ? previewImage : user.imageData ? `data:image/jpeg;base64, ${user.imageData}` : 'https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-gris.png' }}
-                style={{ width: 150, height: 150, marginTop: 40, alignSelf: 'center', borderRadius: 9999, backgroundColor: "white", borderColor: "#6AE056", borderWidth: 5 }}
+            <Styles.ProfileImage
+                source={
+                    previewImage ?
+                        { uri: previewImage } :
+                        user.imageData ?
+                            { uri: `data:image/jpeg;base64, ${user.imageData}` } :
+                            require('../../assets/userIcon.png')
+                }
             />
-            <TouchableOpacity onPress={() => imagePickerPermissions()} style={{ top: -35, right: -230 }}>
-                <Image source={editProfile} style={{ height: 35, width: 35 }} />
+
+            <TouchableOpacity onPress={() => imagePickerPermissions()} style={{ top: -28, right: -200 }}>
+                <Image source={editProfile} style={{ height: 30, width: 30 }} />
             </TouchableOpacity>
-            <Styles.Text style={{ alignSelf: "center", marginTop: 20, fontSize: 25 }}>{user.name + " " + user.lastname}</Styles.Text>
-            <Styles.Text style={{ alignSelf: "center", fontSize: 15 }}>E-Mail: {user.email}</Styles.Text>
-            <Styles.Text style={{ alignSelf: "center", fontSize: 15 }}>Número: {user.number ? user.number : "Desconocido"}</Styles.Text>
 
-            <Styles.CardGreen style={{ height: '25%', padding: 10, marginHorizontal: 50, marginTop: 20 }}>
-                <Styles.Text style={{ alignSelf: "center", color: "black" }}>Clases</Styles.Text>
-            </Styles.CardGreen>
+            <Styles.UserName>{user.name + " " + user.lastname}</Styles.UserName>
 
-            {/* <Styles.Text style={{alignSelf:"center", fontSize: 15, marginTop: 30}}>Pagar</Styles.Text> */}
+            <Styles.InfoContainer>
+                <Styles.InfoText style={{ marginLeft: 15 }}>Mail</Styles.InfoText>
+                <Styles.InfoText style={{ marginRight: 15 }}>{user.email}</Styles.InfoText>
+            </Styles.InfoContainer>
 
-            <View style={{ marginTop: 40, flex: 1, flexDirection: "row", justifyContent: "space-between", marginHorizontal: 40 }}>
-                <Styles.GreenButton style={{ marginBottom: 40 }}>
-                    <Styles.Text style={{ alignSelf: "center", color: "black" }}>Feedback</Styles.Text>
+            <Styles.InfoContainer style={{ marginBottom: 30 }}>
+                <Styles.InfoText style={{ marginLeft: 15 }}>Número</Styles.InfoText>
+                <Styles.InfoText style={{ marginRight: 15 }}>{user.phoneNumber ? `+54 9 ${user.phoneNumber}` : "Desconocido"}</Styles.InfoText>
+            </Styles.InfoContainer>
+
+            <Styles.ProfileButtonsContainer>
+                <Styles.YellowButton style={{ width: 90, marginRight: 5 }}>
+                    <Styles.ButtonText style={{ alignSelf: "center" }}>Editar</Styles.ButtonText>
+                </Styles.YellowButton>
+
+                <Styles.GreenButton style={{ width: 130, marginLeft: 5 }} onPress={() =>
+                    Alert.alert('Cerrar Sesión', '¿Esta seguro?',
+                        [{ text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                        { text: 'Si', onPress: () => logOut() }], { cancelable: false })}>
+                    <Styles.ButtonText style={{ alignSelf: 'center' }}>Cerrar Sesión</Styles.ButtonText>
                 </Styles.GreenButton>
+            </Styles.ProfileButtonsContainer>
 
-                <Styles.GreenButton style={{ marginBottom: 40 }} onPress={() => navigation.navigate("Configuration")}>
-                    <Styles.Text style={{ alignSelf: "center", color: "black" }}>Configuración</Styles.Text>
-                </Styles.GreenButton>
-            </View>
+            <Styles.AccountButtonsContainer style={{ marginTop: 30 }} onPress={() => navigation.navigate('Payments')}>
+                <Styles.AccountButtonsSubContainer>
+                    <Styles.AccountImageButton style={{ width: 28, height: 20, marginLeft: 15 }} source={require("../../assets/pay-icon.png")} />
+                    <Styles.AccountText>Pagar</Styles.AccountText>
+                </Styles.AccountButtonsSubContainer>
+                <Styles.Arrow>{">"}</Styles.Arrow>
+            </Styles.AccountButtonsContainer>
+
+            <Styles.AccountButtonsContainer onPress={() => navigation.navigate("Configuration")}>
+                <Styles.AccountButtonsSubContainer>
+                    <Styles.AccountImageButton style={{ marginLeft: 15 }} source={require("../../assets/config-icon.png")} />
+                    <Styles.AccountText>Configuración</Styles.AccountText>
+                </Styles.AccountButtonsSubContainer>
+                <Styles.Arrow>{">"}</Styles.Arrow>
+            </Styles.AccountButtonsContainer>
+
+            <Styles.AccountButtonsContainer>
+                <Styles.AccountButtonsSubContainer>
+                    <Styles.AccountImageButton style={{ marginLeft: 15 }} source={require("../../assets/feedback-icon.png")} />
+                    <Styles.AccountText>FeedBack</Styles.AccountText>
+                </Styles.AccountButtonsSubContainer>
+                <Styles.Arrow>{">"}</Styles.Arrow>
+            </Styles.AccountButtonsContainer>
+
         </Styles.Container>
     )
 }

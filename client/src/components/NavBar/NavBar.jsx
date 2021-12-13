@@ -8,10 +8,11 @@ import SemanalPlan from "../../assets/img/iconos/Plans.svg";
 import SemanalPlanSelect from "../../assets/img/iconos/select-icons/plan-select.svg";
 import FeedBackIco from "../../assets/img/iconos/feedback.svg";
 import FeedBackIcoSelect from "../../assets/img/iconos/select-icons/feedback-select.svg";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAdmin } from "../../redux/Actions/actions-login";
 import defaultProfilePhoto from "../../assets/img/profilephoto.svg";
+import Activities from "../Activities/Activities";
 
 function NavBar({ screenHeight }) {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function NavBar({ screenHeight }) {
   const adminProfileImage = useSelector(
     (state) => state.session.admin.imageData
   );
+  const [renderActivities, setRenderActivities] = useState(false);
 
   useEffect(() => {
     dispatch(getAdmin(id));
@@ -47,9 +49,9 @@ function NavBar({ screenHeight }) {
             <Styles.StyledNotifiImage />
           </Link>
           <Styles.StyledEventContainer>
-            <Link to="/session/new-event">
+            <Styles.StyledNavButtonActivities onClick={() => setRenderActivities(true)}>
               <Styles.StyledEventImage />
-            </Link>
+            </Styles.StyledNavButtonActivities>
           </Styles.StyledEventContainer>
         </Styles.StyledTopContainer>
 
@@ -104,7 +106,7 @@ function NavBar({ screenHeight }) {
               />
             </Styles.StyledNavButton>
           </Link>
-          <Link to="/feed">
+          <Link to="/session/feedback">
             <Styles.StyledNavButton
               select={actual.includes("feed") ? true : false}
             >
@@ -121,6 +123,7 @@ function NavBar({ screenHeight }) {
           </Link>
         </Styles.StyledBottomContainer>
       </Styles.StyledBody>
+      {renderActivities && <Activities display={setRenderActivities}/>}
     </React.Fragment>
   );
 }

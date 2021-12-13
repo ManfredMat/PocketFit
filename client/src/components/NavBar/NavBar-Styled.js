@@ -194,8 +194,8 @@ const Styles = {
   align-content: center;
   justify-content: flex-end;
   align-items: center;
-`,
-StyledConfigImage: styled.div`
+  `,
+  StyledConfigImage: styled.div`
     margin: 1em 0em;
     width: 2em;
     height: 2em;
@@ -205,6 +205,10 @@ StyledConfigImage: styled.div`
     &:hover {
       background-image: url(${ConfigIcoSelect});
     }
+  `,
+  StyledNavButtonActivities: styled.button`
+    border: none; 
+    background-color: transparent;
   `
 };
 

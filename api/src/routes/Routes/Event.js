@@ -19,7 +19,7 @@ router.get("/month/:month", getEventsByMonth);
 
 router.post("/", uploadImage, createEvent);
 
-router.put("/:id/:prop", updateEventProp);
+router.put("/:id", uploadImage, updateEventProp);
 
 router.delete("/remove/:id", removeEvent);
 router.post("/bulk", async (req, res) => {

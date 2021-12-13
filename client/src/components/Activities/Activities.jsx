@@ -3,7 +3,10 @@ import NewClass from "./NewClass";
 import NewEvent from "./NewEvent";
 import NewHoliday from "./NewHoliday";
 import { useState } from "react";
+import EventDetail from "./EventDetail"; //prueba
+import ClassesDetail from "./ClassesDetail"; //prueba
 import Styles from "./Activities.styles";
+
 
 //render con prop
 const Activities = ({ select, display }) => {
@@ -12,10 +15,20 @@ const Activities = ({ select, display }) => {
   const [nuevoFeriado, setNuevoFeriado] = React.useState(false);
   const [ename, setEname] = useState("");
   const [etype, setEtype] = useState("");
+  const [nuevaPrueba, setNuevaPrueba] = React.useState(false); //prueba
+  const [pruebaId, setPruebaId] = useState(""); //prueba
+  const [pruebaClase, setPruebaClase] = React.useState(false); //prueba
+  const [pruebaClaseId, setPruebaClaseId] = useState(""); //prueba
 
   useEffect(() => {
-    if(select === "Clase") setNuevaClase(true);
-    if(select === "Evento") setNuevoEvento(true);
+    if(select === "Clase") {
+      setEtype("Clases");
+      setNuevaClase(true);
+    }
+    if(select === "Evento") {
+      setEtype("Evento");
+      setNuevoEvento(true);
+    } 
   }, [])
 
   function handleSelect(e) {
@@ -38,6 +51,14 @@ const Activities = ({ select, display }) => {
         setNuevoFeriado(true);
         setEtype(e.target.value);
         break;
+      case "68870247-9d61-46f3-8e83-ac0f5ac29b9f": //prueba
+        setNuevaPrueba(!nuevaPrueba); //prueba
+        setPruebaId(e.target.value); //prueba
+        break; //prueba
+      case "41b22565-29a3-4d8d-bd1d-92456d3ff675": //prueba
+        setPruebaClase(!pruebaClase); //prueba
+        setPruebaClaseId(e.target.value); //prueba
+        break; //prueba
       default:
         return "No value";
     }
@@ -61,49 +82,60 @@ const Activities = ({ select, display }) => {
             {
               select === "Clase" ?
               <Styles.CardTopSelect onChange={(e) => handleSelect(e)}>
-                <option value="" disabled>
+                <Styles.CardSelectOption value="" disabled>
                   Elija una opción...
-                </option>
-                <option value="Clases" selected>Clase</option>
-                <option value="Evento">Evento</option>
-                <option value="Feriado">Feriado</option>
+                </Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Clases" selected>Clase</Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Evento">Evento</Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Feriado">Feriado</Styles.CardSelectOption>
               </Styles.CardTopSelect> :
 
               select === "Evento" ? 
               <Styles.CardTopSelect onChange={(e) => handleSelect(e)}>
-                <option value="" disabled>
+                <Styles.CardSelectOption value="" disabled>
                   Elija una opción...
-                </option>
-                <option value="Clases">Clase</option>
-                <option value="Evento" selected>Evento</option>
-                <option value="Feriado">Feriado</option>
+                </Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Clases">Clase</Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Evento" selected>Evento</Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Feriado">Feriado</Styles.CardSelectOption>
               </Styles.CardTopSelect> :
 
               <Styles.CardTopSelect onChange={(e) => handleSelect(e)}>
-                <option value="" disabled selected>
+                <Styles.CardSelectOption value="" disabled selected>
                   Elija una opción...
-                </option>
-                <option value="Clases">Clase</option>
-                <option value="Evento">Evento</option>
-                <option value="Feriado">Feriado</option>
+                </Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Clases">Clase</Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Evento">Evento</Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Feriado">Feriado</Styles.CardSelectOption>
               </Styles.CardTopSelect>
             }
           </Styles.CardTopInputsContainer>
         </Styles.CardTop>
 
-        <Styles.CardBottom>
-          {nuevaClase && (
-            <NewClass display={setNuevaClase} name={ename} kind={etype} />
-          )}
-          {nuevoEvento && (
-            <NewEvent display={setNuevoEvento} name={ename} kind={etype} />
-          )}
-          {nuevoFeriado && (
-            <NewHoliday display={setNuevoFeriado} name={ename} kind={etype} />
-          )}
-        </Styles.CardBottom>
+
+        {
+          etype === "" ?
+          <Styles.CardBottom>
+            <Styles.SelectEmpty>
+              Seleccione un tipo de actividad...
+            </Styles.SelectEmpty>
+          </Styles.CardBottom> :
+          <Styles.CardBottom>
+            {nuevaClase && (
+              <NewClass close={display} display={setNuevaClase} name={ename} kind={etype} />
+            )}
+            {nuevoEvento && (
+              <NewEvent close={display} display={setNuevoEvento} name={ename} kind={etype} />
+            )}
+            {nuevoFeriado && (
+              <NewHoliday close={display} display={setNuevoFeriado} name={ename} kind={etype} />
+            )}
+          </Styles.CardBottom>
+        }
+
       </Styles.Card>
     </Styles.Container>
+
   );
 };
 
