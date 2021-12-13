@@ -24,15 +24,16 @@ export default function Statistics() {
     }
 
     const data = {
-        labels: ["Rutinas", "Clases", "Ejercicios"],
-        data: [0.3, clases(), ejercicios()]
+        data: [0.3, clases(), ejercicios()],
+        colors:['rgba(206, 250, 31, 0.7)', 'rgba(217, 251, 82, 0.9)', 'rgba(106, 224, 86, 0.8)']
       };
     return (
-        <View style={{backgroundColor: '#020E12', width: '100%', height: '100%', justifyContent: 'center'}}>
+        <View style={{backgroundColor: '#020E12', width: '100%', height: '100%'}}>
+            <Text style={{color:'#6AE056', fontSize: 25,  marginTop: 60, marginLeft: 10}}>Estadisticas</Text>
             <View style={{alignItems: 'center'}}>
-            <Text style={{color:'#fff', fontSize: 20}}>Mi Progreso</Text>
             <ProgressChart
                 data={data}
+                withCustomBarColorFromData={true}
                 width={Dimensions.get('window').width - 20}
                 height={220}
                 chartConfig={{

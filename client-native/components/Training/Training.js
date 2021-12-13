@@ -6,9 +6,7 @@ import arrowLeft from '../../assets/arrow-left.png'
 import arrowRight from '../../assets/arrow-right.png'
 import { useNavigation } from '@react-navigation/core';
 import { getAllWeekPlan } from '../../redux/Actions/actions-Training';
-import { useDispatch, useSelector } from 'react-redux';
-import loading from '../../assets/loading.gif'
-import CardExercise from './CardExercise'
+import { useDispatch } from 'react-redux';
 import { PreViewShifts } from '../Shifts/Shifts';
 import Blocks from './Blocks'
 export default function Training() {
@@ -16,7 +14,6 @@ export default function Training() {
     const dispatch = useDispatch()
     const navigation = useNavigation();
     useEffect(() => {dispatch(getAllWeekPlan())},[dispatch]);
-    const [numBlock, setNumBlock] = useState(0)
     const [num, setNum] = useState(0)
     return (
         <Container>
@@ -48,13 +45,11 @@ export default function Training() {
                       </Rounds>
                   </RoundsContainer>
                 </Routines>
-                <TextW>Próximo Turno</TextW>
+                <TextW style={{marginBottom: 5}}>Próximo Turno</TextW>
                 <ShiftsCont>
-                    
                         <PreViewShifts/>
-        
                     <ButtonShifts onPress={() => navigation.navigate('Shifts')}>
-                        <Image source={arrow} style={{alignSelf: 'center', width:30, height:30, opacity: 0.8}}/>
+                        <Image source={arrow} style={{alignSelf: 'center', width:30, height:30}}/>
                     </ButtonShifts>
                 </ShiftsCont>
             </ScrollView>

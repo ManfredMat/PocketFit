@@ -38,7 +38,7 @@ export const Available = styled.View`
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     align-items: center;
-    width: 100px;
-    height: 100px;
+    width: 140px;
+    height: 90px;
     padding: 10px;
 `

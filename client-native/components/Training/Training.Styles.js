@@ -58,8 +58,8 @@ export const ProxShifts = styled.View`
     justify-content: center;
     align-items: center;
     margin: 5px;
-    width: 200px;
-    height: 100px;
+    width: 170px;
+    height: 90px;
     padding: 10px;
     opacity: 0.9;
 `
@@ -74,8 +74,8 @@ export const ButtonShifts = styled.TouchableOpacity`
     justify-content: center;
     border-radius: 15px;
     margin-left: 5px;
-    height: 100px;
-    width: 50px;
+    height: 90px;
+    width: 40px;
 `
 export const ShiftsCont = styled.View`
     display: flex;
@@ -116,4 +116,15 @@ export const PagedContainer = styled.View`
     margin-bottom: 10px;
     align-items: center;
     width: 340px;
+`
+export const NoShift = styled.View`
+    background-color: ${green};
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    width: 340px;
+    height: 90px;
+    padding: 10px;
+    opacity: 0.9;
 `
