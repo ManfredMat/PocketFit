@@ -13,7 +13,7 @@ import styled from "styled-components";
 
 function weekNums(weekShiftsActual) {
   let weekNums = [];
-  weekShiftsActual.filter(
+  weekShiftsActual.length && weekShiftsActual.filter(
     (shift) =>
       !weekNums.includes(shift.day.toLocaleString()) &&
       weekNums.push(shift.day.toLocaleString())
@@ -55,7 +55,7 @@ function ShiftWeeklyView({ render, week }) {
   useEffect(() => {
     dispatch(getWeekShifts(parseInt(weekNum)));
     dispatch(getTimetable());
-  }, [week]);
+  }, [week,weekShifts.length]);
 
   function shiftPreview(shift) {
     dispatch(selectShift(shift));

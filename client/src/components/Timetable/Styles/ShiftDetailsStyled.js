@@ -71,6 +71,15 @@ const Styles = {
     font-weight:700;
     //margin-left: 1em;
   `,
+  Header: styled.div`
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+  `,
+  ButtonsContainer: styled.div`
+    margin-right: -0.5em;
+  `
 };
 
 export default Styles;
