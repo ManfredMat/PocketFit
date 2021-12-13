@@ -6,14 +6,14 @@ import Styles from './UsersGrid.styles';
 import defaultProfilePhoto from "../../assets/img/profilephoto.svg";
 import GridPagination from './GridPagination';
 
-function UsersGrid({search}) {
+function UsersGrid({search, searchValue}) {
     const dispatch = useDispatch();
-    const allSearchedUsers = useSelector(state => state.users.searchedUsers);
+    const allRenderedUsers = useSelector(state => state.users.renderedUsers);
     const [currentPage, setCurrentPage] = useState(1);
     const [usersPerPage] = useState(15);
     
     useEffect(() => {
-        if (allSearchedUsers.length === 0) {
+        if (allRenderedUsers.length === 0) {
             dispatch(getUsers())
         }
         setCurrentPage(1);
@@ -22,7 +22,7 @@ function UsersGrid({search}) {
 
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    const users = Array.isArray(allSearchedUsers) ? allSearchedUsers.slice(indexOfFirstUser, indexOfLastUser) : undefined;
+    const users = Array.isArray(allRenderedUsers) ? allRenderedUsers.slice(indexOfFirstUser, indexOfLastUser) : undefined;
 
     function paginate(pageNumber) {
         setCurrentPage(pageNumber);
@@ -32,6 +32,11 @@ function UsersGrid({search}) {
         })
     }
 
+    function reset() {
+        dispatch(searchUsers("Reset")); 
+        searchValue("");
+    }
+
     // const pago = ["Pago", "No pago"]
     // const activo = ["Activo", "Inactivo"]
     
@@ -39,19 +44,18 @@ function UsersGrid({search}) {
         <>
         <Styles.UsersGridContainer>
             {   
-                allSearchedUsers === "No users" ?
+                allRenderedUsers === "No users" ?
                 <Styles.NoUsersContainer>
                     <Styles.NoUsersText>No existen usuarios con ese nombre o apellido</Styles.NoUsersText> 
-                    <Styles.BackButton onClick={() => dispatch(searchUsers("Reset"))}>Volver</Styles.BackButton>
+                    <Styles.BackButton onClick={() => reset()}>Volver</Styles.BackButton>
                 </Styles.NoUsersContainer> :
                 
-                allSearchedUsers === "No filters" ? 
+                allRenderedUsers === "No filters" ? 
                 <Styles.NoUsersContainer>
-                    <Styles.NoUsersText>No existen usuarios que cumplan con el filtro elegido</Styles.NoUsersText> 
-                    <Styles.BackButton onClick={() => dispatch(searchUsers("Reset"))}>Volver</Styles.BackButton>
+                    <Styles.NoUsersText>No existen usuarios que cumplan con el filtro elegido</Styles.NoUsersText>
                 </Styles.NoUsersContainer> :
 
-                allSearchedUsers === "Reset"  || allSearchedUsers.length === 0 ?
+                allRenderedUsers === "Reset"  || allRenderedUsers.length === 0 ?
                 <Styles.NoUsersContainer>
                     <Styles.NoUsersText>No existen usuarios en la base de datos</Styles.NoUsersText>
                 </Styles.NoUsersContainer> : 
@@ -72,10 +76,10 @@ function UsersGrid({search}) {
         </Styles.UsersGridContainer>
         <Styles.PaginationContainer>
             {
-                allSearchedUsers.length > 15 ?
+                allRenderedUsers.length > 15 ?
                 <GridPagination 
                     usersPerPage={usersPerPage}
-                    totalUsers={allSearchedUsers.length}
+                    totalUsers={allRenderedUsers.length}
                     paginate={paginate}
                     currentPage={currentPage}
                 /> :

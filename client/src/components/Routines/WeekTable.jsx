@@ -86,6 +86,7 @@ const WeekTable = (props) => {
 
             await axios.post(routineRoute, dayIds);
             await axios.post(routineRoute, dayIds);
+            if(props.id) await axios.put(`http://localhost:3001/api/users/${props.id}`, { customRoutine: true })
 
             await upgradeTable();
 

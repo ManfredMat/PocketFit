@@ -25,7 +25,7 @@ const Styles = {
 
     UserName: styled.Text`
         align-self: center; 
-        margin-top: 30px;
+        margin-top: 10px;
         margin-bottom: 15px;
         font-size: 28px;
         color: white;
