@@ -20,7 +20,7 @@ const ExerciseDetail =() => {
             <label>Descripcion:</label><h2>{exercise.description}</h2>
             <label>Disciplina:</label><h2>{exercise.discipline}</h2>
             <label>Video:</label>
-            <ReactPlayer url={exercise.video} width="20rem" height="20rem" controls/>
+            <ReactPlayer url={exercise.video} width="25rem" height="20rem" controls/>
         </div>:<div><h1>loading...</h1></div>}
         <Link to="/session/exercises"><button>Volver al plan general</button></Link>
         </>
