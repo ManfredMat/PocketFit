@@ -88,7 +88,7 @@ const Profile = () => {
 
             <Styles.InfoContainer>
                 <Styles.InfoText style={{ marginLeft: 15 }}>Mail</Styles.InfoText>
-                <Styles.InfoText style={{ marginRight: 15 }}>{user.email}</Styles.InfoText>
+                <Styles.InfoText style={{ marginRight: 15 }}>{user.email.length > 25 ? user.email.slice(0, 25) + "..." : user.email}</Styles.InfoText>
             </Styles.InfoContainer>
 
             <Styles.InfoContainer style={{ marginBottom: 30 }}>
