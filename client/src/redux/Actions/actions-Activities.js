@@ -4,13 +4,14 @@ import axios from "axios";
 export const GET_LESSONS = "GET_LESSONS";
 export const GET_EVENTS = "GET_EVENTS";
 export const GET_PROFESSORS = "GET_PROFESSORS";
+export const PUT_EVENT_NAME = "PUT_EVENT_NAME";
 
 export function getLessons() {
   return async function (dispatch) {
     await axios.get("http://localhost:3001/api/events/all").then((res) => {
       dispatch({
         type: GET_LESSONS,
-        value: res.data
+        value: res.data,
       });
     });
   };
@@ -18,11 +19,11 @@ export function getLessons() {
 
 export function getEvents() {
   return async function (dispatch) {
-    let response = await axios.get("http://localhost:3001/api/events/all")
+    let response = await axios.get("http://localhost:3001/api/events/all");
     dispatch({
-        type: GET_EVENTS,
-        value:response.data
-      });
+      type: GET_EVENTS,
+      value: response.data,
+    });
   };
 }
 
@@ -41,6 +42,15 @@ export function getProfessors() {
     dispatch({
       type: GET_PROFESSORS,
       value: professors.data,
+    });
+  };
+}
+
+export function putEventName(name) {
+  return async function (dispatch) {
+    dispatch({
+      type: PUT_EVENT_NAME,
+      value: name,
     });
   };
 }
