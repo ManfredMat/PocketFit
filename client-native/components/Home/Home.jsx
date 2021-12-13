@@ -15,7 +15,6 @@ export default function Home() {
 
     return (
         <Styles.Container>
-            <StatusBar barStyle="dark-content" backgroundColor="#fafafa" />
             <ScrollView>
                 <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <Image
