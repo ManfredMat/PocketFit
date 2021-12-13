@@ -52,10 +52,9 @@ function App() {
           <Route path="/session/timetable/ShiftsDetails" element={<ShiftsDetails screenHeight={screenHeight} />} />
           <Route path="/session/config" element={<Configuration />} />
           <Route path="/session/routines" element={<Routines />} />
-          <Route path="/session/routines/:id" element={<Routines />} />
+          <Route path="/session/routines/:id/:name" element={<Routines />} />
           <Route path="/session/exercises" element={<ExerciseListComplete />} />
           <Route path="/session/exercises_detail/:id" element={<ExerciseDetail />} />
-          <Route path="/session/new-event" element={<Activities />} />
           <Route path="/session/feedback" element={<Reviews />} />
         </Routes>
       </main>

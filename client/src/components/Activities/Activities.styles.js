@@ -117,6 +117,10 @@ const Styles = {
         margin-left: 3rem;
     `,
 
+    SelectEmpty: styled.h2`
+        color: white;
+    `
+
 }
 
 export default Styles;

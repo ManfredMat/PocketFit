@@ -92,7 +92,7 @@ export default function App() {
               headerStyle: { backgroundColor: '#041D25' },
             }}/>
           </Stack.Navigator>
-          <StatusBar />
+          <StatusBar backgroundColor="#020E12" style="light"/>
         </NavigationContainer>
       </Provider>
     </>

@@ -15,14 +15,17 @@ export default function Home() {
 
     return (
         <Styles.Container>
-            <StatusBar barStyle="dark-content" backgroundColor="#fafafa" />
             <ScrollView>
                 <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <Image
-                        source={{ uri: user.imageData ? `data:image/jpeg;base64, ${user.imageData}` : 'https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-gris.png' }}
-                        style={{ width: 50, height: 50, margin: 8, borderRadius: 9999, backgroundColor: "white", borderColor: "#6AE056", borderWidth: 2.5 }}
+                    <Styles.ProfileImage
+                        source={
+                            user.imageData ?
+                                { uri: `data:image/jpeg;base64, ${user.imageData}` } :
+                                require('../../assets/userIcon.png')
+                        }
                     />
-                    <Styles.TextWhite style={{ marginLeft: 10, fontSize: 25 }}>Hola {user?.name}!</Styles.TextWhite>
+
+                    <Styles.TextWhite style={{ marginLeft: 25, fontSize: 25 }}>Hola {user?.name}!</Styles.TextWhite>
                 </View>
 
                 <Styles.Card style={{ backgroundColor: '#d81919', height: 150, padding: 20, margin: 10 }}>
@@ -30,15 +33,11 @@ export default function Home() {
                 </Styles.Card>
 
                 <Styles.Card style={{ backgroundColor: '#6AE056', height: 150, padding: 20, margin: 10 }}>
-                    <Styles.TextBlack>Newsletter</Styles.TextBlack>
+                    <Styles.TextBlack>Eventos</Styles.TextBlack>
                 </Styles.Card>
 
                 <Styles.Card style={{ backgroundColor: '#CEFA1F', height: 150, padding: 20, margin: 10 }}>
-                    <Styles.TextBlack>Tu rutina</Styles.TextBlack>
-                </Styles.Card>
-
-                <Styles.Card style={{ backgroundColor: '#c4c4c4', height: 150, padding: 20, margin: 10 }}>
-                    <Styles.TextBlack>Clases</Styles.TextBlack>
+                    <Styles.TextBlack>Rutina</Styles.TextBlack>
                 </Styles.Card>
             </ScrollView>
         </Styles.Container>

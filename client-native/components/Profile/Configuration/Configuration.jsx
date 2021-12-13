@@ -38,7 +38,6 @@ const Configuration = () => {
 
     return (
         <Styles.Container>
-            <StatusBar barStyle="dark-content" backgroundColor="#fafafa" />
             <Styles.NewsletterContainer>
                 <Styles.Text>Newsletter</Styles.Text>
                 <Switch
@@ -52,7 +51,7 @@ const Configuration = () => {
                 <NotificationsComponent/>
             </Styles.NewsletterContainer>
             <Styles.GreenButton style={{ margin: 15 }} onPress={() =>
-                  Alert.alert('Cerrar Sesión', '¿ESTÁS SEGURO?',
+                  Alert.alert('Cerrar Sesión', '¿Esta seguro?',
                   [{text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
                   {text: 'Si', onPress: () => logOut()}],{ cancelable: false })}>
                     <Text style={{alignSelf: 'center'}}>Cerrar Sesión</Text>

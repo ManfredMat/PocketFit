@@ -7,11 +7,11 @@ export const GET_USER_DETAIL = "GET_USER_DETAIL";
 export const SORT = "SORT";
 export const FILTER = "FILTER";
 
-const date = (() => {
-    const newDate = new Date();
-    const format = `${newDate.getFullYear()}-${newDate.getMonth() + 1}-${newDate.getUTCDate()}`;
-    return format;
-})();
+// const date = (() => {
+//     const newDate = new Date();
+//     const format = `${newDate.getFullYear()}-${newDate.getMonth() + 1}-${newDate.getUTCDate()}`;
+//     return format;
+// })();
 
 export function getUsers() {
     return async function (dispatch) {
@@ -68,18 +68,18 @@ export function sorter(order) {
 };
 
 export function filtered(filter) {
-    if (filter === "PAGO" || filter === "NO-PAGO") {
-        return async function (dispatch) {
-            await axios.get("http://localhost:3001/api/users/paystatus/all", date)
-            .then(users => {
-                dispatch({
-                    type: FILTER,
-                    payload: users.data,
-                    filter: filter
-                })
-            })
-        }
-    }
+    // if (filter === "PAGO" || filter === "NO-PAGO") {
+    //     return async function (dispatch) {
+    //         await axios.get("http://localhost:3001/api/users/paystatus/all", date)
+    //         .then(users => {
+    //             dispatch({
+    //                 type: FILTER,
+    //                 payload: users.data,
+    //                 filter: filter
+    //             })
+    //         })
+    //     }
+    // }
 
     return {
         type: FILTER,
