@@ -34,8 +34,8 @@ function UserDetail() {
                         <Styles.ContactInfoContainer>
                             <Styles.ContactIcon src={whatsappIcon} alt="whatsapp-icon"/>
                             {
-                                user.number ? 
-                                <Styles.ContactLink href={`https://api.whatsapp.com/send?phone=${user.number}`}>{user.number}</Styles.ContactLink> :
+                                user.phoneNumber ? 
+                                <Styles.ContactLink href={`https://api.whatsapp.com/send?phone=549${user.phoneNumber}`}>{`+54 9 ${user.phoneNumber}`}</Styles.ContactLink> :
                                 <Styles.ContactValue>{"Desconocido"}</Styles.ContactValue>
                             }
                         </Styles.ContactInfoContainer>
@@ -52,7 +52,7 @@ function UserDetail() {
                             <Styles.DataInfoContainer>
                                 <Styles.DataKey>Plan Personalizado</Styles.DataKey>
                                 <Styles.DataValueContainer>
-                                    <Styles.DataValue>No</Styles.DataValue>
+                                    <Styles.DataValue>{user.customRoutine ? "Si" : "No"}</Styles.DataValue>
                                     <Link to={`/session/routines/${user.id}/${user.name}`}>
                                         <Styles.DataButton>
                                             <img src={editRoutineIcon} alt="edit-custom-routine" />

@@ -83,7 +83,7 @@ function Users() {
                 </Styles.NavBarContainer>
             </Styles.NavBar>
             <Styles.UsersContainer>
-                <UsersGrid search={isSearch}/>
+                <UsersGrid search={isSearch} searchValue={setSearch}/>
             </Styles.UsersContainer>
         </Styles.Container>
     )

@@ -13,6 +13,14 @@ const Styles = {
         padding-bottom: 103px;
     `,
 
+    ProfileImage: styled.Image`
+        width: 80px; 
+        height: 80px; 
+        margin: 8px; 
+        border-radius: 9999px; 
+        background-color: white;
+    `,
+
     TextWhite: styled.Text`
         color: white;
         font-family: "Poppins_500Medium";

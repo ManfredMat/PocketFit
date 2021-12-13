@@ -70,10 +70,6 @@ const Profile = () => {
 
     return (
         <Styles.Container>
-            {/* <TouchableOpacity onPress={() => imagePickerPermissions()} style={{ top: -35, right: -230 }}>
-                <Image source={editProfile} style={{ height: 35, width: 35 }} />
-            </TouchableOpacity> */}
-
             <Styles.ProfileImage
                 source={
                     previewImage ?
@@ -84,6 +80,10 @@ const Profile = () => {
                 }
             />
 
+            <TouchableOpacity onPress={() => imagePickerPermissions()} style={{ top: -28, right: -200 }}>
+                <Image source={editProfile} style={{ height: 30, width: 30 }} />
+            </TouchableOpacity>
+
             <Styles.UserName>{user.name + " " + user.lastname}</Styles.UserName>
 
             <Styles.InfoContainer>
@@ -93,7 +93,7 @@ const Profile = () => {
 
             <Styles.InfoContainer style={{ marginBottom: 30 }}>
                 <Styles.InfoText style={{ marginLeft: 15 }}>Número</Styles.InfoText>
-                <Styles.InfoText style={{ marginRight: 15 }}>{user.number ? user.number : "Desconocido"}</Styles.InfoText>
+                <Styles.InfoText style={{ marginRight: 15 }}>{user.phoneNumber ? `+54 9 ${user.phoneNumber}` : "Desconocido"}</Styles.InfoText>
             </Styles.InfoContainer>
 
             <Styles.ProfileButtonsContainer>
@@ -102,7 +102,7 @@ const Profile = () => {
                 </Styles.YellowButton>
 
                 <Styles.GreenButton style={{ width: 130, marginLeft: 5 }} onPress={() =>
-                    Alert.alert('Cerrar Sesión', '¿Estás seguro?',
+                    Alert.alert('Cerrar Sesión', '¿Esta seguro?',
                         [{ text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
                         { text: 'Si', onPress: () => logOut() }], { cancelable: false })}>
                     <Styles.ButtonText style={{ alignSelf: 'center' }}>Cerrar Sesión</Styles.ButtonText>
