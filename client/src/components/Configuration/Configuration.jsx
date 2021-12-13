@@ -43,13 +43,13 @@ function Configuration() {
     return (
         <Styles.Container>
 
-            <Styles.Box>
+            {/* <Styles.Box>
                 <Styles.BoxText>Notificaciones</Styles.BoxText>
                 <Styles.CheckBoxWrapper>
                     <Styles.CheckBox id="checkbox-noti" type="checkbox" />
                     <CheckBoxLabel htmlFor="checkbox-noti" />
                 </Styles.CheckBoxWrapper>
-            </Styles.Box>
+            </Styles.Box> */}
 
             <Styles.NewsletterBox>
                 <Styles.NewsletterTitle>Newsletter</Styles.NewsletterTitle>
