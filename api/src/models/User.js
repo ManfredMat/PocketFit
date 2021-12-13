@@ -85,6 +85,10 @@ module.exports = (sequelize) => {
       type: DataTypes.DATE,
       allowNull: true,
     },
+    paystatus:{
+      type: DataTypes.ENUM("PAGO" , "NO-PAGO"),
+      defaultValue:"NO-PAGO"
+    },
     status:{
       type: DataTypes.ENUM("ACTIVO" , "INACTIVO"),
       defaultValue:"ACTIVO"

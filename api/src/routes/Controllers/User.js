@@ -298,18 +298,21 @@ const getUserPayStatus = async (req, res) => {
 const getOneUserPayStatus = async (req, res) => {
   let { date, id } = req.body;
   date = new Date(date);
-
+  
   try {
     let client = await User.findOne({
       where: { id: id },
     });
-    console.log(client);
-    if (client.dataValues.paymentday < date) {
-      client.dataValues["paystatus"] = "NO-PAGO";
+    
+    if (client.paymentday < date) {
+      client.paystatus = "NO-PAGO";
     } else {
-      client.dataValues["paystatus"] = "PAGO";
+      client.paystatus = "PAGO";
     }
-    res.send(client);
+
+    await client.save();
+
+    res.send({ message: "PayStatus changed" });
   } catch (error) {
     res.send(error);
   }
