@@ -4,12 +4,14 @@ import {
   SEARCH_USERS,
   GET_USER_DETAIL,
   SORT,
-  FILTER
+  FILTER,
+  filtered
 } from "../Actions/actions-users";
 // import * as json from "../../components/Users/Users.json";
 
 const initialState = {
   users: [],
+  renderedUsers: [],
   searchedUsers: [],
   renderUserDetail: false,
   userDetail: {},
@@ -24,6 +26,7 @@ function reducerUsers(state = initialState, action) {
       //   return {
       //     ...state,
       //     users: json.users,
+      //     renderedUsers: json.users,
       //     searchedUsers : json.users
       //   }
       // }
@@ -31,6 +34,7 @@ function reducerUsers(state = initialState, action) {
       return {
         ...state,
         users: action.payload,
+        renderedUsers: action.payload,
         searchedUsers: action.payload
       };
 
@@ -38,25 +42,27 @@ function reducerUsers(state = initialState, action) {
       if (action.payload === "Reset" || action.payload === "") {
         return {
           ...state,
+          renderedUsers: state.users,
           searchedUsers: state.users
         }
       } else {
-        let searchedUsers = state.users.filter(user => user.name.toLowerCase() === action.payload.toLowerCase() || user.lastname.toLowerCase() === action.payload.toLowerCase())
-        if (searchedUsers.length === 0) {
+        let searcheredUsers = state.users.filter(user => user.name.toLowerCase() === action.payload.toLowerCase() || user.lastname.toLowerCase() === action.payload.toLowerCase())
+        if (searcheredUsers.length === 0) {
           return {
             ...state,
-            searchedUsers: "No users"
+            renderedUsers: "No users"
           }
         }
 
         return {
           ...state,
-          searchedUsers: searchedUsers
+          renderedUsers: searcheredUsers,
+          searchedUsers: searcheredUsers
         }
       }
 
     case SORT:
-      let orderedUsers = [...state.searchedUsers];
+      let orderedUsers = [...state.renderedUsers];
 
       if (action.payload === "na-z" || action.payload === "nz-a") {
         orderedUsers = orderedUsers.sort((a, b) => {
@@ -86,56 +92,80 @@ function reducerUsers(state = initialState, action) {
 
       return {
         ...state,
-        searchedUsers: orderedUsers
+        renderedUsers: orderedUsers
       }
 
     case FILTER:
       if (action.payload === "no-filters") {
         return {
           ...state,
-          searchedUsers: state.users,
+          renderedUsers: state.searchedUsers,
           filter: action.payload
         }
       } else if (action.payload === "ACTIVO" || action.payload === "INACTIVO") {
         let filteredUsers = [];
 
         if (action.payload === "ACTIVO") {
-          filteredUsers = state.users.filter((user) => user.status === "ACTIVO")
+          filteredUsers = state.searchedUsers.filter((user) => user.status === "ACTIVO")
         } else {
-          filteredUsers = state.users.filter((user) => user.status === "INACTIVO")
+          filteredUsers = state.searchedUsers.filter((user) => user.status === "INACTIVO")
         }
 
         if (filteredUsers.length === 0) {
           return {
             ...state,
-            searchedUsers: "No filters"
+            renderedUsers: "No filters"
           }
         }
 
         return {
           ...state,
-          searchedUsers: filteredUsers,
+          renderedUsers: filteredUsers,
           filter: action.payload
         }
       } else {
+        const dateFormat = (() => {
+            const newDate = new Date();
+            const format = `${newDate.getFullYear()}-${newDate.getMonth() + 1}-${newDate.getUTCDate()}T00:00:00.000Z`;
+            return format;
+        })();
+        
         let filteredUsers = [];
+        let alDia = [];
+        let fueraDeTermino = [];
 
-        if (action.filter === "PAGO") {
-          filteredUsers = action.payload.upToDate
-        } else {
-          filteredUsers = action.payload.offToDate
+        for (let i = 0; i < state.searchedUsers.length; i++) {
+          if (state.searchedUsers[i].paymentday > dateFormat) {
+            alDia.push(state.searchedUsers[i]);
+          } else {
+            fueraDeTermino.push(state.searchedUsers[i]);
+          }
         }
+        
+        alDia.map((users) => {
+          if (users.imageData) users.imageData = users.imageData.toString("base64");
+        });
 
+        fueraDeTermino.map((users) => {
+          if (users.imageData) users.imageData = users.imageData.toString("base64");
+        });
+
+        if (action.payload === "PAGO") {
+          filteredUsers = alDia
+        } else {
+          filteredUsers = fueraDeTermino
+        }
+        
         if (filteredUsers.length === 0) {
           return {
             ...state,
-            searchedUsers: "No filters"
+            renderedUsers: "No filters"
           }
         }
 
         return {
           ...state,
-          searchedUsers: filteredUsers,
+          renderedUsers: filteredUsers,
           filter: action.payload
         }
       }

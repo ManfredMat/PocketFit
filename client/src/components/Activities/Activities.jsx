@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NewClass from "./NewClass";
 import NewEvent from "./NewEvent";
 import NewHoliday from "./NewHoliday";
 import { useState } from "react";
 import EventDetail from "./EventDetail"; //prueba
 import ClassesDetail from "./ClassesDetail"; //prueba
+import Styles from "./Activities.styles";
 
-const Activities = () => {
+
+//render con prop
+const Activities = ({ select, display }) => {
   const [nuevoEvento, setNuevoEvento] = React.useState(false);
   const [nuevaClase, setNuevaClase] = React.useState(false);
   const [nuevoFeriado, setNuevoFeriado] = React.useState(false);
@@ -17,18 +20,35 @@ const Activities = () => {
   const [pruebaClase, setPruebaClase] = React.useState(false); //prueba
   const [pruebaClaseId, setPruebaClaseId] = useState(""); //prueba
 
+  useEffect(() => {
+    if(select === "Clase") {
+      setEtype("Clases");
+      setNuevaClase(true);
+    }
+    if(select === "Evento") {
+      setEtype("Evento");
+      setNuevoEvento(true);
+    } 
+  }, [])
+
   function handleSelect(e) {
     switch (e.target.value) {
       case "Clases":
-        setNuevaClase(!nuevaClase);
+        setNuevoEvento(false);
+        setNuevoFeriado(false);
+        setNuevaClase(true);
         setEtype(e.target.value);
         break;
       case "Evento":
-        setNuevoEvento(!nuevoEvento);
+        setNuevaClase(false);
+        setNuevoFeriado(false);
+        setNuevoEvento(true);
         setEtype(e.target.value);
         break;
       case "Feriado":
-        setNuevoFeriado(!nuevoFeriado);
+        setNuevaClase(false);
+        setNuevoEvento(false);
+        setNuevoFeriado(true);
         setEtype(e.target.value);
         break;
       case "68870247-9d61-46f3-8e83-ac0f5ac29b9f": //prueba
@@ -45,52 +65,77 @@ const Activities = () => {
   }
 
   return (
-    <div>
-      <h1>Crear Actividad</h1>
+    <Styles.Container>
+      <Styles.Card>
+        <Styles.CloseButton onClick={() => display(false)}>X</Styles.CloseButton>
+        <Styles.CardTop>
+          <Styles.CardTitle>Crear Actividad</Styles.CardTitle>
+          <Styles.CardTopInputsContainer>
+            <Styles.CardTopLabel>Nombre</Styles.CardTopLabel>
+            <Styles.CardTopInput
+              type="text"
+              placeholder="Escribe un nombre..."
+              onChange={(e) => setEname(e.target.value)}
+            />
 
-      <label>Nombre</label>
-      <input
-        type="text"
-        placeholder="Escribe un nombre... "
-        onChange={(e) => setEname(e.target.value)}
-      />
+            <Styles.CardTopLabel>Tipo</Styles.CardTopLabel>
+            {
+              select === "Clase" ?
+              <Styles.CardTopSelect onChange={(e) => handleSelect(e)}>
+                <Styles.CardSelectOption value="" disabled>
+                  Elija una opción...
+                </Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Clases" selected>Clase</Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Evento">Evento</Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Feriado">Feriado</Styles.CardSelectOption>
+              </Styles.CardTopSelect> :
 
-      <label>Tipo</label>
-      <select onChange={(e) => handleSelect(e)}>
-        <option value="" disabled selected>
-          Escoja uno ...
-        </option>
-        <option value="Clases">Clase</option>
-        <option value="Evento">Evento</option>
-        <option value="Feriado">Feriado</option>
-        {/* Options de prueba */}
-        <option value="68870247-9d61-46f3-8e83-ac0f5ac29b9f">
-          PruebaEventoDetail
-        </option>
-        <option value="41b22565-29a3-4d8d-bd1d-92456d3ff675">
-          PruebaClaseDetail
-        </option>
-        {/* Fin de options de prueba */}
-      </select>
+              select === "Evento" ? 
+              <Styles.CardTopSelect onChange={(e) => handleSelect(e)}>
+                <Styles.CardSelectOption value="" disabled>
+                  Elija una opción...
+                </Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Clases">Clase</Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Evento" selected>Evento</Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Feriado">Feriado</Styles.CardSelectOption>
+              </Styles.CardTopSelect> :
 
-      <div>
-        {nuevaClase && (
-          <NewClass display={setNuevaClase} name={ename} kind={etype} />
-        )}
-        {nuevoEvento && (
-          <NewEvent display={setNuevoEvento} name={ename} kind={etype} />
-        )}
-        {nuevoFeriado && (
-          <NewHoliday display={setNuevoFeriado} name={ename} kind={etype} />
-        )}
-        {/* Displays de prueba */}
-        {nuevaPrueba && <EventDetail display={setNuevaPrueba} id={pruebaId} />}
-        {pruebaClase && (
-          <ClassesDetail display={setPruebaClase} id={pruebaClaseId} />
-        )}
-        {/* Fin Displays de prueba */}
-      </div>
-    </div>
+              <Styles.CardTopSelect onChange={(e) => handleSelect(e)}>
+                <Styles.CardSelectOption value="" disabled selected>
+                  Elija una opción...
+                </Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Clases">Clase</Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Evento">Evento</Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Feriado">Feriado</Styles.CardSelectOption>
+              </Styles.CardTopSelect>
+            }
+          </Styles.CardTopInputsContainer>
+        </Styles.CardTop>
+
+
+        {
+          etype === "" ?
+          <Styles.CardBottom>
+            <Styles.SelectEmpty>
+              Seleccione un tipo de actividad...
+            </Styles.SelectEmpty>
+          </Styles.CardBottom> :
+          <Styles.CardBottom>
+            {nuevaClase && (
+              <NewClass close={display} display={setNuevaClase} name={ename} kind={etype} />
+            )}
+            {nuevoEvento && (
+              <NewEvent close={display} display={setNuevoEvento} name={ename} kind={etype} />
+            )}
+            {nuevoFeriado && (
+              <NewHoliday close={display} display={setNuevoFeriado} name={ename} kind={etype} />
+            )}
+          </Styles.CardBottom>
+        }
+
+      </Styles.Card>
+    </Styles.Container>
+
   );
 };
 

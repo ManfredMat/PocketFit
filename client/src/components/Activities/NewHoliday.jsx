@@ -4,8 +4,9 @@ import moment from "moment";
 import "moment/locale/es";
 import { useDispatch } from "react-redux";
 import { postEvent } from "../../redux/Actions/actions-Activities";
+import Styles from "./NewClass.styles";
 
-const NewHoliday = ({ display, name, kind }) => {
+const NewHoliday = ({ display, name, kind, close }) => {
   const dispatch = useDispatch();
   moment.locale();
 
@@ -40,38 +41,20 @@ const NewHoliday = ({ display, name, kind }) => {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        position: "absolute",
-        width: "-webkit-fill-available",
-        height: "100vh",
-        backgroundColor: "#00000070",
-        top: 0,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          width: "40%",
-          height: "25%",
-          padding: "2em",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          backgroundColor: "grey",
-        }}
-      >
-        <button onClick={() => display(false)}>Cancelar</button>
-        <h2>Crear Nuevo Feriado</h2>
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <label>Fecha</label>
-          <input type="date" onChange={(e) => parseDate(e)} />
+    <div style={{height: "100%"}}>
+      {/* <button onClick={() => display(false)}>Cancelar</button>
+      <h2>Crear Nuevo Feriado</h2> */}
 
-          <button type="submit">Crear</button>
-        </form>
-      </div>
+      <Styles.Form onSubmit={(e) => handleSubmit(e)}>
+        <Styles.InputContainer style={{width: "40rem"}}>
+          <Styles.Label>Fecha</Styles.Label>
+          <Styles.Input type="date" onChange={(e) => parseDate(e)} />
+        </Styles.InputContainer>
+        <Styles.ButtonContainer>
+          <Styles.SubmitButton type="submit">Crear</Styles.SubmitButton>
+          <Styles.CancelButton onClick={() => close(false)}>Cancelar</Styles.CancelButton>
+        </Styles.ButtonContainer>
+      </Styles.Form>
     </div>
   );
 };

@@ -35,6 +35,7 @@ import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { Notification } from "expo-notifications";
 import * as Permissions from 'expo-permissions'
+import Payments from "./components/Profile/Payments/Payments";
 
 
 export default function App() {
@@ -85,8 +86,13 @@ export default function App() {
               headerTintColor:'#fff',
               headerStyle: { backgroundColor: '#041D25' },
             }} />
+            <Stack.Screen name='Payments' component={Payments} options={{
+              title: 'Pagos',
+              headerTintColor:'#fff',
+              headerStyle: { backgroundColor: '#041D25' },
+            }}/>
           </Stack.Navigator>
-          <StatusBar />
+          <StatusBar backgroundColor="#020E12" style="light"/>
         </NavigationContainer>
       </Provider>
     </>

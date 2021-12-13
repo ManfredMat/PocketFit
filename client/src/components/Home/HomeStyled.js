@@ -3,10 +3,10 @@ import styled, { createGlobalStyle } from "styled-components";
 
 const Styles = {
   GlobalStyle: createGlobalStyle`
-    * {
-      margin:0
-    }`,
-
+  * {
+      margin:0;
+      color: #ffffff;
+  }`,
   StyledBody: styled.div`
     padding: 3rem;
     display: flex;

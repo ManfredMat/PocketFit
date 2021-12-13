@@ -1,42 +1,49 @@
-const Expo = require('expo-server-sdk').Expo;
-const expo = new Expo();
+const axios = require("axios")
+const {User} = require('../../db');
 
-let savedPushTokens =[];
 
-const saveToken = (token) => {
-    if (savedPushTokens.indexOf(token === -1)) {
-      savedPushTokens.push(token);
-    }
+const turnOnNotifitation = async (req , res)=>{
+  let {id}  = req.body
+  try{
+    let user = await User.findOne({where:{id:id}})
+    user["notifications"] = true
+    await user.save()
+    res.send({message:"Notifications have been turned on"})
+
   }
-const handlePushTokens = (message) => {
-    let notifications = [];
-    for (let pushToken of savedPushTokens) {
-      if (!Expo.isExpoPushToken(pushToken)) {
-        console.error(`Push token ${pushToken} is not a valid Expo push token`);
-        continue;
-      }
-      notifications.push({
-        to: pushToken,
-        sound: 'default',
-        title: 'Message received!',
-        body: message,
-        data: { message }
-      })
-    }
-    let chunks = expo.chunkPushNotifications(notifications);
-  (async () => {
-    for (let chunk of chunks) {
-      try {
-        let receipts = await expo.sendPushNotificationsAsync(chunk);
-        console.log(receipts);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  })();
+  catch(error){res.send(error)}
+}
+
+const turnOffNotifitation = async (req , res)=>{
+  let {id}  = req.body
+  try{
+    let user = await User.findOne({where:{id:id}})
+    user["notifications"] = false
+    await user.save()
+
+    res.send({message:"User is now unsubscribed"})
   }
+  catch(error){res.send(error)}
+}
+const sendNotification = async (req, res) => {
+    const { title, message } = req.body
+    try {
+       await User.findAll({where:{notifications: true}})
+       await axios.post(`https://nativenotify.com/api/indie/notification`, {
+          subID: User.id,
+          appId: 667,
+          appToken: 'IONltqu86xwT3H5l2OSLtu',
+          title: title,
+          message: message
+      });
+      res.send({ message: "done" })
+    } catch (error) {
+      res.send(error)
+    }
+}
 
 module.exports = {
-    saveToken,
-    handlePushTokens,
-  };
+    sendNotification,
+    turnOffNotifitation,
+    turnOnNotifitation
+   };

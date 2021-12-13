@@ -5,7 +5,7 @@ import {
 } from "../../redux/Actions/actions-Horarios";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
-import Styles from "./Styles/ShiftsStyled";
+import Styles from "./Styles/ShiftsStyled"; 
 import { getTimetable } from '../../redux/Actions/actions-Horarios';
 import "moment/locale/es";
 moment.locale("es");
