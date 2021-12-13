@@ -5,7 +5,8 @@ import MyShiftsCard from './MyShiftsCard'
 import ShiftsAvailable from './ShiftsAvailable'
 import { getAllShifts, getShiftId } from '../../redux/Actions/actions-Shifts'
 import { useDispatch, useSelector } from 'react-redux';
-import { Cards, ContainerS } from './Shifts.Styles'
+import { Cards, ContainerS, Available } from './Shifts.Styles'
+import { ProxShifts, DarkContainer } from '../Training/Training.Styles'
 
 export default function Shifts() {
     const date = new Date()
@@ -85,13 +86,22 @@ export function PreViewShifts() {
         <View>
             {
                 myShift.length !== 0
-                ?   <View>
-                        <Text style={{fontSize: 20}}>{myShift[0].weekday} {myShift[0].day}/{myShift[0].month}</Text>
-                        <Text>{myShift[0].beginning}hs - {myShift[0].ending}hs</Text>
+                ?   <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <ProxShifts>
+                        <View>
+                            <Text style={{fontSize: 20}}>{myShift[0].weekday} {myShift[0].day}/{myShift[0].month}</Text>
+                        </View>
+                    </ProxShifts>
+                    <Available>
+                        <DarkContainer>
+                            <Text style={{color: "#fff"}}>{myShift[0].availability}/{myShift[0].capacity}</Text>
+                        </DarkContainer>
+                        <Text>{myShift[0].beginning}hs a {myShift[0].ending}hs</Text>
+                    </Available>
                    </View>
                 :
                 <View>
-                    <Image  style={{width: 100, height: 100, alignSelf: 'center'}} source={loading}/>
+                    <Text  style={{alignSelf: 'center', fontSize: 17}}>¿Aun no sacaste un turno?</Text>
                 </View>
             }
           

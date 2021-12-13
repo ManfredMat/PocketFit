@@ -28,9 +28,9 @@ const turnOffNotifitation = async (req , res)=>{
 const sendNotification = async (req, res) => {
     const { title, message } = req.body
     try {
-       //await User.findAll({where:{notifications: true}})
+       await User.findAll({where:{notifications: true}})
        await axios.post(`https://nativenotify.com/api/indie/notification`, {
-          subID: "96553ac4-31d6-42fe-b5ce-db880c43d2e6",
+          subID: User.id,
           appId: 667,
           appToken: 'IONltqu86xwT3H5l2OSLtu',
           title: title,
