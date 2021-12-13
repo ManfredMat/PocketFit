@@ -55,10 +55,11 @@ function UsersGrid({search, searchValue}) {
                     <Styles.NoUsersText>No existen usuarios que cumplan con el filtro elegido</Styles.NoUsersText>
                 </Styles.NoUsersContainer> :
 
-                allRenderedUsers === "Reset"  || allRenderedUsers.length === 0 ?
-                <Styles.NoUsersContainer>
-                    <Styles.NoUsersText>No existen usuarios en la base de datos</Styles.NoUsersText>
-                </Styles.NoUsersContainer> : 
+                // allRenderedUsers === "Reset"  || allRenderedUsers.length === 0 ?
+                // <Styles.NoUsersContainer>
+                //     <Styles.NoUsersText>No existen usuarios en la base de datos</Styles.NoUsersText>
+                // </Styles.NoUsersContainer> : 
+                
                 users.map((users, key) => {
                     return <User 
                         key={key}
