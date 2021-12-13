@@ -3,6 +3,8 @@ import {
   GET_EVENTS,
   GET_PROFESSORS,
   PUT_EVENT_NAME,
+  GET_ONE_EVENT,
+  GET_CLIENTS,
 } from "../Actions/actions-Activities";
 
 const initialState = {
@@ -10,6 +12,8 @@ const initialState = {
   events: [],
   professors: [],
   eventname: "",
+  event: [],
+  clients: [],
 };
 
 function reducerActivities(state = initialState, action) {
@@ -38,6 +42,10 @@ function reducerActivities(state = initialState, action) {
         ...state,
         eventname: action.value,
       };
+    case GET_ONE_EVENT:
+      return { ...state, event: action.value };
+    case GET_CLIENTS:
+      return { ...state, clients: action.value };
     default:
       return state;
   }

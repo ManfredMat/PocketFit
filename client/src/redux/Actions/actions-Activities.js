@@ -5,6 +5,8 @@ export const GET_LESSONS = "GET_LESSONS";
 export const GET_EVENTS = "GET_EVENTS";
 export const GET_PROFESSORS = "GET_PROFESSORS";
 export const PUT_EVENT_NAME = "PUT_EVENT_NAME";
+export const GET_ONE_EVENT = "GET_ONE_EVENT";
+export const GET_CLIENTS = "GET_CLIENTS";
 
 export function getLessons() {
   return async function (dispatch) {
@@ -51,6 +53,37 @@ export function putEventName(name) {
     dispatch({
       type: PUT_EVENT_NAME,
       value: name,
+    });
+  };
+}
+
+export function getSingleEvent(id) {
+  return async function (dispatch) {
+    let event = await axios.get("http://localhost:3001/api/events/" + id);
+    dispatch({
+      type: GET_ONE_EVENT,
+      value: event.data,
+    });
+  };
+}
+
+export function updateEvent(data, id) {
+  return async function () {
+    let update = await axios.put(
+      `http://localhost:3001/api/events/${id}`,
+      data
+    );
+    return update;
+  };
+}
+
+export function getClients() {
+  return async function (dispatch) {
+    let users = await axios.get("http://localhost:3001/api/users/");
+    let clients = users.data.filter((user) => user.isuser === true);
+    dispatch({
+      type: GET_CLIENTS,
+      value: clients,
     });
   };
 }
