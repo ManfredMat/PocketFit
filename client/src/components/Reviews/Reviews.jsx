@@ -10,7 +10,7 @@ function Reviews(){
     const filteredReviews = useSelector((state)=> state.allReviews)
     const [order, setOrder] = useState('')
     const [currentPage, setCurrentPage] = useState(1) 
-    const [reviewsPerPage, setReviewsPerPage] = useState(6)
+    const [reviewsPerPage, setReviewsPerPage] = useState(20)
     const indexOfLastReview = currentPage * reviewsPerPage
     const indexOfFirstReview = indexOfLastReview - reviewsPerPage 
     const currentReview = everyReview.slice(indexOfFirstReview, indexOfLastReview)
@@ -55,15 +55,15 @@ function Reviews(){
                 </select>
             </div>
             <div>
-            {everyReview?.map((review, index)=>{
+            {currentReview.length && currentReview.map((review, index)=>{
                         return(
                         <div  key={index}>
                             
-                             <div> review = {review.review} </div>
-                             <div> value = {review.value} </div>
-                              <div>profesor = {review.profesor} </div>
-                             <div> event = {review.event} </div>
-                             <div> gym = {review.gym} </div>
+                             <div> review: {review.review} </div>
+                             <div> value: {review.value} </div>
+                              <div>{review.profesor? `profesor: ${review.profesor}` : ""} </div>
+                             <div> {review.event? `event: ${review.event}` : ""} </div>
+                             <div> {review.gym? `gym: ${review.event}` :  ""} </div>
                             
                         </div>
                     )})
@@ -71,10 +71,10 @@ function Reviews(){
             </div>
 
 
-             <Pagination reviewsPerPage = {reviewsPerPage}
-                            everyReview = {everyReview.length}
+             {/* <Pagination reviewsPerPage = {reviewsPerPage}
+                            everyReview = {filteredReviews.length}
                             pagination = {pagination}
-                /> 
+                />  */}
 
         </div>
     )
