@@ -2,12 +2,16 @@ import {
   GET_LESSONS,
   GET_EVENTS,
   GET_PROFESSORS,
+  GET_ONE_EVENT,
+  GET_CLIENTS,
 } from "../Actions/actions-Activities";
 
 const initialState = {
   lessons: [],
   events: [],
   professors: [],
+  event: [],
+  clients: [],
 };
 
 function reducerActivities(state = initialState, action) {
@@ -27,6 +31,10 @@ function reducerActivities(state = initialState, action) {
         ...state,
         professors: action.value,
       };
+    case GET_ONE_EVENT:
+      return { ...state, event: action.value };
+    case GET_CLIENTS:
+      return { ...state, clients: action.value };
     default:
       return state;
   }
