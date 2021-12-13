@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from "@react-navigation/core";
 import Styles from './Home.styles';
 
+
 export default function Home() {
     const user = useSelector((state) => state.reducerUser.user);
     const storeData = async (value) => {
@@ -16,7 +17,7 @@ export default function Home() {
     return (
         <Styles.Container>
             <ScrollView>
-                <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                <Styles.HeaderContainer>
                     <Styles.ProfileImage
                         source={
                             user.imageData ?
@@ -24,13 +25,11 @@ export default function Home() {
                                 require('../../assets/userIcon.png')
                         }
                     />
-
-                    <Styles.TextWhite style={{ marginLeft: 25, fontSize: 25 }}>Hola {user?.name}!</Styles.TextWhite>
-                </View>
-
-                <Styles.Card style={{ backgroundColor: '#d81919', height: 150, padding: 20, margin: 10 }}>
-                    <Styles.TextWhite>Estadisticas</Styles.TextWhite>
-                </Styles.Card>
+                    <Styles.NameLogoContainer style={{ marginLeft: 25 }}>
+                        <Styles.HeaderText>Hola {user.name}!</Styles.HeaderText>
+                        <Styles.GymLogo source={require("../../assets/fitnessgym-logo-home.png")} />
+                    </Styles.NameLogoContainer>
+                </Styles.HeaderContainer>
 
                 <Styles.Card style={{ backgroundColor: '#6AE056', height: 150, padding: 20, margin: 10 }}>
                     <Styles.TextBlack>Eventos</Styles.TextBlack>
