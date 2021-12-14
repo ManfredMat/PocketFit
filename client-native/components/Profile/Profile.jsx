@@ -105,7 +105,7 @@ const Profile = () => {
                     Alert.alert('Cerrar Sesión', '¿Esta seguro?',
                         [{ text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
                         { text: 'Si', onPress: () => logOut() }], { cancelable: false })}>
-                    <Styles.ButtonText style={{ alignSelf: 'center' }}>Cerrar Sesión</Styles.ButtonText>
+                    <Styles.ButtonText>Cerrar Sesión</Styles.ButtonText>
                 </Styles.GreenButton>
             </Styles.ProfileButtonsContainer>
 
