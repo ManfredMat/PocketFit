@@ -123,7 +123,7 @@ export const NoShift = styled.View`
     justify-content: center;
     align-items: center;
     margin: 5px;
-    width: 340px;
+    width: 300px;
     height: 90px;
     padding: 10px;
     opacity: 0.9;

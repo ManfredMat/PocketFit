@@ -58,7 +58,7 @@ export default function Blocks({num}) {
                         <View key={e[4]} >
                          <CardExercise 
                            reps={e[1]} 
-                           exercise={'sentadillas'}/>
+                           exercise={e[0]}/>
                        </View>
                         )
                     :
