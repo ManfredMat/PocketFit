@@ -9,6 +9,9 @@ module.exports = (sequelize) => {
         autoIncrement:true,
         primaryKey: true
       },
+      subject:{
+        type: DataTypes.STRING
+      },
       review:{
           type: DataTypes.TEXT,
           allowNull:false
