@@ -13,17 +13,34 @@ const Styles = {
         padding-bottom: 103px;
     `,
 
+    HeaderContainer: styled.View`
+        display: flex; 
+        flex-direction: row; 
+        align-items: center;
+    `,
+
     ProfileImage: styled.Image`
-        width: 80px; 
-        height: 80px; 
+        width: 95px; 
+        height: 95px; 
         margin: 8px; 
         border-radius: 9999px; 
         background-color: white;
     `,
 
-    TextWhite: styled.Text`
+    NameLogoContainer: styled.View`
+        display: flex;
+        flex-direction: column;
+    `,
+
+    GymLogo: styled.Image`
+        width: 130px;
+        height: 18px;
+    `,
+
+    HeaderText: styled.Text`
         color: white;
         font-family: "Poppins_500Medium";
+        font-size: 25px;
     `,
 
     TextBlack: styled.Text`

@@ -13,7 +13,7 @@ import axios from "axios";
 
 function UserDetail() {
     const dispatch = useDispatch();
-    const user = useSelector(state => state.users.userDetail)
+    const user = useSelector((state) => state.users.userDetail);
     const closeCard = () => {
         dispatch(renderUserDetail(false));
         dispatch(getUserDetail("CLEAR"))
@@ -114,7 +114,7 @@ function UserDetail() {
                             <Styles.StadisticsTitle> Estadísticas</Styles.StadisticsTitle>
                             <Styles.StadisticsSubContainer>
                                 <Styles.StadisticsInfoContainer>
-                                    <Styles.StadisticsKey>Sentadilla por Detrás:</Styles.StadisticsKey>
+                                    <Styles.StadisticsKey>Sentadillas:</Styles.StadisticsKey>
                                     <Styles.StadisticsValue>{user.backsquat ? user.backsquat : "-"}</Styles.StadisticsValue>
                                 </Styles.StadisticsInfoContainer>
                                 <Styles.StadisticsInfoContainer>
