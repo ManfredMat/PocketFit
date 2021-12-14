@@ -69,6 +69,7 @@ const modifyUser = async (req, res) => {
       weight,
       phoneNumber,
       customRoutine,
+      benchpress,
       backsquat,
       pushpress,
       snatch,
