@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch , useSelector } from "react-redux";
 import { get_exercises } from '../../redux/Actions/actions-exercise';
 import { Link } from 'react-router-dom';
-
+import Styles from "../Exercises/Styles/ExercisesStyled"; 
 const ExerciseList = () => {
 
     let dispatch = useDispatch();
@@ -16,7 +16,7 @@ const ExerciseList = () => {
 
     const renderExercises = (items)=>{
         let exerciseArray = items.map((excercise , index)=>{        
-            if(index <= 9 ){ 
+            if(index <= 3 ){ 
                 
             return <Exercises key={index} excercise = {excercise}/>
 
@@ -29,12 +29,20 @@ const ExerciseList = () => {
 
     return(
         <div>
+            <Styles.headerConteiner>
             <h2>Ejercicios</h2>
-            <button>Crear Ejercicio</button>
+            <Link to="/session/exercises"> 
+            <Styles.LinkGreen>Ver detalle</Styles.LinkGreen>
+            </Link>
+            </Styles.headerConteiner>
+            <Styles.allPropBox>
+            <Styles.propBoxList>Nombre</Styles.propBoxList>
+            <Styles.propBoxList>Descripcion</Styles.propBoxList>
+            <Styles.propBoxList>Disciplina</Styles.propBoxList>
+            <Styles.propBoxList>Video</Styles.propBoxList>
+            </Styles.allPropBox>
             {renderExercises(exercises)}
-           <Link to="/session/exercises"> 
-           <button>Ver detalle</button>
-           </Link>
+           
         </div>
     )
 }

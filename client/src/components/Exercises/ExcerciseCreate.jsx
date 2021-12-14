@@ -1,4 +1,3 @@
-import axios from "axios"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { create_exercise  , get_exercises} from "../../redux/Actions/actions-exercise"
@@ -28,8 +27,7 @@ const ExcerciseCreate =({display}) => {
 
     function onSubmit(e){
         e.preventDefault()
-        dispatch(create_exercise(newExercise))
-        dispatch(get_exercises()) 
+        dispatch(create_exercise(newExercise)) 
         display(false)   
     }
 
