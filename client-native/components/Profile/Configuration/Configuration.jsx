@@ -54,7 +54,7 @@ const Configuration = () => {
                   Alert.alert('Cerrar Sesión', '¿Esta seguro?',
                   [{text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
                   {text: 'Si', onPress: () => logOut()}],{ cancelable: false })}>
-                    <Text style={{alignSelf: 'center'}}>Cerrar Sesión</Text>
+                    <Text style={{alignSelf: 'center', fontFamily: "Poppins_500Medium"}}>Cerrar Sesión</Text>
             </Styles.GreenButton>
         </Styles.Container>
     )
