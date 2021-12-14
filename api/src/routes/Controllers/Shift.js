@@ -1,5 +1,5 @@
 
-const { Shift, Timetable, User } = require('../../db')
+const { Shift, Timetable, User, UserShift, userShift } = require('../../db')
 
 const newShift = async (req, res) => {
   const { day,
@@ -114,7 +114,10 @@ const updateShift = async (req, res) => {
     let oneShift = await Shift.findOne({ where: { id: idShift }, include: User })
     let addUser = await User.findOne({ where: { id: idUser } })
     await oneShift.addUser(addUser)
-    let newAvailability = oneShift.capacity - 1
+     oneShift.save()
+     console.log(oneShift.users.length)
+    let newAvailability = (oneShift.capacity - (oneShift.users.length + 1))
+    console.log(newAvailability)
     oneShift.availability = newAvailability
     oneShift.save()
     res.send(oneShift)
@@ -123,6 +126,24 @@ const updateShift = async (req, res) => {
     res.send(err)
   }
 }
+
+const removeUserShift = async (req, res) => {
+  const  {userId, shiftId}  = req.query;
+  //parseInt(shiftId)
+  //console.log(userId, shiftId)
+  try {
+    let algo =  await UserShift.findOne({ where: { shiftId: parseInt(shiftId), userId: userId} });
+    let oneShift = await Shift.findOne({ where: { id: shiftId }, include: User })
+
+    oneShift.availability = oneShift.availability+1
+    // algo.availability = newAvailability
+    algo.destroy()
+    oneShift.save()
+    res.send(oneShift);
+  } catch (error) {
+    res.send(error);
+  }
+};
 
 const deleteShift = async (req, res) => {
   const { id } = req.params
@@ -249,4 +270,4 @@ const weekCreate = async (req, res) => {
   }
 }
 
-module.exports = { getShiftofUser, weekCreate, createBulk, newShift, getAllShifts, getShiftByWeekNum, updateShift, deleteShift, getShiftById, getAllShiftsPlus };
+module.exports = { removeUserShift, getShiftofUser, weekCreate, createBulk, newShift, getAllShifts, getShiftByWeekNum, updateShift, deleteShift, getShiftById, getAllShiftsPlus };
