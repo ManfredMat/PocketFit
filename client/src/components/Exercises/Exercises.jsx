@@ -1,9 +1,17 @@
+import Styles from "./Styles/ExercisesStyled"; 
+
 const Exercises = (excercise) => {    
     let exer = excercise.excercise
     return(
-        <div>
-            <label>{exer.id}. </label><h3>{exer.name}</h3>
-        </div>
+        <>
+        <Styles.GlobalStyle />
+        <Styles.allPropBox>
+            <Styles.propBox>{exer.name}</Styles.propBox>
+            <Styles.propBox>{exer.description}</Styles.propBox>
+            <Styles.propBox>{exer.discipline}</Styles.propBox>
+            <Styles.propBox>{exer.video?"SI":"NO"}</Styles.propBox>
+        </Styles.allPropBox>
+        </>
     )
 }
 

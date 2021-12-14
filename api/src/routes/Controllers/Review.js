@@ -1,10 +1,11 @@
 const { User, Event , Review} = require("../../db");
 
 const sendReview = async(req , res) =>{
-    let {review, value, profesor, gym, event} = req.body
+    let {subject, review, value, profesor, gym, event} = req.body
 
     try{
     let newReview = await Review.create({
+        subject,
         review,
         value,
         event,

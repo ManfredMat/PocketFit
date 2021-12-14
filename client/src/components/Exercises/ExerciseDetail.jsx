@@ -7,12 +7,12 @@ import { Link } from "react-router-dom";
 import ReactPlayer from 'react-player';
 
 const ExerciseDetail =() => {    
-    let {id} = useParams();
+    //let {id} = useParams();
     let exercise = useSelector((state)=> state.exercise.exerciseDetail)
     let dispatch  = useDispatch();
-    useEffect(()=>{
+    /*useEffect(()=>{
         dispatch(get_exercise_by_id(id)) 
-    },[dispatch])
+    },[dispatch])*/
     return(
         <>
         {exercise?<div>

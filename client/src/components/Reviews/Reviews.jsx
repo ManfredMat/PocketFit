@@ -1,8 +1,10 @@
-
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { getReviews, orderAscDes, filterReviews } from "../../redux/Actions/actions-Feedback";
 import Pagination from './Paginado'
+import Style from "./Reviews.styles";
+import EstrellaAmarilla from "../../assets/img/iconos/reviews/Star1.svg"
+import EstrellaNegra from "../../assets/img/iconos/reviews/Star5.svg"
 
 function Reviews(){
     const dispatch = useDispatch();
@@ -13,7 +15,9 @@ function Reviews(){
     const [reviewsPerPage, setReviewsPerPage] = useState(5)
     const indexOfLastReview = currentPage * reviewsPerPage
     const indexOfFirstReview = indexOfLastReview - reviewsPerPage 
-    const currentReview = everyReview.slice(indexOfFirstReview, indexOfLastReview)
+    const currentReview = everyReview.length && everyReview.slice(indexOfFirstReview, indexOfLastReview) 
+
+    let unArray = [1,2,3,4,5]
 
     useEffect(()=>{
         dispatch(getReviews())
@@ -50,38 +54,49 @@ function Reviews(){
 
 
     return(
-        <div>
-            <div>Filtrar
-                <div>
-                <select name= "stars" value = {order.stars} onChange = {e => handleFilterCreated(e)}>
+        <>
+        <Style.GlobalStyle/>
+        <Style.Container>
+            <Style.Titulo>Reseñas</Style.Titulo>
+            <Style.Barra>Ordenar
+                <Style.Filter onChange = {e=> handleSort(e)}>
+                    <option value = "ascendent">Menor a Mayor</option>
+                    <option value = "descendent">Mayor a Menor</option>
+                </Style.Filter>
+                Filtrar
+                <Style.Filter name= "stars" value = {order.stars} onChange = {e => handleFilterCreated(e)}>
                     <option value="All">All</option>
                     <option value="1">1 estrella</option>
                     <option value="2">2 estrella</option>
                     <option value="3">3 estrella</option>
                     <option value="4">4 estrella</option>
                     <option value="5">5 estrella</option>
-                </select>
-                </div>
-                <div>
-                <select onChange = {e=> handleSort(e)}>
-                    <option value = "ascendent">Menor a Mayor</option>
-                    <option value = "descendent">Mayor a Menor</option>
-                </select>
-                </div>
-            </div>
+                </Style.Filter>
+            </Style.Barra>
+     
             <div>
             {currentReview.length && currentReview.map((review, index)=>{
                         return(
-                        <div  key={index}>
+                        <Style.Card  key={index}>
+                            <>
+                             <Style.DivBarra> 
+                            <Style.Type3>
+                            <Style.Type >
+                            {review.profesor? `Profesor: ${review.profesor}` : ""} 
+                            {review.event? `Event: ${review.event}` : ""}                             
+                            {review.gym? `GYM:` :  ""}
+                            </Style.Type>
+                            <Style.Type2>{review.subject}</Style.Type2>
+                            </Style.Type3>
+                            <div style={{width: "14%", display: 'flex',justifyContent: "flex-end", marginLeft: "1em"} }>{unArray.map((e, index)=>
+                                e <= review.value ? <Style.Estrellita src={EstrellaAmarilla} alt="Star" key={index}/>  : <Style.Estrellita src={EstrellaNegra} alt="Star Empty" key={index}/>
+                            )}</div>
+                            </Style.DivBarra>
+                           
                             
-                             <h2> 
-                            {review.profesor? `profesor: ${review.profesor}` : ""} 
-                            {review.event? `event: ${review.event}` : ""}                             
-                            {review.gym? `gym: ${review.event}` :  ""} 
-                            value: {review.value}
-                            </h2>
-                            <h3>review: {review.review} </h3>
-                        </div>
+                            <Style.InnerCard>{review.review} </Style.InnerCard>
+                            </>
+                        </Style.Card >
                     )})
                 }
             </div>
@@ -92,7 +107,9 @@ function Reviews(){
                             pagination = {pagination}
                 /> 
 
-        </div>
+        </Style.Container>
+      
+        </>
     )
 }
 

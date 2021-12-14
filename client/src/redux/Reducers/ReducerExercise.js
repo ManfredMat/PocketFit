@@ -1,9 +1,10 @@
-import {GET_EXERCISES , GET_EXERCISE_BY_ID} from "../Actions/actions-exercise";
+import {GET_EXERCISES , GET_EXERCISE_BY_ID , RENDER_EXERCISE} from "../Actions/actions-exercise";
 
 
 const initialState = {
     exercises: [],
     exerciseDetail:null,
+    exerciseRender:false,
   };
 
 function reducerExercise(state = initialState, action) {
@@ -17,6 +18,12 @@ function reducerExercise(state = initialState, action) {
         return{
           ...state,
           exerciseDetail:action.payload
+        }
+      }
+      case RENDER_EXERCISE:{
+        return{
+          ...state,
+          exerciseRender:action.payload
         }
       }
       default:

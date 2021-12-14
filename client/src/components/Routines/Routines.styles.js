@@ -521,3 +521,10 @@ export const RoundsContainer = styled.div`
     text-transform: uppercase;
     font-size: 0.80rem;
 `
+export const HeaderConteiner= styled.div`
+display:flex;
+justify-content: flex-start;
+width:100%;
+margin-top:0.5rem;
+margin-bottom:0.5rem;
+`
