@@ -51,6 +51,7 @@ const Styles = {
 
     ButtonText: styled.Text`
         font-family: "Poppins_500Medium";
+        align-self: center;
     `,
 
     ProfileButtonsContainer: styled.View`

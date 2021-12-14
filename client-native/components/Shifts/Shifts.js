@@ -6,7 +6,7 @@ import ShiftsAvailable from './ShiftsAvailable'
 import { getAllShifts, getShiftId } from '../../redux/Actions/actions-Shifts'
 import { useDispatch, useSelector } from 'react-redux';
 import { Cards, ContainerS, Available } from './Shifts.Styles'
-import { ProxShifts, DarkContainer } from '../Training/Training.Styles'
+import { ProxShifts, DarkContainer, NoShift } from '../Training/Training.Styles'
 
 export default function Shifts() {
     const date = new Date()
@@ -89,22 +89,23 @@ export function PreViewShifts() {
                 ?   <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <ProxShifts>
                         <View>
-                            <Text style={{fontSize: 20}}>{myShift[0].weekday} {myShift[0].day}/{myShift[0].month}</Text>
+                            <Text style={{fontSize: 20}}>{myShift[0].weekday}</Text>
+                            <Text style={{fontSize: 25}}>{myShift[0].day}/{myShift[0].month}/{myShift[0].year}</Text>
                         </View>
                     </ProxShifts>
                     <Available>
-                        <DarkContainer>
-                            <Text style={{color: "#fff"}}>{myShift[0].availability}/{myShift[0].capacity}</Text>
+                        <DarkContainer style={{width:90, marginBottom: 5}}>
+                            <Text style={{color: "#fff", fontSize: 20, alignSelf: 'center'}}>{myShift[0].availability}/{myShift[0].capacity}</Text>
                         </DarkContainer>
                         <Text>{myShift[0].beginning}hs a {myShift[0].ending}hs</Text>
                     </Available>
                    </View>
-                :
-                <View>
+                :<View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <NoShift>
                     <Text  style={{alignSelf: 'center', fontSize: 17}}>¿Aun no sacaste un turno?</Text>
-                </View>
+                </NoShift>
+                 </View>
             }
-          
         </View>
     )
 }
