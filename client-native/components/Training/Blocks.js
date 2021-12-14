@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import {View, Text, Image} from 'react-native'
+import {View, Text, Image, ActivityIndicator} from 'react-native'
 import { Excercise } from './Training.Styles'
 import { getAllWeekPlan } from '../../redux/Actions/actions-Training';
 import { useDispatch, useSelector } from 'react-redux';
-import loading from '../../assets/loading.gif'
 import CardExercise from './CardExercise'
 
 
@@ -41,7 +40,7 @@ export default function Blocks({num}) {
                 today.length !== 0 
                     ? today[0] === undefined
                     ?  <Excercise>
-                         <Image style={{width: 100, height: 100, alignSelf: 'center'}}source={loading}/>
+                         <ActivityIndicator size="large" color="#6AE056" />
                        </Excercise>
                     :
                     num === 0 ?
@@ -72,7 +71,7 @@ export default function Blocks({num}) {
                         )
                     : 
                     <Excercise>
-                        <Image style={{width: 100, height: 100, alignSelf: 'center'}}source={loading}/>
+                        <ActivityIndicator size="large" color="#6AE056" />
                    </Excercise>
                   }
         </View>
