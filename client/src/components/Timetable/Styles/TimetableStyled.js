@@ -13,8 +13,6 @@ const Styles = {
     position: relative;
     width: -webkit-fill-available;
     background-color: var(--darkGray-base);
-    overflow: hidden;
-    height: 100vh;
   `,
   StartBodyStyled: styled.div`
     padding: 1.3em 0em 0em 3em;
@@ -41,7 +39,7 @@ const Styles = {
   RigthColumnStyledRow1: styled.div`
     display: flex;
     flex-direction: column;
-    height: 48%;
+    height: 60%;
   `,
   RigthColumnStyledRow2: styled.div`
     display: flex;

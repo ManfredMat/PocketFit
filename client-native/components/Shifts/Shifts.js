@@ -5,7 +5,8 @@ import MyShiftsCard from './MyShiftsCard'
 import ShiftsAvailable from './ShiftsAvailable'
 import { getAllShifts, getShiftId } from '../../redux/Actions/actions-Shifts'
 import { useDispatch, useSelector } from 'react-redux';
-import { Cards, ContainerS } from './Shifts.Styles'
+import { Cards, ContainerS, Available } from './Shifts.Styles'
+import { ProxShifts, DarkContainer, NoShift } from '../Training/Training.Styles'
 
 export default function Shifts() {
     const date = new Date()
@@ -76,7 +77,7 @@ export default function Shifts() {
     )
 }
 
-export function PreVieShifts() {
+export function PreViewShifts() {
     const dispatch = useDispatch()
     const getUserid = useSelector((state) => state.reducerUser.user.id)
     useEffect(()=>{dispatch(getShiftId(getUserid))},[dispatch])
@@ -85,16 +86,26 @@ export function PreVieShifts() {
         <View>
             {
                 myShift.length !== 0
-                ?   <View>
-                        <Text style={{fontSize: 20}}>{myShift[0].weekday} {myShift[0].day}/{myShift[0].month}</Text>
-                        <Text>{myShift[0].beginning}hs - {myShift[0].ending}hs</Text>
+                ?   <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <ProxShifts>
+                        <View>
+                            <Text style={{fontSize: 20}}>{myShift[0].weekday}</Text>
+                            <Text style={{fontSize: 25}}>{myShift[0].day}/{myShift[0].month}/{myShift[0].year}</Text>
+                        </View>
+                    </ProxShifts>
+                    <Available>
+                        <DarkContainer style={{width:90, marginBottom: 5}}>
+                            <Text style={{color: "#fff", fontSize: 20, alignSelf: 'center'}}>{myShift[0].availability}/{myShift[0].capacity}</Text>
+                        </DarkContainer>
+                        <Text>{myShift[0].beginning}hs a {myShift[0].ending}hs</Text>
+                    </Available>
                    </View>
-                :
-                <View>
-                    <Image  style={{width: 100, height: 100, alignSelf: 'center'}} source={loading}/>
-                </View>
+                :<View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <NoShift>
+                    <Text  style={{alignSelf: 'center', fontSize: 17}}>¿Aun no sacaste un turno?</Text>
+                </NoShift>
+                 </View>
             }
-          
         </View>
     )
 }

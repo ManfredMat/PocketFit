@@ -7,10 +7,10 @@ import Pagination from './Paginado'
 function Reviews(){
     const dispatch = useDispatch();
     const everyReview = useSelector((state)=> state.reviews.reviews)
-    const filteredReviews = useSelector((state)=> state.allReviews)
-    const [order, setOrder] = useState('')
+    const filteredReviews = useSelector((state)=> state.reviews.allReviews)
+    const [order, setOrder] = useState({stars: "0"})
     const [currentPage, setCurrentPage] = useState(1) 
-    const [reviewsPerPage, setReviewsPerPage] = useState(6)
+    const [reviewsPerPage, setReviewsPerPage] = useState(5)
     const indexOfLastReview = currentPage * reviewsPerPage
     const indexOfFirstReview = indexOfLastReview - reviewsPerPage 
     const currentReview = everyReview.slice(indexOfFirstReview, indexOfLastReview)
@@ -28,43 +28,59 @@ function Reviews(){
 
     function handleSort(e){
         e.preventDefault();
+        setOrder(() => {
+            return {
+                ...order,
+                [e.target.name]: e.target.value
+            }
+        })
         dispatch(orderAscDes(e.target.value));
-        setCurrentPage(1);
-        setOrder(e.target.value)
     }
 
     function handleFilterCreated(e){
         e.preventDefault()
+        setOrder(() => {
+            return {
+                ...order,
+                [e.target.name]: e.target.value
+            }
+        })
         dispatch(filterReviews(e.target.value))
-        everyReview(e.target.value)
     }
+
 
     return(
         <div>
             <div>Filtrar
-                <select value = {filterReviews} onChange = {e => handleFilterCreated(e)}>
-                    <option>1 estrella</option>
-                    <option>2 estrella</option>
-                    <option>3 estrella</option>
-                    <option>4 estrella</option>
-                    <option>5 estrella</option>
+                <div>
+                <select name= "stars" value = {order.stars} onChange = {e => handleFilterCreated(e)}>
+                    <option value="All">All</option>
+                    <option value="1">1 estrella</option>
+                    <option value="2">2 estrella</option>
+                    <option value="3">3 estrella</option>
+                    <option value="4">4 estrella</option>
+                    <option value="5">5 estrella</option>
                 </select>
-                <select value = {orderAscDes} onChange = {e=> handleSort(e)}>
-                    <option>Menor a Mayor</option>
-                    <option>Mayor a Mayor</option>
+                </div>
+                <div>
+                <select onChange = {e=> handleSort(e)}>
+                    <option value = "ascendent">Menor a Mayor</option>
+                    <option value = "descendent">Mayor a Menor</option>
                 </select>
+                </div>
             </div>
             <div>
-            {everyReview?.map((review, index)=>{
+            {currentReview.length && currentReview.map((review, index)=>{
                         return(
                         <div  key={index}>
                             
-                             <div> review = {review.review} </div>
-                             <div> value = {review.value} </div>
-                              <div>profesor = {review.profesor} </div>
-                             <div> event = {review.event} </div>
-                             <div> gym = {review.gym} </div>
-                            
+                             <h2> 
+                            {review.profesor? `profesor: ${review.profesor}` : ""} 
+                            {review.event? `event: ${review.event}` : ""}                             
+                            {review.gym? `gym: ${review.event}` :  ""} 
+                            value: {review.value}
+                            </h2>
+                            <h3>review: {review.review} </h3>
                         </div>
                     )})
                 }
@@ -72,7 +88,7 @@ function Reviews(){
 
 
              <Pagination reviewsPerPage = {reviewsPerPage}
-                            everyReview = {everyReview.length}
+                            everyReview = {filteredReviews.length}
                             pagination = {pagination}
                 /> 
 

@@ -26,7 +26,7 @@ router.get("/", getAllUsers);
 router.get("/sort", sortAllUsers);
 router.get("/professors", getProfessors);
 router.get("/paystatus/all", getUserPayStatus);
-router.get("/paystatus", getOneUserPayStatus);
+router.put("/paystatus", getOneUserPayStatus);
 router.put("/:id", uploadImage, modifyUser);
 router.get("/:id", getSpeficicUser);
 router.post("/traine_plan/:id", createRoutine);

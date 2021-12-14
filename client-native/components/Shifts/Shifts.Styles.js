@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 
 const lemon = '#D9FB52'
 const darkGrayBase = '#020E12'
-
+const lime = '#CEFA1F'
 export const ContainerS = styled.View`
     background-color: ${darkGrayBase};
     width: 100%;
@@ -32,4 +32,13 @@ export const Avariable = styled.View`
     width: 93%;
     margin: 5px;
     opacity: 0.7;
+`
+export const Available = styled.View`
+    background-color: #D9FB52;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    align-items: center;
+    width: 140px;
+    height: 90px;
+    padding: 10px;
 `

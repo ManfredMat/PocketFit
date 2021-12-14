@@ -8,7 +8,7 @@ import {
 } from "../../redux/Actions/actions-Activities";
 import Styles from "./NewClass.styles";
 
-const NewClass = ({ display, name, kind, close }) => {
+const NewClass = ({ display, kind, close }) => {
   const dispatch = useDispatch();
   const professors = useSelector((state) => state.activities.professors);
   moment.locale();
@@ -17,9 +17,17 @@ const NewClass = ({ display, name, kind, close }) => {
     dispatch(getProfessors());
   }, [dispatch]);
 
+  const eventname = useSelector((state) => state.activities.eventname);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setInput({ ...input, name: eventname });
+    }, 1000);
+  }, [eventname]);
+
   const [input, setInput] = useState({
     kindOfEvent: kind,
-    name: name,
+    name: "",
     description: "",
     month: 0,
     hour: 0,
@@ -85,7 +93,7 @@ const NewClass = ({ display, name, kind, close }) => {
               ))}
             </Styles.Select>
           </Styles.InputContainer>
-          
+
           <Styles.InputContainer>
             <Styles.Label>Capacidad</Styles.Label>
             <Styles.Input
@@ -95,18 +103,22 @@ const NewClass = ({ display, name, kind, close }) => {
               onChange={(e) => parseCapacity(e)}
             />
           </Styles.InputContainer>
-          
+
           <Styles.InputContainer>
             <Styles.Label>Fecha</Styles.Label>
             <Styles.Input type="date" onChange={(e) => parseDate(e)} />
           </Styles.InputContainer>
-          
+
           <Styles.InputContainer>
             <Styles.Label>Horario de inicio</Styles.Label>
-            <Styles.Input type="time" name="hour" onChange={(e) => parseHour(e)} />
+            <Styles.Input
+              type="time"
+              name="hour"
+              onChange={(e) => parseHour(e)}
+            />
           </Styles.InputContainer>
         </Styles.Grid>
-        
+
         <Styles.InputContainer>
           <Styles.Label>Descripción</Styles.Label>
           <Styles.Description
@@ -121,7 +133,9 @@ const NewClass = ({ display, name, kind, close }) => {
 
         <Styles.ButtonContainer>
           <Styles.SubmitButton type="submit">Crear</Styles.SubmitButton>
-          <Styles.CancelButton onClick={() => close(false)}>Cancelar</Styles.CancelButton>
+          <Styles.CancelButton onClick={() => close(false)}>
+            Cancelar
+          </Styles.CancelButton>
         </Styles.ButtonContainer>
       </Styles.Form>
     </Styles.Container>

@@ -28,15 +28,17 @@ const Styles = {
     `,
 
     GreenButton: styled.TouchableOpacity`
-    background-color: ${green};
-    border-radius: 10px;
-    align-self: center;
-    padding: 4px;
-    height: 30px;
-    width: 110px;
-    margin-top: 10px;
-    margin-bottom: 20px;
+        background-color: ${green};
+        border-radius: 10px;
+        align-self: center;
+        padding: 4px;
+        height: 30px;
+        width: 130px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        font-family: "Poppins_500Medium";
     `,
+
 }
 
 export default Styles;

@@ -129,7 +129,6 @@ function reducerUsers(state = initialState, action) {
             const format = `${newDate.getFullYear()}-${newDate.getMonth() + 1}-${newDate.getUTCDate()}T00:00:00.000Z`;
             return format;
         })();
-        console.log(dateFormat, "DATE_FORMAT")
         
         let filteredUsers = [];
         let alDia = [];
@@ -142,8 +141,7 @@ function reducerUsers(state = initialState, action) {
             fueraDeTermino.push(state.searchedUsers[i]);
           }
         }
-        console.log(alDia, "AL_DIA")
-        console.log(fueraDeTermino, "FUERA_DE_TERMINO")
+        
         alDia.map((users) => {
           if (users.imageData) users.imageData = users.imageData.toString("base64");
         });
@@ -157,7 +155,7 @@ function reducerUsers(state = initialState, action) {
         } else {
           filteredUsers = fueraDeTermino
         }
-        console.log(filteredUsers, "FILTERED_USERS")
+        
         if (filteredUsers.length === 0) {
           return {
             ...state,

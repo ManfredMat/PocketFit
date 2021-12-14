@@ -3,6 +3,8 @@ const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const session = require("express-session");
+const { DataTypes } = require("sequelize");
+
 
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
@@ -40,7 +42,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 
 
-const { Event , Exercise  , Routine , Timetable , User  , Block, Shift , Weekplan , Review} = sequelize.models;
+const { Event , Exercise  ,UserEvent, Routine , Timetable , User  , Block, Shift , Weekplan , Review} = sequelize.models;
 
 
 
@@ -55,8 +57,8 @@ Shift.belongsToMany(User, { through: "UserShift" });
 Shift.belongsToMany(Timetable, { through: "ShiftTimetable" });
 Timetable.belongsToMany(Shift, { through: "ShiftTimetable" });
 
-User.belongsToMany(Event, { through: "UserEvent" });
-Event.belongsToMany(User, { through: "UserEvent" });
+User.belongsToMany(Event, { through: "userShift" });
+Event.belongsToMany(User, { through: "userShift" });
 
 Routine.belongsToMany(Block, { through: "BlockRoutine" });
 Block.belongsToMany(Routine, { through: "BlockRoutine" });

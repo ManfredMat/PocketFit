@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { View, Text } from 'react-native'
+import { Text } from 'react-native'
 import { Switch } from 'react-native-elements';
-import { ViewEX, Pesa } from './Training.Styles';
-import pesa from '../../assets/pesa.png'
+import { ViewEX, DarkContainer, Excercise } from './Training.Styles';
 import { trainingStats } from '../../redux/Actions/actions-Training';
 import { useDispatch } from 'react-redux';
 export default function CardExercise({reps, exercise}) {
@@ -14,30 +13,22 @@ export default function CardExercise({reps, exercise}) {
             !isEnabled ? dispatch(trainingStats(1)) : null;   
         }, 1000);
     }
- 
     return (
-        <View style={{display: 'flex', flexDirection: 'row-reverse'}}>
-        <View>
+        <Excercise style={{ backgroundColor: isEnabled ? '#6AE056' : '#CEFA1F'}}>
+                 <ViewEX>
+                    <DarkContainer>
+                        <Text style={{color:'#fff', fontSize: 12}}>{exercise}</Text>
+                    </DarkContainer>
+                    <Text style={{fontSize: 12, marginRight: 10}}> Repeticiones </Text>
+                    <DarkContainer>
+                            <Text style={{color: "#fff"}}>{reps}</Text>
+                    </DarkContainer>
+                 </ViewEX>
          <Switch
-            trackColor={{ false: "#767577", true: "#6AE056" }}
-            thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"}
+            trackColor={{ false: "#767577", true: "#020E12"}}
+            thumbColor={isEnabled ? "#CEFA1F" : "#f4f3f4"}
             onValueChange={toggleSwitch}
-            disabled={isEnabled}
             value={isEnabled}/>
-        </View>
-            {
-                isEnabled 
-                ?<ViewEX>
-                    <View style={{display: 'flex', flexDirection: 'row', alignItems: 'center', marginRight: 35}}>
-                        <Text>COMPLETADO!</Text>
-                        <Pesa source={pesa}/>
-                    </View>
-                 </ViewEX>
-                : <ViewEX>
-                    <Text>{exercise}</Text>
-                    <Text style={{marginLeft: 40}}> Repeticiones: {reps}</Text>
-                 </ViewEX>
-            }
-        </View>
+        </Excercise>
     )
 }
