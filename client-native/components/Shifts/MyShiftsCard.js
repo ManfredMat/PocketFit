@@ -2,13 +2,14 @@ import React from 'react'
 import { View, Text, TouchableOpacity, Alert } from 'react-native'
 import { Cards } from './Shifts.Styles'
 import { deleteShiftId } from '../../redux/Actions/actions-Shifts'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 export default function MyShiftsCard({weekday, day , month, beginning, ending, year, id}) {
     const dispatch = useDispatch()
+    const getUserid = useSelector((state) => state.reducerUser.user.id)
     const Remove = ()=> {
-      dispatch(deleteShiftId(id))
+      dispatch(deleteShiftId(id, getUserid))
     }                                                                                                                           
 
     return (                                                               

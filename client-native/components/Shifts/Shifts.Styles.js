@@ -16,7 +16,7 @@ export const Cards = styled.View`
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: ${lemon};
+    background-color: ${lime};
     border-radius: 10px;
     padding: 5px;
     width: 93%;
@@ -31,7 +31,7 @@ export const Avariable = styled.View`
     padding: 5px;
     width: 93%;
     margin: 5px;
-    opacity: 0.7;
+    opacity: 0.9;
 `
 export const Available = styled.View`
     background-color: #D9FB52;
