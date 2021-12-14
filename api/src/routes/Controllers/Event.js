@@ -1,4 +1,4 @@
-const { Event, Timetable, User } = require("../../db");
+const { Event, Timetable, User, userEvent, UserEvent } = require("../../db");
 const multer = require("multer");
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
@@ -143,16 +143,17 @@ const getOneEvent = async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ["name"],
+          attributes: ["name", "paymentday", "status"],
           through: {
             attributes: [],
           },
         },
       ],
     });
-
-    let eventImg = event.imageData.toString("base64");
-    event["imageData"] = eventImg;
+    if (event.imageData) {
+      let eventImg = event.imageData.toString("base64");
+      event["imageData"] = eventImg;
+    }
 
     res.json(event);
   } catch (error) {
@@ -185,18 +186,77 @@ const getEventsByMonth = async (req, res) => {
   }
 };
 
-const updateEventProp = async (req, res) => {
-  const { id, prop } = req.params;
-  const { update } = req.body;
-  try {
-    const oneEvent = await Event.findOne({ where: { id: id } });
-    oneEvent[prop] = update;
-    await oneEvent.save();
-    res.send(oneEvent);
-  } catch (error) {
-    next(error);
+const updateEventProp = async (req, res, next) => {
+  if (req.file) {
+    const { id } = req.params;
+    const { name, month, nameday, day, hour, description, profesor, capacity } =
+      req.body;
+    const imageType = req.file.mimetype;
+    const imageName = req.file.originalname;
+    const imageData = req.file.buffer;
+    try {
+      await Event.update(
+        {
+          name,
+          month,
+          nameday,
+          day,
+          hour,
+          description,
+          profesor,
+          capacity,
+          imageType,
+          imageName,
+          imageData,
+        },
+        { where: { id: id } }
+      );
+
+      const updatedEvent = await Event.findOne({ where: { id: id } });
+      res.send(updatedEvent);
+    } catch (error) {
+      next(error);
+    }
+  } else {
+    const { id } = req.params;
+    const {
+      name,
+      month,
+      nameday,
+      day,
+      hour,
+      description,
+      profesor,
+      capacity,
+      users,
+    } = req.body;
+
+    try {
+      await Event.update(
+        { name, month, nameday, day, hour, description, profesor, capacity },
+        { where: { id: id } }
+      );
+
+      let usersId = users.map((user) => user.id);
+
+      const updatedEvent = await Event.findOne({
+        where: { id: id },
+      });
+
+      let usersForEvent = await User.findAll({
+        where: { id: usersId },
+      });
+
+      updatedEvent.setUsers(usersForEvent);
+
+      res.send(updatedEvent);
+    } catch (error) {
+      next(error);
+    }
   }
 };
+
+
 
 const removeEvent = async (req, res) => {
   const { id } = req.params;
@@ -217,4 +277,5 @@ module.exports = {
   updateEventProp,
   removeEvent,
   uploadImage,
+
 };

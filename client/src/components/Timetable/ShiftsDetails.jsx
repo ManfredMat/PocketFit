@@ -33,8 +33,9 @@ function ShiftsDetails({ screenHeight }) {
         <Styles.GlobalStyle />
         <Styles.BodyStyled screenHeight={screenHeight}>
           <Styles.StartBodyStyled>
-            <header>
+            <Styles.Header>
               <Styles.TitleH1Styled>Turnos Sala de Gimnasio</Styles.TitleH1Styled>
+              <Styles.ButtonsContainer>
               <Styles.GreenButton onClick={() => setTakeShift(!takeShift)}>
                 Agendar Turno
               </Styles.GreenButton>
@@ -44,8 +45,9 @@ function ShiftsDetails({ screenHeight }) {
               <Styles.YellowButton onClick={() => setconfigTurnos(!configTurnos)}>
                 Configurar Turnos
               </Styles.YellowButton>
+              </Styles.ButtonsContainer>
               
-            </header>
+            </Styles.Header>
             <div>
               <Styles.genWeekContainer>
                   <Styles.buttonsContainer>

@@ -8,6 +8,7 @@ const Styles = {
         height: 100vh;
         width: 100vw;
         display: flex;
+        z-index: 3;
         justify-content: center;
         align-items: center;
         background-color: rgba(0,0,0,0.8);

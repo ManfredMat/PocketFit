@@ -1,19 +1,27 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import moment from "moment";
 import "moment/locale/es";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postEvent } from "../../redux/Actions/actions-Activities";
 import Styles from "./NewEvent.styles";
 
-const NewEvent = ({ display, name, kind, close }) => {
+const NewEvent = ({ display, kind, close }) => {
   const dispatch = useDispatch();
   moment.locale();
+
+  const eventname = useSelector((state) => state.activities.eventname);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setInput({ ...input, name: eventname });
+    }, 1000);
+  }, [eventname]);
 
   const [input, setInput] = useState({
     photo: null,
     kindOfEvent: kind,
-    name: name,
+    name: "",
     description: "",
     month: 0,
     hour: 0,
@@ -84,7 +92,9 @@ const NewEvent = ({ display, name, kind, close }) => {
                 type="file"
                 name="photo"
                 accept=".jpg, .jpeg"
-                onChange={(e) => setInput({ ...input, photo: e.target.files[0] })}
+                onChange={(e) =>
+                  setInput({ ...input, photo: e.target.files[0] })
+                }
               />
             </Styles.InputContainer>
             <Styles.InputContainer>
@@ -106,7 +116,11 @@ const NewEvent = ({ display, name, kind, close }) => {
             </Styles.InputContainer>
             <Styles.InputContainer>
               <Styles.Label>Horario</Styles.Label>
-              <Styles.Input type="time" name="hour" onChange={(e) => parseHour(e)} />
+              <Styles.Input
+                type="time"
+                name="hour"
+                onChange={(e) => parseHour(e)}
+              />
             </Styles.InputContainer>
             <Styles.InputContainer>
               <Styles.Label>Capacidad</Styles.Label>
@@ -122,7 +136,9 @@ const NewEvent = ({ display, name, kind, close }) => {
 
         <Styles.ButtonContainer>
           <Styles.SubmitButton type="submit">Crear</Styles.SubmitButton>
-          <Styles.CancelButton onClick={() => close(false)}>Cancelar</Styles.CancelButton>
+          <Styles.CancelButton onClick={() => close(false)}>
+            Cancelar
+          </Styles.CancelButton>
         </Styles.ButtonContainer>
       </Styles.Form>
     </Styles.Container>

@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NewClass from "./NewClass";
 import NewEvent from "./NewEvent";
 import NewHoliday from "./NewHoliday";
-import { useState } from "react";
+import { useDispatch } from "react-redux";
 import Styles from "./Activities.styles";
+import { putEventName } from "../../redux/Actions/actions-Activities";
 
 //render con prop
 const Activities = ({ select, display }) => {
@@ -12,17 +13,23 @@ const Activities = ({ select, display }) => {
   const [nuevoFeriado, setNuevoFeriado] = React.useState(false);
   const [ename, setEname] = useState("");
   const [etype, setEtype] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if(select === "Clase") {
+    if (select === "Clase") {
       setEtype("Clases");
       setNuevaClase(true);
     }
-    if(select === "Evento") {
+    if (select === "Evento") {
       setEtype("Evento");
       setNuevoEvento(true);
-    } 
-  }, [])
+    }
+  }, [select]);
+
+  function handleChange(e) {
+    setEname(e.target.value);
+    dispatch(putEventName(ename));
+  }
 
   function handleSelect(e) {
     switch (e.target.value) {
@@ -52,7 +59,9 @@ const Activities = ({ select, display }) => {
   return (
     <Styles.Container>
       <Styles.Card>
-        <Styles.CloseButton onClick={() => display(false)}>X</Styles.CloseButton>
+        <Styles.CloseButton onClick={() => display(false)}>
+          X
+        </Styles.CloseButton>
         <Styles.CardTop>
           <Styles.CardTitle>Crear Actividad</Styles.CardTitle>
           <Styles.CardTopInputsContainer>
@@ -60,63 +69,83 @@ const Activities = ({ select, display }) => {
             <Styles.CardTopInput
               type="text"
               placeholder="Escribe un nombre..."
-              onChange={(e) => setEname(e.target.value)}
+              onChange={(e) => handleChange(e)}
             />
 
             <Styles.CardTopLabel>Tipo</Styles.CardTopLabel>
-            {
-              select === "Clase" ?
+            {select === "Clase" ? (
               <Styles.CardTopSelect onChange={(e) => handleSelect(e)}>
                 <Styles.CardSelectOption value="" disabled>
                   Elija una opción...
                 </Styles.CardSelectOption>
-                <Styles.CardSelectOption value="Clases" selected>Clase</Styles.CardSelectOption>
-                <Styles.CardSelectOption value="Evento">Evento</Styles.CardSelectOption>
-                <Styles.CardSelectOption value="Feriado">Feriado</Styles.CardSelectOption>
-              </Styles.CardTopSelect> :
-
-              select === "Evento" ? 
+                <Styles.CardSelectOption value="Clases" selected>
+                  Clase
+                </Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Evento">
+                  Evento
+                </Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Feriado">
+                  Feriado
+                </Styles.CardSelectOption>
+              </Styles.CardTopSelect>
+            ) : select === "Evento" ? (
               <Styles.CardTopSelect onChange={(e) => handleSelect(e)}>
                 <Styles.CardSelectOption value="" disabled>
                   Elija una opción...
                 </Styles.CardSelectOption>
-                <Styles.CardSelectOption value="Clases">Clase</Styles.CardSelectOption>
-                <Styles.CardSelectOption value="Evento" selected>Evento</Styles.CardSelectOption>
-                <Styles.CardSelectOption value="Feriado">Feriado</Styles.CardSelectOption>
-              </Styles.CardTopSelect> :
-
+                <Styles.CardSelectOption value="Clases">
+                  Clase
+                </Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Evento" selected>
+                  Evento
+                </Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Feriado">
+                  Feriado
+                </Styles.CardSelectOption>
+              </Styles.CardTopSelect>
+            ) : (
               <Styles.CardTopSelect onChange={(e) => handleSelect(e)}>
                 <Styles.CardSelectOption value="" disabled selected>
                   Elija una opción...
                 </Styles.CardSelectOption>
-                <Styles.CardSelectOption value="Clases">Clase</Styles.CardSelectOption>
-                <Styles.CardSelectOption value="Evento">Evento</Styles.CardSelectOption>
-                <Styles.CardSelectOption value="Feriado">Feriado</Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Clases">
+                  Clase
+                </Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Evento">
+                  Evento
+                </Styles.CardSelectOption>
+                <Styles.CardSelectOption value="Feriado">
+                  Feriado
+                </Styles.CardSelectOption>
               </Styles.CardTopSelect>
-            }
+            )}
           </Styles.CardTopInputsContainer>
         </Styles.CardTop>
 
-        {
-          etype === "" ?
+        {etype === "" ? (
           <Styles.CardBottom>
             <Styles.SelectEmpty>
               Seleccione un tipo de actividad...
             </Styles.SelectEmpty>
-          </Styles.CardBottom> :
+          </Styles.CardBottom>
+        ) : (
           <Styles.CardBottom>
             {nuevaClase && (
-              <NewClass close={display} display={setNuevaClase} name={ename} kind={etype} />
+              <NewClass close={display} display={setNuevaClase} kind={etype} />
             )}
             {nuevoEvento && (
-              <NewEvent close={display} display={setNuevoEvento} name={ename} kind={etype} />
+              <NewEvent close={display} display={setNuevoEvento} kind={etype} />
             )}
             {nuevoFeriado && (
-              <NewHoliday close={display} display={setNuevoFeriado} name={ename} kind={etype} />
+              <NewHoliday
+                close={display}
+                display={setNuevoFeriado}
+                name={ename}
+                kind={etype}
+              />
             )}
           </Styles.CardBottom>
-        }
-
+        )}
       </Styles.Card>
     </Styles.Container>
   );
