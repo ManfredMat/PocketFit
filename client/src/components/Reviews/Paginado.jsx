@@ -1,4 +1,5 @@
 import React from "react";
+import Style from "./Paginado.styles";
 
 
 export default function Pagination({reviewsPerPage, everyReview, pagination}){
@@ -9,15 +10,17 @@ export default function Pagination({reviewsPerPage, everyReview, pagination}){
     }
 
     return(
-        <div >
-            <ul >
+        <>
+        
+            <Style.Unorder >
                 {pageNumber  && pageNumber.map(number =>{
                     return(
-                    <li key = {number} >
-                    <button  onClick = {()=> pagination(number)} > {number} </button>
-                    </li>)
+                    <Style.Order key = {number} >
+                    <Style.Button  onClick = {()=> pagination(number)} ><p>{number} </p> </Style.Button>
+                    </Style.Order>)
                 })}
-            </ul>
-        </div>
+            </Style.Unorder>
+        
+        </>
     )
 }
