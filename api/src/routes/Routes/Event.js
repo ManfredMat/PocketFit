@@ -6,6 +6,7 @@ const {
   updateEventProp,
   removeEvent,
   getEventsByMonth,
+
 } = require("../Controllers/Event");
 const router = Router();
 const { Event } = require("../../db.js");
@@ -22,6 +23,9 @@ router.post("/", uploadImage, createEvent);
 router.put("/:id", uploadImage, updateEventProp);
 
 router.delete("/remove/:id", removeEvent);
+
+
+
 router.post("/bulk", async (req, res) => {
   res.json(await Event.bulkCreate(req.body));
 });
