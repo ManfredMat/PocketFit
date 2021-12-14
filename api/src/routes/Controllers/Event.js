@@ -1,4 +1,4 @@
-const { Event, Timetable, User } = require("../../db");
+const { Event, Timetable, User, userEvent, UserEvent } = require("../../db");
 const multer = require("multer");
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
@@ -256,6 +256,8 @@ const updateEventProp = async (req, res, next) => {
   }
 };
 
+
+
 const removeEvent = async (req, res) => {
   const { id } = req.params;
 
@@ -275,4 +277,5 @@ module.exports = {
   updateEventProp,
   removeEvent,
   uploadImage,
+
 };
