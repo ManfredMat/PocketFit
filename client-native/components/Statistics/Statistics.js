@@ -86,7 +86,7 @@ export default function Statistics() {
     return (
         <Stats>
             <ScrollView>
-                <Text style={{color:'#6AE056', fontSize: 25,  marginTop: 60, marginLeft: 10}}>Estadisticas</Text>
+                <Text style={{color:'#6AE056', fontSize: 25,  marginTop: 60, marginLeft: 10, fontFamily:"Poppins_500Medium"}}>Estadisticas</Text>
                 <View style={{alignItems: 'center'}}>
                     <ProgressChart
                         data={data}
@@ -200,7 +200,7 @@ export default function Statistics() {
                     </BlueBox>
                     </Data>
                     <View style={{margin:15}}>
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <View style={{marginLeft: -12}}>
                             <TextW>Datos</TextW>
                         </View>
                         <View style={{flexDirection: 'row', marginTop: 10}}>

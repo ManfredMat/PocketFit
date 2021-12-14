@@ -23,7 +23,7 @@ export default function Training() {
                 <Routines>
                     <Excercise>
                         <View style={{width: 280}}>
-                            <Text style={{fontSize: 20, color: '#fff'}}>Bloque { num === 0 ? 'Uno': num === 1 ? 'Dos': num === 2 && 'Tres'}</Text>
+                            <Text style={{fontSize: 20, color: '#fff', fontFamily:"Poppins_500Medium"}}>Bloque { num === 0 ? 'Uno': num === 1 ? 'Dos': num === 2 && 'Tres'}</Text>
                         </View>
                         <View style={{flexDirection: 'row'}}>
                             <TouchableOpacity onPress={()=> num !==0 ? setNum(num - 1) : null}>
