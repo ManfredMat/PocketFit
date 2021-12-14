@@ -96,7 +96,7 @@ function NavBar({ screenHeight }) {
               />
             </Styles.StyledNavButton>
           </Link>
-          <Link to="/session/payments">
+{/*           <Link to="/session/payments">
             <Styles.StyledNavButton
               select={actual.includes("payments") ? true : false}
             >
@@ -105,7 +105,7 @@ function NavBar({ screenHeight }) {
                 className="payments"
               />
             </Styles.StyledNavButton>
-          </Link>
+          </Link> */}
           <Link to="/session/feedback">
             <Styles.StyledNavButton
               select={actual.includes("feed") ? true : false}
