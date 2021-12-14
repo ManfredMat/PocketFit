@@ -1,7 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+
 import Day from "./Day";
-import { DayContainer, LeftBarContainer, SaveDeleteChanges } from "./Routines.styles";
+import { DayContainer, LeftBarContainer, SaveDeleteChanges , HeaderConteiner } from "./Routines.styles";
+import Styles from "../Exercises/Styles/ExercisesStyled"
+import goBack from "../../assets/img/iconos/goBack.svg"
+import { useNavigate } from "react-router-dom";
 
 const weekDays = [
     {
@@ -416,12 +420,18 @@ const WeekTable = (props) => {
 
     }, [props.id]);
 
- 
+    let navigate = useNavigate()
+    function handlerClick(e){
+        e.preventDefault();
+        navigate("/session/users")
+    }
 
     return (
-        <>
-
+        <>  
+            <HeaderConteiner>
+            <Styles.SearchButton onClick={handlerClick}><img src={goBack} alt="search-icon" height={"30rem"}/></Styles.SearchButton >
             <h1>Plan Semanal <span style={{fontWeight: '400'}}>{userName ? `de ${userName}` :'General'}</span></h1>
+            </HeaderConteiner>
             <DayContainer>
                 <LeftBarContainer>
                     <div className='LeftBar-FirstBlock'></div>
