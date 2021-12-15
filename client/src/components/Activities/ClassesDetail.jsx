@@ -9,8 +9,9 @@ import ReactCardFlip from "react-card-flip";
 import moment from "moment";
 import "moment/locale/es";
 import fitnesslogo from "../../assets/img/fitnesslogo.svg";
+import Style from "./ClasesDetail.styles";
 
-function ClassesDetail({ id, display }) {
+function ClassesDetail({ id, display , setOverFlow }) {
   const dispatch = useDispatch();
 
   const [value, setValue] = useState(0);
@@ -100,34 +101,35 @@ function ClassesDetail({ id, display }) {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        position: "absolute",
-        width: "100vw",
-        height: "100vh",
-        backgroundColor: "#00000070",
-        top: 0,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
+    <Style.BodyGen
+      /* style={{
+          display: "flex",
+          position: "absolute",
+          width: "-webkit-fill-available",
+          height: "100vh",
+          backgroundColor: "#00000070",
+          top: 0,
+          left: 0,
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: "7",
+      }} */
     >
       <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-        <div
-          style={{
+        <Style.Contenedor
+           /* style={{
             display: "flex",
             width: "60%",
             height: "45%",
             padding: "2em",
             flexDirection: "column",
             alignItems: "flex-start",
-            backgroundColor: "grey",
-          }}
+            backgroundColor: "grey", }}*/
         >
           {event ? (
-            <div>
-              <button onClick={() => display(false)}>x</button>
-              <h2> {event.name} </h2>
+            <Style.Card>
+              <Style.Cruz onClick={() => {display(false); setOverFlow(false);}}>x</Style.Cruz>
+              <Style.Titulo> {event.name} </Style.Titulo>
               <button onClick={(e) => handleFlip(e)}>Editar</button>
               <img src={fitnesslogo} alt="class-img" />
               <h1>{event.profesor}</h1>
@@ -156,14 +158,14 @@ function ClassesDetail({ id, display }) {
                   );
                 })}
               </div>
-            </div>
+            </Style.Card>
           ) : (
             <div>
-              <button onClick={() => display(false)}>x</button>
+              <button onClick={() => {display(false); setOverFlow(false);}}>x</button>
               <p> ...Aún no hay Clases disponibles! </p>
             </div>
           )}
-        </div>
+        </Style.Contenedor>
 
         {/* INICIO DE REVERSO DE LA CARD!*/}
 
@@ -184,7 +186,7 @@ function ClassesDetail({ id, display }) {
                 handleSubmit(e);
               }}
             >
-              <button onClick={() => display(false)}>x</button>
+              <button onClick={() => {display(false);setOverFlow(false);}}>x</button>
 
               <input
                 type="text"
@@ -248,13 +250,13 @@ function ClassesDetail({ id, display }) {
             </form>
           ) : (
             <div>
-              <button onClick={() => display(false)}>x</button>
+              <button onClick={() => {display(false);setOverFlow(false);}}>x</button>
               <p> ...Aún no hay Clases disponibles! </p>
             </div>
           )}
         </div>
       </ReactCardFlip>
-    </div>
+    </Style.BodyGen>
   );
 }
 

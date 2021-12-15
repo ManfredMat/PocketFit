@@ -1,22 +1,23 @@
 import React from 'react'
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux";
+import Styles from "./Styles/ShiftPreviewStyled";
 
 
-function ShiftsPreview({ display }) {
+
+function ShiftsPreview({ display,setOverFlow }) {
     const shiftSelect = useSelector(state => state.timetable.shiftSelect)
 
     console.log(shiftSelect)
     return (
-        <>
-            <div style={{
-                display: "flex", position: "absolute", width: "-webkit-fill-available", height: "100vh", backgroundColor: "#00000070", top: 0, alignItems: "center",
-                justifyContent: "center"
-            }}>
-                <div style={{
-                    display: "flex", width: "40%", height: "35%", padding: "2em", flexDirection: "column",
-                    alignItems: "flex-start", backgroundColor: "grey"
-                }}>
+            <Styles.BodyStyled>
+                <Styles.BoxStyle>
                     <h2>Turno</h2>
+                    <Styles.CloseButton  onClick={() => {
+                        display(false);
+                        setOverFlow(false);
+                      }}>
+                x
+              </Styles.CloseButton>
                     <div style={{
                         display: "flex"
                     }}>
@@ -43,10 +44,8 @@ function ShiftsPreview({ display }) {
                                 : <p>Aun no hay turnos</p>}
                         </div>
                     </div>
-                    <button onClick={() => display(false)}>volver</button>
-                </div>
-            </div>
-        </>
+                </Styles.BoxStyle>
+            </Styles.BodyStyled>
     )
 }
 

@@ -59,8 +59,10 @@ const Styles = {
   ListContainer: styled.div`
     display: flex;
     width: -webkit-fill-available;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 0.8em;
+    font-size: ${(props) => props.font};
   `,
   TitleH3Styled: styled.h2`
     color: #ffffff;
