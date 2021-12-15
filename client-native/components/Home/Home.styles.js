@@ -8,6 +8,7 @@ const green = "#6AE056";
 const darkBlue = "#083645";
 const blueMedium = "#0D5972";
 const darkBlueBase = "#041D25";
+const greenMedium = "#588A58";
 
 
 const Styles = {
@@ -126,10 +127,10 @@ const Styles = {
         justify-content: space-between;
         margin-left: 8px;
         margin-right: 8px;
-        margin-bottom: 30px;
+        margin-bottom: 12px;
     `,
 
-    EventContainer: styled.View`
+    EventContainer: styled.TouchableOpacity`
         width: 67%;
         height: 160px;
         background-color: ${green};
@@ -153,7 +154,7 @@ const Styles = {
         font-family: "Poppins_500Medium";
     `,
 
-    HollidayContainer: styled.View`
+    HollidayContainer: styled.TouchableOpacity`
         width: 30%;
         height: 160px;
         background-color: ${darkBlue};
@@ -200,6 +201,36 @@ const Styles = {
         color: white;
         text-align: center;
         font-family: "Poppins_500Medium";
+    `,
+
+    SlidersIndicatorsContainer: styled.View`
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 20px;
+    `,
+
+    EventSliderIndicatorContainer: styled.View`
+        width: 67%; 
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    `,
+
+    HolidaySliderIndicatorContainer: styled.View`
+        width: 30%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;    
+    `,
+
+    CurrentSliderIndicator: styled.View`
+        width: 12px;
+        height: 12px;
+        border-radius: 9999px;
+        background-color: ${(props) =>
+            props.current ? "white" : greenMedium};
+        margin: 3px
     `,
 
     ViewDetailedRoutine: styled.Text`
