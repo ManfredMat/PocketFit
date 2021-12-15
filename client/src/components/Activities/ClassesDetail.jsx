@@ -8,7 +8,7 @@ import {
 import ReactCardFlip from "react-card-flip";
 import moment from "moment";
 import "moment/locale/es";
-import fitnesslogo from "../../assets/img/fitnesslogo.svg";
+import fitnesslogo from "../../assets/img/iconos/fotoperfil.svg";
 import Style from "./ClasesDetail.styles";
 
 function ClassesDetail({ id, display , setOverFlow }) {
@@ -128,25 +128,38 @@ function ClassesDetail({ id, display , setOverFlow }) {
         >
           {event ? (
             <Style.Card>
-              <Style.Cruz onClick={() => {display(false); setOverFlow(false);}}>x</Style.Cruz>
+              <Style.Cruz onClick={() => {display(false); setOverFlow(false);}}>X</Style.Cruz>
+              <Style.DivContenedorTitulo>
               <Style.Titulo> {event.name} </Style.Titulo>
-              <button onClick={(e) => handleFlip(e)}>Editar</button>
-              <img src={fitnesslogo} alt="class-img" />
-              <h1>{event.profesor}</h1>
-              <h2>Profesor</h2>
+              <Style.Edit onClick={(e) => handleFlip(e)}>Editar</Style.Edit>
+              </Style.DivContenedorTitulo>
+              <Style.ContenedorInfo>
+              <Style.Image src={fitnesslogo} alt="class-img" />
               <div>
-                <h3>Horario </h3>
-                <h3> {event.hour} hs. </h3>
-                <h3>Capacidad </h3>
-                <h3> {event.capacity} </h3>
-                <h3> Día de la semana </h3>
-                <h3>{event.day}</h3>
+              <h1 style={{fontWeight: "300"}}>{event.profesor}</h1>
+              <Style.Profesor>Profesor</Style.Profesor>
               </div>
-
-              <h2> Inscriptos</h2>
-              <h2> Nombre </h2>
-              <h2> Dia de pago </h2>
-              <h2> Pago </h2>
+              <Style.Info>
+                <Style.DivInfo>
+                <h3>Horario </h3>
+                <Style.DivData> {event.hour} hs. </Style.DivData>
+                </Style.DivInfo>
+                <Style.DivInfo>
+                <h3>Capacidad </h3>
+                <Style.DivData> {event.capacity} </Style.DivData>
+                </Style.DivInfo>
+                <Style.DivInfo>
+                <h3> Día de la semana </h3>
+                <Style.DivData>{event.day}</Style.DivData>
+                </Style.DivInfo>
+              </Style.Info>
+              </Style.ContenedorInfo>
+              <Style.Inscriptos> Inscriptos</Style.Inscriptos>
+              <div style={{marginBottom : "1em", display: "flex", width: "-webkit-fill-available", justifyContent: "space-between"}}>
+              <Style.DatosInscriptos> Nombre </Style.DatosInscriptos>
+              <Style.DatosInscriptos> Dia de pago </Style.DatosInscriptos>
+              <Style.DatosInscriptos> Pago </Style.DatosInscriptos>
+              </div>
               <div>
                 {event.users?.map((user) => {
                   return (
