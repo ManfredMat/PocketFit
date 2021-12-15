@@ -4,33 +4,41 @@ const Styles = {
   GlobalStyle: createGlobalStyle`
 * {
     margin:0;
-    
 }`,
-allPropBox: styled.div`
+AllPropBox: styled.div`
   display:flex;
   width:98%;
   justify-content: center;
 `,
-headerConteiner: styled.div`
+HeaderConteiner: styled.div`
   display:flex;
   justify-content: space-between;
-  width:100%%;
+  width:100%;
   margin-top:0.5rem;
   margin-bottom:0.5rem;
 `,      
-propBox: styled.h3`
+PropBox: styled.h3`
     background:var(--green-medium);
     width:25%;
-    margin:0.3rem;
-    ackground:rgb(79, 77, 77);    
+    margin:0.2rem;
+    height:1.5em;    
     border-radius: 0.3em;
     text-align:center;   
   `,
-propBoxList: styled.h3`
+PropBoxV2: styled.h3`
+background:var(--darkGray-base);
+width:25%;
+margin:0.2rem;
+height:1.5em;    
+border-radius: 0.3em;
+text-align:center;
+color:var(--green-medium);
+`,
+PropBoxList: styled.h3`
     background:var(--darkGray-medium);
     width:25%;
     margin:0.3rem;
-    ackground:rgb(79, 77, 77);    
+       
     border-radius: 0.3em;
     text-align:center;   
   `,
@@ -39,15 +47,16 @@ LinkGreen: styled.a`
     font-size: 1.5em;
     color: var(--green);
   `,
-allPropBoxComplete: styled.div`
+AllPropBoxComplete: styled.div`
   width:100%;
   justify-content: space-between;
-  color:white;
+  color:var(--darkGray-medium);
 `,
 
-exerciseConteiner : styled.div`
+ExerciseConteiner : styled.div`
 width:100%;
 background: var(--darkGray-base);
+padding:1em;
 `,
 HeaderPropList: styled.h3`
     
@@ -69,7 +78,7 @@ YellowButton: styled.button`
     border-radius: 0.5em;
     border: none;
     color: var(--darkGray-base);
-    width: 20rem;
+    width: 15rem;
     text-align:center; 
     height: 2em;
     font-weight:700;
@@ -108,7 +117,13 @@ ConteinerHead: styled.div`
 display:flex;
 width:10%;
 justify-content: space-between;
-`,    
+`,
+ExerciseStyle: styled.div`
+&:hover {
+  cursor: pointer;
+}
+`,
+  
 };
 
 export default Styles;

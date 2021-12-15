@@ -25,7 +25,6 @@ const ExerciseListComplete = () => {
 
     let exercises = useSelector((state)=> state.exercise.exercises)
     function searchOnClick(id){
-        console.log(id)
         dispatch(get_exercise_by_id(id))
         dispatch(render_exercise(true))
     }
@@ -35,7 +34,7 @@ const ExerciseListComplete = () => {
             
                 
             return<>
-            <Link to={`/session/exercises_detail/${excercise.id}`}><Exercises key={index} excercise = {excercise} /></Link>
+            <Styles.ExerciseStyle onClick={()=>searchOnClick(excercise.id)}><Exercises key={index} excercise = {excercise} index={index} /></Styles.ExerciseStyle>
             </> 
             
         })          
@@ -53,8 +52,8 @@ const ExerciseListComplete = () => {
                 exerciseRender? <ExerciseDetail/>: null
         }
 
-        <Styles.exerciseConteiner>
-        <Styles.headerConteiner>
+        <Styles.ExerciseConteiner>
+        <Styles.HeaderConteiner>
             <Styles.ConteinerHead>
             <Styles.SearchButton ><Link to="/session/routines"><img src={goBack} alt="search-icon" height={"22rem"}/></Link></Styles.SearchButton >
             <Styles.Title>Ejercicios</Styles.Title>
@@ -62,23 +61,23 @@ const ExerciseListComplete = () => {
             <Styles.ConteinerSearchAndButton>
                 <Styles.YellowButton onClick={() => setExerciseCreate(!exerciseCreate)}>Crear Ejercicio</Styles.YellowButton>
                 <div>
-                <Styles.SearchBar type="text" placeholder="Introduce un nombre o apellido..." autoCorrect="off" />
+                <Styles.SearchBar type="text" placeholder="Ejercicio..." autoCorrect="off" />
                 <Styles.SearchButton ><img src={SearchIcon} alt="search-icon" height={"22rem"}/></Styles.SearchButton>
                 </div>
             </Styles.ConteinerSearchAndButton>
-        </Styles.headerConteiner>
+        </Styles.HeaderConteiner>
         {exerciseCreate && <ExcerciseCreate display={setExerciseCreate}/>}
-        <Styles.allPropBox>
+        <Styles.AllPropBox>
             <Styles.HeaderPropList>Nombre</Styles.HeaderPropList>
             <Styles.HeaderPropList>Descripcion</Styles.HeaderPropList>
             <Styles.HeaderPropList>Disciplina</Styles.HeaderPropList>
             <Styles.HeaderPropList>Video</Styles.HeaderPropList>
-        </Styles.allPropBox>
-        <Styles.allPropBoxComplete>
+        </Styles.AllPropBox>
+        <Styles.AllPropBoxComplete>
             {renderExercises(exercises)}
-        </Styles.allPropBoxComplete>
+        </Styles.AllPropBoxComplete>
         
-        </Styles.exerciseConteiner>
+        </Styles.ExerciseConteiner>
         </>
         )
 }
