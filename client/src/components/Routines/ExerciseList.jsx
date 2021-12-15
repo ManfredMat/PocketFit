@@ -29,18 +29,18 @@ const ExerciseList = () => {
 
     return(
         <div>
-            <Styles.headerConteiner>
+            <Styles.HeaderConteiner>
             <h2>Ejercicios</h2>
             <Link to="/session/exercises"> 
             <Styles.LinkGreen>Ver detalle</Styles.LinkGreen>
             </Link>
-            </Styles.headerConteiner>
-            <Styles.allPropBox>
-            <Styles.propBoxList>Nombre</Styles.propBoxList>
-            <Styles.propBoxList>Descripcion</Styles.propBoxList>
-            <Styles.propBoxList>Disciplina</Styles.propBoxList>
-            <Styles.propBoxList>Video</Styles.propBoxList>
-            </Styles.allPropBox>
+            </Styles.HeaderConteiner>
+            <Styles.AllPropBox>
+            <Styles.PropBoxList>Nombre</Styles.PropBoxList>
+            <Styles.PropBoxList>Descripcion</Styles.PropBoxList>
+            <Styles.PropBoxList>Disciplina</Styles.PropBoxList>
+            <Styles.PropBoxList>Video</Styles.PropBoxList>
+            </Styles.AllPropBox>
             {renderExercises(exercises)}
            
         </div>
