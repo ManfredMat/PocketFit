@@ -11,6 +11,8 @@ export const GET_ACTUAL_TIMETABLE = "GET_ACTUAL_TIMETABLE";
 export const PUT_SHIFT_USER = "PUT_SHIFT_USER";
 export const PUT_SHIFT_USER_CLEAN = "PUT_SHIFT_USER_CLEAN";
 export const CREATED_WEEK_SHIFTS = "CREATED_WEEK_SHIFTS";
+export const GET_ROUTINE = "GET_ROUTINE";
+
 
 
 export function getLessons() {
@@ -132,4 +134,18 @@ export function postShiftClean() {
     type: PUT_SHIFT_USER_CLEAN,
     value: [],
   }
+}
+
+export function getRoutine() {
+  return async function (dispatch) {
+    await axios
+      .get("http://localhost:3001/api/weekplan/general")
+      .then((res) => {
+        console.log(res.data)
+        dispatch({
+          type: GET_ROUTINE,
+          value: res.data,
+        });
+      });
+  };
 }

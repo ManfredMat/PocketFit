@@ -104,7 +104,7 @@ const Styles = {
         color: white;
         font-family: "Poppins_500Medium";
         font-size: 16px;
-        margin-left: 8px
+        margin-left: 8px;
     `,
 
     Arrow: styled.Text`

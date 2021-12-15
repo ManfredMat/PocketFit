@@ -20,11 +20,20 @@ HeaderConteiner: styled.div`
 PropBox: styled.h3`
     background:var(--green-medium);
     width:25%;
-    margin:0.3rem;
+    margin:0.2rem;
     height:1.5em;    
     border-radius: 0.3em;
     text-align:center;   
   `,
+PropBoxV2: styled.h3`
+background:var(--darkGray-base);
+width:25%;
+margin:0.2rem;
+height:1.5em;    
+border-radius: 0.3em;
+text-align:center;
+color:var(--green-medium);
+`,
 PropBoxList: styled.h3`
     background:var(--darkGray-medium);
     width:25%;

@@ -10,7 +10,7 @@ const Styles = {
     display: flex;
     width: -webkit-fill-available;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: ${(props) => (props.wrap ? "auto" : "space-between")};
     margin-bottom: 0.8em;
   `,
   ShiftButton: styled.button`
@@ -18,6 +18,7 @@ const Styles = {
     background-color: var(--yellow);
     padding: 0.5em 0.5em;
     margin-top: 1em;
+    margin-right: 1em;
     text-decoration: none;
     border-radius: 0.5em;
     border: none;

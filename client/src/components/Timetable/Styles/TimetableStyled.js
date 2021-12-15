@@ -40,12 +40,12 @@ const Styles = {
   RigthColumnStyledRow1: styled.div`
     display: flex;
     flex-direction: column;
-    height: 60%;
+    //height: 60%;
   `,
   RigthColumnStyledRow2: styled.div`
     display: flex;
     flex-direction: column;
-    height: 40%;
+    //height: 40%;
   `,
   TitleH2Styled: styled.h2`
     color: #ffffff;

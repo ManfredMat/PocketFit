@@ -1,7 +1,7 @@
 import Exercises from '../Exercises/Exercises'
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useDispatch , useSelector } from "react-redux";
-import { get_exercises , render_exercise , get_exercise_by_id} from '../../redux/Actions/actions-exercise';
+import { get_exercises , render_exercise , get_exercise_by_id , searchExercises} from '../../redux/Actions/actions-exercise';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import ExcerciseCreate from './ExcerciseCreate';
@@ -13,6 +13,8 @@ import ExerciseDetail from './ExerciseDetail';
 const ExerciseListComplete = () => {
 
     const [exerciseCreate, setExerciseCreate] = React.useState(false);
+    const [search, setSearch] = React.useState("");
+    const [isSearch, setIsSearch] = React.useState(false);
 
     let exerciseRender = useSelector((state) => state.exercise.exerciseRender)
 
@@ -34,7 +36,7 @@ const ExerciseListComplete = () => {
             
                 
             return<>
-            <Styles.ExerciseStyle onClick={()=>searchOnClick(excercise.id)}><Exercises key={index} excercise = {excercise} /></Styles.ExerciseStyle>
+            <Styles.ExerciseStyle onClick={()=>searchOnClick(excercise.id)}><Exercises key={index} excercise = {excercise} index={index} /></Styles.ExerciseStyle>
             </> 
             
         })          
@@ -42,7 +44,17 @@ const ExerciseListComplete = () => {
         
             {exerciseArray}
         </>
-    } 
+    }
+    function searchOnChange(e) {
+        setSearch(e.target.value);
+        console.log(search)
+    };
+    function handleSubmit(e) {
+        e.preventDefault();
+        dispatch(searchExercises(search))
+        setIsSearch(previousState => !previousState)
+        console.log("HOLA")
+    }; 
 
     return(
         <>
@@ -61,8 +73,8 @@ const ExerciseListComplete = () => {
             <Styles.ConteinerSearchAndButton>
                 <Styles.YellowButton onClick={() => setExerciseCreate(!exerciseCreate)}>Crear Ejercicio</Styles.YellowButton>
                 <div>
-                <Styles.SearchBar type="text" placeholder="Ejercicio..." autoCorrect="off" />
-                <Styles.SearchButton ><img src={SearchIcon} alt="search-icon" height={"22rem"}/></Styles.SearchButton>
+                <Styles.SearchBar type="text" placeholder="Ejercicio..." autoCorrect="off" onChange={searchOnChange} onSubmit={handleSubmit} value={search} />
+                <Styles.SearchButton onClick={handleSubmit} ><img src={SearchIcon} alt="search-icon" height={"22rem"}/></Styles.SearchButton>
                 </div>
             </Styles.ConteinerSearchAndButton>
         </Styles.HeaderConteiner>
@@ -74,7 +86,7 @@ const ExerciseListComplete = () => {
             <Styles.HeaderPropList>Video</Styles.HeaderPropList>
         </Styles.AllPropBox>
         <Styles.AllPropBoxComplete>
-            {renderExercises(exercises)}
+            {exercises.length > 0?renderExercises(exercises):<Styles.Title>No hay ejercicios</Styles.Title>}
         </Styles.AllPropBoxComplete>
         
         </Styles.ExerciseConteiner>
