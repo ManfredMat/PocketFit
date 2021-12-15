@@ -101,38 +101,62 @@ function EventDetail({ id, display }) {
     >
       <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
         <Style.Contenedor
-          // style={{
-          //   display: "flex",
-          //   width: "60%",
-          //   height: "45%",
-          //   padding: "2em",
-          //   flexDirection: "column",
-          //   alignItems: "flex-start",
-          //   backgroundColor: "grey",
-          // }}
+        // style={{
+        //   display: "flex",
+        //   width: "60%",
+        //   height: "45%",
+        //   padding: "2em",
+        //   flexDirection: "column",
+        //   alignItems: "flex-start",
+        //   backgroundColor: "grey",
+        // }}
         >
           {event ? (
             <Style.Card>
               <Style.Cruz onClick={() => display(false)}>x</Style.Cruz>
               <Style.Titulo>Evento especial {event.name}</Style.Titulo>
               <Style.ContenedorInfo>
-              <Style.Image
-                src={`data:image/jpeg;base64, ${event.imageData}`}
-                alt="event-img"
-              />
-              <Style.Info>
-              <Style.DivInfo><h3>Horario </h3><Style.DivData>{event.hour} hs.</Style.DivData></Style.DivInfo>
-               <Style.DivInfo> <h3>Capacidad</h3><Style.DivData> {event.capacity}</Style.DivData> </Style.DivInfo>
-               <Style.DivInfo> <h3> Fecha </h3><Style.DivData> {" "}{event.day} / {event.month}{" "}</Style.DivData></Style.DivInfo>
-              </Style.Info>
+                <Style.Image
+                  src={`data:image/jpeg;base64, ${event.imageData}`}
+                  alt="event-img"
+                />
+                <Style.Info>
+                  <Style.DivInfo>
+                    <h3>Horario </h3>
+                    <Style.DivData>{event.hour} hs.</Style.DivData>
+                  </Style.DivInfo>
+                  <Style.DivInfo>
+                    {" "}
+                    <h3>Capacidad</h3>
+                    <Style.DivData> {event.capacity}</Style.DivData>{" "}
+                  </Style.DivInfo>
+                  <Style.DivInfo>
+                    {" "}
+                    <h3> Fecha </h3>
+                    <Style.DivData>
+                      {" "}
+                      {event.day} / {event.month}{" "}
+                    </Style.DivData>
+                  </Style.DivInfo>
+                </Style.Info>
               </Style.ContenedorInfo>
               <Style.ContenedorEdit>
-              <div style={{marginBottom : "1em", display: "flex", width: "-webkit-fill-available", justifyContent: "space-between"}}>
-              <Style.Descripcion> Descripción</Style.Descripcion>
-              
-              <Style.Edit onClick={(e) => handleFlip(e)}>Editar</Style.Edit>
-              </div >
-              <Style.ContenedorDescripcion> {event.description} </Style.ContenedorDescripcion>
+                <div
+                  style={{
+                    marginBottom: "1em",
+                    display: "flex",
+                    width: "-webkit-fill-available",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Style.Descripcion> Descripción</Style.Descripcion>
+
+                  <Style.Edit onClick={(e) => handleFlip(e)}>Editar</Style.Edit>
+                </div>
+                <Style.ContenedorDescripcion>
+                  {" "}
+                  {event.description}{" "}
+                </Style.ContenedorDescripcion>
               </Style.ContenedorEdit>
               {/* <Style.ContenedorDescripcion> {event.description} </Style.ContenedorDescripcion> */}
             </Style.Card>
@@ -145,67 +169,123 @@ function EventDetail({ id, display }) {
         </Style.Contenedor>
 
         {/* INICIO DE REVERSO DE LA CARD!*/}
-
         <div
           style={{
             display: "flex",
-            width: "60%",
-            height: "45%",
-            padding: "2em",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            backgroundColor: "grey",
+            position: "relative",
+            width: "-webkit-fill-available",
+            height: "100vh",
+            backgroundColor: "#00000070",
+            top: 0,
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: "7",
           }}
         >
           {event ? (
-            <form
+            <Style.Contenedor
               onSubmit={(e) => {
                 handleSubmit(e);
               }}
             >
-              <button onClick={() => display(false)}>x</button>
-
-              <input
-                type="text"
-                defaultValue={event.name}
-                name="name"
-                onChange={(e) => handleChange(e)}
-              />
-              <button type="submit">Guardar</button>
-              <button onClick={(e) => handleFlip(e)}>Cancelar</button>
-              <img
-                src={`data:image/jpeg;base64, ${event.imageData}`}
-                alt="event-img"
-              />
-              <br />
-              <h3>Editar imagen</h3>
-              <input
-                type="file"
-                name="photo"
-                accept=".jpg, .jpeg"
-                onChange={(e) =>
-                  setInput({ ...input, photo: e.target.files[0] })
-                }
-              />
-
-              <div>
-                <h3>Horario </h3>
-                <input type="time" name="hour" onChange={(e) => parseHour(e)} />
-                <h3>Capacidad </h3>
-                <input
-                  type="number"
-                  name="capacity"
-                  onChange={(e) => parseCapacity(e)}
+              <Style.Cruz onClick={() => display(false)}>x</Style.Cruz>
+              <Style.DivEditFlip>
+                <Style.InputTitle
+                  type="text"
+                  defaultValue={event.name}
+                  name="name"
+                  onChange={(e) => handleChange(e)}
                 />
-                <h3> Fecha </h3>
-                <input type="date" onChange={(e) => parseDate(e)} />
-                <h3>Descripción</h3>
+                <Style.DivBotonesFlip>
+                  <Style.EditGuardar
+                    type="submit"
+                    onClick={(e) => handleSubmit(e)}>
+                      Guardar
+                  </Style.EditGuardar>
+                  <Style.EditCancel onClick={(e) => handleFlip(e)}>
+                    Cancelar
+                  </Style.EditCancel>
+                </Style.DivBotonesFlip>
+              </Style.DivEditFlip>
+
+              <div name="gral" style={{ display: "flex", flexDirection: "column" }}>
+                <div name="first-row" style={{display: "flex", justifyContent: "space-between",
+                  alignItems: "center"}}>
+                  
+                  <Style.Image2
+                    src={`data:image/jpeg;base64, ${event.imageData}`}
+                    alt="event-img"
+                  />
+
+                  <Style.Info2>
+                    <Style.DivInfo2
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Style.DivData2>Horario </Style.DivData2>
+                      <Style.InputEdit
+                        type="time"
+                        name="hour"
+                        onChange={(e) => parseHour(e)}
+                      />
+                    </Style.DivInfo2>
+                    <Style.DivInfo2
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Style.DivData2>Capacidad </Style.DivData2>
+                      <Style.InputEdit
+                        type="number"
+                        name="capacity"
+                        onChange={(e) => parseCapacity(e)}
+                      />
+                    </Style.DivInfo2>
+                    <Style.DivInfo2
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Style.DivData2> Fecha </Style.DivData2>
+                      <Style.InputEdit
+                        type="date"
+                        onChange={(e) => parseDate(e)}
+                      />
+                    </Style.DivInfo2>
+                  </Style.Info2>
+                </div>
+                <div name="second-row">
+                  <div style={{display:"flex", justifyContent: "flex-end"}}>
+                    <Style.Edit2 for="files" class="btn">
+                      Editar Foto
+                    </Style.Edit2>
+                    <input
+                      type="file"
+                      name="photo"
+                      id="files"
+                      accept=".jpg, .jpeg"
+                      style={{ visibility: "hidden", width:"1em" }}
+                      onChange={(e) =>
+                        setInput({ ...input, photo: e.target.files[0] })
+                      }
+                    />
+                  </div>
+                </div>
+                <div name="third-row">
+                  <div>
+                    <Style.Descripcion2>Descripción</Style.Descripcion2>
+                    <Style.InputDescripcion placeholder="" rows="5" cols="77" 
+                      name="description"
+                      onChange={(e) => handleChange(e)}>
+                    </Style.InputDescripcion>
+                  </div>
+                </div>
               </div>
-              <textarea
-                name="description"
-                onChange={(e) => handleChange(e)}
-              ></textarea>
-            </form>
+            </Style.Contenedor>
           ) : (
             <div>
               <button onClick={() => display(false)}>x</button>
