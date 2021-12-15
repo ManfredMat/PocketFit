@@ -1,11 +1,11 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { render_exercise ,  get_exercises , delete_exercise} from "../../redux/Actions/actions-exercise";
 import ReactPlayer from 'react-player';
-import Styles from "./Styles/ExerciseDetailStyled"; 
 
 const ExerciseDetail =() => {    
-    
+    //let {id} = useParams();
     let exercise = useSelector((state)=> state.exercise.exerciseDetail)
     let dispatch  = useDispatch();
     function searchOnClick(){
