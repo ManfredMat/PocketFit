@@ -35,7 +35,8 @@ const ExerciseListComplete = () => {
             
                 
             return<>
-            <Link to={`/session/exercises_detail/${excercise.id}`}><Exercises key={index} excercise = {excercise} /></Link>
+            <Styles.ExerciseStyle onClick={()=>searchOnClick(excercise.id)}><Exercises key={index} excercise = {excercise} index={index} /></Styles.ExerciseStyle>
+
             </> 
             
         })          
