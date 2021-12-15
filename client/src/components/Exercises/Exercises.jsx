@@ -2,9 +2,11 @@ import Styles from "./Styles/ExercisesStyled";
 
 const Exercises = (props) => {    
     let exer = props.excercise
+
     let index = props.index + 1
 
     let flag = ((index%2)==0)
+
     return(
         <>
         <Styles.GlobalStyle />
