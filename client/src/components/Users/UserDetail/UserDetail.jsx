@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getUserDetail, renderUserDetail } from '../../../redux/Actions/actions-users';
@@ -9,7 +9,7 @@ import emailIcon from "../../../assets/img/iconos/users/email.svg";
 import whatsappIcon from "../../../assets/img/iconos/users/whatsapp.svg";
 import editRoutineIcon from "../../../assets/img/iconos/editIcon.svg";
 import { Link } from 'react-router-dom';
-// import axios from "axios";
+import axios from "axios";
 
 function UserDetail() {
     const dispatch = useDispatch();
@@ -19,20 +19,20 @@ function UserDetail() {
         dispatch(getUserDetail("CLEAR"))
     }
 
-    // const dateFormat = (() => {
-    //     const newDate = new Date();
-    //     const format = `${newDate.getFullYear()}-${newDate.getMonth() + 1}-${newDate.getUTCDate()}`;
-    //     return format;
-    // })();
+    const dateFormat = (() => {
+        const newDate = new Date();
+        const format = `${newDate.getFullYear()}-${newDate.getMonth() + 1}-${newDate.getUTCDate()}`;
+        return format;
+    })();
 
-    // const getPayStatus = async () => {
-    //     let res = await axios.put("http://localhost:3001/api/users/paystatus", { date: dateFormat, id: user.id })
-    //     return res.data
-    // }
+    const getPayStatus = async () => {
+        let res = await axios.put("http://localhost:3001/api/users/paystatus", { date: dateFormat, id: user.id })
+        return res.data
+    }
 
-    // useEffect(() => {
-    //     getPayStatus()
-    // }, [dispatch])
+    useEffect(() => {
+        getPayStatus()
+    }, [user])
 
     return (
         <Styles.Container>

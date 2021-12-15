@@ -146,7 +146,6 @@ const Style = {
   padding: 1em;
   font-size: 1em;
   `
-}
-
-
-export default Style
+        }
+        
+export default Style;

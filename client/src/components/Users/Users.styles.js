@@ -12,7 +12,7 @@ const Styles = {
 
     Title: styled.h1`
         color: white;
-        margin-left: 8.2rem;
+        margin-left: 5rem;
         margin-top: 1rem;
     `,
 

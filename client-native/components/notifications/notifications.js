@@ -1,11 +1,11 @@
 import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
 import React, { useState, useEffect, useRef } from 'react';
-import { Text, View, Platform, ActivityIndicator } from 'react-native';
+import { Text, View, Platform } from 'react-native';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
-import {AllNotifications} from "../../redux/Actions/actions-Notifications"
-import Cards from './Cards' 
+
+
 
 
 Notifications.setNotificationHandler({
@@ -18,15 +18,14 @@ Notifications.setNotificationHandler({
 
 export default function Notify() {
   const getUserid = useSelector((state) => state.reducerUser.user.id)
-  const getNotifications = useSelector((state) => state.reducerNotifications.notifications)
   const dispatch = useDispatch()
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
 
+  console.log(getUserid)
   useEffect(() => {
-    dispatch(AllNotifications())
     if(Constants.isDevice && Platform.OS !== 'web') {
       registerForPushNotificationsAsync().then(token => {
          axios.post(`https://nativenotify.com/api/expo/key`, { 
@@ -48,23 +47,10 @@ export default function Notify() {
       };
     }
   }, []);
- 
+
   return (
-    <View style={{backgroundColor:'#020E12', width: '100%', height: '100%', alignItems: 'center'}}>
-      <View style={{marginTop: 45, alignItems: 'center'}}>
-        <View style={{width: 350, marginBottom:5}}>
-          <Text style={{fontSize: 25, color:'#6AE056'}}>Notificaciones</Text>
-        </View>
-        {
-          getNotifications.length !== 0? 
-          getNotifications.map(e => <View key={e.id}>
-            <Cards title={e.title} message={e.message}/>
-          </View>
-            )
-          :
-          <ActivityIndicator size="large" color="#6AE056" />
-        }
-      </View>
+    <View style={{backgroundColor:'#020E12', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+      <Text style={{color:'#fff'}}>Notificaciones</Text>
     </View>
   );
 }

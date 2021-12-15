@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "PocketFit App",
-    "slug": "pocketfit",
+    "name": "client-native",
+    "slug": "client-native",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon1.png",
@@ -9,9 +9,6 @@
       "image": "./assets/splash3.png",
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
-    },
-    "androidStatusBar": {
-      "barStyle": "light-content"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -23,11 +20,11 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.pocketfit.app",
+      "package": "com.pocketfit.app" ,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      },
+      } ,
       "googleServicesFile": "./google-services.json"
     },
     "web": {
@@ -39,10 +36,7 @@
         {
           "icon": "./assets/notifications-icon.png",
           "color": "#ffffff",
-          "sounds": [
-            "./local/path/to/mySound.wav",
-            "./local/path/to/myOtherSound.wav"
-          ],
+          "sounds": ["./local/path/to/mySound.wav", "./local/path/to/myOtherSound.wav"],
           "mode": "production"
         }
       ]

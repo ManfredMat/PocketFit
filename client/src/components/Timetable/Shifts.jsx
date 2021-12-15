@@ -10,7 +10,7 @@ import { getTimetable } from '../../redux/Actions/actions-Horarios';
 import "moment/locale/es";
 moment.locale("es");
 
-function Shifts({ setShiftDetail }) {
+function Shifts({ setShiftDetail, font }) {
   const today = moment().format("dddd");
   const tomorrow = moment().add(1, "d").format("dddd");
   let week = parseInt(moment().format("w"));
@@ -33,11 +33,10 @@ function Shifts({ setShiftDetail }) {
     setShiftDetail(true);
   }
 
-  console.log(today,tomorrow)
   return (
     <>
         <Styles.TitleH3Styled>Hoy</Styles.TitleH3Styled>
-      <Styles.ListContainer>
+      <Styles.ListContainer font={ font ? font : "auto"}>
         {weekShifts
           .filter((shift) => shift.weekday === capitalizeFirstLetter(today))
           .sort(function (a, b) {
@@ -45,7 +44,7 @@ function Shifts({ setShiftDetail }) {
             if (parseInt(a.beginning) < parseInt(b.beginning)) return -1;
             return 0;})
           .map((ofDay, indexA) => (
-            <Styles.ShiftButton  margin={indexA === intervaloLength-1 ? true : false} onClick={() => shiftPreview(ofDay)}>
+            <Styles.ShiftButton margin={indexA === intervaloLength-1 ? true : false} onClick={() => shiftPreview(ofDay)}>
               <Styles.NumParagrahp>{indexA + 1}</Styles.NumParagrahp>
               <Styles.DateContainer>
               <Styles.DateParagrahp>

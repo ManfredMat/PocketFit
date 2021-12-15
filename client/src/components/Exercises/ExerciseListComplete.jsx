@@ -31,12 +31,12 @@ const ExerciseListComplete = () => {
         dispatch(render_exercise(true))
     }
     const renderExercises = (items)=>{
-        
+        //Link to={`/session/exercises_detail/${excercise.id}`}><Exercises key={index} excercise = {excercise} /></Link>
         let exerciseArray = items.map((excercise , index)=>{       
             
                 
             return<>
-            <Styles.ExerciseStyle onClick={()=>searchOnClick(excercise.id)}><Exercises key={index} excercise = {excercise} index={index} /></Styles.ExerciseStyle>
+            <Styles.ExerciseStyle onClick={()=>searchOnClick(excercise.id)}><Exercises key={index} excercise = {excercise} /></Styles.ExerciseStyle>
             </> 
             
         })          

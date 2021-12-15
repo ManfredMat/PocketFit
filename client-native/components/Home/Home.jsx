@@ -23,11 +23,6 @@ export default function Home() {
     const nextHoliday = () => {
         holidays.length - 1 === currentHoliday ? setCurrentHoliday(0) : setCurrentHoliday(currentHoliday + 1)
     }
-
-    const exerciseNameShorter = (exerciseName) => {
-        let newExerciseName = exerciseName.length > 14 ? exerciseName.slice(0, 11) + "..." : exerciseName
-        return newExerciseName 
-    }
     
     const storeData = async (value) => {
         await AsyncStorage.setItem('isLogged', value);
@@ -146,28 +141,26 @@ export default function Home() {
                 </Styles.StatsContainer>
                 <Styles.ActivitiesTitlesContainer>
                     <Styles.ActivityTitle style={{ marginLeft: 15 }}>Eventos</Styles.ActivityTitle>
-                    {holidays.length !== 0 && <Styles.ActivityTitle style={{ marginRight: 25 }}>Feriados</Styles.ActivityTitle>}
+                    <Styles.ActivityTitle style={{ marginRight: 25 }}>Feriados</Styles.ActivityTitle>
                 </Styles.ActivitiesTitlesContainer>
 
                 <Styles.ActivitiesContainer>
-                    <Styles.EventContainer onPress={() => nextEvent()} holidays={holidays.length !== 0 ? true : false}>
+                    <Styles.EventContainer onPress={() => nextEvent()}>
                         <Styles.EventTextContainer>
-                            <Styles.EventTitle>{events.length !== 0 && events[currentEvent].name ? events[currentEvent].name : "No hay eventos por el momento..."}</Styles.EventTitle>
-                            <Styles.EventDescription>{events.length !== 0 && events[currentEvent].description ? events[currentEvent].description : null}</Styles.EventDescription>
+                            <Styles.EventTitle>{events && events[currentEvent].name ? events[currentEvent].name : "No hay eventos por el momento..."}</Styles.EventTitle>
+                            <Styles.EventDescription>{events[currentEvent].description ? events[currentEvent].description : null}</Styles.EventDescription>
                         </Styles.EventTextContainer>
                     </Styles.EventContainer>
-                    {
-                        holidays.length !== 0 &&
-                        <Styles.HollidayContainer onPress={() => nextHoliday()}>
-                            <Styles.HollidayMonthContainer>
-                                <Styles.HollidayDayContainer>
-                                    <Styles.HollidayDay>{holidays[currentHoliday].day ? holidays[currentHoliday].day : "-"}</Styles.HollidayDay>
-                                </Styles.HollidayDayContainer>
-                                <Styles.HollidayMonth>{holidays[currentHoliday].month ? getMonth(holidays[currentHoliday].month) : "-"}</Styles.HollidayMonth>
-                            </Styles.HollidayMonthContainer>
-                            <Styles.HollidayName>{holidays[currentHoliday].name ? holidays[currentHoliday].name : "-"}</Styles.HollidayName>
-                        </Styles.HollidayContainer>
-                    }
+
+                    <Styles.HollidayContainer onPress={() => nextHoliday()}>
+                        <Styles.HollidayMonthContainer>
+                            <Styles.HollidayDayContainer>
+                                <Styles.HollidayDay>{holidays && holidays[currentHoliday].day ? holidays[currentHoliday].day : "-"}</Styles.HollidayDay>
+                            </Styles.HollidayDayContainer>
+                            <Styles.HollidayMonth>{holidays && holidays[currentHoliday].month ? getMonth(holidays[currentHoliday].month) : "-"}</Styles.HollidayMonth>
+                        </Styles.HollidayMonthContainer>
+                        <Styles.HollidayName>{holidays && holidays[currentHoliday].name ? holidays[currentHoliday].name : "-"}</Styles.HollidayName>
+                    </Styles.HollidayContainer>
                 </Styles.ActivitiesContainer>
                 <Styles.SlidersIndicatorsContainer>
                     <Styles.EventSliderIndicatorContainer>
@@ -222,13 +215,13 @@ export default function Home() {
                                         </Styles.BlockNumberContainer>
                                         <Styles.ExercisesContainer>
                                             <Styles.ExerciseContainer>
-                                                <Styles.ExerciseName>{todayRoutine.blocks[0].exercises[0] ? exerciseNameShorter(todayRoutine.blocks[0].exercises[0][0]) : "-"}</Styles.ExerciseName>
+                                                <Styles.ExerciseName>{todayRoutine.blocks[0].exercises[0] ? todayRoutine.blocks[0].exercises[0][0] : "-"}</Styles.ExerciseName>
                                             </Styles.ExerciseContainer>
                                             <Styles.ExerciseContainer>
-                                                <Styles.ExerciseName>{todayRoutine.blocks[0].exercises[1] ? exerciseNameShorter(todayRoutine.blocks[0].exercises[1][0]) : "-"}</Styles.ExerciseName>
+                                                <Styles.ExerciseName>{todayRoutine.blocks[0].exercises[1] ? todayRoutine.blocks[0].exercises[1][0] : "-"}</Styles.ExerciseName>
                                             </Styles.ExerciseContainer>
                                             <Styles.ExerciseContainer>
-                                                <Styles.ExerciseName>{todayRoutine.blocks[0].exercises[2] ? exerciseNameShorter(todayRoutine.blocks[0].exercises[2][0]) : "-"}</Styles.ExerciseName>
+                                                <Styles.ExerciseName>{todayRoutine.blocks[0].exercises[2] ? todayRoutine.blocks[0].exercises[2][0] : "-"}</Styles.ExerciseName>
                                             </Styles.ExerciseContainer>
                                         </Styles.ExercisesContainer>
                                     </Styles.BlockSubContainer>
@@ -241,13 +234,13 @@ export default function Home() {
                                         </Styles.BlockNumberContainer>
                                         <Styles.ExercisesContainer>
                                             <Styles.ExerciseContainer>
-                                                <Styles.ExerciseName>{todayRoutine.blocks[1].exercises[0] ? exerciseNameShorter(todayRoutine.blocks[1].exercises[0][0]) : "-"}</Styles.ExerciseName>
+                                                <Styles.ExerciseName>{todayRoutine.blocks[1].exercises[0] ? todayRoutine.blocks[1].exercises[0][0] : "-"}</Styles.ExerciseName>
                                             </Styles.ExerciseContainer>
                                             <Styles.ExerciseContainer>
-                                                <Styles.ExerciseName>{todayRoutine.blocks[1].exercises[1] ? exerciseNameShorter(todayRoutine.blocks[1].exercises[1][0]) : "-"}</Styles.ExerciseName>
+                                                <Styles.ExerciseName>{todayRoutine.blocks[1].exercises[1] ? todayRoutine.blocks[1].exercises[1][0] : "-"}</Styles.ExerciseName>
                                             </Styles.ExerciseContainer>
                                             <Styles.ExerciseContainer>
-                                                <Styles.ExerciseName>{todayRoutine.blocks[1].exercises[2] ? exerciseNameShorter(todayRoutine.blocks[1].exercises[2][0]) : "-"}</Styles.ExerciseName>
+                                                <Styles.ExerciseName>{todayRoutine.blocks[1].exercises[2] ? todayRoutine.blocks[1].exercises[2][0] : "-"}</Styles.ExerciseName>
                                             </Styles.ExerciseContainer>
                                         </Styles.ExercisesContainer>
                                     </Styles.BlockSubContainer>
@@ -260,13 +253,13 @@ export default function Home() {
                                         </Styles.BlockNumberContainer>
                                         <Styles.ExercisesContainer>
                                             <Styles.ExerciseContainer>
-                                                <Styles.ExerciseName>{todayRoutine.blocks[2].exercises[0] ? exerciseNameShorter(todayRoutine.blocks[2].exercises[0][0]) : "-"}</Styles.ExerciseName>
+                                                <Styles.ExerciseName>{todayRoutine.blocks[2].exercises[0] ? todayRoutine.blocks[2].exercises[0][0] : "-"}</Styles.ExerciseName>
                                             </Styles.ExerciseContainer>
                                             <Styles.ExerciseContainer>
-                                                <Styles.ExerciseName>{todayRoutine.blocks[2].exercises[1] ? exerciseNameShorter(todayRoutine.blocks[2].exercises[1][0]) : "-"}</Styles.ExerciseName>
+                                                <Styles.ExerciseName>{todayRoutine.blocks[2].exercises[1] ? todayRoutine.blocks[2].exercises[1][0] : "-"}</Styles.ExerciseName>
                                             </Styles.ExerciseContainer>
                                             <Styles.ExerciseContainer>
-                                                <Styles.ExerciseName>{todayRoutine.blocks[2].exercises[2] ? exerciseNameShorter(todayRoutine.blocks[2].exercises[2][0]) : "-"}</Styles.ExerciseName>
+                                                <Styles.ExerciseName>{todayRoutine.blocks[2].exercises[2] ? todayRoutine.blocks[2].exercises[2][0] : "-"}</Styles.ExerciseName>
                                             </Styles.ExerciseContainer>
                                         </Styles.ExercisesContainer>
                                     </Styles.BlockSubContainer>
@@ -274,22 +267,18 @@ export default function Home() {
                             </Styles.BlocksContainer>
 
                             <Styles.RoutineTypeContainer>
-                                <Styles.RoutineTypeTitleContainer>
-                                    <Styles.RoutineTypeTitle>{todayRoutine.kindOfRoutine}</Styles.RoutineTypeTitle>
-                                </Styles.RoutineTypeTitleContainer>
-                                <Styles.RoutineTypeSubContainerContainer>
-                                    <Styles.RoutineTypeSubContainer>
-                                        <Styles.RoutineTypeNumberContainer source={require("../../assets/routine-number-background.png")} />
-                                        <Styles.RoutineTypeNumber style={{ left: 19 }}>{getRepeticiones()}</Styles.RoutineTypeNumber>
-                                        <Styles.RoutineTypeSubtitle style={{ textAlign: "right" }}>Repeticiones{"\n"}Totales</Styles.RoutineTypeSubtitle>
-                                    </Styles.RoutineTypeSubContainer>
+                                <Styles.RoutineTypeTitle>{todayRoutine.kindOfRoutine}</Styles.RoutineTypeTitle>
+                                <Styles.RoutineTypeSubContainer>
+                                    <Styles.RoutineTypeNumberContainer source={require("../../assets/routine-number-background.png")} />
+                                    <Styles.RoutineTypeNumber style={{ left: 19 }}>{getRepeticiones()}</Styles.RoutineTypeNumber>
+                                    <Styles.RoutineTypeSubtitle style={{ textAlign: "right" }}>Repeticiones{"\n"}Totales</Styles.RoutineTypeSubtitle>
+                                </Styles.RoutineTypeSubContainer>
 
-                                    <Styles.RoutineTypeSubContainer>
-                                        <Styles.RoutineTypeSubtitle>Cantidad De{"\n"}Ejercicios</Styles.RoutineTypeSubtitle>
-                                        <Styles.RoutineTypeNumberContainer source={require("../../assets/routine-number-background.png")} />
-                                        <Styles.RoutineTypeNumber style={{ left: 105 }}>{getEjercicios()}</Styles.RoutineTypeNumber>
-                                    </Styles.RoutineTypeSubContainer>
-                                </Styles.RoutineTypeSubContainerContainer>
+                                <Styles.RoutineTypeSubContainer>
+                                    <Styles.RoutineTypeSubtitle>Cantidad De{"\n"}Ejercicios</Styles.RoutineTypeSubtitle>
+                                    <Styles.RoutineTypeNumberContainer source={require("../../assets/routine-number-background.png")} />
+                                    <Styles.RoutineTypeNumber style={{ left: 105 }}>{getEjercicios()}</Styles.RoutineTypeNumber>
+                                </Styles.RoutineTypeSubContainer>
                             </Styles.RoutineTypeContainer>
                         </Styles.RoutineContainer>
                     </View>
