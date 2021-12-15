@@ -6,19 +6,19 @@ const Styles = {
     margin:0;
     
 }`,
-allPropBox: styled.div`
+AllPropBox: styled.div`
   display:flex;
   width:98%;
   justify-content: center;
 `,
-headerConteiner: styled.div`
+HeaderConteiner: styled.div`
   display:flex;
   justify-content: space-between;
   width:100%;
   margin-top:0.5rem;
   margin-bottom:0.5rem;
 `,      
-propBox: styled.h3`
+PropBox: styled.h3`
     background:var(--green-medium);
     width:25%;
     margin:0.2rem;
@@ -27,13 +27,13 @@ propBox: styled.h3`
     text-align:center;   
   `,
 PropBoxV2: styled.h3`
-background:var(--darkGray-base);
-width:25%;
-margin:0.2rem;
-height:1.5em;    
-border-radius: 0.3em;
-text-align:center;
-color:var(--green-medium);
+  background:var(--darkGray-base);
+  width:25%;
+  margin:0.2rem;
+  height:1.5em;    
+  border-radius: 0.3em;
+  text-align:center;
+  color:var(--green-medium);
 `,
 PropBoxList: styled.h3`
     background:var(--darkGray-medium);
@@ -47,13 +47,13 @@ LinkGreen: styled.a`
     font-size: 1.5em;
     color: var(--green);
   `,
-allPropBoxComplete: styled.div`
+AllPropBoxComplete: styled.div`
   width:100%;
   justify-content: space-between;
   color:white;
 `,
 
-exerciseConteiner : styled.div`
+ExerciseConteiner : styled.div`
 width:100%;
 background: var(--darkGray-base);
 `,
