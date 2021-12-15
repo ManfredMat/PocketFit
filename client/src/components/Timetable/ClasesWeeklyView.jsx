@@ -1,24 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import * as json from "./Hard-code.json";
-import {useSelector, useDispatch} from "react-redux"
-import {getLessons} from '../../redux/Actions/actions-Activities';
+import { useSelector, useDispatch } from "react-redux";
+import { getLessons } from "../../redux/Actions/actions-Activities";
 import Styles from "./Styles/ClasesWeeklyViewStyled";
-
-
+import ClassesDetail from "../Activities/ClassesDetail";
 
 var weekDays = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
 
 function ClasesWeeklyView() {
-    const lessons = useSelector(state => state.activities.lessons)
-    const dispatch = useDispatch()
+  const lessons = useSelector((state) => state.activities.lessons);
+  const dispatch = useDispatch();
+  const [claseDetalle, setClaseDetalle] = React.useState(false);
+  const [claseId, setClaseId] = useState("");
 
   useEffect(() => {
-    dispatch(getLessons())
+    dispatch(getLessons());
   }, []);
 
   return (
-    <Styles.StyledGrid
-    >
+    <Styles.StyledGrid>
       {weekDays.map((day) => (
         <div>
           <Styles.StyledDaysContainers>{day}</Styles.StyledDaysContainers>
@@ -31,7 +31,12 @@ function ClasesWeeklyView() {
                 return 0;
               })
               .map((cla) => (
-                <Styles.StyledClasesContainers>
+                <Styles.StyledClasesContainers
+                  onClick={() => {
+                    setClaseId(cla.id);
+                    setClaseDetalle(!claseDetalle);
+                  }}
+                >
                   <Styles.TitleH3Styled>{cla.name}</Styles.TitleH3Styled>
                   <p>{cla.hour} hs</p>
                 </Styles.StyledClasesContainers>
@@ -39,6 +44,11 @@ function ClasesWeeklyView() {
           </Styles.StyledContainer>
         </div>
       ))}
+
+
+      {/* {claseDetalle && <ClassesDetail id={claseId} display={setClaseDetalle} />} */}
+
+
     </Styles.StyledGrid>
   );
 }

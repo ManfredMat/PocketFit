@@ -44,7 +44,7 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/session" element={<Home />} />
-          <Route path="/session/home" element={<Home />} />
+          <Route path="/session/home" element={<Home screenHeight={screenHeight} />} />
           <Route path="/session/profile" element={<Profile />} />
           <Route path="/session/payments" element={<Payments />} />
           <Route path="/session/users" element={<Users />} />

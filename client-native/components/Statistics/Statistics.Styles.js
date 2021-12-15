@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { StyleSheet } from 'react-native'
 const lemo = "#E4FC82"
 const Blue = "#083645"
 const lima = '#CEFA1F'
@@ -26,7 +27,8 @@ export const BlueBox = styled.View`
     background-color: ${Blue};
     border-radius: 12px;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+    padding: 9px;
     width: 100px;
     height: 100px;
 `
@@ -126,3 +128,38 @@ export const Ready = styled.TouchableOpacity`
     width: 65px;
     height: 23px;
 `
+export const Styles = StyleSheet.create({
+    Input: {
+        backgroundColor: 'rgba(196, 196, 196, 0.2)',
+        textAlignVertical: 'center',
+        borderRadius: 8,
+        fontFamily: "Poppins_500Medium",
+        color: "#fff",
+        width: 36,
+        height: 35,
+        fontSize: 20,
+    },
+    Inp: {
+        backgroundColor: 'rgba(196, 196, 196, 0.2)',
+        textAlignVertical: 'center',
+        borderRadius: 8,
+        fontFamily: "Poppins_500Medium",
+        color: "#fff",
+        width: 36,
+        height: 35,
+        fontSize: 20,
+        paddingLeft: 6
+    },
+    InputDatos: {
+        backgroundColor: "#083645",
+        textAlignVertical: 'center',
+        borderRadius: 10,
+        fontFamily: "Poppins_500Medium",
+        color: "#fff",
+        paddingLeft:8,
+        width: 40,
+        height: 35,
+        fontSize: 20,
+        
+    },
+})

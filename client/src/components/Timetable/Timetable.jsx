@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ClasesWeeklyView from "./ClasesWeeklyView";
 import Calendar from "./Calendar";
@@ -13,6 +13,7 @@ import Styles from "./Styles/TimetableStyled";
 import moment from "moment";
 import "moment/locale/es";
 import Activities from "../Activities/Activities";
+import ClassesDetail from "../Activities/ClassesDetail";
 moment.locale("es");
 
 function Timetable({ screenHeight }) {
@@ -21,6 +22,12 @@ function Timetable({ screenHeight }) {
   const [shiftDetail, setShiftDetail] = React.useState(false);
   const [newClass, setNewClass] = React.useState(false);
   const [newEvent, setNewEvent] = React.useState(false);
+
+  const [claseDetalle, setClaseDetalle] = React.useState(false);
+  const [claseId, setClaseId] = useState("");
+
+  const [overFlow, setOverFlow] = React.useState(false);
+
   //"5-21","M-YY"
   const month = moment().format("M");
   const monthName = moment().format("MMMM");
@@ -90,9 +97,10 @@ function Timetable({ screenHeight }) {
         </Styles.StartBodyStyled>
         {takeShift && <ScheduleShift display={setTakeShift} />}
         {configTurnos && <ShiftsConfig display={setconfigTurnos} />}
-        {shiftDetail && <ShiftsPreview display={setShiftDetail} />}
+        {shiftDetail && <ShiftsPreview display={setShiftDetail} setOverFlow={setOverFlow}/>}
         {newClass && <Activities display={setNewClass} select="Clase" />}
         {newEvent && <Activities display={setNewEvent} select="Evento" />}
+        {claseDetalle && <ClassesDetail id={claseId} display={setClaseDetalle} />}
       </Styles.BodyStyled>
     </>
   );
