@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router';
-import Styles, { CheckBoxLabel } from './Configuration.styles';
+import Styles/*, { CheckBoxLabel }*/ from './Configuration.styles';
 
 function Configuration() {
     const navigate = useNavigate();
