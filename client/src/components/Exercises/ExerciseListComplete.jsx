@@ -29,7 +29,7 @@ const ExerciseListComplete = () => {
         dispatch(render_exercise(true))
     }
     const renderExercises = (items)=>{
-        //Link to={`/session/exercises_detail/${excercise.id}`}><Exercises key={index} excercise = {excercise} /></Link>
+        
         let exerciseArray = items.map((excercise , index)=>{       
             
                 
