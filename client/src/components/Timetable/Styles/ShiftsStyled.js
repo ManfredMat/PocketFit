@@ -14,7 +14,6 @@ const Styles = {
     margin-bottom: 0.8em;
   `,
   ShiftButton: styled.button`
-    font-size: 1em;
     background-color: var(--yellow);
     padding: 0.5em 0.5em;
     margin-top: 1em;
