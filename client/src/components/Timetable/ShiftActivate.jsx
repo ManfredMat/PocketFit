@@ -137,7 +137,7 @@ function ShiftActivate({ display, setRender, render , setOverFlow}) {
     <Styles.BodyStyled>
       <Styles.BoxStyle>
         <Styles.TitleH2Styled>Activar Turnos</Styles.TitleH2Styled>
-        <Styles.CloseButton onClick={() => display(false)}>
+        <Styles.CloseButton onClick={() => {display(false);setOverFlow(false)}}>
           x
         </Styles.CloseButton>
         <Styles.Content>
