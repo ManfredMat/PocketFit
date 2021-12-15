@@ -130,6 +130,7 @@ function ShiftActivate({ display, setRender, render , setOverFlow}) {
 
     setRender(!render);
     display(false);
+    setOverFlow(false);
   };
 
   return (

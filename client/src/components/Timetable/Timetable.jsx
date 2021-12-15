@@ -21,6 +21,7 @@ function Timetable({ screenHeight }) {
   const [shiftDetail, setShiftDetail] = React.useState(false);
   const [newClass, setNewClass] = React.useState(false);
   const [newEvent, setNewEvent] = React.useState(false);
+  const [overFlow, setOverFlow] = React.useState(false);
   //"5-21","M-YY"
   const month = moment().format("M");
   const monthName = moment().format("MMMM");
@@ -90,7 +91,7 @@ function Timetable({ screenHeight }) {
         </Styles.StartBodyStyled>
         {takeShift && <ScheduleShift display={setTakeShift} />}
         {configTurnos && <ShiftsConfig display={setconfigTurnos} />}
-        {shiftDetail && <ShiftsPreview display={setShiftDetail} />}
+        {shiftDetail && <ShiftsPreview display={setShiftDetail} setOverFlow={setOverFlow}/>}
         {newClass && <Activities display={setNewClass} select="Clase" />}
         {newEvent && <Activities display={setNewEvent} select="Evento" />}
       </Styles.BodyStyled>
