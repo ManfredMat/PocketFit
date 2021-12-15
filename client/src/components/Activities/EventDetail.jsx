@@ -7,6 +7,7 @@ import {
 import ReactCardFlip from "react-card-flip";
 import moment from "moment";
 import "moment/locale/es";
+import Style from "./EventDetail.styles";
 
 function EventDetail({ id, display }) {
   const dispatch = useDispatch();
@@ -95,51 +96,53 @@ function EventDetail({ id, display }) {
         top: 0,
         alignItems: "center",
         justifyContent: "center",
+        zIndex: "5",
       }}
     >
       <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-        <div
-          style={{
-            display: "flex",
-            width: "60%",
-            height: "45%",
-            padding: "2em",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            backgroundColor: "grey",
-          }}
+        <Style.Contenedor
+          // style={{
+          //   display: "flex",
+          //   width: "60%",
+          //   height: "45%",
+          //   padding: "2em",
+          //   flexDirection: "column",
+          //   alignItems: "flex-start",
+          //   backgroundColor: "grey",
+          // }}
         >
           {event ? (
-            <div>
-              <button onClick={() => display(false)}>x</button>
-              <h1>Evento especial {event.name}</h1>
-              <img
+            <Style.Card>
+              <Style.Cruz onClick={() => display(false)}>x</Style.Cruz>
+              <Style.Titulo>Evento especial {event.name}</Style.Titulo>
+              <Style.ContenedorInfo>
+              <Style.Image
                 src={`data:image/jpeg;base64, ${event.imageData}`}
                 alt="event-img"
               />
-              <div>
-                <h3>Horario </h3>
-                <h3> {event.hour} hs. </h3>
-                <h3>Capacidad </h3>
-                <h3> {event.capacity} </h3>
-                <h3> Fecha </h3>
-                <h3>
-                  {" "}
-                  {event.day} / {event.month}{" "}
-                </h3>
-              </div>
-
-              <h2> Descripción</h2>
-              <button onClick={(e) => handleFlip(e)}>Editar</button>
-              <p> {event.description} </p>
-            </div>
+              <Style.Info>
+              <Style.DivInfo><h3>Horario </h3><Style.DivData>{event.hour} hs.</Style.DivData></Style.DivInfo>
+               <Style.DivInfo> <h3>Capacidad</h3><Style.DivData> {event.capacity}</Style.DivData> </Style.DivInfo>
+               <Style.DivInfo> <h3> Fecha </h3><Style.DivData> {" "}{event.day} / {event.month}{" "}</Style.DivData></Style.DivInfo>
+              </Style.Info>
+              </Style.ContenedorInfo>
+              <Style.ContenedorEdit>
+              <div style={{marginBottom : "1em", display: "flex", width: "-webkit-fill-available", justifyContent: "space-between"}}>
+              <Style.Descripcion> Descripción</Style.Descripcion>
+              
+              <Style.Edit onClick={(e) => handleFlip(e)}>Editar</Style.Edit>
+              </div >
+              <Style.ContenedorDescripcion> {event.description} </Style.ContenedorDescripcion>
+              </Style.ContenedorEdit>
+              {/* <Style.ContenedorDescripcion> {event.description} </Style.ContenedorDescripcion> */}
+            </Style.Card>
           ) : (
             <div>
-              <button onClick={() => display(false)}>x</button>
+              <div onClick={() => display(false)}>x</div>
               <p> ...Aún no hay eventos disponibles! </p>
             </div>
           )}
-        </div>
+        </Style.Contenedor>
 
         {/* INICIO DE REVERSO DE LA CARD!*/}
 
