@@ -131,6 +131,39 @@ function ClassesDetail({ id, display, setOverFlow }) {
         >
           {event ? (
             <Style.Card>
+
+//               <Style.Cruz onClick={() => {display(false); setOverFlow(false);}}>X</Style.Cruz>
+//               <Style.DivContenedorTitulo>
+//               <Style.Titulo> {event.name} </Style.Titulo>
+//               <Style.Edit onClick={(e) => handleFlip(e)}>Editar</Style.Edit>
+//               </Style.DivContenedorTitulo>
+//               <Style.ContenedorInfo>
+//               <Style.Image src={fitnesslogo} alt="class-img" />
+//               <div>
+//               <h1 style={{fontWeight: "300"}}>{event.profesor}</h1>
+//               <Style.Profesor>Profesor</Style.Profesor>
+//               </div>
+//               <Style.Info>
+//                 <Style.DivInfo>
+//                 <h3>Horario </h3>
+//                 <Style.DivData> {event.hour} hs. </Style.DivData>
+//                 </Style.DivInfo>
+//                 <Style.DivInfo>
+//                 <h3>Capacidad </h3>
+//                 <Style.DivData> {event.capacity} </Style.DivData>
+//                 </Style.DivInfo>
+//                 <Style.DivInfo>
+//                 <h3> Día de la semana </h3>
+//                 <Style.DivData>{event.day}</Style.DivData>
+//                 </Style.DivInfo>
+//               </Style.Info>
+//               </Style.ContenedorInfo>
+//               <Style.Inscriptos> Inscriptos</Style.Inscriptos>
+//               <div style={{marginBottom : "1em", display: "flex", width: "-webkit-fill-available", justifyContent: "space-between"}}>
+//               <Style.DatosInscriptos> Nombre </Style.DatosInscriptos>
+//               <Style.DatosInscriptos> Dia de pago </Style.DatosInscriptos>
+//               <Style.DatosInscriptos> Pago </Style.DatosInscriptos>
+
               <Style.Cruz
                 onClick={() => {
                   display(false);
@@ -176,6 +209,7 @@ function ClassesDetail({ id, display, setOverFlow }) {
                 <Style.DatosInscriptos> Nombre </Style.DatosInscriptos>
                 <Style.DatosInscriptos> Dia de pago </Style.DatosInscriptos>
                 <Style.DatosInscriptos> Pago </Style.DatosInscriptos>
+
               </div>
               <div>
                 {event.users?.map((user) => {
