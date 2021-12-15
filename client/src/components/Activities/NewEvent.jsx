@@ -128,6 +128,7 @@ const NewEvent = ({ display, kind, close }) => {
                 placeholder="Capacidad de la clase..."
                 type="number"
                 name="capacity"
+                min="1"
                 onChange={(e) => parseCapacity(e)}
               />
             </Styles.InputContainer>

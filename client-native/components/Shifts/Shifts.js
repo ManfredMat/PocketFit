@@ -22,7 +22,13 @@ export default function Shifts() {
     return ( 
         <ContainerS>
             <ScrollView>
-            <Text style={{color: '#fff', fontSize: 20, marginLeft: 10, marginTop: 20 }}>Mis Turnos</Text>
+            <Text style={{color: '#fff', 
+                         fontSize: 20, 
+                         marginLeft: 10, 
+                         marginTop: 20, 
+                         fontFamily:"Poppins_500Medium" 
+                         }}>
+            Mis Turnos</Text>
             <View>
                 {
             myShift.length > 0 
@@ -42,13 +48,13 @@ export default function Shifts() {
             })
             : <View style={{alignItems: 'center'}}>
                 <Cards>
-                    <Text style={{fontSize: 18, padding: 9}}>Parece que no tienes turnos agendados...</Text>
+                    <Text style={{fontSize: 16, padding: 9, fontFamily:"Poppins_500Medium" }}>Parece que no tienes turnos agendados...</Text>
                 </Cards>
               </View>
                 }
             </View>
             <View>
-                <Text style={{color: '#fff', fontSize: 20, marginLeft: 10, marginTop: 20 }}>Turnos disponibles</Text>
+                <Text style={{color: '#fff', fontSize: 20, marginLeft: 10, marginTop: 20, fontFamily:"Poppins_500Medium" }}>Turnos disponibles</Text>
                 <View>
                     {getAll.length !==0 ?
                      getAll.map(e => {
@@ -68,7 +74,7 @@ export default function Shifts() {
                              </View>
                          )
                      })
-                     : <Text style={{color: '#fff', alignSelf: 'center', marginTop: 50}}>Oops! No hay turnos Disponibles...</Text>
+                     : <Text style={{color: '#fff', alignSelf: 'center', marginTop: 50, fontFamily:"Poppins_500Medium" }}>Oops! No hay turnos Disponibles...</Text>
                     }
                 </View>
             </View>
@@ -102,7 +108,7 @@ export function PreViewShifts() {
                    </View>
                 :<View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <NoShift>
-                    <Text  style={{alignSelf: 'center', fontSize: 17}}>¿Aun no sacaste un turno?</Text>
+                    <Text  style={{alignSelf: 'center', fontSize: 17, fontFamily:"Poppins_500Medium"}}>¿Aun no sacaste un turno?</Text>
                 </NoShift>
                  </View>
             }

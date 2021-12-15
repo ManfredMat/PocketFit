@@ -54,6 +54,9 @@ const Styles = {
     border-radius: 0.4em;
     padding: 0.8em;
     margin-top: 0.5em;
+    &:hover {
+      cursor: pointer;
+    }
   `,
   TitleH3Styled: styled.h2`
     color: #ffffff;

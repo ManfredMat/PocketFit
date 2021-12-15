@@ -104,7 +104,7 @@ function ClassesDetail({ id, display }) {
       style={{
         display: "flex",
         position: "absolute",
-        width: "-webkit-fill-available",
+        width: "100vw",
         height: "100vh",
         backgroundColor: "#00000070",
         top: 0,
