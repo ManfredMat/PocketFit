@@ -5,7 +5,7 @@ import moment from "moment";
 import { getEvents } from "../../redux/Actions/actions-Activities";
 import EventDetail from "../Activities/EventDetail";
 
-function Calendar({ year, month }) {
+function Calendar({ year, month, big }) {
   const events = useSelector((state) => state.activities.events);
   const dispatch = useDispatch();
   const [eventoDetalle, setEventoDetalle] = React.useState(false);
@@ -58,7 +58,9 @@ function Calendar({ year, month }) {
                                 setEventoDetalle(!eventoDetalle);
                               }}
                             >
-                              {event.name.length >= 11
+                              {big ? 
+                                event.name
+                              : event.name.length >= 11
                                 ? event.name.substr(0, 8) + "..."
                                 : event.name}
                             </Styles.EventParaghrap>
