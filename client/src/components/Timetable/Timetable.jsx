@@ -43,7 +43,7 @@ function Timetable({ screenHeight }) {
   return (
     <>
       <Styles.GlobalStyle />
-      <Styles.BodyStyled screenHeight={screenHeight}>
+      <Styles.BodyStyled screenHeight={screenHeight} overFlow={overFlow}>
         <Styles.StartBodyStyled>
           <Styles.TitleH1Styled>Horarios</Styles.TitleH1Styled>
           <Styles.ContentBodyStyled>
@@ -90,7 +90,7 @@ function Timetable({ screenHeight }) {
                   Nueva Clase
                 </Styles.YellowButton>
                   </Styles.EventosHead>
-                  <ClasesWeeklyView />
+                  <ClasesWeeklyView claseDetalle={claseDetalle} setClaseId={setClaseId} setClaseDetalle={setClaseDetalle} setOverFlow={setOverFlow}/>
               </Styles.RigthColumnStyledRow2>
             </Styles.RigthColumnStyled>
           </Styles.ContentBodyStyled>
@@ -100,7 +100,7 @@ function Timetable({ screenHeight }) {
         {shiftDetail && <ShiftsPreview display={setShiftDetail} setOverFlow={setOverFlow}/>}
         {newClass && <Activities display={setNewClass} select="Clase" />}
         {newEvent && <Activities display={setNewEvent} select="Evento" />}
-        {claseDetalle && <ClassesDetail id={claseId} display={setClaseDetalle} />}
+        {claseDetalle && <ClassesDetail id={claseId} display={setClaseDetalle} setOverFlow={setOverFlow}/>}
       </Styles.BodyStyled>
     </>
   );
