@@ -30,7 +30,6 @@ export const getShiftId = (id) => {
     return async function(dispatch) {
     try {
       const res = await axios.get(`http://${IP}:3001/api/shift/user/${id}`)
-      console.log(res.data.shifts)
       dispatch({
         type: GET_BY_ID,
         payload: res.data.shifts
@@ -41,9 +40,10 @@ export const getShiftId = (id) => {
   }
 }
 
-export const deleteShiftId = (id) => {
-    return{
+export const deleteShiftId = (id, userid) => async (dispatch) => {
+    await axios.put(`http://${IP}:3001/api/shift/revomeusershift?userId=${userid}&shiftId=${id}`)
+    dispatch({
       type: DELETE_SHIFTS,
       payload: id
-    }
+    })
 }

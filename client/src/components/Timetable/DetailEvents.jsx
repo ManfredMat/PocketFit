@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { getEvents } from "../../redux/Actions/actions-Activities";
-import Styles from "./Styles/DetailEventsStyled";
+import Styles from "./Styles/DetailEventsStyled";    
 
 
 function Detail() {

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { View, Text, Dimensions, ScrollView, TouchableOpacity} from 'react-native'
+import { View, Text, Dimensions, ScrollView, TouchableOpacity, TextInput} from 'react-native'
 import { ProgressChart, } from 'react-native-chart-kit'
-import { useSelector } from 'react-redux';
-import { Rounds, TextW } from '../Training/Training.Styles';
-import {Data, GreenText, GreenTitle, Ready, BlueBox, Squats, Stats, Weight, Snatch, Pushup, BenchPress, Sprint, NumTitle, StatsText} from './Statistics.Styles' 
+import { useDispatch, useSelector } from 'react-redux';
+import { TextW } from '../Training/Training.Styles';
+import {Data, GreenText, GreenTitle, Ready, BlueBox, Squats, Stats, Weight, Snatch, Pushup, BenchPress, Sprint, NumTitle, StatsText, Styles} from './Statistics.Styles' 
 import years from '../../assets/edad.png'
 import weight from '../../assets/peso.png'
 import height from '../../assets/altura.png'
@@ -14,12 +14,46 @@ import pullups from '../../assets/pullups-icon.png'
 import backsquat from '../../assets/backsquat-icon.png'
 import benchpress from '../../assets/benchpress-icon.png'
 import clean from '../../assets/clean-icon.png'
+import getUserId from '../../api/get-user'
+import {PutUser} from '../../redux/Actions/actions-getUser'
 
 export default function Statistics() {
+
+    const dispatch = useDispatch()
     const myShift = useSelector((state) => state.reducerShifts.myShifts)
     const exercise = useSelector((state) => state.reducerTraining.stats)
     const User = useSelector((state) => state.reducerUser.user)
+
     const [edit, setEdit] = useState(false)
+    const [input, setInput] = useState({
+        age: User.age.toString(),
+        weight: User.weight.toString(),
+        height: User.height.toString(),
+        backsquat: User.backsquat.toString(),
+        clean: User.clean.toString(),
+        snatch: User.snatch.toString(),
+        pullups: User.pullups.toString(),
+        benchpress: User.benchpress.toString(),
+        running: User.running.toString()
+    })
+
+    const handleInputChange = (e, type) => {
+        setInput({
+          ...input,
+          [type]: e.nativeEvent.text,
+        });
+      };
+
+    const handleSubmit = () => {
+        dispatch(PutUser(User.id, input))
+
+        setTimeout(() => {
+            getUserId(User.id)
+        }, 2000);
+        setEdit(false)
+    }
+
+
     const clases = () => {
         let total = myShift.length / 26 
         if(total > 1){
@@ -36,15 +70,23 @@ export default function Statistics() {
             return total
         }
     }
-
+    const totalData = () => {
+        let total = 
+        parseInt(User.backsquat) + 
+        parseInt(User.clean) + 
+        parseInt(User.snatch) +
+        parseInt(User.pullups) +
+        parseInt(User.benchpress)
+        return total / 365
+    }
     const data = {
-        data: [0.3, clases(), ejercicios()],
+        data: [clases(), ejercicios(), totalData()],
         colors:['rgba(206, 250, 31, 0.7)', 'rgba(217, 251, 82, 0.9)', 'rgba(106, 224, 86, 0.8)']
       };
     return (
         <Stats>
             <ScrollView>
-                <Text style={{color:'#6AE056', fontSize: 25,  marginTop: 60, marginLeft: 10}}>Estadisticas</Text>
+                <Text style={{color:'#6AE056', fontSize: 25,  marginTop: 60, marginLeft: 10, fontFamily:"Poppins_500Medium"}}>Estadisticas</Text>
                 <View style={{alignItems: 'center'}}>
                     <ProgressChart
                         data={data}
@@ -68,20 +110,62 @@ export default function Statistics() {
                         />
                 </View>
                 <View>
-                    <TextW>Ficha Tecnica</TextW>
+                    <View style={{flexDirection: 'row'}}>
+                        <TextW>Ficha Tecnica</TextW>
+                    { !edit ?
+                            <TouchableOpacity 
+                                onPress={() => setEdit(true)}
+                                style={{alignSelf: 'flex-end', marginLeft: '45%'}}
+                                >
+                                <Text style={{color:'#6AE056'}}>Editar</Text>
+                            </TouchableOpacity>
+                            :
+                            <View style={{flexDirection: 'row', alignSelf: 'flex-end', marginLeft: "20%"}}>
+                                <Ready onPress={() => setEdit(false)}>
+                                    <Text>Cancelar</Text>
+                                </Ready>
+                                <Ready onPress={() => handleSubmit()}>
+                                    <Text>Listo</Text>
+                                </Ready>
+                            </View>
+                            }
+                    </View>
                     <Data>
                     <BlueBox>
-                        <GreenTitle>{User.age}</GreenTitle>
+                        {
+                         !edit 
+                         ?
+                         <GreenTitle>{input.age}</GreenTitle>
+                         :
+                         <View>
+                             <TextInput
+                                style={Styles.Inp}
+                                value={input.age}
+                                onChange={(e)=> handleInputChange(e, "age")}
+                                />
+                         </View>
+                        }
                         <View>
                             <Image 
                                 style={{ width:34, height: 34}}
-                                source={years}/>
+                                source={years}/>                  
                             <GreenText>Edad</GreenText>
                         </View>
                     </BlueBox>
                     <BlueBox>
                         <View>
-                            <GreenTitle style={{marginBottom: -15}}>{User.weight}</GreenTitle>
+                            {
+                            !edit ?
+                            <GreenTitle style={{marginBottom: -15}}>{input.weight}</GreenTitle>
+                            :
+                            <View style={{marginBottom: -6}}>
+                                <TextInput
+                                  style={Styles.Inp}
+                                  value={input.weight}
+                                  onChange={(e)=> handleInputChange(e, "weight")}
+                                />
+                             </View>
+                            }
                             <GreenTitle>kg</GreenTitle>
                         </View>
                         <View>
@@ -93,7 +177,18 @@ export default function Statistics() {
                     </BlueBox>
                     <BlueBox>
                         <View style={{marginLeft: 7}}>
-                            <GreenTitle style={{marginBottom: -15}}>{User.height}</GreenTitle>
+                            {
+                            !edit?
+                            <GreenTitle style={{marginBottom: -15}}>{input.height}</GreenTitle>
+                            :
+                            <View style={{marginBottom: -8}}>
+                                <TextInput
+                                  style={Styles.Input}
+                                  value={input.height}
+                                  onChange={(e)=> handleInputChange(e, "height")}
+                                />
+                             </View>
+                            }
                             <GreenTitle>cm</GreenTitle>
                         </View>
                         <View>
@@ -105,32 +200,27 @@ export default function Statistics() {
                     </BlueBox>
                     </Data>
                     <View style={{margin:15}}>
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <View style={{marginLeft: -12}}>
                             <TextW>Datos</TextW>
-                            { !edit ?
-                            <TouchableOpacity 
-                                onPress={() => setEdit(true)}
-                                style={{alignSelf: 'flex-end', marginLeft: 230}}
-                                >
-                                <Text style={{color:'#6AE056'}}>Editar</Text>
-                            </TouchableOpacity>
-                            :
-                            <View style={{flexDirection: 'row', alignSelf: 'flex-end', marginLeft: "38%"}}>
-                                <Ready onPress={() => setEdit(false)}>
-                                    <Text>Cancelar</Text>
-                                </Ready>
-                                <Ready onPress={() => setEdit(false)}>
-                                    <Text>Listo</Text>
-                                </Ready>
-                            </View>
-                            }
                         </View>
                         <View style={{flexDirection: 'row', marginTop: 10}}>
                         <Squats>
                             <Image 
                                 source={backsquat} 
                                 style={{width: 31, height: 50}}/>
-                                <NumTitle>{User.backsquat}</NumTitle>
+                                {
+                                 !edit?
+                                 <NumTitle>{input.backsquat}</NumTitle>
+                                 :
+                                 <View>
+                                    <TextInput
+                                    style={Styles.InputDatos}
+                                    inputContainerStyle={{ borderBottomWidth: 0, width: 50}}
+                                    value={input.backsquat}
+                                    onChange={(e)=> handleInputChange(e, "backsquat")}
+                                    />
+                               </View>
+                                }
                                 <StatsText>Sentadillas</StatsText>
                         </Squats>
                         <View>
@@ -139,7 +229,19 @@ export default function Statistics() {
                                     source={clean} 
                                     style={{width: 49, height: 52}}/>
                                 <View style={{alignItems: 'center'}}>
-                                    <NumTitle>{User.clean}</NumTitle>
+                                    {
+                                     !edit?
+                                     <NumTitle>{input.clean}</NumTitle>
+                                     :
+                                     <View>
+                                      <TextInput
+                                        style={Styles.InputDatos}
+                                        inputContainerStyle={{ borderBottomWidth: 0, width: 50}}
+                                        value={input.clean}
+                                        onChange={(e)=> handleInputChange(e, "clean")}
+                                        />
+                                    </View>
+                                    }
                                     <StatsText>Cargadas</StatsText>
                                 </View>
                             </Weight>
@@ -148,7 +250,19 @@ export default function Statistics() {
                                     source={snatch} 
                                     style={{width: 50, height: 50}}/>
                                  <View style={{alignItems: 'center'}}>
-                                    <NumTitle>{User.snatch}</NumTitle>
+                                     {
+                                       !edit ?
+                                       <NumTitle>{input.snatch}</NumTitle>
+                                        :
+                                        <View>
+                                         <TextInput
+                                            style={Styles.InputDatos}
+                                            inputContainerStyle={{ borderBottomWidth: 0, width: 50}}
+                                            value={input.snatch}
+                                            onChange={(e)=> handleInputChange(e, "snatch")}
+                                            />
+                                       </View>
+                                     }
                                     <StatsText>Arranques</StatsText>
                                  </View>
                             </Snatch>
@@ -160,7 +274,19 @@ export default function Statistics() {
                                     source={pullups} 
                                     style={{width: 44, height: 50}}/>
                                 <View style={{alignItems: 'center'}}>
-                                    <NumTitle>{User.pullups}</NumTitle>
+                                    {
+                                        !edit ?
+                                        <NumTitle>{input.pullups}</NumTitle>
+                                        :
+                                        <View>
+                                         <TextInput
+                                            style={Styles.InputDatos}
+                                            inputContainerStyle={{ borderBottomWidth: 0, width: 50}}
+                                            value={input.pullups}
+                                            onChange={(e)=> handleInputChange(e, "pullups")}
+                                            />
+                                       </View>
+                                    }
                                     <StatsText>Dominadas</StatsText>
                                  </View>
                             </Pushup>
@@ -169,7 +295,19 @@ export default function Statistics() {
                                     source={benchpress} 
                                     style={{width: 50, height: 50}}/>
                                  <View style={{alignItems: 'center'}}>
-                                    <NumTitle>{User.benchpress}</NumTitle>
+                                     {
+                                         !edit ?
+                                         <NumTitle>{input.benchpress}</NumTitle>
+                                         :
+                                        <View>
+                                         <TextInput
+                                            style={Styles.InputDatos}
+                                            inputContainerStyle={{ borderBottomWidth: 0, width: 50}}
+                                            value={input.benchpress}
+                                            onChange={(e)=> handleInputChange(e, "benchpress")}
+                                            />
+                                       </View>
+                                     }
                                     <StatsText>Press de Banca</StatsText>
                                  </View>
                             </BenchPress>
@@ -178,8 +316,20 @@ export default function Statistics() {
                             <Image 
                                 source={running} 
                                 style={{width: 50, height: 52}}/> 
-                                <StatsText>Marca de Tiempo</StatsText>   
-                                <NumTitle>{User.running}</NumTitle>
+                                    <StatsText>Marca de Tiempo</StatsText>   
+                                {
+                                    !edit ?
+                                    <NumTitle>{input.running}</NumTitle>
+                                    :
+                                    <View>
+                                         <TextInput
+                                            style={Styles.InputDatos}
+                                            inputContainerStyle={{ borderBottomWidth: 0, width: 50}}
+                                            value={input.running}
+                                            onChange={(e)=> handleInputChange(e, "running")}
+                                            />
+                                  </View>
+                                }
                         </Sprint>
                     </View>
                 </View>

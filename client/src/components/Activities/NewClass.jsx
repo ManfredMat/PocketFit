@@ -52,18 +52,6 @@ const NewClass = ({ display, kind, close }) => {
     setInput({ ...input, hour: hora });
   }
 
-  function parseDate(e) {
-    let nombreDia = moment(e.target.value).format("dddd");
-
-    let mes = moment(e.target.value).format("L");
-    let dia = mes.slice(0, 2);
-    dia = parseInt(dia);
-    mes = mes.slice(3, 5);
-    mes = parseInt(mes);
-
-    setInput({ ...input, nameday: nombreDia, month: mes, day: dia });
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(postEvent(input));
@@ -100,13 +88,25 @@ const NewClass = ({ display, kind, close }) => {
               placeholder="Capacidad de la clase..."
               type="number"
               name="capacity"
+              min="1"
               onChange={(e) => parseCapacity(e)}
+              required
             />
           </Styles.InputContainer>
 
           <Styles.InputContainer>
-            <Styles.Label>Fecha</Styles.Label>
-            <Styles.Input type="date" onChange={(e) => parseDate(e)} />
+            <Styles.Label>Día</Styles.Label>
+            <Styles.Select name="nameday" onChange={(e) => handleChange(e)}>
+              <option value="" disabled selected>
+                Elija uno...
+              </option>
+              <option value="Lunes">Lunes</option>
+              <option value="Martes">Martes</option>
+              <option value="Miercoles">Miércoles</option>
+              <option value="Jueves">Jueves</option>
+              <option value="Viernes">Viernes</option>
+              <option value="Sabado">Sábado</option>
+            </Styles.Select>
           </Styles.InputContainer>
 
           <Styles.InputContainer>
