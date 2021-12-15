@@ -19,7 +19,7 @@ export default function Authentication() {
             style={{ flex: 1, width: '100%', height: '100%' }}
             imageStyle={{ resizeMode: 'stretch' }}>
             <View>
-                <SvgXml xml={fitnessGym} style={{ flex: 1, alignSelf: "center", marginTop: 25 }} />
+                <SvgXml xml={fitnessGym} style={{ flex: 1, alignSelf: "center", marginTop: 30 }} />
             </View>
             <View>
                 <SvgXml xml={headerLogin} style={{ alignSelf: "center", top: 50 }} />

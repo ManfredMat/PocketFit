@@ -26,12 +26,14 @@ export const TextW = styled.Text`
     font-size: 20px;
     margin-top: 20px;
     margin-left: 20px;
+   font-family:"Poppins_500Medium";
 `
 export const TextT = styled.Text`
     font-size: 30px;
     color: ${green};
     margin-top: 60px;
     margin-left: 20px;
+    font-family:"Poppins_500Medium";
 `
 export const LemonContainer = styled.View`
     background-color: ${lime};

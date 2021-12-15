@@ -15,10 +15,12 @@ const Styles = {
     margin-left: 3.6em;
   `,
   semanaText: styled.h2`
-    color: var(--darkGray-base);
-    background-color: white;
+    color: var(--green);
+    font-size: 1.5em;
+    background-color: var(--darkGray-medium);
     border-radius: 0.6em;
-    padding: 0.4em 1.3em;
+    padding: 0.4em 0em 0.4em;
+    text-align: center;
   `,
   ContainerStyled: styled.div`
     margin-left: -3.6em;
@@ -63,10 +65,10 @@ const Styles = {
   Nums: styled.p`
     text-align: center;
     font-size: ${(props) => (props.flag ? "1.3em" : "0.8em")};
-    color: var(--darkGray-base);
-    background-color: ${(props) => (props.flag ? "transparent" : "white")};
+    color: var(--green);
+    background-color: ${(props) => (props.flag ? "transparent" : "var(--darkBlue);")};
     border-radius: 50%;
-    font-weight: 700;
+    font-weight: 600;
     padding: 0.3em;
     width: 1.3em;
     height: 1.3em;

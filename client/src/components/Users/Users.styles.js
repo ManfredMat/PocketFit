@@ -12,15 +12,15 @@ const Styles = {
 
     Title: styled.h1`
         color: white;
-        margin-left: 5rem;
+        margin-left: 8.2rem;
         margin-top: 1rem;
     `,
 
     NavBar: styled.div`
         background-color: var(--darkGray-base);
-        /* position: ${(props) =>
+        position: ${(props) =>
             props.sticky ? "static" : "sticky"};
-        top: 0; */
+        top: 0;
         display: flex;
         flex-direction: column;
     `,
