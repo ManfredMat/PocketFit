@@ -6,12 +6,11 @@ import WeekTable from "./WeekTable";
 const Routines = () => {
 
     const { id, name } = useParams();
-    let params =useParams()
-    
+    let params = useParams();
     return (
         <PageContainer>
             <div style={{ marginLeft: '4rem', marginRight: '4rem' }}>
-                <WeekTable name={name} id={id} params={params}/>
+                <WeekTable name={name} id={id} params={params} />
                 <ExerciseList />
             </div>
         </PageContainer>

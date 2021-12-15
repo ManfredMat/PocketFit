@@ -1,0 +1,524 @@
+{
+    "monday": {
+        "id": 1,
+        "day": "monday",
+        "kindOfRoutine": "Personal",
+        "createdAt": "2021-12-15T14:01:00.674Z",
+        "updatedAt": "2021-12-15T14:01:00.674Z",
+        "blocks": [
+            {
+                "id": 1,
+                "order": 1,
+                "rounds": 5,
+                "kindOfBlock": "AMRAP",
+                "exercises": [
+                    [
+                        "ejercicio n 1",
+                        "5",
+                        "Con disco de 5kg",
+                        "1"
+                    ],
+                    [
+                        "ejercicio n 2",
+                        "5",
+                        "Con disco de 5kg",
+                        "2"
+                    ],
+                    [
+                        "ejercicio n 3",
+                        "5",
+                        "Con disco de 5kg",
+                        "3"
+                    ]
+                ]
+            },
+            {
+                "id": 2,
+                "order": 2,
+                "rounds": 5,
+                "kindOfBlock": "PAPAS",
+                "exercises": [
+                    [
+                        "ejercicio n 1",
+                        "5",
+                        "Con disco de 5kg",
+                        "1"
+                    ],
+                    [
+                        "ejercicio n 2",
+                        "5",
+                        "Con disco de 5kg",
+                        "2"
+                    ],
+                    [
+                        "ejercicio n 3",
+                        "5",
+                        "Con disco de 5kg",
+                        "3"
+                    ]
+                ]
+            },
+            {
+                "id": 3,
+                "order": 3,
+                "rounds": 5,
+                "kindOfBlock": "BAILANDO",
+                "exercises": [
+                    [
+                        "ejercicio n 1",
+                        "5",
+                        "Con disco de 5kg",
+                        "1"
+                    ],
+                    [
+                        "ejercicio n 2",
+                        "5",
+                        "Con disco de 5kg",
+                        "2"
+                    ],
+                    [
+                        "ejercicio n 3",
+                        "5",
+                        "Con disco de 5kg",
+                        "3"
+                    ]
+                ]
+            }
+        ]
+    },
+    "tuesday": {
+        "id": 1,
+        "day": "tuesday",
+        "kindOfRoutine": "Personal",
+        "createdAt": "2021-12-15T14:01:00.674Z",
+        "updatedAt": "2021-12-15T14:01:00.674Z",
+        "blocks": [
+            {
+                "id": 1,
+                "order": 1,
+                "rounds": 5,
+                "kindOfBlock": "AMRAP",
+                "exercises": [
+                    [
+                        "ejercicio n 1",
+                        "5",
+                        "Con disco de 5kg",
+                        "1"
+                    ],
+                    [
+                        "ejercicio n 2",
+                        "5",
+                        "Con disco de 5kg",
+                        "2"
+                    ],
+                    [
+                        "ejercicio n 3",
+                        "5",
+                        "Con disco de 5kg",
+                        "3"
+                    ]
+                ]
+            },
+            {
+                "id": 2,
+                "order": 2,
+                "rounds": 5,
+                "kindOfBlock": "AMRAP",
+                "exercises": [
+                    [
+                        "ejercicio n 1",
+                        "5",
+                        "Con disco de 5kg",
+                        "1"
+                    ],
+                    [
+                        "ejercicio n 2",
+                        "5",
+                        "Con disco de 5kg",
+                        "2"
+                    ],
+                    [
+                        "ejercicio n 3",
+                        "5",
+                        "Con disco de 5kg",
+                        "3"
+                    ]
+                ]
+            },
+            {
+                "id": 3,
+                "order": 3,
+                "rounds": 5,
+                "kindOfBlock": "AMRAP",
+                "exercises": [
+                    [
+                        "ejercicio n 1",
+                        "5",
+                        "Con disco de 5kg",
+                        "1"
+                    ],
+                    [
+                        "ejercicio n 2",
+                        "5",
+                        "Con disco de 5kg",
+                        "2"
+                    ],
+                    [
+                        "ejercicio n 3",
+                        "5",
+                        "Con disco de 5kg",
+                        "3"
+                    ]
+                ]
+            }
+        ]
+    },
+    "wendsday": {
+        "id": 1,
+        "day": "wendsday",
+        "kindOfRoutine": "Personal",
+        "createdAt": "2021-12-15T14:01:00.674Z",
+        "updatedAt": "2021-12-15T14:01:00.674Z",
+        "blocks": [
+            {
+                "id": 1,
+                "order": 1,
+                "rounds": 5,
+                "kindOfBlock": "AMRAP",
+                "exercises": [
+                    [
+                        "ejercicio n 1",
+                        "5",
+                        "Con disco de 5kg",
+                        "1"
+                    ],
+                    [
+                        "ejercicio n 2",
+                        "5",
+                        "Con disco de 5kg",
+                        "2"
+                    ],
+                    [
+                        "ejercicio n 3",
+                        "5",
+                        "Con disco de 5kg",
+                        "3"
+                    ]
+                ]
+            },
+            {
+                "id": 2,
+                "order": 2,
+                "rounds": 5,
+                "kindOfBlock": "AMRAP",
+                "exercises": [
+                    [
+                        "ejercicio n 1",
+                        "5",
+                        "Con disco de 5kg",
+                        "1"
+                    ],
+                    [
+                        "ejercicio n 2",
+                        "5",
+                        "Con disco de 5kg",
+                        "2"
+                    ],
+                    [
+                        "ejercicio n 3",
+                        "5",
+                        "Con disco de 5kg",
+                        "3"
+                    ]
+                ]
+            },
+            {
+                "id": 3,
+                "order": 3,
+                "rounds": 5,
+                "kindOfBlock": "AMRAP",
+                "exercises": [
+                    [
+                        "ejercicio n 1",
+                        "5",
+                        "Con disco de 5kg",
+                        "1"
+                    ],
+                    [
+                        "ejercicio n 2",
+                        "5",
+                        "Con disco de 5kg",
+                        "2"
+                    ],
+                    [
+                        "ejercicio n 3",
+                        "5",
+                        "Con disco de 5kg",
+                        "3"
+                    ]
+                ]
+            }
+        ]
+    },
+    "thursday": {
+        "id": 1,
+        "day": "thursday",
+        "kindOfRoutine": "Personal",
+        "createdAt": "2021-12-15T14:01:00.674Z",
+        "updatedAt": "2021-12-15T14:01:00.674Z",
+        "blocks": [
+            {
+                "id": 1,
+                "order": 1,
+                "rounds": 5,
+                "kindOfBlock": "AMRAP",
+                "exercises": [
+                    [
+                        "ejercicio n 1",
+                        "5",
+                        "Con disco de 5kg",
+                        "1"
+                    ],
+                    [
+                        "ejercicio n 2",
+                        "5",
+                        "Con disco de 5kg",
+                        "2"
+                    ],
+                    [
+                        "ejercicio n 3",
+                        "5",
+                        "Con disco de 5kg",
+                        "3"
+                    ]
+                ]
+            },
+            {
+                "id": 2,
+                "order": 2,
+                "rounds": 5,
+                "kindOfBlock": "AMRAP",
+                "exercises": [
+                    [
+                        "ejercicio n 1",
+                        "5",
+                        "Con disco de 5kg",
+                        "1"
+                    ],
+                    [
+                        "ejercicio n 2",
+                        "5",
+                        "Con disco de 5kg",
+                        "2"
+                    ],
+                    [
+                        "ejercicio n 3",
+                        "5",
+                        "Con disco de 5kg",
+                        "3"
+                    ]
+                ]
+            },
+            {
+                "id": 3,
+                "order": 3,
+                "rounds": 5,
+                "kindOfBlock": "AMRAP",
+                "exercises": [
+                    [
+                        "ejercicio n 1",
+                        "5",
+                        "Con disco de 5kg",
+                        "1"
+                    ],
+                    [
+                        "ejercicio n 2",
+                        "5",
+                        "Con disco de 5kg",
+                        "2"
+                    ],
+                    [
+                        "ejercicio n 3",
+                        "5",
+                        "Con disco de 5kg",
+                        "3"
+                    ]
+                ]
+            }
+        ]
+    },
+    "friday": {
+        "id": 1,
+        "day": "friday",
+        "kindOfRoutine": "Personal",
+        "createdAt": "2021-12-15T14:01:00.674Z",
+        "updatedAt": "2021-12-15T14:01:00.674Z",
+        "blocks": [
+            {
+                "id": 1,
+                "order": 1,
+                "rounds": 5,
+                "kindOfBlock": "AMRAP",
+                "exercises": [
+                    [
+                        "ejercicio n 1",
+                        "5",
+                        "Con disco de 5kg",
+                        "1"
+                    ],
+                    [
+                        "ejercicio n 2",
+                        "5",
+                        "Con disco de 5kg",
+                        "2"
+                    ],
+                    [
+                        "ejercicio n 3",
+                        "5",
+                        "Con disco de 5kg",
+                        "3"
+                    ]
+                ]
+            },
+            {
+                "id": 2,
+                "order": 2,
+                "rounds": 5,
+                "kindOfBlock": "AMRAP",
+                "exercises": [
+                    [
+                        "ejercicio n 1",
+                        "5",
+                        "Con disco de 5kg",
+                        "1"
+                    ],
+                    [
+                        "ejercicio n 2",
+                        "5",
+                        "Con disco de 5kg",
+                        "2"
+                    ],
+                    [
+                        "ejercicio n 3",
+                        "5",
+                        "Con disco de 5kg",
+                        "3"
+                    ]
+                ]
+            },
+            {
+                "id": 3,
+                "order": 3,
+                "rounds": 5,
+                "kindOfBlock": "AMRAP",
+                "exercises": [
+                    [
+                        "ejercicio n 1",
+                        "5",
+                        "Con disco de 5kg",
+                        "1"
+                    ],
+                    [
+                        "ejercicio n 2",
+                        "5",
+                        "Con disco de 5kg",
+                        "2"
+                    ],
+                    [
+                        "ejercicio n 3",
+                        "5",
+                        "Con disco de 5kg",
+                        "3"
+                    ]
+                ]
+            }
+        ]
+    },
+    "saturday": {
+        "id": 1,
+        "day": "saturday",
+        "kindOfRoutine": "Personal",
+        "createdAt": "2021-12-15T14:01:00.674Z",
+        "updatedAt": "2021-12-15T14:01:00.674Z",
+        "blocks": [
+            {
+                "id": 1,
+                "order": 1,
+                "rounds": 5,
+                "kindOfBlock": "AMRAP",
+                "exercises": [
+                    [
+                        "ejercicio n 1",
+                        "5",
+                        "Con disco de 5kg",
+                        "1"
+                    ],
+                    [
+                        "ejercicio n 2",
+                        "5",
+                        "Con disco de 5kg",
+                        "2"
+                    ],
+                    [
+                        "ejercicio n 3",
+                        "5",
+                        "Con disco de 5kg",
+                        "3"
+                    ]
+                ]
+            },
+            {
+                "id": 2,
+                "order": 2,
+                "rounds": 5,
+                "kindOfBlock": "AMRAP",
+                "exercises": [
+                    [
+                        "ejercicio n 1",
+                        "5",
+                        "Con disco de 5kg",
+                        "1"
+                    ],
+                    [
+                        "ejercicio n 2",
+                        "5",
+                        "Con disco de 5kg",
+                        "2"
+                    ],
+                    [
+                        "ejercicio n 3",
+                        "5",
+                        "Con disco de 5kg",
+                        "3"
+                    ]
+                ]
+            },
+            {
+                "id": 3,
+                "order": 3,
+                "rounds": 5,
+                "kindOfBlock": "AMRAP",
+                "exercises": [
+                    [
+                        "ejercicio n 1",
+                        "5",
+                        "Con disco de 5kg",
+                        "1"
+                    ],
+                    [
+                        "ejercicio n 2",
+                        "5",
+                        "Con disco de 5kg",
+                        "2"
+                    ],
+                    [
+                        "ejercicio n 3",
+                        "5",
+                        "Con disco de 5kg",
+                        "3"
+                    ]
+                ]
+            }
+        ]
+    }
+}

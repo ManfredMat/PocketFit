@@ -5,7 +5,6 @@ import {
   GET_USER_DETAIL,
   SORT,
   FILTER,
-  filtered
 } from "../Actions/actions-users";
 // import * as json from "../../components/Users/Users.json";
 
@@ -144,10 +143,12 @@ function reducerUsers(state = initialState, action) {
         
         alDia.map((users) => {
           if (users.imageData) users.imageData = users.imageData.toString("base64");
+          return true
         });
 
         fueraDeTermino.map((users) => {
           if (users.imageData) users.imageData = users.imageData.toString("base64");
+          return true
         });
 
         if (action.payload === "PAGO") {

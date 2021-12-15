@@ -8,8 +8,6 @@ import ShiftActivate from "./ShiftActivate";
 import Styles from "./Styles/ShiftDetailsStyled";
 import moment from "moment";
 
-import ShiftsPreview from "./ShiftsPreview";
-
 function ShiftsDetails({ screenHeight }) {
   let today = moment().format("M-D-YYYY").split("-");
   const labels = ["Horario", "Dia", "Fecha", "Disponibilidad", "Semana"];
@@ -17,10 +15,8 @@ function ShiftsDetails({ screenHeight }) {
   const allShifts = useSelector((state) => state.timetable.allShifts);
   const [render, setRender] = React.useState(false);
   const [week, setWeek] = React.useState(0);
-  const [overFlow, setOverFlow] = React.useState(false);
   const [configTurnos, setconfigTurnos] = React.useState(false);
   const [activateShifts, setActivateShifts] = React.useState(false);
-  const [shiftDetail, setShiftDetail] = React.useState(false);
   const [takeShift, setTakeShift] = React.useState(false);
 
   useEffect(() => {
@@ -29,29 +25,21 @@ function ShiftsDetails({ screenHeight }) {
     dispatch(getAllShifts(today[2], today[0], today[1]));
   }, [render]);
 
-  
-
   return (
     /* Aca hacer logica con style componentes para que si se activan los estados de los carteles el heigth sea fijo y el overFlowY quede hidden */
 
     render && (
       <>
         <Styles.GlobalStyle />
-        <Styles.BodyStyled screenHeight={screenHeight} overFlow={overFlow}>
+        <Styles.BodyStyled screenHeight={screenHeight}>
           <Styles.StartBodyStyled>
             <Styles.Header>
               <Styles.TitleH1Styled>Turnos Sala de Gimnasio</Styles.TitleH1Styled>
               <Styles.ButtonsContainer>
-              <Styles.GreenButton onClick={() => {
-                setTakeShift(!takeShift);
-                setOverFlow(true)
-                }}>
+              <Styles.GreenButton onClick={() => setTakeShift(!takeShift)}>
                 Agendar Turno
               </Styles.GreenButton>
-              <Styles.YellowButton onClick={() => {
-                setActivateShifts(!activateShifts)
-                setOverFlow(true)
-                }}>
+              <Styles.YellowButton onClick={() => setActivateShifts(!activateShifts)}>
                 Activar Turnos
               </Styles.YellowButton>
               <Styles.YellowButton onClick={() => setconfigTurnos(!configTurnos)}>
@@ -62,19 +50,20 @@ function ShiftsDetails({ screenHeight }) {
             </Styles.Header>
             <div>
               <Styles.genWeekContainer>
-                  <Styles.buttonsContainer overFlow={overFlow}>
+                  <Styles.buttonsContainer>
                   <Styles.buttons onClick={() => setWeek(week !== 0 && week - 1)}>
                   {"<<"}
                 </Styles.buttons>
                 <Styles.buttons onClick={() => setWeek(week + 1)}>{">>"}</Styles.buttons>
                   </Styles.buttonsContainer>
                 
-              <ShiftWeeklyView render={render} week={week} overFlow={overFlow} setOverFlow={setOverFlow} setShiftDetail={setShiftDetail}/>
+              <ShiftWeeklyView render={render} week={week} />
               </Styles.genWeekContainer>
 
             </div>
             <div>
               <h2>Todos los Turnos</h2>
+              <p>Proximamente Filtros</p>
               <div
                 style={{
                   display: "grid",
@@ -104,17 +93,15 @@ function ShiftsDetails({ screenHeight }) {
               </div>
             </div>
           </Styles.StartBodyStyled>
-          {takeShift && <ScheduleShift display={setTakeShift} setOverFlow={setOverFlow}/>}
-          {configTurnos && <ShiftsConfig display={setconfigTurnos} setOverFlow={setOverFlow} />}
+          {takeShift && <ScheduleShift display={setTakeShift} />}
+          {configTurnos && <ShiftsConfig display={setconfigTurnos} />}
           {activateShifts && (
             <ShiftActivate
               display={setActivateShifts}
               setRender={setRender}
               render={render}
-              setOverFlow={setOverFlow}
             />
           )}
-          {shiftDetail && <ShiftsPreview display={setShiftDetail} setOverFlow={setOverFlow}/>}
         </Styles.BodyStyled>
       </>
     )
