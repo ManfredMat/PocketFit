@@ -83,10 +83,10 @@ function UserDetail() {
                                 <Styles.DataKey>Estado</Styles.DataKey>
                                 <Styles.DataValue>{user.status === "ACTIVO" ? "Activo" : "Inactivo"}</Styles.DataValue>
                             </Styles.DataInfoContainer>
-                            <Styles.DataInfoContainer>
+                            {/* <Styles.DataInfoContainer>
                                 <Styles.DataKey>Pagado</Styles.DataKey>
                                 <Styles.DataValue>{user.paystatus === "PAGO" ? "Si" : "No"}</Styles.DataValue>
-                            </Styles.DataInfoContainer>
+                            </Styles.DataInfoContainer> */}
                             {/* <Styles.DataClassKey>Clases</Styles.DataClassKey>
                             <Styles.DataClassValue>Zumba - Martes 18hs</Styles.DataClassValue>
                             <Styles.DataClassValue>Bachata - Jueves 16hs</Styles.DataClassValue> */}
