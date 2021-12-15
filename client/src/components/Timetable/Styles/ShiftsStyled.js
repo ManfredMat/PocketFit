@@ -6,9 +6,18 @@ const Styles = {
           margin:0;
           color: #ffffff;
       }`,
+  ListContainer: styled.div`
+    display: flex;
+    width: -webkit-fill-available;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 0.8em;
+  `,
   ShiftButton: styled.button`
+    font-size: 1em;
     background-color: var(--yellow);
     padding: 0.5em 0.5em;
+    margin-top: 1em;
     text-decoration: none;
     border-radius: 0.5em;
     border: none;
@@ -41,7 +50,7 @@ const Styles = {
     align-content: center;
     justify-content: center;
     align-items: center;
-    margin:0.3em 1.4em;
+    margin: 0.3em 1.4em;
   `,
   DateParagrahp: styled.p`
     font-weight: 400;
@@ -55,14 +64,6 @@ const Styles = {
   HourParagrahp: styled.p`
     color: var(--darkGray-base);
     font-size: 1em;
-  `,
-  ListContainer: styled.div`
-    display: flex;
-    width: -webkit-fill-available;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 0.8em;
-    font-size: ${(props) => props.font};
   `,
   TitleH3Styled: styled.h2`
     color: #ffffff;

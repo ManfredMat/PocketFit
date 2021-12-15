@@ -10,7 +10,7 @@ import Styles from "./Styles/ShiftActivateStyled";
 let weekDays = [
   "Lunes",
   "Martes",
-  "Miercoles",
+  "Miércoles",
   "Jueves",
   "Viernes",
   "Sábado",
