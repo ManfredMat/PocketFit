@@ -39,3 +39,8 @@ export function render_exercise(bool){
         payload: bool
     }
 }
+export function delete_exercise(name){
+    return async function () {
+        await axios.delete("http://localhost:3001/api/exercises/"+name)
+    }
+}

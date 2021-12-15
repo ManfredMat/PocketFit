@@ -98,7 +98,7 @@ font-size: 1rem;
 }
 `,
 GreenButton: styled.button`
-    background-color: var(--green-medium);
+    background-color:grey;
     padding: 0.5em 0.7em;
     text-decoration: none;
     border-radius: 0.5em;
@@ -112,6 +112,21 @@ GreenButton: styled.button`
     cursor: pointer;
     }
   `,
+DeleteButton: styled.button`
+background-color: var(--green-medium);
+padding: 0.5em 0.7em;
+text-decoration: none;
+border-radius: 0.5em;
+border: none;
+color: var(--darkBlue);
+//width: 8em;
+height: 2em;
+font-weight:700;
+margin-left: 1em;
+&:hover{
+cursor: pointer;
+}
+`,  
   ConteinerHead: styled.div`
   display:flex;
   width:100%;
