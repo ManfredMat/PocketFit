@@ -5,7 +5,7 @@ import Day from "./Day";
 import { DayContainer, LeftBarContainer, SaveDeleteChanges , HeaderConteiner } from "./Routines.styles";
 import Styles from "../Exercises/Styles/ExercisesStyled"
 import goBack from "../../assets/img/iconos/goBack.svg"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const weekDays = [
     {
@@ -425,7 +425,7 @@ const WeekTable = (props) => {
         e.preventDefault();
         navigate("/session/users")
     }
-    let params = useParams();
+    let params = props.params
     return (
         <>  
             <HeaderConteiner>
