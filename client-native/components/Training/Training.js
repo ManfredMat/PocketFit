@@ -15,6 +15,7 @@ export default function Training() {
     const navigation = useNavigation();
     useEffect(() => {dispatch(getAllWeekPlan())},[dispatch]);
     const [num, setNum] = useState(0)
+    const [round, setRound] = useState()
     return (
         <Container>
             <TextT>Entrenamiento</TextT>
@@ -38,10 +39,10 @@ export default function Training() {
                             </TouchableOpacity>
                         </View> 
                     </Excercise>
-                    <Blocks num={num}/>
+                    <Blocks num={num} setRound={setRound}/>
                   <RoundsContainer>
                       <Rounds>
-                          <Text style={{fontSize: 12}}>Rondas 2</Text>
+                          <Text style={{fontSize: 12}}>Rondas {round}</Text>
                       </Rounds>
                   </RoundsContainer>
                 </Routines>

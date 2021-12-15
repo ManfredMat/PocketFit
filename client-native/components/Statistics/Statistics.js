@@ -26,15 +26,15 @@ export default function Statistics() {
 
     const [edit, setEdit] = useState(false)
     const [input, setInput] = useState({
-        age: User.age.toString(),
-        weight: User.weight.toString(),
-        height: User.height.toString(),
-        backsquat: User.backsquat.toString(),
-        clean: User.clean.toString(),
-        snatch: User.snatch.toString(),
-        pullups: User.pullups.toString(),
-        benchpress: User.benchpress.toString(),
-        running: User.running.toString()
+        age: User.age ? User.age.toString() : '0',
+        weight: User.weight ? User.weight.toString(): '0' ,
+        height: User.height ? User.height.toString(): '0',
+        backsquat: User.backsquat ? User.backsquat.toString(): '15',
+        clean:  User.clean ? User.clean.toString() : '30',
+        snatch: User.snatch ? User.snatch.toString(): '40',
+        pullups: User.pullups ? User.pullups.toString(): '10',
+        benchpress: User.benchpress ? User.benchpress.toString() : '40',
+        running: User.running ? User.running.toString(): '17'
     })
 
     const handleInputChange = (e, type) => {

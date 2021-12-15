@@ -25,6 +25,7 @@ const ExerciseListComplete = () => {
 
     let exercises = useSelector((state)=> state.exercise.exercises)
     function searchOnClick(id){
+        console.log(id)
         dispatch(get_exercise_by_id(id))
         dispatch(render_exercise(true))
     }
@@ -35,6 +36,7 @@ const ExerciseListComplete = () => {
                 
             return<>
             <Styles.ExerciseStyle onClick={()=>searchOnClick(excercise.id)}><Exercises key={index} excercise = {excercise} index={index} /></Styles.ExerciseStyle>
+
             </> 
             
         })          
@@ -52,8 +54,8 @@ const ExerciseListComplete = () => {
                 exerciseRender? <ExerciseDetail/>: null
         }
 
-        <Styles.ExerciseConteiner>
-        <Styles.HeaderConteiner>
+        <Styles.exerciseConteiner>
+        <Styles.headerConteiner>
             <Styles.ConteinerHead>
             <Styles.SearchButton ><Link to="/session/routines"><img src={goBack} alt="search-icon" height={"22rem"}/></Link></Styles.SearchButton >
             <Styles.Title>Ejercicios</Styles.Title>
@@ -61,23 +63,23 @@ const ExerciseListComplete = () => {
             <Styles.ConteinerSearchAndButton>
                 <Styles.YellowButton onClick={() => setExerciseCreate(!exerciseCreate)}>Crear Ejercicio</Styles.YellowButton>
                 <div>
-                <Styles.SearchBar type="text" placeholder="Ejercicio..." autoCorrect="off" />
+                <Styles.SearchBar type="text" placeholder="Introduce un nombre o apellido..." autoCorrect="off" />
                 <Styles.SearchButton ><img src={SearchIcon} alt="search-icon" height={"22rem"}/></Styles.SearchButton>
                 </div>
             </Styles.ConteinerSearchAndButton>
-        </Styles.HeaderConteiner>
+        </Styles.headerConteiner>
         {exerciseCreate && <ExcerciseCreate display={setExerciseCreate}/>}
-        <Styles.AllPropBox>
+        <Styles.allPropBox>
             <Styles.HeaderPropList>Nombre</Styles.HeaderPropList>
             <Styles.HeaderPropList>Descripcion</Styles.HeaderPropList>
             <Styles.HeaderPropList>Disciplina</Styles.HeaderPropList>
             <Styles.HeaderPropList>Video</Styles.HeaderPropList>
-        </Styles.AllPropBox>
-        <Styles.AllPropBoxComplete>
+        </Styles.allPropBox>
+        <Styles.allPropBoxComplete>
             {renderExercises(exercises)}
-        </Styles.AllPropBoxComplete>
+        </Styles.allPropBoxComplete>
         
-        </Styles.ExerciseConteiner>
+        </Styles.exerciseConteiner>
         </>
         )
 }

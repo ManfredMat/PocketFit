@@ -13,14 +13,13 @@ const Styles = {
     position: relative;
     width: -webkit-fill-available;
     background-color: var(--darkGray-base);
-    height: ${(props) => props.overFlow ? "100vh" : "auto"};
-    overflow-y: ${(props) => props.overFlow ? "hidden" : "auto"};
   `,
   StartBodyStyled: styled.div`
     padding: 1.3em 0em 0em 3em;
     position: relative;
     margin-top: 0.5em;
     width: -webkit-fill-available;
+    height: 100vh;
   `,
   ContentBodyStyled: styled.div`
     display: flex;

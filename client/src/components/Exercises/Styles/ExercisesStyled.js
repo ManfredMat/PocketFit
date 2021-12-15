@@ -4,20 +4,21 @@ const Styles = {
   GlobalStyle: createGlobalStyle`
 * {
     margin:0;
+    
 }`,
-AllPropBox: styled.div`
+allPropBox: styled.div`
   display:flex;
   width:98%;
   justify-content: center;
 `,
-HeaderConteiner: styled.div`
+headerConteiner: styled.div`
   display:flex;
   justify-content: space-between;
-  width:100%;
+  width:100%%;
   margin-top:0.5rem;
   margin-bottom:0.5rem;
 `,      
-PropBox: styled.h3`
+propBox: styled.h3`
     background:var(--green-medium);
     width:25%;
     margin:0.2rem;
@@ -37,8 +38,7 @@ color:var(--green-medium);
 PropBoxList: styled.h3`
     background:var(--darkGray-medium);
     width:25%;
-    margin:0.3rem;
-       
+    margin:0.3rem;    
     border-radius: 0.3em;
     text-align:center;   
   `,
@@ -47,16 +47,15 @@ LinkGreen: styled.a`
     font-size: 1.5em;
     color: var(--green);
   `,
-AllPropBoxComplete: styled.div`
+allPropBoxComplete: styled.div`
   width:100%;
   justify-content: space-between;
-  color:var(--darkGray-medium);
+  color:white;
 `,
 
-ExerciseConteiner : styled.div`
+exerciseConteiner : styled.div`
 width:100%;
 background: var(--darkGray-base);
-padding:1em;
 `,
 HeaderPropList: styled.h3`
     
@@ -78,7 +77,7 @@ YellowButton: styled.button`
     border-radius: 0.5em;
     border: none;
     color: var(--darkGray-base);
-    width: 15rem;
+    width: 20rem;
     text-align:center; 
     height: 2em;
     font-weight:700;
@@ -117,13 +116,7 @@ ConteinerHead: styled.div`
 display:flex;
 width:10%;
 justify-content: space-between;
-`,
-ExerciseStyle: styled.div`
-&:hover {
-  cursor: pointer;
-}
-`,
-  
+`,    
 };
 
 export default Styles;

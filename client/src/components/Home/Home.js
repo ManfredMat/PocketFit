@@ -13,7 +13,7 @@ function month(date) {
   return date.toLocaleDateString(undefined, options);
 }
 
-function Home({screenHeight}) {
+function Home({ screenHeight }) {
   localStorage.setItem("isLogged", "true");
   const [takeShift, setTakeShift] = React.useState(false);
   const [shiftDetail, setShiftDetail] = React.useState(false);
@@ -24,27 +24,26 @@ function Home({screenHeight}) {
       <Styles.GlobalStyle />
       <Styles.StyledBody screenHeight={screenHeight}>
         <h1>Bienvenido, {GymName}!</h1>
+        <Styles.ContentDiv>
+          <Styles.StyledFirstColumn>
+            <Styles.StyledCalendarContainer>
+              <Styles.TitleH2Styled>{month(date)}</Styles.TitleH2Styled>
+              <Calendar year={date.getFullYear()} month={date.getMonth()} />
+            </Styles.StyledCalendarContainer>
 
-        <Styles.StyledFirstRow>
-
-          <Styles.StyledCalendarContainer>
-            <h2>{month(date)}</h2>
-            <Calendar year={date.getFullYear()} month={date.getMonth()} />
-          </Styles.StyledCalendarContainer>
-
-          <Styles.StyledClasesContainer>
-            <h2>Hoy</h2>
-            <div>
+            <Styles.StyledClasesContainer>
+              <h2>Hoy</h2>
               <div>
-                <h3>Clases</h3>
-                <p>Ver Todas</p>
+                <div>
+                  <h3>Clases</h3>
+                  <p>Ver Todas</p>
+                </div>
+                <Clases clases={datos.actividades} />
+                <h3>Mañana</h3>
+                <Clases clases={datos.actividadesMañana} />
               </div>
-              <Clases clases={datos.actividades} />
-              <h3>Mañana</h3>
-              <Clases clases={datos.actividadesMañana} />
-            </div>
-          </Styles.StyledClasesContainer>
-
+            </Styles.StyledClasesContainer>
+          </Styles.StyledFirstColumn>
           <Styles.StyledShiftsContainer>
             <Styles.EventosHead>
               <Styles.TitleH2Styled>Turnos</Styles.TitleH2Styled>
@@ -58,11 +57,9 @@ function Home({screenHeight}) {
               </div>
               {/* <button onClick={() => setconfigTurnos(!configTurnos)}>Configurar Turnos</button> */}
             </Styles.EventosHead>
-            <Shifts setShiftDetail={setShiftDetail} font={"0.8rem"}/>
+            <Shifts setShiftDetail={setShiftDetail} />
           </Styles.StyledShiftsContainer>
-
-
-        </Styles.StyledFirstRow>
+        </Styles.ContentDiv>
 
         <div name="row-2"></div>
       </Styles.StyledBody>

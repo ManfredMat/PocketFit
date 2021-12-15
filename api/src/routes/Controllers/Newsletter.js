@@ -1,78 +1,53 @@
 const {User} = require('../../db');
 const { transporter, mailOptions } = require('./Transporter');
 
-
-let subscribed = ` <html>
+let subscribed = `<!DOCTYPE html>
+  <html>
   
-<head>
-  <meta charset='utf-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-</head>
-
-<body style=" font-family: 'Open Sans', 'Arial Narrow', Arial, sans-serif; ">
-  <div
-    style="height: 100%; padding: 2em; background-image: url('https://i.ibb.co/qYt487N/loginbackground.png'); background-size: 100%;">
-    <div style="border-radius: 2em;text-align: -webkit-center;background-color: rgb(2, 14, 18 , 0.8);z-index: 1;position: relative;">
-      <img src="https://i.ibb.co/ScMP2M3/Group.png" width="80px" height="80px"
-        style="position: relative; margin-top: 1em;">
-      <p
-        style="color: #ffffff;font-weight: 850;background-color:#588A58;padding:2em;">
-        %username% , Ya estas suscripto a las noticias de tu gimnasio </p>
-        
-    </div>
-  </div>
-
-</body>
-
-</html>`
-
-let unsubscribed = ` <html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  </head>
   
-<head>
-  <meta charset='utf-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-</head>
-
-<body style=" font-family: 'Open Sans', 'Arial Narrow', Arial, sans-serif; ">
-  <div
-    style="height: 100%; padding: 2em; background-image: url('https://i.ibb.co/qYt487N/loginbackground.png'); background-size: 100%;">
-    <div style="border-radius: 2em;text-align: -webkit-center;background-color: rgb(2, 14, 18 , 0.8);z-index: 1;position: relative;">
-      <img src="https://i.ibb.co/ScMP2M3/Group.png" width="80px" height="80px"
-        style="position: relative; margin-top: 1em;">
-      <p
-        style="color: #ffffff;font-weight: 850;background-color:#588A58;padding:2em;">
-        %username% , Ya estas desuscripto a las noticias de tu gimnasio </p>
-        
-    </div>
-  </div>
-
-</body>
-
-</html>`  
-
-let modelNews = ` <html>
+  <body style=" font-family: 'Open Sans', 'Arial Narrow', Arial, sans-serif; ">
+   <h2>Hola %usuario% </h2>
+   <h2>Ya estas suscripto a las noticias del gimnasio </h2>
   
-<head>
-  <meta charset='utf-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-</head>
+  </body>
+  
+  </html>`
 
-<body style=" font-family: 'Open Sans', 'Arial Narrow', Arial, sans-serif; ">
-  <div
-    style="height: 100%; padding: 2em; background-image: url('https://i.ibb.co/qYt487N/loginbackground.png'); background-size: 100%;">
-    <div style="border-radius: 2em;text-align: -webkit-center;background-color: rgb(2, 14, 18 , 0.8);z-index: 1;position: relative;">
-      <img src="https://i.ibb.co/ScMP2M3/Group.png" width="80px" height="80px"
-        style="position: relative; margin-top: 1em;">
-      <p
-        style="color: #ffffff;font-weight: 850;background-color:#588A58;padding:2em;">
-        Hola %username% , %message% </p>
-        
-    </div>
-  </div>
+let unsubscribed = `<!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  </head>
+  
+  <body style=" font-family: 'Open Sans', 'Arial Narrow', Arial, sans-serif; ">
+   <h2>Hola %usuario% </h2>
+   <h2>Ya estas desuscrito de las noticias del gimnasio </h2>
+  
+  </body>
+  
+  </html>`  
 
-</body>
-
-</html>`
+let modelNews = `<!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  </head>
+  
+  <body style=" font-family: 'Open Sans', 'Arial Narrow', Arial, sans-serif; ">
+   <h2>Hola %usuario% </h2>
+   <h2> %message% </h2>
+  
+  </body>
+  
+  </html>`
 
 
 const subscribeToNews = async (req , res)=>{
@@ -88,7 +63,7 @@ const subscribeToNews = async (req , res)=>{
 
     let message = subscribed
 
-    message = message.replace("%username%", user.name);
+    message = message.replace("%usuario%", user.name);
 
     let emailOptions = mailOptions(user.email, message , 'Ya estas suscripto a las noticias de tu gimnasio')
 
@@ -119,7 +94,7 @@ const unsubscribeToNews = async (req , res)=>{
   
       let message = unsubscribed
   
-      message = message.replace("%username%", user.name);
+      message = message.replace("%usuario%", user.name);
   
       let emailOptions = mailOptions(user.email, message , 'Ya estas desuscripto')
   
@@ -146,7 +121,7 @@ const unsubscribeToNews = async (req , res)=>{
 
             let message = modelNews
 
-            message = message.replace("%username%", user.name);
+            message = message.replace("%usuario%", user.name);
             message = message.replace("%message%", news);
 
 

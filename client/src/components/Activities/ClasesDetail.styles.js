@@ -27,16 +27,20 @@ const Style = {
     padding: 2em;
     border-radius: 1em;
     display: flex;
-    width: 60%;
-    height: 45%;
+    width: auto;
+    height: auto;
     flex-direction: column;
     align-items: flex-start;
   `,
-
+  DivContenedorTitulo: styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: -1em;
+  `,
   Titulo: styled.h1`
     color: var(--green);
     font-weight: 600;
-    margin-top: -1em;
   `,
 
   Cruz: styled.button`
@@ -55,7 +59,7 @@ const Style = {
     margin-left: 38em;
     align-items: center;
     justify-content: center;
-    margin-top: -1em;
+    margin-top: -2em;
     cursor: pointer;
     z-index: 6;
   `,
@@ -87,6 +91,7 @@ const Style = {
     color: var(--darkBlue);
     padding: 0.5em;
     cursor: pointer;
+    height: auto;
   `,
 
   Descripcion: styled.h2`
@@ -101,16 +106,19 @@ const Style = {
   `,
 
   Image: styled.img`
-    height: 20vh;
-    width: auto;
+    height: auto;
+    width: 20%;
     padding: 1em, 1em, 1em, 0;
     border-radius: 1em;
     margin-top: 1em;
+    margin-right: 3em;
   `,
 
   ContenedorInfo: styled.div`
     display: flex;
-    height: 25vh;
+    align-items: center;
+    margin-right: -1.2em;
+    
   `,
 
   DivInfo: styled.div`
@@ -121,7 +129,22 @@ const Style = {
   DivData: styled.h3`
     font-weight: 200;
   `,
-
+  
+  Profesor: styled.h2`
+  color: var(--green);
+  font-weight: 300;
+  font-size: 1.4em;
+  `,
+  Inscriptos: styled.h2`
+  color: var(--green);
+  font-size: 1.2em;
+  font-weight: 300;
+  `,
+    DatosInscriptos: styled.h2`
+    color: white;
+    font-size: 1.2em;
+    font-weight: 300;
+    `,
   Info: styled.div`
     background-color: var(--green-medium);
     color: white;

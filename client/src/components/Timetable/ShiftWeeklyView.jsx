@@ -8,6 +8,8 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import Styles from "./Styles/ShiftWeekViewStyled";
 
+import ShiftsPreview from "./ShiftsPreview";
+import styled from "styled-components";
 
 function weekNums(weekShiftsActual) {
   let weekNums = [];
@@ -20,13 +22,14 @@ function weekNums(weekShiftsActual) {
   return weekNums;
 }
 
-function ShiftWeeklyView({ render, week ,  overFlow , setOverFlow, setShiftDetail }) {
+function ShiftWeeklyView({ render, week }) {
+  const [shiftDetail, setShiftDetail] = React.useState(false);
   const weekShifts = useSelector((state) => state.timetable.weekShifts);
   const dispatch = useDispatch();
   let weekDays = [
     "Lunes",
     "Martes",
-    "Miercoles",
+    "Miércoles",
     "Jueves",
     "Viernes",
     "Sábado",
@@ -52,12 +55,11 @@ function ShiftWeeklyView({ render, week ,  overFlow , setOverFlow, setShiftDetai
   useEffect(() => {
     dispatch(getWeekShifts(parseInt(weekNum)));
     dispatch(getTimetable());
-  }, [week,weekShifts.length, overFlow]);
+  }, [week,weekShifts.length]);
 
   function shiftPreview(shift) {
     dispatch(selectShift(shift));
     setShiftDetail(true);
-    setOverFlow(true);
   }
 
   return (
@@ -110,7 +112,7 @@ function ShiftWeeklyView({ render, week ,  overFlow , setOverFlow, setShiftDetai
           </Styles.SubContainerStyled>
         </Styles.ContainerStyled>
 
-        
+        {shiftDetail && <ShiftsPreview display={setShiftDetail} />}
       </Styles.BodyStyled>
     )
   );
