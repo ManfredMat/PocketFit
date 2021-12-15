@@ -21,11 +21,11 @@ export const Card = styled.View`
     height: 100px;
 `
 export const Button = styled.TouchableOpacity`
-margin-top: 10px;
-background-color: ${lime};
-align-items: center;
-justify-content: center;
-border-radius: 15px;
-width: 115px;
-height: 35px;
+    margin-top: 10px;
+    background-color: ${lime};
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    width: 115px;
+    height: 35px;
 `
