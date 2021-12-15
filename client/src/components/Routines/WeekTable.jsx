@@ -344,7 +344,6 @@ const WeekTable = (props) => {
 
                     block3: {
                       day: key,
-
                       exercises: [],
 
                       kindOfBlock: "",
@@ -415,9 +414,12 @@ const WeekTable = (props) => {
     e.preventDefault();
     navigate("/session/users");
   }
-
-  return (
-    <>
+let param = props.params
+    return (
+        <>  
+            <HeaderConteiner>
+            {Object.keys(param).length>0?<Styles.SearchButton onClick={handlerClick}><img src={goBack} alt="search-icon" height={"30rem"}/></Styles.SearchButton >:null}
+            <h1>Plan Semanal <span style={{fontWeight: '400'}}>{userName ? `de ${userName}` :'General'}</span></h1>
       <HeaderConteiner>
         <Styles.SearchButton onClick={handlerClick}>
           <img src={goBack} alt="search-icon" height={"30rem"} />
@@ -481,3 +483,4 @@ const WeekTable = (props) => {
 };
 
 export default WeekTable;
+
