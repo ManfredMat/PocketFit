@@ -5,7 +5,6 @@ const path = require("path");
 const session = require("express-session");
 const { DataTypes } = require("sequelize");
 
-
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(
@@ -38,13 +37,19 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-
-
-
-
-const { Event , Exercise  ,UserEvent, Routine , Timetable , User  , Block, Shift , Weekplan , Review} = sequelize.models;
-
-
+const {
+  Event,
+  Exercise,
+  UserEvent,
+  Routine,
+  Timetable,
+  User,
+  Block,
+  Shift,
+  Weekplan,
+  Review,
+  Notification,
+} = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
