@@ -39,6 +39,9 @@ function ClasesWeeklyView() {
           </Styles.StyledContainer>
         </div>
       ))}
+
+      {/* {claseDetalle && <ClassesDetail id={claseId} display={setClaseDetalle} />} */}
+
     </Styles.StyledGrid>
   );
 }
