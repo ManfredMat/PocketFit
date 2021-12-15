@@ -40,9 +40,6 @@ export function render_exercise(bool){
         type: RENDER_EXERCISE,
         payload: bool
     }
-// <<<<<<< VickyModels
-// }
-// =======
 }
 export function delete_exercise(name){
     return async function () {

@@ -119,7 +119,7 @@ function ScheduleShift({ display, setOverFlow }) {
           ) : (
             <>
               <Styles.TitleH2Styled>Agendar Turno</Styles.TitleH2Styled>
-              <Styles.CloseButton  onClick={() => {
+              <Styles.CloseButton onClick={() => {
                         display(false);
                         setOverFlow(false);
                       }}>

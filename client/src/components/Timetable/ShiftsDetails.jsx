@@ -54,9 +54,9 @@ function ShiftsDetails({ screenHeight }) {
                 }}>
                 Activar Turnos
               </Styles.YellowButton>
-              <Styles.YellowButton onClick={() => setconfigTurnos(!configTurnos)}>
+              <Styles.UnableButton>
                 Configurar Turnos
-              </Styles.YellowButton>
+              </Styles.UnableButton>
               </Styles.ButtonsContainer>
               
             </Styles.Header>
