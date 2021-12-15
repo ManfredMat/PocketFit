@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Styles from './User.styles';
 import { useDispatch } from 'react-redux';
 import { getUserDetail, renderUserDetail } from '../../../redux/Actions/actions-users';
