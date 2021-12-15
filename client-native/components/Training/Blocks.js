@@ -47,8 +47,9 @@ export default function Blocks({num, setRound}) {
                     <View>
                     {setRound(today[0].blocks[num].rounds)}
                     {today[0].blocks[num].exercises.map(e =>
-                        <View  key={e[4]}>
+                        <View key={e[4]}>
                          <CardExercise 
+                            key={e[4]}
                             reps={e[1]} 
                             exercise={e[0]}
                             conmutador={false}
@@ -58,7 +59,7 @@ export default function Blocks({num, setRound}) {
                     </View>
                     :
                     <Excercise>
-                        <ActivityIndicator size="large" color="#6AE056" />
+                        <ActivityIndicator size="large" color="#6AE056"/>
                    </Excercise>
                   }
         </View>
