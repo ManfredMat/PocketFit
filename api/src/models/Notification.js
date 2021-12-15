@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define("notifications", {
+  sequelize.define("notification", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
     title: {
       type: DataTypes.STRING,
     },
-    text: {
+    message: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
