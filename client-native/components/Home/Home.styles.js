@@ -131,8 +131,7 @@ const Styles = {
     `,
 
     EventContainer: styled.TouchableOpacity`
-        width: ${(props) =>
-            props.holidays ? "67%" : "100%"};
+        width: 67%;
         height: 160px;
         background-color: ${green};
         border-radius: 20px;
@@ -322,11 +321,6 @@ const Styles = {
         padding: 10px;
     `,
 
-    RoutineTypeTitleContainer:styled.Text`
-        align-items: center;
-        height: 20%;
-    `,
-
     RoutineTypeTitle: styled.Text`
         font-family: "Poppins_500Medium";
         color: ${yellow};
@@ -335,14 +329,6 @@ const Styles = {
         margin-bottom: 30px;
     `,
 
-    RoutineTypeSubContainerContainer: styled.View`
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-end;
-        height: 80%;
-    `,
-    
     RoutineTypeSubContainer: styled.View`
         background-color: ${blueMedium};
         border-radius: 15px;
@@ -352,8 +338,7 @@ const Styles = {
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        margin-top: 14px;
-        margin-bottom: 5px;
+        margin-bottom: 16px;
     `,
 
     RoutineTypeSubtitle: styled.Text`

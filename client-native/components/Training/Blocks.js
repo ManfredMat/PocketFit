@@ -7,7 +7,7 @@ import CardExercise from './CardExercise'
 
 
 
-export default function Blocks({num, setRound}) {
+export default function Blocks({num}) {
     //basics
     const dispatch = useDispatch()
     useEffect(() => {dispatch(getAllWeekPlan())},[dispatch]);
@@ -30,10 +30,9 @@ export default function Blocks({num, setRound}) {
     setTimeout(() => {
         SetDay()
     }, 2021);
-
     return (
         <View>
-             {  
+             { 
                 typeof today === 'string' 
                     ? <Excercise>
                         <Text style={{alignSelf: 'center'}}>{today}</Text>
@@ -44,22 +43,35 @@ export default function Blocks({num, setRound}) {
                          <ActivityIndicator size="large" color="#6AE056" />
                        </Excercise>
                     :
-                    <View>
-                    {setRound(today[0].blocks[num].rounds)}
-                    {today[0].blocks[num].exercises.map(e =>
-                        <View key={e[4]}>
+                    num === 0 ?
+                    today[0].blocks[0].exercises.map(e =>
+                        <View  key={e[4]}>
                          <CardExercise 
-                            key={e[4]}
                             reps={e[1]} 
-                            exercise={e[0]}
-                            conmutador={false}
-                            />
+                            exercise={e[0]}/>
                         </View>
-                        )}
-                    </View>
+                        )
                     :
+                    num === 1 ?
+                    today[0].blocks[1].exercises.map(e =>
+                        <View key={e[4]} >
+                         <CardExercise 
+                           reps={e[1]} 
+                           exercise={e[0]}/>
+                       </View>
+                        )
+                    :
+                    num === 2 &&
+                    today[0].blocks[2].exercises.map(e =>
+                        <View key={e[4]}>
+                         <CardExercise  
+                           reps={e[1]} 
+                           exercise={e[0]}/>
+                       </View>
+                        )
+                    : 
                     <Excercise>
-                        <ActivityIndicator size="large" color="#6AE056"/>
+                        <ActivityIndicator size="large" color="#6AE056" />
                    </Excercise>
                   }
         </View>

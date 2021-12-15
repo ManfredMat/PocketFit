@@ -16,6 +16,7 @@ import Profile from "./components/Profile/Profile";
 import Routines from "./components/Routines/Routines";
 import ExerciseListComplete from "./components/Exercises/ExerciseListComplete";
 import ExerciseDetail from "./components/Exercises/ExerciseDetail";
+import Activities from "./components/Activities/Activities";
 import Reviews from "./components/Reviews/Reviews"
 
 
@@ -43,7 +44,7 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/session" element={<Home />} />
-          <Route path="/session/home" element={<Home />} />
+          <Route path="/session/home" element={<Home screenHeight={screenHeight} />} />
           <Route path="/session/profile" element={<Profile />} />
           <Route path="/session/payments" element={<Payments />} />
           <Route path="/session/users" element={<Users />} />
