@@ -4,7 +4,6 @@ import {
   getSingleEvent,
   updateEvent,
   getClients,
-  getProfessors,
 } from "../../redux/Actions/actions-Activities";
 import ReactCardFlip from "react-card-flip";
 import moment from "moment";
@@ -12,7 +11,7 @@ import "moment/locale/es";
 import fitnesslogo from "../../assets/img/iconos/fotoperfil.svg";
 import Style from "./ClasesDetail.styles";
 
-function ClassesDetail({ id, display, setOverFlow }) {
+function ClassesDetail({ id, display , setOverFlow }) {
   const dispatch = useDispatch();
 
   const [value, setValue] = useState(0);
@@ -20,12 +19,10 @@ function ClassesDetail({ id, display, setOverFlow }) {
   useEffect(() => {
     dispatch(getSingleEvent(id));
     dispatch(getClients());
-    dispatch(getProfessors());
   }, [dispatch, id, value]);
 
   const event = useSelector((state) => state.activities.event);
   const clients = useSelector((state) => state.activities.clients);
-  const professors = useSelector((state) => state.activities.professors);
 
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -105,7 +102,7 @@ function ClassesDetail({ id, display, setOverFlow }) {
 
   return (
     <Style.BodyGen
-    /* style={{
+      /* style={{
           display: "flex",
           position: "absolute",
           width: "-webkit-fill-available",
@@ -120,7 +117,7 @@ function ClassesDetail({ id, display, setOverFlow }) {
     >
       <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
         <Style.Contenedor
-        /* style={{
+           /* style={{
             display: "flex",
             width: "60%",
             height: "45%",
@@ -131,85 +128,37 @@ function ClassesDetail({ id, display, setOverFlow }) {
         >
           {event ? (
             <Style.Card>
-
-//               <Style.Cruz onClick={() => {display(false); setOverFlow(false);}}>X</Style.Cruz>
-//               <Style.DivContenedorTitulo>
-//               <Style.Titulo> {event.name} </Style.Titulo>
-//               <Style.Edit onClick={(e) => handleFlip(e)}>Editar</Style.Edit>
-//               </Style.DivContenedorTitulo>
-//               <Style.ContenedorInfo>
-//               <Style.Image src={fitnesslogo} alt="class-img" />
-//               <div>
-//               <h1 style={{fontWeight: "300"}}>{event.profesor}</h1>
-//               <Style.Profesor>Profesor</Style.Profesor>
-//               </div>
-//               <Style.Info>
-//                 <Style.DivInfo>
-//                 <h3>Horario </h3>
-//                 <Style.DivData> {event.hour} hs. </Style.DivData>
-//                 </Style.DivInfo>
-//                 <Style.DivInfo>
-//                 <h3>Capacidad </h3>
-//                 <Style.DivData> {event.capacity} </Style.DivData>
-//                 </Style.DivInfo>
-//                 <Style.DivInfo>
-//                 <h3> Día de la semana </h3>
-//                 <Style.DivData>{event.day}</Style.DivData>
-//                 </Style.DivInfo>
-//               </Style.Info>
-//               </Style.ContenedorInfo>
-//               <Style.Inscriptos> Inscriptos</Style.Inscriptos>
-//               <div style={{marginBottom : "1em", display: "flex", width: "-webkit-fill-available", justifyContent: "space-between"}}>
-//               <Style.DatosInscriptos> Nombre </Style.DatosInscriptos>
-//               <Style.DatosInscriptos> Dia de pago </Style.DatosInscriptos>
-//               <Style.DatosInscriptos> Pago </Style.DatosInscriptos>
-
-              <Style.Cruz
-                onClick={() => {
-                  display(false);
-                  setOverFlow(false);
-                }}
-              >
-                X
-              </Style.Cruz>
+              <Style.Cruz onClick={() => {display(false); setOverFlow(false);}}>X</Style.Cruz>
               <Style.DivContenedorTitulo>
-                <Style.Titulo> {event.name} </Style.Titulo>
-                <Style.Edit onClick={(e) => handleFlip(e)}>Editar</Style.Edit>
+              <Style.Titulo> {event.name} </Style.Titulo>
+              <Style.Edit onClick={(e) => handleFlip(e)}>Editar</Style.Edit>
               </Style.DivContenedorTitulo>
               <Style.ContenedorInfo>
-                <Style.Image src={fitnesslogo} alt="class-img" />
-                <div>
-                  <h1 style={{ fontWeight: "300" }}>{event.profesor}</h1>
-                  <Style.Profesor>Profesor</Style.Profesor>
-                </div>
-                <Style.Info>
-                  <Style.DivInfo>
-                    <h3>Horario </h3>
-                    <Style.DivData> {event.hour} hs. </Style.DivData>
-                  </Style.DivInfo>
-                  <Style.DivInfo>
-                    <h3>Capacidad </h3>
-                    <Style.DivData> {event.capacity} </Style.DivData>
-                  </Style.DivInfo>
-                  <Style.DivInfo>
-                    <h3> Día de la semana </h3>
-                    <Style.DivData>{event.day}</Style.DivData>
-                  </Style.DivInfo>
-                </Style.Info>
+              <Style.Image src={fitnesslogo} alt="class-img" />
+              <div>
+              <h1 style={{fontWeight: "300"}}>{event.profesor}</h1>
+              <Style.Profesor>Profesor</Style.Profesor>
+              </div>
+              <Style.Info>
+                <Style.DivInfo>
+                <h3>Horario </h3>
+                <Style.DivData> {event.hour} hs. </Style.DivData>
+                </Style.DivInfo>
+                <Style.DivInfo>
+                <h3>Capacidad </h3>
+                <Style.DivData> {event.capacity} </Style.DivData>
+                </Style.DivInfo>
+                <Style.DivInfo>
+                <h3> Día de la semana </h3>
+                <Style.DivData>{event.day}</Style.DivData>
+                </Style.DivInfo>
+              </Style.Info>
               </Style.ContenedorInfo>
               <Style.Inscriptos> Inscriptos</Style.Inscriptos>
-              <div
-                style={{
-                  marginBottom: "1em",
-                  display: "flex",
-                  width: "-webkit-fill-available",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Style.DatosInscriptos> Nombre </Style.DatosInscriptos>
-                <Style.DatosInscriptos> Dia de pago </Style.DatosInscriptos>
-                <Style.DatosInscriptos> Pago </Style.DatosInscriptos>
-
+              <div style={{marginBottom : "1em", display: "flex", width: "-webkit-fill-available", justifyContent: "space-between"}}>
+              <Style.DatosInscriptos> Nombre </Style.DatosInscriptos>
+              <Style.DatosInscriptos> Dia de pago </Style.DatosInscriptos>
+              <Style.DatosInscriptos> Pago </Style.DatosInscriptos>
               </div>
               <div>
                 {event.users?.map((user) => {
@@ -225,14 +174,7 @@ function ClassesDetail({ id, display, setOverFlow }) {
             </Style.Card>
           ) : (
             <div>
-              <button
-                onClick={() => {
-                  display(false);
-                  setOverFlow(false);
-                }}
-              >
-                x
-              </button>
+              <button onClick={() => {display(false); setOverFlow(false);}}>x</button>
               <p> ...Aún no hay Clases disponibles! </p>
             </div>
           )}
@@ -257,14 +199,7 @@ function ClassesDetail({ id, display, setOverFlow }) {
                 handleSubmit(e);
               }}
             >
-              <button
-                onClick={() => {
-                  display(false);
-                  setOverFlow(false);
-                }}
-              >
-                x
-              </button>
+              <button onClick={() => {display(false);setOverFlow(false);}}>x</button>
 
               <input
                 type="text"
@@ -276,24 +211,17 @@ function ClassesDetail({ id, display, setOverFlow }) {
               <button onClick={(e) => handleFlip(e)}>Cancelar</button>
               <img src={fitnesslogo} alt="class-img" />
               <br />
-              <select name="profesor" onChange={(e) => handleChange(e)}>
-                <option value="" disabled selected>
-                  Elija uno...
-                </option>
-                {professors?.map((professor) => (
-                  <option key={professor.id} value={professor.name}>
-                    {" "}
-                    {professor.name}{" "}
-                  </option>
-                ))}
-              </select>
-
+              <input
+                type="text"
+                defaultValue={event.profesor}
+                name="profesor"
+                onChange={(e) => handleChange(e)}
+              />
               <h2>Profesor</h2>
 
               <div>
                 <h3>Horario </h3>
                 <input type="time" name="hour" onChange={(e) => parseHour(e)} />
-
                 <h3>Capacidad </h3>
                 <input
                   type="number"
@@ -301,7 +229,7 @@ function ClassesDetail({ id, display, setOverFlow }) {
                   onChange={(e) => parseCapacity(e)}
                   min={clients.length}
                 />
-                <h3> Día </h3>
+               <h3> Día </h3>
                 <select name="nameday" onChange={(e) => handleChange(e)}>
                   <option value="" disabled selected>
                     Elija uno...
@@ -345,14 +273,7 @@ function ClassesDetail({ id, display, setOverFlow }) {
             </form>
           ) : (
             <div>
-              <button
-                onClick={() => {
-                  display(false);
-                  setOverFlow(false);
-                }}
-              >
-                x
-              </button>
+              <button onClick={() => {display(false);setOverFlow(false);}}>x</button>
               <p> ...Aún no hay Clases disponibles! </p>
             </div>
           )}

@@ -6,6 +6,8 @@ export const GET_EXERCISE_BY_ID = "GET_EXERCISE_BY_ID";
 
 export const RENDER_EXERCISE = "RENDER_EXERCISE"
 
+export const SEARCH_EXERCISES = "SEARCH_EXERCISES"
+
 export function get_exercises(){
     return async function (dispatch) {
         await axios.get("http://localhost:3001/api/exercises")
@@ -38,9 +40,19 @@ export function render_exercise(bool){
         type: RENDER_EXERCISE,
         payload: bool
     }
+// <<<<<<< VickyModels
+// }
+// =======
 }
 export function delete_exercise(name){
     return async function () {
         await axios.delete("http://localhost:3001/api/exercises/"+name)
     }
 }
+export function searchExercises(search) {
+    return {
+        type: SEARCH_EXERCISES,
+        payload: search
+    }
+};
+

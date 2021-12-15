@@ -29,20 +29,14 @@ const Styles = {
       background: var(--green);
     }
   `,
-  StyledFirstColumn: styled.div`
+  StyledContent: styled.div`
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 100%;
   `,
-  RowOne: styled.div`
+  FirstRow: styled.div`
     display: flex;
     flex-direction: row;
-  `,
-  RowTwo: styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-right: 1em;
-    //height: 40em;
   `,
   ContentDiv: styled.div`
     display: flex;
@@ -62,7 +56,7 @@ const Styles = {
     text-transform: capitalize;
   `,
   StyledClasesContainer: styled.div`
-    margin-right: 1rem;
+    margin-left: 1rem;
     display: flex;
     flex-direction: column;
     width: 30%;
@@ -115,12 +109,20 @@ const Styles = {
   `,
   WeekPlanContainer: styled.div`
     display: flex;
+    flex-direction: column;
+    width: 70%;
   `,
   FirstRowWeek: styled.div`
     padding: 0.8em;
     border-radius: 0.5em;
     background-color: var(--yellow);
     color: var(--darkGray-base);
+    font-weight: 600;
+    text-align: center;
+    font-size: 1.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   `,
   BlocksGenContainer: styled.div``,
   BlocksContainers: styled.div`

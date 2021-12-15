@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { render_exercise ,  get_exercises , delete_exercise} from "../../redux/Actions/actions-exercise";
+import { render_exercise} from "../../redux/Actions/actions-exercise";
 import ReactPlayer from 'react-player';
 import Styles from "./Styles/ExerciseDetailStyled"; 
 
@@ -9,11 +9,6 @@ const ExerciseDetail =() => {
     let exercise = useSelector((state)=> state.exercise.exerciseDetail)
     let dispatch  = useDispatch();
     function searchOnClick(){
-         
-        dispatch(render_exercise(false))
-    }
-   function deleteOnClick(){
-        dispatch(delete_exercise(exercise.name)) 
         dispatch(render_exercise(false))
     }
     return(
@@ -35,7 +30,6 @@ const ExerciseDetail =() => {
                         <ReactPlayer url={exercise.video} width="-webkit-fill-available " height="-webkit-fill-available " controls/>
                     <Styles.ConteinerEdit>
                         <Styles.GreenButton>Editar</Styles.GreenButton>
-                        <Styles.DeleteButton onClick={()=>deleteOnClick()}>Eliminar</Styles.DeleteButton>
                     </Styles.ConteinerEdit>
                 </Styles.LeftDiv>
                 <Styles.RightDiv>
