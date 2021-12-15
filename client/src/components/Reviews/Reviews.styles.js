@@ -97,6 +97,7 @@ const Style = {
   text-transform: capitalize;
   display: flex;
   align-items: center;
+  font-size: 1.4em;
   `,
   Type3: styled.div`
     display: flex; 
