@@ -4,9 +4,9 @@ import { Switch } from 'react-native-elements';
 import { ViewEX, DarkContainer, Excercise } from './Training.Styles';
 import { trainingStats } from '../../redux/Actions/actions-Training';
 import { useDispatch } from 'react-redux';
-export default function CardExercise({reps, exercise}) {
+export default function CardExercise({reps, exercise, conmutador}) {
     const dispatch = useDispatch()
-    const [isEnabled, setIsEnabled] = useState(false);
+    const [isEnabled, setIsEnabled] = useState(conmutador);
     const toggleSwitch = () => {
         setIsEnabled(previousState => !previousState);
         setTimeout(() => {
