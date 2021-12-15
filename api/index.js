@@ -32,7 +32,6 @@ const generatorEx = (n) => {
 
 const exerArray = generatorEx(10);
 
-
 conn.sync({ force: false }).then(async () => {
   let newPassword = await bcrypt.hash("1234", 10);
   let adminAcount = {
@@ -47,158 +46,158 @@ conn.sync({ force: false }).then(async () => {
 
   let users = [
     {
-      name:"Luciano", 
-      lastname:"Heitt",
-      email:"fromgualeguaychuwithlove@gmail.com",     
+      name: "Luciano",
+      lastname: "Heitt",
+      email: "fromgualeguaychuwithlove@gmail.com",
       password: newPassword,
-      paymentday:"2021-12-01",
-      phoneNumber: "1125632147"
+      paymentday: "2021-12-01",
+      phoneNumber: "1125632147",
     },
     {
-      name:"Jesús", 
-      lastname:"Gutierrez",
-      email:"joaquingutierrez@gmail.com",     
+      name: "Jesús",
+      lastname: "Gutierrez",
+      email: "joaquingutierrez@gmail.com",
       password: newPassword,
-      paymentday:"2022-01-14",
-      phoneNumber: "1156873921"
+      paymentday: "2022-01-14",
+      phoneNumber: "1156873921",
     },
     {
-      name:"Candela", 
-      lastname:"Aznarez",
-      email:"candemeinkampf@gmail.com",     
+      name: "Candela",
+      lastname: "Aznarez",
+      email: "candemeinkampf@gmail.com",
       password: newPassword,
-      paymentday:"2021-12-05"
+      paymentday: "2021-12-05",
     },
     {
-      name:"Steve", 
-      lastname:"Medel",
-      email:"stiviewonder@gmail.com",     
+      name: "Steve",
+      lastname: "Medel",
+      email: "stiviewonder@gmail.com",
       password: newPassword,
-      paymentday:"2021-12-20"
+      paymentday: "2021-12-20",
     },
     {
-      name:"Mateo", 
-      lastname:"Manfredi",
-      email:"ilovehenrycoins@gmail.com",     
+      name: "Mateo",
+      lastname: "Manfredi",
+      email: "ilovehenrycoins@gmail.com",
       password: newPassword,
-      paymentday:"2021-12-02",
-      phoneNumber: "1166589785"
+      paymentday: "2021-12-02",
+      phoneNumber: "1166589785",
     },
     {
-      name:"Victoria", 
-      lastname:"Chouhy",
-      email:"ilovecocacola@gmail.com",     
+      name: "Victoria",
+      lastname: "Chouhy",
+      email: "ilovecocacola@gmail.com",
       password: newPassword,
-      paymentday:"2021-11-28"
+      paymentday: "2021-11-28",
     },
     {
-      name:"Leandro", 
-      lastname:"Rebequi",
-      email:"tonimybestfriend@gmail.com",     
+      name: "Leandro",
+      lastname: "Rebequi",
+      email: "tonimybestfriend@gmail.com",
       password: newPassword,
-      paymentday:"2021-11-29",
-      phoneNumber: "1100589620"
+      paymentday: "2021-11-29",
+      phoneNumber: "1100589620",
     },
     {
-      name:"Juan", 
-      lastname:"Carvajal",
-      email:"crazyforbitcoin@gmail.com",     
+      name: "Juan",
+      lastname: "Carvajal",
+      email: "crazyforbitcoin@gmail.com",
       password: newPassword,
-      paymentday:"2021-12-28"
+      paymentday: "2021-12-28",
     },
     {
-      name:"Jerlib", 
-      lastname:"Gonzalez",
-      email:"salsalover@gmail.com",     
+      name: "Jerlib",
+      lastname: "Gonzalez",
+      email: "salsalover@gmail.com",
       password: newPassword,
-      paymentday:"2021-12-07"
+      paymentday: "2021-12-07",
     },
     {
-      name:"Carlos", 
-      lastname:"Arceguet",
-      email:"ferneteverywhere@gmail.com",     
+      name: "Carlos",
+      lastname: "Arceguet",
+      email: "ferneteverywhere@gmail.com",
       password: newPassword,
-      paymentday:"2021-12-17",
-      phoneNumber: "1189631056"
+      paymentday: "2021-12-17",
+      phoneNumber: "1189631056",
     },
     {
-      name:"Barbara", 
-      lastname:"Kristal",
-      email:"checkpointdealer@gmail.com",     
+      name: "Barbara",
+      lastname: "Kristal",
+      email: "checkpointdealer@gmail.com",
       password: newPassword,
-      paymentday:"2021-11-15"
+      paymentday: "2021-11-15",
     },
     {
-      name:"Damian", 
-      lastname:"Diego",
-      email:"mylasthair@gmail.com",     
+      name: "Damian",
+      lastname: "Diego",
+      email: "mylasthair@gmail.com",
       password: newPassword,
-      paymentday:"2021-10-15",
-      status: "INACTIVO"
-    },
-    {
-      name:"David", 
-      lastname:"Mendoza",
-      email:"thegreatcheater@gmail.com",     
-      password: newPassword,
-      paymentday:"2021-12-25",
-      phoneNumber: "1123957856"
-    },
-    {
-      name:"Janina", 
-      lastname:"Roberto",
-      email:"janinarobe@gmail.com",     
-      password: newPassword,
-      paymentday:"2021-12-24"
-    },
-    {
-      name:"Andrés", 
-      lastname:"Cuervo",
-      email:"andycuervo@gmail.com",     
-      password: newPassword,
-      paymentday:"2021-12-20"
-    },
-    {
-      name:"Josue", 
-      lastname:"Solano",
-      email:"jsolano@gmail.com",     
-      password: newPassword,
-      paymentday:"2020-05-10",
-      status: "INACTIVO"
-    },
-    {
-      name:"Juan", 
-      lastname:"Malerba",
-      email:"juanmale@gmail.com",     
-      password: newPassword,
-      paymentday:"2021-06-06",
+      paymentday: "2021-10-15",
       status: "INACTIVO",
-      phoneNumber: "1112365498"
     },
     {
-      name:"Eliseo", 
-      lastname:"Masuelli",
-      email:"eliseomasuelli@gmail.com",     
+      name: "David",
+      lastname: "Mendoza",
+      email: "thegreatcheater@gmail.com",
       password: newPassword,
-      paymentday:"2012-12-12",
-      status: "INACTIVO"
+      paymentday: "2021-12-25",
+      phoneNumber: "1123957856",
     },
     {
-      name:"Pablo", 
-      lastname:"Peraltta",
-      email:"paulperaltta@gmail.com",     
+      name: "Janina",
+      lastname: "Roberto",
+      email: "janinarobe@gmail.com",
       password: newPassword,
-      paymentday:"2022-02-27"
+      paymentday: "2021-12-24",
     },
     {
-      name:"Ryder", 
-      lastname:"Michel",
-      email:"ryderm@gmail.com",     
+      name: "Andrés",
+      lastname: "Cuervo",
+      email: "andycuervo@gmail.com",
       password: newPassword,
-      paymentday:"2021-12-31",
-      phoneNumber: "1156987423"
-    }
-  ]
+      paymentday: "2021-12-20",
+    },
+    {
+      name: "Josue",
+      lastname: "Solano",
+      email: "jsolano@gmail.com",
+      password: newPassword,
+      paymentday: "2020-05-10",
+      status: "INACTIVO",
+    },
+    {
+      name: "Juan",
+      lastname: "Malerba",
+      email: "juanmale@gmail.com",
+      password: newPassword,
+      paymentday: "2021-06-06",
+      status: "INACTIVO",
+      phoneNumber: "1112365498",
+    },
+    {
+      name: "Eliseo",
+      lastname: "Masuelli",
+      email: "eliseomasuelli@gmail.com",
+      password: newPassword,
+      paymentday: "2012-12-12",
+      status: "INACTIVO",
+    },
+    {
+      name: "Pablo",
+      lastname: "Peraltta",
+      email: "paulperaltta@gmail.com",
+      password: newPassword,
+      paymentday: "2022-02-27",
+    },
+    {
+      name: "Ryder",
+      lastname: "Michel",
+      email: "ryderm@gmail.com",
+      password: newPassword,
+      paymentday: "2021-12-31",
+      phoneNumber: "1156987423",
+    },
+  ];
 
   await Timetable.create();
   await User.create(adminAcount);
