@@ -33,3 +33,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+/* 
+Candela Aznarez16:52
+TitleH2Styled: styled.h2`
+    color: #ffffff;
+    font-size: 1.4em;
+    font-weight: 500;
+    text-transform: capitalize;
+  `,
+TitleH1Styled: styled.h1`
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 2em;
+  `,
+Candela Aznarez16:53
+,
+  TitleH3Styled: styled.h3`
+    color: #ffffff;
+    font-size: 1.2em;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin: 1em 0em 0.5em 0em;
+  `, */

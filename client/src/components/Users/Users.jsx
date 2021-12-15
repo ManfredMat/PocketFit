@@ -56,45 +56,29 @@ function Users() {
 
                     <Styles.SortContainer>
                         <Styles.NavBarLabel>Ordenar</Styles.NavBarLabel>
-                        <div 
-                            style={{
-                                backgroundColor: "var(--green)", 
-                                paddingRight: "1em", 
-                                borderRadius: "2em", 
-                                display: "flex"
-                            }}>
-                            <Styles.Sort name="sort" ref={sort} onChange={sortOnChange}>
-                                <option value="default" hidden>Elige una opción...</option>
-                                <option value="Name" disabled>Nombre</option>
-                                    <option value="na-z">A-Z</option>
-                                    <option value="nz-a">Z-A</option>
-                                <option value="Lastname" disabled>Apellido</option>
-                                    <option value="aa-z">A-Z</option>
-                                    <option value="az-a">Z-A</option>
-                            </Styles.Sort>
-                        </div>
+                        <Styles.Sort name="sort" ref={sort} onChange={sortOnChange}>
+                            <option value="default" hidden>Elige una opción...</option>
+                            <option value="Name" disabled>Nombre</option>
+                                <option value="na-z">A-Z</option>
+                                <option value="nz-a">Z-A</option>
+                            <option value="Lastname" disabled>Apellido</option>
+                                <option value="aa-z">A-Z</option>
+                                <option value="az-a">Z-A</option>
+                        </Styles.Sort>
                     </Styles.SortContainer>
 
                     <Styles.FilterContainer>
                         <Styles.NavBarLabel>Filtrar</Styles.NavBarLabel>
-                        <div 
-                            style={{
-                                backgroundColor: "var(--green)", 
-                                paddingRight: "1em", 
-                                borderRadius: "2em", 
-                                display: "flex"
-                            }}>
-                            <Styles.Filter name="filter" onChange={filterOnChange}>
-                                <option value="default" hidden>Elige una opción...</option>
-                                    <option value="no-filters">Sin filtros</option>
-                                <option value="paystatus" disabled>Estado de pago</option>
-                                    <option value="PAGO">Pago</option>
-                                    <option value="NO-PAGO">No pago</option>
-                                <option value="status" disabled>Activo/Inactivo</option>
-                                    <option value="ACTIVO">Activo</option>
-                                    <option value="INACTIVO">Inactivo</option>
-                            </Styles.Filter>
-                        </div>
+                        <Styles.Filter name="filter" onChange={filterOnChange}>
+                            <option value="default" hidden>Elige una opción...</option>
+                                <option value="no-filters">Sin filtros</option>
+                            <option value="paystatus" disabled>Estado de pago</option>
+                                <option value="PAGO">Pago</option>
+                                <option value="NO-PAGO">No pago</option>
+                            <option value="status" disabled>Activo/Inactivo</option>
+                                <option value="ACTIVO">Activo</option>
+                                <option value="INACTIVO">Inactivo</option>
+                        </Styles.Filter>
                     </Styles.FilterContainer>
                 </Styles.NavBarContainer>
             </Styles.NavBar>

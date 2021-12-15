@@ -26,7 +26,7 @@ function ShiftWeeklyView({ render, week ,  overFlow , setOverFlow, setShiftDetai
   let weekDays = [
     "Lunes",
     "Martes",
-    "Miércoles",
+    "Miercoles",
     "Jueves",
     "Viernes",
     "Sábado",
