@@ -4,7 +4,7 @@ import { Switch } from 'react-native-elements';
 import { ViewEX, DarkContainer, Excercise } from './Training.Styles';
 import { trainingStats } from '../../redux/Actions/actions-Training';
 import { useDispatch } from 'react-redux';
-export default function CardExercise({reps, exercise, key}) {
+export default function CardExercise({reps, exercise, reset}) {
     const dispatch = useDispatch()
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => {
@@ -14,7 +14,7 @@ export default function CardExercise({reps, exercise, key}) {
             !isEnabled ? dispatch(trainingStats(1)) : null;   
         }, 1000);
     }
-    
+ 
     return (
         <Excercise style={{ backgroundColor: isEnabled ? '#6AE056' : '#CEFA1F'}}>
                  <ViewEX>

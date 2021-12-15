@@ -7,7 +7,7 @@ import CardExercise from './CardExercise'
 
 
 
-export default function Blocks({num, setRound}) {
+export default function Blocks({num, setRound, reset}) {
     //basics
     const dispatch = useDispatch()
     useEffect(() => {dispatch(getAllWeekPlan())},[dispatch]);
@@ -52,7 +52,7 @@ export default function Blocks({num, setRound}) {
                             key={e[4]}
                             reps={e[1]} 
                             exercise={e[0]}
-                            conmutador={false}
+                            reset={reset}
                             />
                         </View>
                         )}
