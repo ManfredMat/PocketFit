@@ -40,12 +40,19 @@ function reducerRoutine(state = initialState, action) {
                     break;   
             
                 default:
-                    todayRoutine = "Sin Rutina";
+                    break;
             }
 
-            return {
-                ...state,
-                todayRoutine: todayRoutine
+            if(todayRoutine === undefined) {
+                return {
+                    ...state,
+                    todayRoutine: "Sin Rutina"
+                }
+            } else {
+                return {
+                    ...state,
+                    todayRoutine: todayRoutine
+                }
             }
 
 
