@@ -14,7 +14,7 @@ allPropBox: styled.div`
 headerConteiner: styled.div`
   display:flex;
   justify-content: space-between;
-  width:100%%;
+  width:100%;
   margin-top:0.5rem;
   margin-bottom:0.5rem;
 `,      
