@@ -1,10 +1,9 @@
 import React from "react";
-import Calendar from "../Timetable/Calendar";
+import Calendar from "./Calendar";
 import Clases from "./Clases";
-import { Link } from "react-router-dom";
-import Styles from "./Styles/HomeStyled";
+import Turnos from './Turnos'
+import Styles from "./HomeStyled";
 import datos from "./Datos-Hard";
-import Shifts from "../Timetable/Shifts";
 
 const GymName = "FitnessGym";
 
@@ -13,55 +12,42 @@ function month(date) {
   return date.toLocaleDateString(undefined, options);
 }
 
-function Home({screenHeight}) {
+function Home() {
   localStorage.setItem("isLogged", "true");
-  const [takeShift, setTakeShift] = React.useState(false);
-  const [shiftDetail, setShiftDetail] = React.useState(false);
 
   const date = new Date();
   return (
     <React.Fragment>
       <Styles.GlobalStyle />
-      <Styles.StyledBody screenHeight={screenHeight}>
+      <Styles.StyledBody>
         <h1>Bienvenido, {GymName}!</h1>
-
         <Styles.StyledFirstRow>
-
           <Styles.StyledCalendarContainer>
             <h2>{month(date)}</h2>
             <Calendar year={date.getFullYear()} month={date.getMonth()} />
           </Styles.StyledCalendarContainer>
 
-          <Styles.StyledClasesContainer>
+          <section>
             <h2>Hoy</h2>
-            <div>
-              <div>
-                <h3>Clases</h3>
-                <p>Ver Todas</p>
-              </div>
-              <Clases clases={datos.actividades} />
-              <h3>Mañana</h3>
-              <Clases clases={datos.actividadesMañana} />
-            </div>
-          </Styles.StyledClasesContainer>
-
-          <Styles.StyledShiftsContainer>
-            <Styles.EventosHead>
-              <Styles.TitleH2Styled>Turnos</Styles.TitleH2Styled>
-              <div>
-                <Link to="/session/timetable/ShiftsDetails">
-                  <Styles.LinkGreen>Ver detalle</Styles.LinkGreen>
-                </Link>
-                <Styles.GreenButton onClick={() => setTakeShift(!takeShift)}>
-                  Agendar Turno
-                </Styles.GreenButton>
-              </div>
-              {/* <button onClick={() => setconfigTurnos(!configTurnos)}>Configurar Turnos</button> */}
-            </Styles.EventosHead>
-            <Shifts setShiftDetail={setShiftDetail} font={"0.8rem"}/>
-          </Styles.StyledShiftsContainer>
-
-
+            <Styles.StyledTodayRows>
+              <Styles.StyledLeftColumn>
+                <Styles.StyledLeftColumnHead>
+                  <h3>Clases</h3>
+                  <p>Ver Todas</p>
+                </Styles.StyledLeftColumnHead>
+                <Clases clases={datos.actividades}/>
+                <h3>Mañana</h3>
+                <Clases clases={datos.actividadesMañana}/>
+              </Styles.StyledLeftColumn>
+              <section>
+                <div>
+                  <h3>Turnos</h3>
+                  <p>Ver Detalle</p>
+                </div>
+                <Turnos turnos={datos.turnos}/>
+              </section>
+            </Styles.StyledTodayRows>
+          </section>
         </Styles.StyledFirstRow>
 
         <div name="row-2"></div>

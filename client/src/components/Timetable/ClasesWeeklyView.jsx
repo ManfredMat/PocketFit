@@ -7,9 +7,11 @@ import ClassesDetail from "../Activities/ClassesDetail";
 
 var weekDays = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
 
-function ClasesWeeklyView({setClaseDetalle,setClaseId, claseDetalle, setOverFlow}) {
+function ClasesWeeklyView() {
   const lessons = useSelector((state) => state.activities.lessons);
   const dispatch = useDispatch();
+  const [claseDetalle, setClaseDetalle] = React.useState(false);
+  const [claseId, setClaseId] = useState("");
 
   useEffect(() => {
     dispatch(getLessons());
@@ -33,7 +35,6 @@ function ClasesWeeklyView({setClaseDetalle,setClaseId, claseDetalle, setOverFlow
                   onClick={() => {
                     setClaseId(cla.id);
                     setClaseDetalle(!claseDetalle);
-                    setOverFlow(true);
                   }}
                 >
                   <Styles.TitleH3Styled>{cla.name}</Styles.TitleH3Styled>
@@ -43,11 +44,7 @@ function ClasesWeeklyView({setClaseDetalle,setClaseId, claseDetalle, setOverFlow
           </Styles.StyledContainer>
         </div>
       ))}
-
-
-      {/* {claseDetalle && <ClassesDetail id={claseId} display={setClaseDetalle} />} */}
-
-
+      {claseDetalle && <ClassesDetail id={claseId} display={setClaseDetalle} />}
     </Styles.StyledGrid>
   );
 }

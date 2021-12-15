@@ -5,12 +5,12 @@ const Exercises = (excercise) => {
     return(
         <>
         <Styles.GlobalStyle />
-        <Styles.AllPropBox>
-            <Styles.PropBox>{exer.name}</Styles.PropBox>
-            <Styles.PropBox>{exer.description?"SI":"NO"}</Styles.PropBox>
-            <Styles.PropBox>{exer.discipline}</Styles.PropBox>
-            <Styles.PropBox>{exer.video?"SI":"NO"}</Styles.PropBox>
-        </Styles.AllPropBox>
+        <Styles.allPropBox>
+            <Styles.propBox>{exer.name}</Styles.propBox>
+            <Styles.propBox>{exer.description}</Styles.propBox>
+            <Styles.propBox>{exer.discipline}</Styles.propBox>
+            <Styles.propBox>{exer.video?"SI":"NO"}</Styles.propBox>
+        </Styles.allPropBox>
         </>
     )
 }

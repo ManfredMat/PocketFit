@@ -1,44 +1,28 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { render_exercise} from "../../redux/Actions/actions-exercise";
+import { useParams } from "react-router-dom";
+import { get_exercise_by_id } from "../../redux/Actions/actions-exercise";
+import { Link } from "react-router-dom";
 import ReactPlayer from 'react-player';
-import Styles from "./Styles/ExerciseDetailStyled"; 
 
 const ExerciseDetail =() => {    
-    
+    //let {id} = useParams();
     let exercise = useSelector((state)=> state.exercise.exerciseDetail)
     let dispatch  = useDispatch();
-    function searchOnClick(){
-        dispatch(render_exercise(false))
-    }
+    /*useEffect(()=>{
+        dispatch(get_exercise_by_id(id)) 
+    },[dispatch])*/
     return(
         <>
-        {exercise?<Styles.Container>
-            <Styles.Card>
-                <Styles.ConteinerHead>
-                        <Styles.CloseButton onClick={()=>searchOnClick()} >X</Styles.CloseButton>
-                    <Styles.Header>
-                        <Styles.Title>Ejercicio: </Styles.Title>
-                        <Styles.Title>{exercise.name}</Styles.Title>
-                    </Styles.Header>
-                </Styles.ConteinerHead>
-            <Styles.UnderCard>
-                <Styles.LeftDiv>{/*flex-column   ,  -webkit-fill-available */}
-                    <Styles.InnerLeftDiv>
-                    <Styles.Title3>Disciplina</Styles.Title3><Styles.Title2> {exercise.discipline}</Styles.Title2>
-                    </Styles.InnerLeftDiv>
-                        <ReactPlayer url={exercise.video} width="-webkit-fill-available " height="-webkit-fill-available " controls/>
-                    <Styles.ConteinerEdit>
-                        <Styles.GreenButton>Editar</Styles.GreenButton>
-                    </Styles.ConteinerEdit>
-                </Styles.LeftDiv>
-                <Styles.RightDiv>
-                    <Styles.RightDivTitle>Descripcion:</Styles.RightDivTitle>
-                    <Styles.RightDivDescription>{exercise.description}</Styles.RightDivDescription>
-                </Styles.RightDiv>    
-            </Styles.UnderCard>
-            </Styles.Card>
-        </Styles.Container>:null}
+        {exercise?<div>
+            <label>Ejercicio:</label><h2>{exercise.name}</h2>
+            <label>Descripcion:</label><h2>{exercise.description}</h2>
+            <label>Disciplina:</label><h2>{exercise.discipline}</h2>
+            <label>Video:</label>
+            <ReactPlayer url={exercise.video} width="25rem" height="20rem" controls/>
+        </div>:<div><h1>loading...</h1></div>}
+        <Link to="/session/exercises"><button>Volver al plan general</button></Link>
         </>
     )
 }
