@@ -8,9 +8,10 @@ import {
 import ReactCardFlip from "react-card-flip";
 import moment from "moment";
 import "moment/locale/es";
-import fitnesslogo from "../../assets/img/fitnesslogo.svg";
+import fitnesslogo from "../../assets/img/iconos/fotoperfil.svg";
+import Style from "./ClasesDetail.styles";
 
-function ClassesDetail({ id, display }) {
+function ClassesDetail({ id, display , setOverFlow }) {
   const dispatch = useDispatch();
 
   const [value, setValue] = useState(0);
@@ -100,51 +101,65 @@ function ClassesDetail({ id, display }) {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        position: "absolute",
-        width: "100vw",
-        height: "100vh",
-        backgroundColor: "#00000070",
-        top: 0,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
+    <Style.BodyGen
+      /* style={{
+          display: "flex",
+          position: "absolute",
+          width: "-webkit-fill-available",
+          height: "100vh",
+          backgroundColor: "#00000070",
+          top: 0,
+          left: 0,
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: "7",
+      }} */
     >
       <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-        <div
-          style={{
+        <Style.Contenedor
+           /* style={{
             display: "flex",
             width: "60%",
             height: "45%",
             padding: "2em",
             flexDirection: "column",
             alignItems: "flex-start",
-            backgroundColor: "grey",
-          }}
+            backgroundColor: "grey", }}*/
         >
           {event ? (
-            <div>
-              <button onClick={() => display(false)}>x</button>
-              <h2> {event.name} </h2>
-              <button onClick={(e) => handleFlip(e)}>Editar</button>
-              <img src={fitnesslogo} alt="class-img" />
-              <h1>{event.profesor}</h1>
-              <h2>Profesor</h2>
+            <Style.Card>
+              <Style.Cruz onClick={() => {display(false); setOverFlow(false);}}>X</Style.Cruz>
+              <Style.DivContenedorTitulo>
+              <Style.Titulo> {event.name} </Style.Titulo>
+              <Style.Edit onClick={(e) => handleFlip(e)}>Editar</Style.Edit>
+              </Style.DivContenedorTitulo>
+              <Style.ContenedorInfo>
+              <Style.Image src={fitnesslogo} alt="class-img" />
               <div>
-                <h3>Horario </h3>
-                <h3> {event.hour} hs. </h3>
-                <h3>Capacidad </h3>
-                <h3> {event.capacity} </h3>
-                <h3> Día de la semana </h3>
-                <h3>{event.day}</h3>
+              <h1 style={{fontWeight: "300"}}>{event.profesor}</h1>
+              <Style.Profesor>Profesor</Style.Profesor>
               </div>
-
-              <h2> Inscriptos</h2>
-              <h2> Nombre </h2>
-              <h2> Dia de pago </h2>
-              <h2> Pago </h2>
+              <Style.Info>
+                <Style.DivInfo>
+                <h3>Horario </h3>
+                <Style.DivData> {event.hour} hs. </Style.DivData>
+                </Style.DivInfo>
+                <Style.DivInfo>
+                <h3>Capacidad </h3>
+                <Style.DivData> {event.capacity} </Style.DivData>
+                </Style.DivInfo>
+                <Style.DivInfo>
+                <h3> Día de la semana </h3>
+                <Style.DivData>{event.day}</Style.DivData>
+                </Style.DivInfo>
+              </Style.Info>
+              </Style.ContenedorInfo>
+              <Style.Inscriptos> Inscriptos</Style.Inscriptos>
+              <div style={{marginBottom : "1em", display: "flex", width: "-webkit-fill-available", justifyContent: "space-between"}}>
+              <Style.DatosInscriptos> Nombre </Style.DatosInscriptos>
+              <Style.DatosInscriptos> Dia de pago </Style.DatosInscriptos>
+              <Style.DatosInscriptos> Pago </Style.DatosInscriptos>
+              </div>
               <div>
                 {event.users?.map((user) => {
                   return (
@@ -156,14 +171,14 @@ function ClassesDetail({ id, display }) {
                   );
                 })}
               </div>
-            </div>
+            </Style.Card>
           ) : (
             <div>
-              <button onClick={() => display(false)}>x</button>
+              <button onClick={() => {display(false); setOverFlow(false);}}>x</button>
               <p> ...Aún no hay Clases disponibles! </p>
             </div>
           )}
-        </div>
+        </Style.Contenedor>
 
         {/* INICIO DE REVERSO DE LA CARD!*/}
 
@@ -184,7 +199,7 @@ function ClassesDetail({ id, display }) {
                 handleSubmit(e);
               }}
             >
-              <button onClick={() => display(false)}>x</button>
+              <button onClick={() => {display(false);setOverFlow(false);}}>x</button>
 
               <input
                 type="text"
@@ -248,13 +263,13 @@ function ClassesDetail({ id, display }) {
             </form>
           ) : (
             <div>
-              <button onClick={() => display(false)}>x</button>
+              <button onClick={() => {display(false);setOverFlow(false);}}>x</button>
               <p> ...Aún no hay Clases disponibles! </p>
             </div>
           )}
         </div>
       </ReactCardFlip>
-    </div>
+    </Style.BodyGen>
   );
 }
 

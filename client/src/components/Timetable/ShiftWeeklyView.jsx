@@ -29,7 +29,7 @@ function ShiftWeeklyView({ render, week }) {
   let weekDays = [
     "Lunes",
     "Martes",
-    "Miercoles",
+    "Miércoles",
     "Jueves",
     "Viernes",
     "Sábado",

@@ -33,6 +33,7 @@ function Shifts({ setShiftDetail }) {
     setShiftDetail(true);
   }
 
+  console.log(today,tomorrow)
   return (
     <>
         <Styles.TitleH3Styled>Hoy</Styles.TitleH3Styled>
@@ -44,7 +45,7 @@ function Shifts({ setShiftDetail }) {
             if (parseInt(a.beginning) < parseInt(b.beginning)) return -1;
             return 0;})
           .map((ofDay, indexA) => (
-            <Styles.ShiftButton margin={indexA === intervaloLength-1 ? true : false} onClick={() => shiftPreview(ofDay)}>
+            <Styles.ShiftButton  margin={indexA === intervaloLength-1 ? true : false} onClick={() => shiftPreview(ofDay)}>
               <Styles.NumParagrahp>{indexA + 1}</Styles.NumParagrahp>
               <Styles.DateContainer>
               <Styles.DateParagrahp>
