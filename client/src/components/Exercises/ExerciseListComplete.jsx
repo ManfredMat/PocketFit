@@ -34,7 +34,7 @@ const ExerciseListComplete = () => {
             
                 
             return<>
-            <Styles.ExerciseStyle onClick={()=>searchOnClick(excercise.id)}><Exercises key={index} excercise = {excercise} /></Styles.ExerciseStyle>
+            <Styles.ExerciseStyle onClick={()=>searchOnClick(excercise.id)}><Exercises key={index} excercise = {excercise} index={index} /></Styles.ExerciseStyle>
             </> 
             
         })          
