@@ -73,7 +73,26 @@ const Styles = {
     font-weight: 700;
     margin-left: 1em;
     font-size: 1em;
+    &:hover {
+      cursor: pointer;
+    }
   `,
+  UnableButton: styled.button`
+  background-color: grey;
+  padding: 0.5em 0.7em;
+  text-decoration: none;
+  border-radius: 0.5em;
+  border: none;
+  color: var(--darkGray-base);
+  //width: 8em;
+  height: 2em;
+  font-weight: 700;
+  margin-left: 1em;
+  font-size: 1em;
+  &:hover {
+      cursor: pointer;
+    }
+`,
   GreenButton: styled.button`
     background-color: var(--green);
     padding: 0.5em 0.7em;
@@ -86,6 +105,9 @@ const Styles = {
     font-weight: 700;
     //margin-left: 1em;
     font-size: 1em;
+    &:hover {
+      cursor: pointer;
+    }
   `,
   Header: styled.div`
     display: flex;

@@ -90,12 +90,12 @@ function Timetable({ screenHeight }) {
                   Nueva Clase
                 </Styles.YellowButton>
                   </Styles.EventosHead>
-                  <ClasesWeeklyView claseDetalle={claseDetalle} setClaseId={setClaseId} setClaseDetalle={setClaseDetalle} setOverFlow={setOverFlow}/>
+                  <ClasesWeeklyView claseDetalle={claseDetalle} setClaseId={setClaseId} setClaseDetalle={setClaseDetalle} setOverFlow={setOverFlow} />
               </Styles.RigthColumnStyledRow2>
             </Styles.RigthColumnStyled>
           </Styles.ContentBodyStyled>
         </Styles.StartBodyStyled>
-        {takeShift && <ScheduleShift display={setTakeShift} />}
+        {takeShift && <ScheduleShift display={setTakeShift} setOverFlow={setOverFlow}/>}
         {configTurnos && <ShiftsConfig display={setconfigTurnos} />}
         {shiftDetail && <ShiftsPreview display={setShiftDetail} setOverFlow={setOverFlow}/>}
         {newClass && <Activities display={setNewClass} select="Clase" />}
