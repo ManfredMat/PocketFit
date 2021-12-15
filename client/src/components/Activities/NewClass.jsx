@@ -34,7 +34,7 @@ const NewClass = ({ display, kind, close }) => {
     day: 0,
     nameday: "",
     profesor: "",
-    capacity: 0,
+    capacity: 1,
   });
 
   function handleChange(e) {
