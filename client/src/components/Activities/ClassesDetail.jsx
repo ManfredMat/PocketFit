@@ -229,8 +229,18 @@ function ClassesDetail({ id, display , setOverFlow }) {
                   onChange={(e) => parseCapacity(e)}
                   min={clients.length}
                 />
-                <h3> Fecha </h3>
-                <input type="date" onChange={(e) => parseDate(e)} />
+               <h3> Día </h3>
+                <select name="nameday" onChange={(e) => handleChange(e)}>
+                  <option value="" disabled selected>
+                    Elija uno...
+                  </option>
+                  <option value="Lunes">Lunes</option>
+                  <option value="Martes">Martes</option>
+                  <option value="Miercoles">Miércoles</option>
+                  <option value="Jueves">Jueves</option>
+                  <option value="Viernes">Viernes</option>
+                  <option value="Sabado">Sábado</option>
+                </select>
               </div>
 
               <div>
