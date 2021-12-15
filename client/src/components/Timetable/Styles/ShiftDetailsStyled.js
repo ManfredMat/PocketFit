@@ -5,15 +5,27 @@ const Styles = {
       * {
           margin:0;
           color: #ffffff;
-      }`,
+      },
+      * {
+          scrollbar-width: thin;
+          scrollbar-color: blue orange;
+        }
+      `,
+
   BodyStyled: styled.div`
     font-size: ${(props) => (1.65 * props.screenHeight) / 100}px;
     display: flex;
     position: relative;
     width: -webkit-fill-available;
     background-color: var(--darkGray-base);
-    height: ${(props) => props.overFlow ? "100vh" : "auto"};
-    overflow-y: ${(props) => props.overFlow ? "hidden" : "auto"};
+    height: ${(props) => (props.overFlow ? "100vh" : "auto")};
+    overflow-y: ${(props) => (props.overFlow ? "hidden" : "auto")};
+    &::-webkit-scrollbar {
+      width: 12px;
+    }
+    ::-webkit-scrollbar-track {
+      background: orange;
+    }
   `,
   StartBodyStyled: styled.div`
     padding: 1.3em 3em 0em 3em;
@@ -29,8 +41,8 @@ const Styles = {
   `,
   buttonsContainer: styled.div`
     padding-top: 1.25em;
-    width:6em;
-    z-index: ${(props) => props.overFlow ? 0 : 2};
+    width: 6em;
+    z-index: ${(props) => (props.overFlow ? 0 : 2)};
   `,
   buttons: styled.button`
     background-color: var(--darkBlue);
@@ -58,7 +70,7 @@ const Styles = {
     color: var(--darkGray-base);
     //width: 8em;
     height: 2em;
-    font-weight:700;
+    font-weight: 700;
     margin-left: 1em;
     font-size: 1em;
   `,
@@ -71,7 +83,7 @@ const Styles = {
     color: var(--darkGray-base);
     //width: 8em;
     height: 2em;
-    font-weight:700;
+    font-weight: 700;
     //margin-left: 1em;
     font-size: 1em;
   `,
@@ -83,7 +95,7 @@ const Styles = {
   `,
   ButtonsContainer: styled.div`
     margin-right: -0.5em;
-  `
+  `,
 };
 
 export default Styles;
