@@ -425,11 +425,11 @@ const WeekTable = (props) => {
         e.preventDefault();
         navigate("/session/users")
     }
-    let param = props.params
+
     return (
         <>  
             <HeaderConteiner>
-            {Object.keys(param).length>0?<Styles.SearchButton onClick={handlerClick}><img src={goBack} alt="search-icon" height={"30rem"}/></Styles.SearchButton >:null}
+            <Styles.SearchButton onClick={handlerClick}><img src={goBack} alt="search-icon" height={"30rem"}/></Styles.SearchButton >
             <h1>Plan Semanal <span style={{fontWeight: '400'}}>{userName ? `de ${userName}` :'General'}</span></h1>
             </HeaderConteiner>
             <DayContainer>
