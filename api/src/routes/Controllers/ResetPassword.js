@@ -1,22 +1,7 @@
 const { User } = require('../../db')
 const bcrypt = require("bcrypt");
 const { transporter, mailOptions } = require('./Transporter');
-let modelEmail = `<!DOCTYPE html>
-  <html>
-  
-  <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  </head>
-  
-  <body style=" font-family: 'Open Sans', 'Arial Narrow', Arial, sans-serif; ">
-   <h2>Hola %usuario% </h2>
-   <h2>Este es el Link para la recuperacion de contraseña</h2>
-   %link% 
-  
-  </body>
-  
-  </html>`
+
 let modelEmail2=` <html>
   
 <head>
@@ -56,7 +41,7 @@ const sendEmailToRecover = async (req, res) => {
     let message = modelEmail2
     let resetButton = `<a style="padding:0.5em; display:inline-block; text-decoration:none; background-color: #6AE056; color:#020E12; margin:.5em; border-radius:.5em;" href=${link} >Recuperar Contraseña</a>`
 
-    message = message.replace("%usuario%", usuario.name);
+    message = message.replace("%username% ", usuario.name);
     message = message.replace("%link%", resetButton)
    
     let emailOptions = mailOptions(usuarioEmail, message , 'Recover you password')
