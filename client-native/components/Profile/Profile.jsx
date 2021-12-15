@@ -97,7 +97,7 @@ const Profile = () => {
             </Styles.InfoContainer>
 
             <Styles.ProfileButtonsContainer>
-                <Styles.YellowButton style={{ width: 90, marginRight: 5 }}>
+                <Styles.YellowButton onPress={() => navigation.navigate("Configuration")} style={{ width: 90, marginRight: 5 }}>
                     <Styles.ButtonText style={{ alignSelf: "center" }}>Editar</Styles.ButtonText>
                 </Styles.YellowButton>
 
