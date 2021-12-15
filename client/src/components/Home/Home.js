@@ -57,7 +57,7 @@ function Home({ screenHeight }) {
               </Styles.StyledClasesContainer>
             </Styles.RowOne>
             <Styles.RowTwo>
-              <h2>Plan Semanal</h2>
+              <Styles.TitleH2Styled>Plan Semanal</Styles.TitleH2Styled>
               <Styles.WeekPlanContainer>
                 <Styles.WeekPlan>
                   <Styles.FirstRowWeek style={{ color: "var(--yellow)" }}>
@@ -69,9 +69,9 @@ function Home({ screenHeight }) {
                   {routine && (
                     <>
                       <Styles.BlocksGenContainer>
-                        <Styles.BlocksContainers block={1}>1</Styles.BlocksContainers>
-                        <Styles.BlocksContainers block={2}>2</Styles.BlocksContainers>
-                        <Styles.BlocksContainers block={3}>3</Styles.BlocksContainers>
+                        <Styles.BlocksContainers block={1}><Styles.Nums>1</Styles.Nums></Styles.BlocksContainers>
+                        <Styles.BlocksContainers block={2}><Styles.Nums>2</Styles.Nums></Styles.BlocksContainers>
+                        <Styles.BlocksContainers block={3}><Styles.Nums>3</Styles.Nums></Styles.BlocksContainers>
                       </Styles.BlocksGenContainer>
 
                       <div name="Lunes">
