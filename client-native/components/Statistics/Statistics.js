@@ -80,6 +80,7 @@ export default function Statistics() {
         return total / 365
     }
     const data = {
+        labels: ["Clases", "Ejercicios", "General"],
         data: [clases(), ejercicios(), totalData()],
         colors:['rgba(206, 250, 31, 0.7)', 'rgba(217, 251, 82, 0.9)', 'rgba(106, 224, 86, 0.8)']
       };
@@ -87,7 +88,7 @@ export default function Statistics() {
         <Stats>
             <ScrollView>
                 <Text style={{color:'#6AE056', fontSize: 25,  marginTop: 60, marginLeft: 10, fontFamily:"Poppins_500Medium"}}>Estadisticas</Text>
-                <View style={{alignItems: 'center'}}>
+                <View style={{alignItems: 'center', right: 28}}>
                     <ProgressChart
                         data={data}
                         withCustomBarColorFromData={true}

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { Container, Card, Button, Title, Deadline } from './Payments.Styles'
 import logo from '../../../assets/mercado-pago.png'
 import axios from 'axios'
-
+import IP from "../../Ips"
 export default function Payments() {
     useEffect(() => {
         setStatus(pago.paystatus ===  "PAGO" ? true : false)
@@ -12,9 +12,10 @@ export default function Payments() {
     const pago = useSelector((state) => state.reducerUser.user)
     const [status, setStatus] = useState()
     let paymentday = pago.paymentday.split('-') 
+
     const pay = async () => {
         try {
-            const res = await axios.post()
+            const res = await axios.post(`https://${IP}:3001/api/mercadopago/pay`)
         } catch (error) {
             console.log(error)
         }
@@ -34,7 +35,7 @@ export default function Payments() {
                     <Text style={{marginLeft: 150}}>$1000</Text>
                 </Deadline>
             </View>
-            <Button>
+            <Button onPress={()=> pay()}>
                 <Image source={logo} style={{width: 75, height: 19.5}}/>
             </Button>
         </Container>
