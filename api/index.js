@@ -4,7 +4,7 @@ const { User, Exercise, Timetable } = require("./src/db");
 const bcrypt = require("bcrypt");
 
 
-conn.sync({ force: true }).then(async () => {
+conn.sync({ force: false }).then(async () => {
   let newPassword = await bcrypt.hash("1234", 10);
   let adminAcount = {
     name: "Admin",

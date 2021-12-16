@@ -40,10 +40,11 @@ const Styles = {
     align-content: center;
   `,
   ButtonsContainer: styled.div`
+    display:flex;
     padding-top: 1.25em;
     width: 6em;
     z-index: ${(props) => (props.overFlow ? 0 : 2)};
-    margin-right: -0.5em;
+    justify-content:flex-end;
   `,
   Buttons: styled.button`
     background-color: var(--darkBlue);
@@ -66,6 +67,7 @@ const Styles = {
     font-size: 2em;
   `,
   YellowButton: styled.button`
+    width:auto;
     background-color: var(--yellow);
     padding: 0.5em 0.7em;
     text-decoration: none;
@@ -82,6 +84,7 @@ const Styles = {
     }
   `,
   UnableButton: styled.button`
+  width:auto;
   background-color: grey;
   padding: 0.5em 0.7em;
   text-decoration: none;
@@ -98,6 +101,7 @@ const Styles = {
     }
 `,
   GreenButton: styled.button`
+    width:auto;
     background-color: var(--green);
     padding: 0.5em 0.7em;
     text-decoration: none;

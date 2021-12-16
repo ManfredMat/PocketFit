@@ -58,16 +58,16 @@ function ShiftsDetails({ screenHeight }) {
                 setTakeShift(!takeShift);
                 setOverFlow(true)
                 }}>
-                Agendar Turno
+                Agendar
               </Styles.GreenButton>
               <Styles.YellowButton onClick={() => {
                 setActivateShifts(!activateShifts)
                 setOverFlow(true)
                 }}>
-                Activar Turnos
+                Activar
               </Styles.YellowButton>
               <Styles.UnableButton>
-                Configurar Turnos
+                Configurar
               </Styles.UnableButton>
               </Styles.ButtonsContainer>
               
