@@ -22,7 +22,7 @@ export default function FeedBack() {
         });
       };
     const Submit = async () => {
-        const res = await axios.post(`http://${IP}:3001/api/reviews/send`, input)
+        const res = await axios.post(`https://pocketfithenry.herokuapp.com/api/reviews/send`, input)
         setTimeout(() => {
             res.status === 200 ? alert('reseña enviada con éxito') : 
             alert('Parece que algo salió mal… inténtelo mas tarde')
@@ -50,7 +50,7 @@ export default function FeedBack() {
                                 itemValue === 'gym' ? setInput({...input, gym: 'gym' }): 
                                 itemValue === 'event' ? setInput({...input, event: 'event' }): null}}
                             style={{ height: 40, width: 290}}>
-                            <Picker.Item label='Asunto'/>
+                            <Picker.Item label='Categoría'/>
                             <Picker.Item label= 'Profesor' value="profesor"/>
                             <Picker.Item label= 'Gimnasio' value="gym"/>
                             <Picker.Item label= 'Evento' value="event"/>

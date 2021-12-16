@@ -5,7 +5,7 @@ export const GET_GENERAL_ROUTINE = "GET_GENERAL_ROUTINE";
 
 export const getGeneralRoutine = () => async (dispatch) => {
     try {
-        const res = await axios.get(`http://${IP}:3001/api/weekplan/general`)
+        const res = await axios.get(`https://pocketfithenry.herokuapp.com/api/weekplan/general`)
         dispatch({
             type: GET_GENERAL_ROUTINE,
             payload: res.data

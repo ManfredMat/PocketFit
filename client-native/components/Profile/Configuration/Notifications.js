@@ -24,7 +24,7 @@ export default function NotificationsComponent() {
     // const submitToken = () => {
     //     if(Constants.isDevice && Platform.OS !== 'web') {
     //         registerForPushNotificationsAsync().then(token => {
-    //            axios.post(`http://${IP}:3001/api/notification/token-device`, {registrationToken: token})
+    //            axios.post(`https://pocketfithenry.herokuapp.com/api/notification/token-device`, {registrationToken: token})
     //         });
     //         responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
     //             console.log(response.notification.request.content.data);

@@ -4,6 +4,6 @@ import IP from "../components/Ips";
 export default getUserId = async (id) => {
   return await axios({
     method: "get",
-    url: `http://${IP}:3001/api/users/${id}`
+    url: `https://pocketfithenry.herokuapp.com/api/users/${id}`
   });
 };

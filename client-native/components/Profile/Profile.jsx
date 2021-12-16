@@ -59,7 +59,7 @@ const Profile = () => {
         });
 
         setPreviewImage(image);
-        await axios.put(`http://${IP}:3001/api/users/${user.id}`, data, {
+        await axios.put(`https://pocketfithenry.herokuapp.com/api/users/${user.id}`, data, {
             headers: { "Content-Type": `multipart/form-data` }
         })
 

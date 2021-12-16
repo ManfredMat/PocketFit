@@ -4,7 +4,7 @@ import IP from "../components/Ips";
 export default changeUserPassword = async (datos) => {
     return await axios({
         method: "put",
-        url: `http://${IP}:3001/api/resetpassword/reset_password`,
+        url: `https://pocketfithenry.herokuapp.com/api/resetpassword/reset_password`,
         data: datos,
         withCredentials: true
     });
