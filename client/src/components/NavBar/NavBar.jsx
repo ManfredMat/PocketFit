@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAdmin } from "../../redux/Actions/actions-login";
 import defaultProfilePhoto from "../../assets/img/profilephoto.svg";
 import Activities from "../Activities/Activities";
+import { useLocation } from "react-router-dom";
 
 function NavBar({ screenHeight }) {
   const dispatch = useDispatch();
@@ -22,37 +23,46 @@ function NavBar({ screenHeight }) {
   );
   const [renderActivities, setRenderActivities] = useState(false);
 
+
+  const usePathname = () => {
+    const location = useLocation();
+    return location.pathname;
+  };
+
+  let actual = usePathname();
+
+
   useEffect(() => {
     dispatch(getAdmin(id));
-  }, [dispatch]);
-
-  let actual = window.location.pathname;
+  }, [dispatch, actual]);
 
   return (
     <React.Fragment>
       <Styles.GlobalStyle />
       <Styles.StyledBody screenHeight={screenHeight}>
         <Styles.StyledTopContainer>
-          <Link to="/session/profile">
+          <Link to="/session/config">
             <Styles.StyledProfileImageContainer>
               <Styles.StyledProfileImage
                 src={
-                  adminProfileImage 
-                    ? `data:image/jpeg;base64, ${adminProfileImage}` 
+                  adminProfileImage
+                    ? `data:image/jpeg;base64, ${adminProfileImage}`
                     : defaultProfilePhoto
                 }
                 alt="profile-photo"
               />
             </Styles.StyledProfileImageContainer>
           </Link>
-          <Link to="/notifications">
+          <Styles.StyledNavButtonActivities
+            onClick={() => setRenderActivities(true)}
+          >
             <Styles.StyledNotifiImage />
-          </Link>
-          <Styles.StyledEventContainer>
+          </Styles.StyledNavButtonActivities>
+          {/*  <Styles.StyledEventContainer>
             <Styles.StyledNavButtonActivities onClick={() => setRenderActivities(true)}>
               <Styles.StyledEventImage />
             </Styles.StyledNavButtonActivities>
-          </Styles.StyledEventContainer>
+          </Styles.StyledEventContainer> */}
         </Styles.StyledTopContainer>
 
         <Styles.StyledNavContainer>
@@ -78,10 +88,10 @@ function NavBar({ screenHeight }) {
           </Link>
           <Link to="/session/routines">
             <Styles.StyledNavButton
-              select={actual.includes("weeklyroutine") ? true : false}
+              select={actual.includes("routines") ? true : false}
             >
               <Styles.StyledNavButtonWeekly
-                select={actual.includes("weeklyroutine") ? true : false}
+                select={actual.includes("routines") ? true : false}
                 className="weekly"
               />
             </Styles.StyledNavButton>
@@ -96,7 +106,7 @@ function NavBar({ screenHeight }) {
               />
             </Styles.StyledNavButton>
           </Link>
-{/*           <Link to="/session/payments">
+          {/*           <Link to="/session/payments">
             <Styles.StyledNavButton
               select={actual.includes("payments") ? true : false}
             >
@@ -123,7 +133,7 @@ function NavBar({ screenHeight }) {
           </Link>
         </Styles.StyledBottomContainer>
       </Styles.StyledBody>
-      {renderActivities && <Activities display={setRenderActivities}/>}
+      {renderActivities && <Activities display={setRenderActivities} />}
     </React.Fragment>
   );
 }

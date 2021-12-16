@@ -161,11 +161,11 @@ const Styles = {
     margin: 2em 0em;
     width: 2.7em;
     height: 2.7em;
-    background-image: url(${NotifiIcon});
+    background-image: url(${NewEventIco});
     background-size: contain;
     background-repeat: no-repeat;
     &:hover {
-      background-image: url(${NotifiIconSelect});
+      background-image: url(${NewEventIcoSelect});
     }
   `,
   StyledEventImage: styled.div`
@@ -209,6 +209,9 @@ const Styles = {
   StyledNavButtonActivities: styled.button`
     border: none; 
     background-color: transparent;
+    &:hover {
+      cursor: pointer;
+  }
   `
 };
 
