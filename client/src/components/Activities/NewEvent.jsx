@@ -2,25 +2,19 @@ import React from "react";
 import { useState, useEffect } from "react";
 import moment from "moment";
 import "moment/locale/es";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { postEvent } from "../../redux/Actions/actions-Activities";
 import Styles from "./NewEvent.styles";
 
-const NewEvent = ({ display, kind, close }) => {
+const NewEvent = (props) => {
   const dispatch = useDispatch();
   moment.locale();
 
-  const eventname = useSelector((state) => state.activities.eventname);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setInput({ ...input, name: eventname });
-    }, 1000);
-  }, [eventname]);
+  /* const eventname = useSelector((state) => state.activities.eventname); */
 
   const [input, setInput] = useState({
     photo: null,
-    kindOfEvent: kind,
+    kindOfEvent: props.kind,
     name: "",
     description: "",
     month: 0,
@@ -30,6 +24,11 @@ const NewEvent = ({ display, kind, close }) => {
     profesor: "",
     capacity: 0,
   });
+
+  useEffect(() => {
+    setInput({ ...input, name: props.name });
+    // eslint-disable-next-line
+  }, [props.name]);
 
   const data = new FormData();
   data.append("photo", input.photo);
@@ -74,7 +73,7 @@ const NewEvent = ({ display, kind, close }) => {
     e.preventDefault();
     dispatch(postEvent(data));
     alert("Evento Creado!");
-    display(false);
+    props.display(false);
     window.location.reload(true);
   }
 
@@ -137,7 +136,7 @@ const NewEvent = ({ display, kind, close }) => {
 
         <Styles.ButtonContainer>
           <Styles.SubmitButton type="submit">Crear</Styles.SubmitButton>
-          <Styles.CancelButton onClick={() => close(false)}>
+          <Styles.CancelButton onClick={() => props.close(false)}>
             Cancelar
           </Styles.CancelButton>
         </Styles.ButtonContainer>

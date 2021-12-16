@@ -47,6 +47,61 @@ const Styles = {
       cursor: pointer;
     }
   `,
+  TitleH2Styled: styled.h2`
+    color: #ffffff;
+    font-size: 1.4em;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin-bottom: 1em;
+  `,
+  InicioDay: styled.div`
+    background-color: var(--yellow);
+    padding: 0.6em;
+    border-radius: 0.4rem;
+    text-align: center;
+    width: 20em;
+    color: var(--darkGray-base);
+  `,
+  FinalDay: styled.div`
+    margin-top: 0.8em;
+    margin-bottom: 2em;
+    background-color: var(--green);
+    padding: 0.6em;
+    border-radius: 0.4rem;
+    text-align: center;
+    width: 20em;
+    color: var(--darkBlue);
+  `,
+  divClientes: styled.div`
+    width: 30em;
+    display: flex;
+    flex-wrap: wrap;
+    &::-webkit-scrollbar {
+      width: 0.8em;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--darkBlue);
+      border-radius: 0.4em;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--yellow);
+    }
+  `,
+  contClientes: styled.div`
+    background-color: var(--green-medium);
+    border-radius: 1em;
+    padding: 2em;
+  `,
+  TitleH3Styled: styled.h3`
+    color: #ffffff;
+    font-size: 1.2em;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin: 0em 0em 0.5em 0em;
+  `
   }
 
 export default Styles;

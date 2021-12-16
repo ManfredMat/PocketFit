@@ -131,10 +131,20 @@ const Activities = ({ select, display }) => {
         ) : (
           <Styles.CardBottom>
             {nuevaClase && (
-              <NewClass close={display} display={setNuevaClase} kind={etype} />
+              <NewClass
+                close={display}
+                display={setNuevaClase}
+                kind={etype}
+                name={ename}
+              />
             )}
             {nuevoEvento && (
-              <NewEvent close={display} display={setNuevoEvento} kind={etype} />
+              <NewEvent
+                close={display}
+                display={setNuevoEvento}
+                kind={etype}
+                name={ename}
+              />
             )}
             {nuevoFeriado && (
               <NewHoliday

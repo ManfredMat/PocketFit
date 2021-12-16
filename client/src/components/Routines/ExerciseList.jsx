@@ -18,7 +18,7 @@ const ExerciseList = () => {
         let exerciseArray = items.map((excercise , index)=>{        
             if(index <= 3 ){ 
                 
-            return <Exercises key={index} excercise = {excercise}/>
+            return <Exercises key={index} excercise = {excercise} index={index}/>
 
             }
         })          
@@ -30,7 +30,7 @@ const ExerciseList = () => {
     return(
         <div>
             <Styles.HeaderConteiner>
-            <h2>Ejercicios</h2>
+            <h2 style={{color:"white"}} >Ejercicios</h2>
             <Link to="/session/exercises"> 
             <Styles.LinkGreen>Ver detalle</Styles.LinkGreen>
             </Link>

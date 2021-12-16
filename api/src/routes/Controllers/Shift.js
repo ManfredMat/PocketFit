@@ -1,8 +1,8 @@
-
-const { Shift, Timetable, User, UserShift, userShift } = require('../../db')
+const { Shift, Timetable, User, UserShift, userShift } = require("../../db");
 
 const newShift = async (req, res) => {
-  const { day,
+  const {
+    day,
     availability,
     capacity,
     beginning,
@@ -10,7 +10,8 @@ const newShift = async (req, res) => {
     weekday,
     week,
     month,
-    year } = req.body
+    year,
+  } = req.body;
   try {
     const oldShift = await Shift.findOne({
       where: {
@@ -20,9 +21,9 @@ const newShift = async (req, res) => {
         weekday: weekday,
         week: week,
         month: month,
-        year: year
-      }
-    })
+        year: year,
+      },
+    });
     if (oldShift === null) {
       const newS = await Shift.create({
         day,
@@ -33,112 +34,123 @@ const newShift = async (req, res) => {
         weekday,
         week,
         month,
-        year
+        year,
       });
       //console.log(newS)
-      res.send(newS)
-    } else { res.send({ message: 'turno existente' }) }
+      res.send(newS);
+    } else {
+      res.send({ message: "turno existente" });
+    }
+  } catch (err) {
+    res.send(err);
   }
-  catch (err) {
-    res.send(err)
-  }
-}
+};
 
 const getAllShifts = async (req, res) => {
-  const { day, month, year } = req.query
+  const { day, month, year } = req.query;
   try {
-    const allShift = await Shift.findAll()
-    const allShiftFiltered = allShift.filter((shift) => shift.year >= year && shift.month >= month && shift.day >= day)
+    const allShift = await Shift.findAll();
+    const allShiftFiltered = allShift.filter(
+      (shift) => shift.year >= year && shift.month >= month && shift.day >= day
+    );
 
     /*  const allShift = await Shift.findAll({
       // where:{year: `^([0-9]|[1-9][0-9]|${year})$`.year, month: month > Shift.month, day: day > Shift.day },
        include: User})*/
-    res.json(allShiftFiltered)
+    res.json(allShiftFiltered);
+  } catch (err) {
+    res.send(err);
   }
-  catch (err) {
-    res.send(err)
-  }
-}
+};
 
 const getAllShiftsPlus = async (req, res) => {
   try {
-    const allShift = await Shift.findAll()
-    res.json(allShift)
+    const allShift = await Shift.findAll();
+    res.json(allShift);
+  } catch (err) {
+    res.send(err);
   }
-  catch (err) {
-    res.send(err)
-  }
-}
+};
 
 const getShiftById = async (req, res) => {
-  const { id } = req.params
+  const { id } = req.params;
 
   try {
-    const oneShift = await Shift.findOne({ where: { id: id }, include: User })
-    res.send(oneShift)
+    let oneShift = await Shift.findOne({ where: { id: id }, include: User });
+
+    if (oneShift.users.imageData) {
+      let userImg = oneShift.users.imageData.toString("base64");
+      oneShift.users["imageData"] = userImg;
+    }
+
+    res.send(oneShift);
+  } catch (error) {
+    res.send(error);
   }
-  catch (error) {
-    res.send(error)
-  }
-}
+};
 
 const getShiftofUser = async (req, res) => {
-  const { id } = req.params
+  const { id } = req.params;
   try {
-    const oneUser = await User.findOne({ where: { id: id }, include: Shift })
-    res.send(oneUser)
+    const oneUser = await User.findOne({ where: { id: id }, include: Shift });
+    res.send(oneUser);
+  } catch (error) {
+    res.send(error);
   }
-  catch (error) {
-    res.send(error)
-  }
-}
+};
 
 const getShiftByWeekNum = async (req, res) => {
-  const { week } = req.params
+  const { week } = req.params;
 
   try {
     const WeekShifts = await Shift.findAll({
       where: { week: week },
-      include: User
-    })
-    res.send(WeekShifts)
+      include: User,
+    });
+    res.send(WeekShifts);
+  } catch (error) {
+    res.send(error);
   }
-  catch (error) {
-    res.send(error)
-  }
-}
+};
 
 const updateShift = async (req, res) => {
-  const { idUser, idShift } = req.body
+  const { idUser, idShift } = req.body;
   try {
-    let oneShift = await Shift.findOne({ where: { id: idShift }, include: User })
-    let addUser = await User.findOne({ where: { id: idUser } })
-    await oneShift.addUser(addUser)
-     oneShift.save()
-     console.log(oneShift.users.length)
-    let newAvailability = (oneShift.capacity - (oneShift.users.length + 1))
-    console.log(newAvailability)
-    oneShift.availability = newAvailability
-    oneShift.save()
-    res.send(oneShift)
+    let oneShift = await Shift.findOne({
+      where: { id: idShift },
+      include: User,
+    });
+    let addUser = await User.findOne({ where: { id: idUser } });
+    await oneShift.addUser(addUser);
+    oneShift.save();
+    console.log(oneShift.users.length);
+    let newAvailability = oneShift.capacity - (oneShift.users.length + 1);
+    console.log(newAvailability);
+    oneShift.availability = newAvailability;
+    oneShift.save();
+    res.send(oneShift);
+  } catch (err) {
+    res.send(err);
   }
-  catch (err) {
-    res.send(err)
-  }
-}
+};
 
 const removeUserShift = async (req, res) => {
-  const  {userId, shiftId}  = req.query;
+  const { userId, shiftId } = req.query;
   //parseInt(shiftId)
   //console.log(userId, shiftId)
   try {
-    let algo =  await UserShift.findOne({ where: { shiftId: parseInt(shiftId), userId: userId} });
-    let oneShift = await Shift.findOne({ where: { id: shiftId }, include: User })
+    let algo = await UserShift.findOne({
+      where: { shiftId: parseInt(shiftId), userId: userId },
+    });
+    let oneShift = await Shift.findOne({
+      where: { id: shiftId },
+      include: User,
+    });
 
-    oneShift.availability = oneShift.availability+1
+    oneShift.availability = oneShift.availability + 1;
     // algo.availability = newAvailability
-    algo.destroy()
-    oneShift.save()
+    algo.destroy();
+    oneShift.save();
     res.send(oneShift);
   } catch (error) {
     res.send(error);
@@ -146,22 +158,22 @@ const removeUserShift = async (req, res) => {
 };
 
 const deleteShift = async (req, res) => {
-  const { id } = req.params
+  const { id } = req.params;
   try {
-    await Shift.destroy({ where: { id: id } })
-    res.send({ message: "Shift successfully deleted" })
+    await Shift.destroy({ where: { id: id } });
+    res.send({ message: "Shift successfully deleted" });
+  } catch (err) {
+    res.send(err);
   }
-  catch (err) {
-    res.send(err)
-  }
-}
+};
 
 const createBulk = async (req, res) => {
-  try { res.json(await Shift.bulkCreate(req.body)) }
-  catch (error) {
-    res.send(error)
+  try {
+    res.json(await Shift.bulkCreate(req.body));
+  } catch (error) {
+    res.send(error);
   }
-}
+};
 
 //FUNCION AUXILIAR SECUNDARIA
 const WeekDaysGenerator = (
@@ -190,17 +202,13 @@ const WeekDaysGenerator = (
     );
     return {
       monthNum: [firstDayMonth, lastDayMonth],
-      daysNums: LastsFirstMonth.concat(FirstsLastMonth)
-    }
+      daysNums: LastsFirstMonth.concat(FirstsLastMonth),
+    };
   }
 };
 
 //FUNCION AUXILIAR PRINCIPAL
-const createWeek = (weekDaysNames,
-  week,
-  year,
-  selectTimetable,
-  WeekDays) => {
+const createWeek = (weekDaysNames, week, year, selectTimetable, WeekDays) => {
   const array = [];
   for (let i = 0; i < weekDaysNames.length; i++) {
     for (let j = 0; j < selectTimetable.intervalo.length; j++) {
@@ -215,35 +223,33 @@ const createWeek = (weekDaysNames,
           WeekDays.monthNum[1] === undefined
             ? WeekDays.monthNum[0]
             : WeekDays.daysNums[i] > WeekDays.daysNums[i + 1]
-              ? WeekDays.monthNum[0]
-              : WeekDays.monthNum[1],
+            ? WeekDays.monthNum[0]
+            : WeekDays.monthNum[1],
         year: year,
-        week: week
+        week: week,
       });
     }
   }
-  return array
-}
+  return array;
+};
 
 const weekCreate = async (req, res) => {
-  const {
-    weekDaysNames,
-    weeks,
-    timetableId,
-  } = req.body;
+  const { weekDaysNames, weeks, timetableId } = req.body;
   try {
-    const selectTimetable = await Timetable.findOne({ where: { id: timetableId } })
+    const selectTimetable = await Timetable.findOne({
+      where: { id: timetableId },
+    });
 
     //const intervalo = ["7-9", "9-11", "11-13", "14-16", "16-18", "18-20"]; //esto viene de timetable
     //const capacity = 10; //esto viene de timetable
-    let result = []
+    let result = [];
     for (let i = 0; i < weeks.length; i++) {
       const WeekDays = await WeekDaysGenerator(
         weeks[i].firstDay,
         weeks[i].firstDayMonth,
         weeks[i].firstDayMonthDays,
         weeks[i].lastDay,
-        weeks[i].lastDayMonth,
+        weeks[i].lastDayMonth
       );
 
       let create = await createWeek(
@@ -252,22 +258,43 @@ const weekCreate = async (req, res) => {
         weeks[i].year,
         selectTimetable,
         WeekDays
-      )
+      );
 
-      result = [...result, ...create]
+      result = [...result, ...create];
     }
 
-    const allShift = await Shift.findAll()
-    let combine = result
+    const allShift = await Shift.findAll();
+    let combine = result;
 
-    let dates = []
-    allShift.forEach(shift => dates.push(`${shift.day}/${shift.month}/${shift.year}|${shift.beginning}-${shift.ending}`))
-    const finalResult = combine.filter((shift) => !dates.includes(`${shift.day}/${shift.month}/${shift.year}|${shift.beginning}-${shift.ending}`))
+    let dates = [];
+    allShift.forEach((shift) =>
+      dates.push(
+        `${shift.day}/${shift.month}/${shift.year}|${shift.beginning}-${shift.ending}`
+      )
+    );
+    const finalResult = combine.filter(
+      (shift) =>
+        !dates.includes(
+          `${shift.day}/${shift.month}/${shift.year}|${shift.beginning}-${shift.ending}`
+        )
+    );
 
-    res.json(await Shift.bulkCreate(finalResult))
+    res.json(await Shift.bulkCreate(finalResult));
   } catch (err) {
-    res.send(err)
+    res.send(err);
   }
-}
+};
 
-module.exports = { removeUserShift, getShiftofUser, weekCreate, createBulk, newShift, getAllShifts, getShiftByWeekNum, updateShift, deleteShift, getShiftById, getAllShiftsPlus };
+module.exports = {
+  removeUserShift,
+  getShiftofUser,
+  weekCreate,
+  createBulk,
+  newShift,
+  getAllShifts,
+  getShiftByWeekNum,
+  updateShift,
+  deleteShift,
+  getShiftById,
+  getAllShiftsPlus,
+};

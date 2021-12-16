@@ -24,7 +24,7 @@ const Styles = {
       width: 12px;
     }
     ::-webkit-scrollbar-track {
-      background: orange;
+      background: var(--darkGray-base);
     }
   `,
   StartBodyStyled: styled.div`
@@ -33,18 +33,18 @@ const Styles = {
     margin-top: 0.5em;
     width: -webkit-fill-available;
   `,
-  genWeekContainer: styled.div`
+  GenWeekContainer: styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
     align-content: center;
   `,
-  buttonsContainer: styled.div`
+  ButtonsContainer: styled.div`
     padding-top: 1.25em;
     width: 6em;
     z-index: ${(props) => (props.overFlow ? 0 : 2)};
   `,
-  buttons: styled.button`
+  Buttons: styled.button`
     background-color: var(--darkBlue);
     color: var(--green);
     text-decoration: none;
@@ -55,6 +55,9 @@ const Styles = {
     font-weight: 700;
     margin-left: 0.3em;
     z-index: 2;
+    &:hover {
+      cursor: pointer;
+    }
   `,
   TitleH1Styled: styled.h1`
     color: #ffffff;
@@ -73,7 +76,26 @@ const Styles = {
     font-weight: 700;
     margin-left: 1em;
     font-size: 1em;
+    &:hover {
+      cursor: pointer;
+    }
   `,
+  UnableButton: styled.button`
+  background-color: grey;
+  padding: 0.5em 0.7em;
+  text-decoration: none;
+  border-radius: 0.5em;
+  border: none;
+  color: var(--darkGray-base);
+  //width: 8em;
+  height: 2em;
+  font-weight: 700;
+  margin-left: 1em;
+  font-size: 1em;
+  &:hover {
+      cursor: pointer;
+    }
+`,
   GreenButton: styled.button`
     background-color: var(--green);
     padding: 0.5em 0.7em;
@@ -86,6 +108,9 @@ const Styles = {
     font-weight: 700;
     //margin-left: 1em;
     font-size: 1em;
+    &:hover {
+      cursor: pointer;
+    }
   `,
   Header: styled.div`
     display: flex;
@@ -96,6 +121,60 @@ const Styles = {
   ButtonsContainer: styled.div`
     margin-right: -0.5em;
   `,
+  SearchButton: styled.button`
+  background-color: transparent;
+  border: none;
+  margin-left: .3rem;
+  &:hover {
+      cursor: pointer;
+  }
+`,
+ RightSide: styled.div`
+display:flex;
+
+ `,
+PropBox: styled.p`
+ background:var(--green-medium);
+ width:13.3rem;
+ margin:0.2rem;
+ height:1.5em;    
+ border-radius: 0.3em;
+ text-align:center;
+ color:var(--darkGray-base);   
+`,
+PropBoxV2: styled.p`
+background:var(--darkGray-base);
+width:13.3rem;
+margin:0.2rem;
+height:1.5em;    
+border-radius: 0.3em;
+text-align:center;
+color:var(--green-medium);
+`,
+PropLabel:styled.p`
+background:none;
+width:13.3rem;
+margin:0.2rem;
+height:1.5em;    
+border-radius: 0.3em;
+text-align:center;
+color:white;   
+`,
+TitleH2Styled: styled.h2`
+    color: #ffffff;
+    font-size: 1.4em;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin-top:1em;
+    margin-bottom:1em;
+  `,
+AllShiftsConteiner: styled.div`
+position:relative
+`,
+GridShifts: styled.div`
+position:absolute;
+right:-1.5em;
+`
 };
 
 export default Styles;

@@ -30,9 +30,8 @@ const Styles = {
         flex-direction: row;
         margin-top: 2rem;
         margin-bottom: 1rem;
-        padding-left: 5rem;
         padding-right: 5rem;
-        justify-content: space-evenly;
+        margin-left: 8.2rem;
     `,
 
     SearchBarContainer: styled.form`
@@ -73,6 +72,7 @@ const Styles = {
         display: flex;
         flex-direction: row;
         align-items: center;
+        margin-left: 4em;
     `,
 
     Sort: styled.select`
@@ -81,6 +81,7 @@ const Styles = {
         border-style: hidden;
         padding: .5rem;
         width: 12rem;
+
         &::placeholder {
             color: black;
         }
@@ -93,6 +94,7 @@ const Styles = {
         display: flex;
         flex-direction: row;
         align-items: center;
+        margin-left: 4em;
     `,
 
     Filter: styled.select`

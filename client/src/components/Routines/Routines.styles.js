@@ -1,25 +1,49 @@
 import styled from "styled-components";
 
+/* 
+Candela Aznarez16:52
+TitleH2Styled: styled.h2`
+    color: #ffffff;
+    font-size: 1.4em;
+    font-weight: 500;
+    text-transform: capitalize;
+  `,
+TitleH1Styled: styled.h1`
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 2em;
+  `,
+Candela Aznarez16:53
+,
+  TitleH3Styled: styled.h3`
+    color: #ffffff;
+    font-size: 1.2em;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin: 1em 0em 0.5em 0em;
+  `, */
+
 export const PageContainer = styled.div`
-    background-color: black;
+    background-color: var(--darkGray-base);
     display: flex; 
     flex-direction: column;
     justify-content: space-evenly;
     flex-wrap: wrap;   
-    
-    color: white;
+    padding-bottom:2em;
     width: 100vw; 
     min-height: 100vh;
     h1{
-        font-weight: 200;
-        font-size: 2rem;
+        font-weight: 400;
+        font-size: 2em;
         margin-top: 2rem;
         margin-bottom: 2rem;
+        color:white;
     }
 `
 
 export const WeekDayContainer = styled.div`
     width: 13vw;
+    height:3.5vh;
     background-color: #D9FB52;
     background-color: ${props => props.block === '1'
         ? '#D9FB52'
@@ -32,12 +56,21 @@ export const WeekDayContainer = styled.div`
     border-radius: 0.5rem;
     display: flex;
     flex-direction: row-reverse;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     font-size: 1.5rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+    
     color: black;
+    h3{
+        
+        font-size: 0.8em;
+        font-weight: 500;
+        span{
+            font-weight: bolder;
+        }
+    }
     .number{
         color: white;
         margin-left: 20%;
@@ -57,14 +90,14 @@ export const DayContainer = styled.div`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    color:white;
 `
 
 export const EditButton = styled.button`
 background-color: #6AE056;
         border: none;
         border-radius: 0.25rem;
-        margin-left: 1rem;
-        margin-right: 1.5rem;
+        margin-right: 1em;
         &:hover{
             cursor: pointer;
         }
@@ -141,16 +174,17 @@ export const LeftBarContainer = styled.div`
     .LeftBar-FirstBlock{
         background-color: #D9FB52;
         border-radius: 0.5rem;
-        height: 52.64px;
+        height:3.25em;
         width: 5rem;
         margin-bottom: 0.7rem;
+        
     }
     .LeftBar-SecondBlock{
         background-color: #D9FB52;
         border-radius: 0.5rem;
         height: 12vw;
         margin-bottom: 0.7rem;
-        
+        color:white;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -163,6 +197,7 @@ export const LeftBarContainer = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        color:white;
     }
     .LeftBar-FourthBlock{
         background-color: #B4E005;
@@ -172,6 +207,7 @@ export const LeftBarContainer = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        color:white;
     }
     p{
         font-size: 2rem;
@@ -184,17 +220,21 @@ export const LeftBarContainer = styled.div`
         align-items: center;
     }
 `
+export const ConteinerSaveDeleteChanges = styled.div`
+    position:absolute;
+    right:-1vw;
+    bottom:5vh;
+`
 
 export const SaveDeleteChanges = styled.button`
     margin-right: 1rem;
     border: none;
-    width: 15rem;
-    
-    padding-top: 0.6rem;
-    padding-bottom: 0.6rem;
+    width: auto;
+    height:1.7em;
     border-radius: 0.6rem;
-    color: white;
-    font-size: 1.5rem;
+    color: var(--darkGray-medium);
+    font-size: 1.1rem;
+    font-weight: 550;
     background-color: ${props => props.action === 'save'
         ? '#479639'
         : props.action === 'delete'
@@ -241,16 +281,16 @@ export const EditDayContainer = styled.div`
     margin-right: 3.2rem;
     margin-top: 3rem;
     h3{
-        font-weight: 200;
-        font-size: 2rem;
+        font-size: 1.2em;
+        font-weight: 500;
         span{
             font-weight: bolder;
         }
     }
     h2{
         text-align: center;
-        font-size: 2rem;
-        font-weight: 300;
+        font-size: 1.4em;
+        font-weight: 500;
     }
     .InputContainer{
         text-align: center;
@@ -408,4 +448,5 @@ justify-content: flex-start;
 width:100%;
 margin-top:0.5rem;
 margin-bottom:0.5rem;
+position:relative;
 `

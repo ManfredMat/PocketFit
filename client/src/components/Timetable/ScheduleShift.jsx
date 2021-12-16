@@ -51,6 +51,7 @@ function ScheduleShift({ display, setOverFlow }) {
 
     dispatch(postShift(body));
     console.log("body:", body);
+    console.log(putShiftUser)
   };
 
   const handleOnShiftClean = (e) => {
@@ -119,7 +120,7 @@ function ScheduleShift({ display, setOverFlow }) {
           ) : (
             <>
               <Styles.TitleH2Styled>Agendar Turno</Styles.TitleH2Styled>
-              <Styles.CloseButton  onClick={() => {
+              <Styles.CloseButton onClick={() => {
                         display(false);
                         setOverFlow(false);
                       }}>

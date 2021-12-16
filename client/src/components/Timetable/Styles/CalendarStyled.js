@@ -27,7 +27,7 @@ const Styles = {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     background-color: var(--green-medium);
     font-size: 0.9em;
     height: 5em;
