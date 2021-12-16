@@ -18,7 +18,7 @@ const ExerciseList = () => {
         let exerciseArray = items.map((excercise , index)=>{        
             if(index <= 3 ){ 
                 
-            return <Exercises key={index} excercise = {excercise}/>
+            return <Exercises key={index} excercise = {excercise} index={index}/>
 
             }
         })          

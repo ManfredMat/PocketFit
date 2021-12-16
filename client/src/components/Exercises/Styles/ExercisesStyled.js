@@ -7,7 +7,7 @@ const Styles = {
 }`,
 AllPropBox: styled.div`
   display:flex;
-  width:98%;
+  width:100%;
   justify-content: center;
 `,
 HeaderConteiner: styled.div`
