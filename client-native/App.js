@@ -37,10 +37,12 @@ import { Notification } from "expo-notifications";
 import * as Permissions from 'expo-permissions'
 import Payments from "./components/Profile/Payments/Payments";
 import FeedBack from "./components/Profile/FeedBack/FeedBack";
+import { LogBox } from 'react-native';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
   const [log, setLog] = useState(true)
+  LogBox.ignoreAllLogs();
 
   let [fontsLoaded, error] = useFonts({
     Poppins_100Thin,
