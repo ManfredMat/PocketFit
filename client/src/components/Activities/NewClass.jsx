@@ -8,7 +8,7 @@ import {
 } from "../../redux/Actions/actions-Activities";
 import Styles from "./NewClass.styles";
 
-const NewClass = ({ display, kind, close }) => {
+const NewClass = (props) => {
   const dispatch = useDispatch();
   const professors = useSelector((state) => state.activities.professors);
   moment.locale();
@@ -17,16 +17,8 @@ const NewClass = ({ display, kind, close }) => {
     dispatch(getProfessors());
   }, [dispatch]);
 
-  const eventname = useSelector((state) => state.activities.eventname);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setInput({ ...input, name: eventname });
-    }, 1000);
-  }, [eventname]);
-
   const [input, setInput] = useState({
-    kindOfEvent: kind,
+    kindOfEvent: props.kind,
     name: "",
     description: "",
     month: 0,
@@ -36,6 +28,11 @@ const NewClass = ({ display, kind, close }) => {
     profesor: "",
     capacity: 1,
   });
+
+  useEffect(() => {
+    setInput({ ...input, name: props.name });
+    // eslint-disable-next-line
+  }, [props.name]);
 
   function handleChange(e) {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -56,7 +53,7 @@ const NewClass = ({ display, kind, close }) => {
     e.preventDefault();
     dispatch(postEvent(input));
     alert("Clase Creada!");
-    display(false);
+    props.display(false);
     window.location.reload(true);
   }
 
@@ -133,7 +130,7 @@ const NewClass = ({ display, kind, close }) => {
 
         <Styles.ButtonContainer>
           <Styles.SubmitButton type="submit">Crear</Styles.SubmitButton>
-          <Styles.CancelButton onClick={() => close(false)}>
+          <Styles.CancelButton onClick={() => props.close(false)}>
             Cancelar
           </Styles.CancelButton>
         </Styles.ButtonContainer>
