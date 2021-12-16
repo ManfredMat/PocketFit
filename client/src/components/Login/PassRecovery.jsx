@@ -6,7 +6,6 @@ import { Container, ContainerIn, Input, Wave, Btn } from "./Login.styles";
 import axios from "axios";
 
 function PassRecovery() {
-  
   const [input, setInput] = useState({
     email: ''
   })

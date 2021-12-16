@@ -105,3 +105,14 @@ dist
 
 # package-lock.json
 package-lock.json
+client/package.json
+client/src/assets/.DS_Store
+client/src/assets/img/.DS_Store
+client/src/assets/img/iconos/.DS_Store
+client/src/assets/.DS_Store
+client/src/assets/.DS_Store
+client/src/assets/img/.DS_Store
+.DS_Store
+client/.DS_Store
+client/src/.DS_Store
+client/src/assets/.DS_Store

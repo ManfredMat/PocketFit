@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, ScrollView, TouchableOpacity, Image, Alert } from 'react-native'
-import {Container} from '../Training/Training.Styles'
+import { View, Text, ScrollView, Image } from 'react-native'
 import loading from '../../assets/loading.gif'
 import MyShiftsCard from './MyShiftsCard'
 import ShiftsAvailable from './ShiftsAvailable'
-import { getAllShifts } from '../../redux/Actions/actions-Shifts'
+import { getAllShifts, getShiftId } from '../../redux/Actions/actions-Shifts'
 import { useDispatch, useSelector } from 'react-redux';
-import { Cards } from './Shifts.Styles'
-//fake db
-const getAllShift = []
-let obj2 = {id: 12323, day: 19, availability: 10, capacity: 15, beginning: 14, ending: 16, weekday: 'Miercoles', week: 1, month: 12, year: 2021}
-getAllShift.push(obj2)
+import { Cards, ContainerS, Available } from './Shifts.Styles'
+import { ProxShifts, DarkContainer, NoShift } from '../Training/Training.Styles'
 
 export default function Shifts() {
     const date = new Date()
@@ -18,14 +14,21 @@ export default function Shifts() {
     const month = date.getMonth()
     const year = date.getFullYear()
     const dispatch = useDispatch()
-    const getAll = useSelector((state)  => state.reducerShifts.allShifts)
+    const getUserid = useSelector((state) => state.reducerUser.user.id)
+    useEffect(()=>{dispatch(getShiftId(getUserid))},[dispatch])
     const myShift = useSelector((state) => state.reducerShifts.myShifts)
-    console.log()
+    const getAll = useSelector((state)  => state.reducerShifts.allShifts)
     useEffect(() => {dispatch(getAllShifts(day, month, year))},[dispatch]);
     return ( 
-        <Container>
+        <ContainerS>
             <ScrollView>
-            <Text style={{color: '#fff', fontSize: 20, marginLeft: 10, marginTop: 20 }}>Mis Turnos</Text>
+            <Text style={{color: '#fff', 
+                         fontSize: 20, 
+                         marginLeft: 10, 
+                         marginTop: 20, 
+                         fontFamily:"Poppins_500Medium" 
+                         }}>
+            Mis Turnos</Text>
             <View>
                 {
             myShift.length > 0 
@@ -45,13 +48,13 @@ export default function Shifts() {
             })
             : <View style={{alignItems: 'center'}}>
                 <Cards>
-                    <Image style={{width: 60, height: 60, alignSelf: 'center'}}source={loading}/>
+                    <Text style={{fontSize: 16, padding: 9, fontFamily:"Poppins_500Medium" }}>Parece que no tienes turnos agendados...</Text>
                 </Cards>
               </View>
                 }
             </View>
             <View>
-                <Text style={{color: '#fff', fontSize: 20, marginLeft: 10, marginTop: 20 }}>Turnos disponibles</Text>
+                <Text style={{color: '#fff', fontSize: 20, marginLeft: 10, marginTop: 20, fontFamily:"Poppins_500Medium" }}>Turnos disponibles</Text>
                 <View>
                     {getAll.length !==0 ?
                      getAll.map(e => {
@@ -71,26 +74,43 @@ export default function Shifts() {
                              </View>
                          )
                      })
-                     : <Text style={{color: '#fff', alignSelf: 'center', marginTop: 50}}>Oops! No hay turnos Disponibles...</Text>
+                     : <Text style={{color: '#fff', alignSelf: 'center', marginTop: 50, fontFamily:"Poppins_500Medium" }}>Oops! No hay turnos Disponibles...</Text>
                     }
                 </View>
             </View>
           </ScrollView>
-        </Container>
+        </ContainerS>
     )
 }
 
-export function PreVieShifts() {
+export function PreViewShifts() {
+    const dispatch = useDispatch()
+    const getUserid = useSelector((state) => state.reducerUser.user.id)
+    useEffect(()=>{dispatch(getShiftId(getUserid))},[dispatch])
+    const myShift = useSelector((state) => state.reducerShifts.myShifts)
     return(
         <View>
             {
-            getAllShift.length !== 0 ? getAllShift.map(e => {
-                return <View key={e.id}>
-                     <Text style={{fontSize: 20}}>{e.weekday} {e.day}/{e.month}</Text>
-                     <Text>{e.beginning}hs - {e.ending}hs</Text>
-                </View>
-            })
-            : <Image style={{width: 100, height: 100, alignSelf: 'center'}}source={loading}/>
+                myShift.length !== 0
+                ?   <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <ProxShifts>
+                        <View>
+                            <Text style={{fontSize: 20}}>{myShift[0].weekday}</Text>
+                            <Text style={{fontSize: 25}}>{myShift[0].day}/{myShift[0].month}/{myShift[0].year}</Text>
+                        </View>
+                    </ProxShifts>
+                    <Available>
+                        <DarkContainer style={{width:90, marginBottom: 5}}>
+                            <Text style={{color: "#fff", fontSize: 20, alignSelf: 'center'}}>{myShift[0].availability}/{myShift[0].capacity}</Text>
+                        </DarkContainer>
+                        <Text>{myShift[0].beginning}hs a {myShift[0].ending}hs</Text>
+                    </Available>
+                   </View>
+                :<View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <NoShift>
+                    <Text  style={{alignSelf: 'center', fontSize: 17, fontFamily:"Poppins_500Medium"}}>¿Aun no sacaste un turno?</Text>
+                </NoShift>
+                 </View>
             }
         </View>
     )

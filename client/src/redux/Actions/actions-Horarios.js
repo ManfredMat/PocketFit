@@ -10,6 +10,10 @@ export const GET_ALL_SHIFTS = "GET_ALL_SHIFTS";
 export const GET_ACTUAL_TIMETABLE = "GET_ACTUAL_TIMETABLE";
 export const PUT_SHIFT_USER = "PUT_SHIFT_USER";
 export const PUT_SHIFT_USER_CLEAN = "PUT_SHIFT_USER_CLEAN";
+export const CREATED_WEEK_SHIFTS = "CREATED_WEEK_SHIFTS";
+export const GET_ROUTINE = "GET_ROUTINE";
+
+
 
 export function getLessons() {
   return async function (dispatch) {
@@ -54,37 +58,15 @@ export function getWeekShifts(week) {
       }); 
   }}
 
-export function postWeekShifts(firstDay,
-  firstDayMonth,
-  firstDayMonthDays,
-  lastDay,
-  lastDayMonth,
-  week,
-  year,
-  weekDaysNames,
-  timetableId) {
-
-
-  const body = {
-    firstDay: parseInt(firstDay),
-    firstDayMonth:parseInt(firstDayMonth),
-    lastDay: parseInt(lastDay),
-    lastDayMonth: parseInt(lastDayMonth),
-    year: parseInt(year),
-    firstDayMonthDays,
-    week,
-    weekDaysNames,
-    timetableId
-  }
-  console.log(body)
-
+export function postWeekShifts(params) {
+  console.log(params)
   return async function (dispatch) {
-    await axios.post(`${REACT_APP_API}/api/shift/weekcreate`, body)
+    await axios.post('http://localhost:3001/api/shift/weekcreate', params)
       .then(res => {
-        //console.log(res.data)
+        console.log("Created:",res.data)
         dispatch({
           type: GET_WEEK_SHIFTS,
-          value: res.data,
+          value: true,
         })
       });
   }
@@ -137,10 +119,6 @@ export function postShift(body) {
       .put(`${REACT_APP_API}/api/shift/update`,body)
       .then((create) => {
         console.log(create.data)
-        /* dispatch({
-          type: PUT_SHIFT_USER,
-          value: res.data,
-        }); */
       })
       await axios
       .get(`${REACT_APP_API}/api/shift/${body.idShift}`)
@@ -158,4 +136,18 @@ export function postShiftClean() {
     type: PUT_SHIFT_USER_CLEAN,
     value: [],
   }
+}
+
+export function getRoutine() {
+  return async function (dispatch) {
+    await axios
+      .get("http://localhost:3001/api/weekplan/general")
+      .then((res) => {
+        console.log(res.data)
+        dispatch({
+          type: GET_ROUTINE,
+          value: res.data,
+        });
+      });
+  };
 }

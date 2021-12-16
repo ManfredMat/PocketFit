@@ -1,6 +1,5 @@
-import {
-  USER_SIGN_IN
-} from "../Actions/actions-User";
+import { USER_SIGN_IN } from "../Actions/actions-Login";
+import { GET_USER } from "../Actions/actions-getUser";
 
 const initialState = {
   user: undefined
@@ -14,6 +13,11 @@ function reducerUser(state = initialState, action) {
         user: action.payload,
       }
 
+    case GET_USER:
+      return {
+        ...state,
+        user: action.payload
+      }
     default:
       return state;
   }

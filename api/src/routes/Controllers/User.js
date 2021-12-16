@@ -35,8 +35,11 @@ const createUser = async (req, res) => {
 const getAllUsers = async (req, res) => {
   try {
     const allUsers = await User.findAll();
-    const filterAdmin = allUsers.filter((user) => user.isadmin === false);
-    res.send(filterAdmin);
+    let filterAdmin = allUsers.filter((user) => user.isadmin === false);
+    filterAdmin.map((users) => {
+      if (users.imageData) users.imageData = users.imageData.toString("base64");
+    });
+    res.json(filterAdmin);
   } catch (err) {
     res.send(err);
   }
@@ -46,66 +49,142 @@ const getSpeficicUser = async (req, res) => {
   const { id } = req.params;
   try {
     let specificUser = await User.findOne({ where: { id: id } });
-    let userImg = specificUser.imageData.toString("base64");
-    specificUser["imageData"] = userImg;
+    if (specificUser.imageData) {
+      let userImg = specificUser.imageData.toString("base64");
+      specificUser["imageData"] = userImg;
+    }
     res.json(specificUser);
   } catch (err) {
     res.send(err);
   }
 };
 const modifyUser = async (req, res) => {
-  const { id } = req.params;
-  const {
-    name,
-    lastname,
-    email,
-    age,
-    height,
-    weight,
-    backsquat,
-    pushpress,
-    snatch,
-    clean,
-    running,
-    pullups,
-    password,
-    paymentday,
-    isadmin,
-    isuser
-  } = req.body;
-  const imageType = req.file.mimetype;
-  const imageName = req.file.originalname;
-  const imageData = req.file.buffer;
+  if (req.file) {
+    const { id } = req.params;
+    const {
+      name,
+      lastname,
+      email,
+      age,
+      height,
+      weight,
+      phoneNumber,
+      customRoutine,
+      benchpress,
+      backsquat,
+      pushpress,
+      snatch,
+      clean,
+      running,
+      pullups,
+      password,
+      paymentday,
+      isadmin,
+      isprofessor,
+      isuser,
+      newsletter,
+      notifications
+    } = req.body;
+    const imageType = req.file.mimetype;
+    const imageName = req.file.originalname;
+    const imageData = req.file.buffer;
 
-  try {
-    await User.update(
-      {
-        name,
-        lastname,
-        email,
-        age,
-        height,
-        weight,
-        backsquat,
-        pushpress,
-        snatch,
-        clean,
-        running,
-        pullups,
-        password,
-        paymentday,
-        imageType,
-        imageName,
-        imageData,
-        isadmin,
-        isuser
-      },
-      { where: { id: id } }
-    );
-    const newUser = await User.findOne({ where: { id: id } });
-    res.json(newUser);
-  } catch (error) {
-    res.send(error);
+    try {
+      await User.update(
+        {
+          name,
+          lastname,
+          email,
+          age,
+          height,
+          weight,
+          phoneNumber,
+          customRoutine,
+          benchpress,
+          backsquat,
+          pushpress,
+          snatch,
+          clean,
+          running,
+          pullups,
+          password,
+          paymentday,
+          isadmin,
+          isprofessor,
+          isuser,
+          imageType,
+          imageName,
+          imageData,
+          newsletter,
+          notifications
+        },
+        { where: { id: id } }
+      );
+      const newUser = await User.findOne({ where: { id: id } });
+      res.json(newUser);
+    } catch (error) {
+      res.send(error);
+    }
+  } else {
+    const { id } = req.params;
+    const {
+      name,
+      lastname,
+      email,
+      age,
+      height,
+      weight,
+      phoneNumber,
+      customRoutine,
+      benchpress,
+      backsquat,
+      pushpress,
+      snatch,
+      clean,
+      running,
+      pullups,
+      password,
+      paymentday,
+      isadmin,
+      isprofessor,
+      isuser,
+      notifications,
+      newsletter
+    } = req.body;
+
+    try {
+      await User.update(
+        {
+          name,
+          lastname,
+          email,
+          age,
+          height,
+          weight,
+          phoneNumber,
+          customRoutine,
+          benchpress,
+          backsquat,
+          pushpress,
+          snatch,
+          clean,
+          running,
+          pullups,
+          password,
+          paymentday,
+          isadmin,
+          isprofessor,
+          isuser,
+          notifications,
+          newsletter
+        },
+        { where: { id: id } }
+      );
+      const newUser = await User.findOne({ where: { id: id } });
+      res.json(newUser);
+    } catch (error) {
+      res.send(error);
+    }
   }
 };
 
@@ -182,27 +261,117 @@ const updateRoutine = async (req, res) => {
   }
 };
 
-const getUserPayStatus = async (res, req) => {
-  let { date } = (req.date = new Date(date));
+const getUserPayStatus = async (req, res) => {
+  let { date } = req.body;
 
+  date = new Date(date);
   try {
     let clients = await User.findAll({
-      where: { isuser: true, isadmin: false, isprofessor: false },
+      where: { isuser: true },
     });
+
     let alDia = [];
     let fueraDeTermino = [];
 
-    for (let i of clients) {
-      if (clients[i].paymentday > date) {
+    for (let i = 0; i < clients.length; i++) {
+      if (clients[i].dataValues.paymentday > date) {
         alDia.push(clients[i]);
       } else {
         fueraDeTermino.push(clients[i]);
       }
     }
-    return {
+
+    alDia.map((users) => {
+      if (users.imageData) users.imageData = users.imageData.toString("base64");
+    });
+
+    fueraDeTermino.map((users) => {
+      if (users.imageData) users.imageData = users.imageData.toString("base64");
+    });
+
+    let payStatus = {
       upToDate: alDia,
       offToDate: fueraDeTermino,
     };
+
+    res.send(payStatus);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+const getOneUserPayStatus = async (req, res) => {
+  let { date, id } = req.body;
+  date = new Date(date);
+  
+  try {
+    let client = await User.findOne({
+      where: { id: id },
+    });
+    
+    if (client.paymentday < date) {
+      client.paystatus = "NO-PAGO";
+    } else {
+      client.paystatus = "PAGO";
+    }
+
+    await client.save();
+
+    res.send({ message: "PayStatus changed" });
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+const switchStatus = async (req, res) => {
+  let { id } = req.body;
+  try {
+    let client = await User.findOne({ where: { id: id } });
+
+    if (client.status === "ACTIVO") {
+      client.status = "INACTIVO";
+    } else {
+      client.status = "ACTIVO";
+    }
+
+    await client.save();
+
+    res.send({ message: "Status changed" });
+  } catch (error) {
+    res.send(error);
+  }
+};
+const sortAllUsers = async (req, res) => {
+  let { prop, order } = req.query;
+  try {
+    let allUsers = await User.findAll();
+    allUsers = allUsers.sort((a, b) => {
+      if (a[prop] < b[prop]) {
+        if (order === "z-a") {
+          return 1;
+        } else {
+          return -1;
+        }
+      }
+      if (a[prop] > b[prop]) {
+        if (order === "z-a") {
+          return -1;
+        } else {
+          return 1;
+        }
+      }
+      return 0;
+    });
+    res.send(allUsers);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+const getProfessors = async (req, res) => {
+  try {
+    let allProfessors = await User.findAll({ where: { isprofessor: true } });
+    res.send(allProfessors);
   } catch (error) {
     res.send(error);
   }
@@ -220,5 +389,9 @@ module.exports = {
   getUserPayStatus,
   assignShift,
   uploadImage,
-  getShift
+  getShift,
+  getOneUserPayStatus,
+  switchStatus,
+  sortAllUsers,
+  getProfessors,
 };

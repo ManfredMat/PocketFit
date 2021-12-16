@@ -1,64 +1,87 @@
-import React, { useEffect } from 'react';
-import { getWeekShifts, selectShift } from "../../redux/Actions/actions-Horarios"
-import { useSelector, useDispatch } from "react-redux"
+import React, { useEffect } from "react";
+import {
+  getWeekShifts,
+  selectShift,
+} from "../../redux/Actions/actions-Horarios";
+import { useSelector, useDispatch } from "react-redux";
+import moment from "moment";
+import Styles from "./Styles/ShiftsStyled"; 
+import { getTimetable } from '../../redux/Actions/actions-Horarios';
+import "moment/locale/es";
+moment.locale("es");
 
+function Shifts({ setShiftDetail , wrap }) {
+  const today = moment().format("dddd");
+  const tomorrow = moment().add(1, "d").format("dddd");
+  let week = parseInt(moment().format("w"));
+  const weekShifts = useSelector((state) => state.timetable.weekShifts);
+  const actualTimetable = useSelector((state) => state.timetable.actualTimetable);
+  const intervaloLength = actualTimetable.length && actualTimetable.intervalo.length
+  const dispatch = useDispatch();
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
+  useEffect(() => {
+    dispatch(getWeekShifts(week));
+    dispatch(getTimetable())
+  }, []);
 
+  function shiftPreview(shift) {
+    dispatch(selectShift(shift));
+    setShiftDetail(true);
+  }
 
-function getWeekNameDay(today) {
-    let options = { weekday: 'long' }
-    let convert = today.toLocaleString(undefined, options)
-    return convert.charAt(0).toUpperCase() + convert.slice(1)
+  console.log(today,tomorrow)
+  return (
+    <>
+        <Styles.TitleH3Styled>Hoy</Styles.TitleH3Styled>
+      <Styles.ListContainer wrap={wrap}>
+        {weekShifts
+          .filter((shift) => shift.weekday === capitalizeFirstLetter(today))
+          .sort(function (a, b) {
+            if (parseInt(a.beginning) > parseInt(b.beginning)) return 1;
+            if (parseInt(a.beginning) < parseInt(b.beginning)) return -1;
+            return 0;})
+          .map((ofDay, indexA) => (
+            <Styles.ShiftButton  margin={indexA === intervaloLength-1 ? true : false} onClick={() => shiftPreview(ofDay)}>
+              <Styles.NumParagrahp>{indexA + 1}</Styles.NumParagrahp>
+              <Styles.DateContainer>
+              <Styles.DateParagrahp>
+                <Styles.AvaParagrahp>{ofDay.availability}</Styles.AvaParagrahp>/ {ofDay.capacity}
+              </Styles.DateParagrahp>
+              </Styles.DateContainer>
+              <Styles.HourParagrahp>
+                {ofDay.beginning}hs a {ofDay.ending}hs
+              </Styles.HourParagrahp>
+            </Styles.ShiftButton>
+          ))}
+      </Styles.ListContainer>
+      <Styles.TitleH3Styled>Mañana</Styles.TitleH3Styled>
+      <Styles.ListContainer wrap={wrap}>
+        {weekShifts
+          .filter((shift) => shift.weekday === capitalizeFirstLetter(tomorrow))
+          .sort(function (a, b) {
+            if (parseInt(a.beginning) > parseInt(b.beginning)) return 1;
+            if (parseInt(a.beginning) < parseInt(b.beginning)) return -1;
+            return 0;})
+          .map((ofDay, index) => (
+            <Styles.ShiftButton onClick={() => shiftPreview(ofDay)}>
+              <Styles.NumParagrahp>{index + 1}</Styles.NumParagrahp>
+              <Styles.DateContainer>
+              <Styles.DateParagrahp>
+                <Styles.AvaParagrahp>{ofDay.availability}</Styles.AvaParagrahp> / {ofDay.capacity}
+              </Styles.DateParagrahp>
+              </Styles.DateContainer>
+              <Styles.HourParagrahp>
+                {ofDay.beginning}hs a {ofDay.ending}hs
+              </Styles.HourParagrahp>
+            </Styles.ShiftButton>
+          ))}
+      </Styles.ListContainer>
+    </>
+  );
 }
 
-function Shifts({ setShiftDetail }) {
-    const today = new Date()
-    const nextDay = new Date(today);
-    nextDay.setDate(nextDay.getDate() + 1);
-    const weekShifts = useSelector(state => state.timetable.weekShifts)
-    const dispatch = useDispatch()
-
-
-    useEffect(() => {
-        dispatch(getWeekShifts())
-    }, [dispatch]);
-
-    function shiftPreview(shift) {
-        dispatch(selectShift(shift))
-        setShiftDetail(true)
-    }
-
-
-    return (
-        <div>
-            <div style={{ display: "flex" }}>
-                <h3>Hoy</h3>
-                {weekShifts.filter((shift) => shift.weekday === getWeekNameDay(today))
-                    .map((ofDay) => (
-                        <button onClick={() => shiftPreview(ofDay)}>
-                            <p>{ofDay.availability}/{ofDay.capacity}</p>
-                            <p>{ofDay.beginning}hs a {ofDay.ending}hs</p>
-                        </button>
-                    ))}
-            </div>
-            <div style={{ display: "flex" }}>
-                <h3>Mañana</h3>
-                {weekShifts.filter((shift) => shift.weekday === getWeekNameDay(nextDay))
-                    .map((ofDay) => (
-                        <div onClick={() => shiftPreview(ofDay)}>
-                            <button>
-                                <p>{ofDay.availability}/{ofDay.capacity}</p>
-                                <p>{ofDay.beginning}hs a {ofDay.ending}hs</p>
-                            </button>
-                        </div>
-
-                    ))}
-            </div>
-
-
-        </div>
-    )
-}
-
-export default Shifts
+export default Shifts;

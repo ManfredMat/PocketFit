@@ -1,98 +1,63 @@
 import React, { useEffect, useState } from 'react'
 import {View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
-import { Container, Routines, TextW, TextT, Excercise, ProxShifts, ButtonShifts, ShiftsCont} from './Training.Styles'
+import { Container, Routines, TextW, TextT, Excercise, ProxShifts, PagedContainer, ButtonShifts, ShiftsCont, Rounds, RoundsContainer} from './Training.Styles'
 import arrow from '../../assets/arrow.png'
+import arrowLeft from '../../assets/arrow-left.png'
+import arrowRight from '../../assets/arrow-right.png'
 import { useNavigation } from '@react-navigation/core';
 import { getAllWeekPlan } from '../../redux/Actions/actions-Training';
-import { useDispatch, useSelector } from 'react-redux';
-import loading from '../../assets/loading.gif'
-import CardExercise from './CardExercise'
-import { PreVieShifts } from '../Shifts/Shifts';
-
+import { useDispatch } from 'react-redux';
+import { PreViewShifts } from '../Shifts/Shifts';
+import Blocks from './Blocks'
 export default function Training() {
     //basics
     const dispatch = useDispatch()
-    const getAll = useSelector((state)  => state.reducerTraining.weekPlan)
     const navigation = useNavigation();
     useEffect(() => {dispatch(getAllWeekPlan())},[dispatch]);
-    //Days of the week exercises
-    const load = !Array.isArray(getAll) 
-    const day = new Date().getDay()
-    const [today, setToday] = useState([])
-    const SetDay = () =>{
-        if(load) {
-        day === 1 ? setToday([getAll.monday]) : 
-        day === 2 ? setToday([getAll.tuesday]) :
-        day === 3 ? setToday([getAll.wendsday]) :
-        day === 4 ? setToday([getAll.thursday]):
-        day === 5 ? setToday([getAll.friday]):
-        day === 6 ? setToday([getAll.saturday]) :
-        day === 0 && setToday('No tienes nada para hoy, Descansa…') 
-        }
-    }
-    setTimeout(() => {
-        SetDay()
-    }, 2021);
+    const [num, setNum] = useState(0)
+    const [round, setRound] = useState()
+    const [reset, setReset] = useState()
+
     return (
         <Container>
             <TextT>Entrenamiento</TextT>
             <ScrollView>
                 <TextW>Tu Rutina de hoy</TextW>
                 <Routines>
-                { 
-
-                typeof today === 'string' 
-                    ? <Excercise>
-                        <Text style={{alignSelf: 'center'}}>{today}</Text>
-                    </Excercise> :
-                today.length !== 0 
-                    ? today[0] === undefined
-                    ?  <Excercise>
-                         <Image style={{width: 100, height: 100, alignSelf: 'center'}}source={loading}/>
-                       </Excercise>
-                    :
-                    today[0].blocks[0].exercises?.map(e => {
-                     return <Excercise key={e[3]}>
-                                <CardExercise  reps={e[1]} exercise={e[0]}/>
-                            </Excercise>
-                    })
-                    : 
                     <Excercise>
-                        <Image style={{width: 100, height: 100, alignSelf: 'center'}}source={loading}/>
-                   </Excercise>
-                  }
-                </Routines>
-                {/* <View style={{marginTop: 15}}>
-                    <TouchableOpacity onPress={() => alert('estamos trabajando en esta seccion')}>
-                        <Text style={{alignSelf: 'center', color: "#6AE056"}}>Ver Mas...</Text>
-                    </TouchableOpacity>
-                </View> */}
-                
-                <TextW>Próximo Turno</TextW>
-                <ShiftsCont>
-                    <ProxShifts>
-                        <PreVieShifts/>
-                    </ProxShifts>
-                    <ButtonShifts onPress={() => navigation.navigate('Shifts')}>
-                        <Image source={arrow} style={{alignSelf: 'center', width:30, height:30, opacity: 0.8}}/>
-                    </ButtonShifts>
-                </ShiftsCont>
-                <TextW>Próxima Clase</TextW>
-                <ShiftsCont>
-                    <ProxShifts>
-                        <View style={{display: 'flex', flexDirection: 'row'}}>
-                            <View style={{marginRight: 20, alignItems: 'center'}}>
-                                <Text style={{fontSize: 20}}>Martes</Text>
-                                <Text>18/12</Text>
-                            </View>
-                            <View style={{alignItems: 'center'}}>
-                                <Text style={{fontSize: 20}}>Zumba</Text>
-                                <Text>13hrs - 14hrs</Text>
-                            </View>
+                        <View style={{width: 280}}>
+                            <Text style={{fontSize: 20, color: '#fff', fontFamily:"Poppins_500Medium"}}>Bloque { num === 0 ? 'Uno': num === 1 ? 'Dos': num === 2 && 'Tres'}</Text>
                         </View>
-                    </ProxShifts>
-                    <ButtonShifts onPress={() => alert('estamos trabajando en esta sección')}>
-                        <Image source={arrow} style={{alignSelf: 'center', width:30, height:30, opacity: 0.8}}/>
+                        <View style={{flexDirection: 'row'}}>
+                            <TouchableOpacity onPress={()=> {num !==0 ? setNum(num - 1) : null; setReset(true)}}>
+                                 <Image 
+                                    source={arrowLeft} 
+                                    style={{width:25, height: 25, marginRight: 7}}/>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={()=> {num < 2 ? setNum(num + 1) : setNum(0); setReset(false)}}>
+                                 <Image 
+                                    source={arrowRight} 
+                                    style={{width:25, height: 25}}/>   
+                            </TouchableOpacity>
+                        </View> 
+                    </Excercise>
+                    <Blocks num={num} setRound={setRound} reset={reset}/>
+                  <RoundsContainer>
+                      <Rounds>
+                          <Text style={{fontSize: 12}}>Rondas {round}</Text>
+                      </Rounds>
+                  </RoundsContainer>
+                </Routines>
+                <View style={{marginLeft: "78%"}}>
+                    <TouchableOpacity onPress={()=> alert('Próximamente en esta sección se podrá ver el detalle de cada ejercicio')}>
+                        <Text style={{color:"#C4C4C4"}}>Ver mas</Text>
+                    </TouchableOpacity>
+                </View>
+                <TextW style={{marginBottom: 5}}>Próximo Turno</TextW>
+                <ShiftsCont>
+                        <PreViewShifts/>
+                    <ButtonShifts onPress={() => navigation.navigate('Shifts')}>
+                        <Image source={arrow} style={{alignSelf: 'center', width:30, height:30}}/>
                     </ButtonShifts>
                 </ShiftsCont>
             </ScrollView>

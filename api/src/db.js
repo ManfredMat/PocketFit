@@ -3,6 +3,7 @@ const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const session = require("express-session");
+const { DataTypes } = require("sequelize");
 
 const { DB_USER, DB_PASSWORD, DB_HOST , DB_NAME } = process.env;
 
@@ -57,13 +58,19 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-
-
-
-
-const { Event , Exercise  , Routine , Timetable , User  , Block, Shift , Weekplan} = sequelize.models;
-
-
+const {
+  Event,
+  Exercise,
+  UserEvent,
+  Routine,
+  Timetable,
+  User,
+  Block,
+  Shift,
+  Weekplan,
+  Review,
+  Notification,
+} = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -76,8 +83,8 @@ Shift.belongsToMany(User, { through: "UserShift" });
 Shift.belongsToMany(Timetable, { through: "ShiftTimetable" });
 Timetable.belongsToMany(Shift, { through: "ShiftTimetable" });
 
-User.belongsToMany(Event, { through: "UserEvent" });
-Event.belongsToMany(User, { through: "UserEvent" });
+User.belongsToMany(Event, { through: "userShift" });
+Event.belongsToMany(User, { through: "userShift" });
 
 Routine.belongsToMany(Block, { through: "BlockRoutine" });
 Block.belongsToMany(Routine, { through: "BlockRoutine" });

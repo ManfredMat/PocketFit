@@ -1,37 +1,78 @@
-const User = require('../../db');
+const {User} = require('../../db');
 const { transporter, mailOptions } = require('./Transporter');
 
-let model = `<!DOCTYPE html>
-  <html>
-  
-  <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  </head>
-  
-  <body style=" font-family: 'Open Sans', 'Arial Narrow', Arial, sans-serif; ">
-   <h2>Hola %usuario% </h2>
-   <h2>Ya estas suscripto a las noticias del gimansio </h2>
-  
-  </body>
-  
-  </html>`
 
-let modelNews = `<!DOCTYPE html>
-  <html>
+let subscribed = ` <html>
   
-  <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  </head>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+</head>
+
+<body style=" font-family: 'Open Sans', 'Arial Narrow', Arial, sans-serif; ">
+  <div
+    style="height: 100%; padding: 2em; background-image: url('https://i.ibb.co/qYt487N/loginbackground.png'); background-size: 100%;">
+    <div style="border-radius: 2em;text-align: -webkit-center;background-color: rgb(2, 14, 18 , 0.8);z-index: 1;position: relative;">
+      <img src="https://i.ibb.co/ScMP2M3/Group.png" width="80px" height="80px"
+        style="position: relative; margin-top: 1em;">
+      <p
+        style="color: #ffffff;font-weight: 850;background-color:#588A58;padding:2em;">
+        %username% , Ya estas suscripto a las noticias de tu gimnasio </p>
+        
+    </div>
+  </div>
+
+</body>
+
+</html>`
+
+let unsubscribed = ` <html>
   
-  <body style=" font-family: 'Open Sans', 'Arial Narrow', Arial, sans-serif; ">
-   <h2>Hola %usuario% </h2>
-   <h2> %message% </h2>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+</head>
+
+<body style=" font-family: 'Open Sans', 'Arial Narrow', Arial, sans-serif; ">
+  <div
+    style="height: 100%; padding: 2em; background-image: url('https://i.ibb.co/qYt487N/loginbackground.png'); background-size: 100%;">
+    <div style="border-radius: 2em;text-align: -webkit-center;background-color: rgb(2, 14, 18 , 0.8);z-index: 1;position: relative;">
+      <img src="https://i.ibb.co/ScMP2M3/Group.png" width="80px" height="80px"
+        style="position: relative; margin-top: 1em;">
+      <p
+        style="color: #ffffff;font-weight: 850;background-color:#588A58;padding:2em;">
+        %username% , Ya estas desuscripto a las noticias de tu gimnasio </p>
+        
+    </div>
+  </div>
+
+</body>
+
+</html>`  
+
+let modelNews = ` <html>
   
-  </body>
-  
-  </html>`
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+</head>
+
+<body style=" font-family: 'Open Sans', 'Arial Narrow', Arial, sans-serif; ">
+  <div
+    style="height: 100%; padding: 2em; background-image: url('https://i.ibb.co/qYt487N/loginbackground.png'); background-size: 100%;">
+    <div style="border-radius: 2em;text-align: -webkit-center;background-color: rgb(2, 14, 18 , 0.8);z-index: 1;position: relative;">
+      <img src="https://i.ibb.co/ScMP2M3/Group.png" width="80px" height="80px"
+        style="position: relative; margin-top: 1em;">
+      <p
+        style="color: #ffffff;font-weight: 850;background-color:#588A58;padding:2em;">
+        Hola %username% , %message% </p>
+        
+    </div>
+  </div>
+
+</body>
+
+</html>`
 
 
 const subscribeToNews = async (req , res)=>{
@@ -45,11 +86,11 @@ const subscribeToNews = async (req , res)=>{
 
     await user.save()
 
-    let message = model
+    let message = subscribed
 
-    message = message.replace("%usuario%", user.name);
+    message = message.replace("%username%", user.name);
 
-    let emailOptions = mailOptions(user.email, message , 'You`re now subscribe to te newsletter')
+    let emailOptions = mailOptions(user.email, message , 'Ya estas suscripto a las noticias de tu gimnasio')
 
     let info = transporter.sendMail(emailOptions, function (error, info) {
         if (error) {
@@ -76,11 +117,11 @@ const unsubscribeToNews = async (req , res)=>{
   
       await user.save()
   
-      let message = model
+      let message = unsubscribed
   
-      message = message.replace("%usuario%", user.name);
+      message = message.replace("%username%", user.name);
   
-      let emailOptions = mailOptions(user.email, message , 'You`re now unsubscribe to te newsletter')
+      let emailOptions = mailOptions(user.email, message , 'Ya estas desuscripto')
   
       let info = await transporter.sendMail(emailOptions, function (error, info) {
           if (error) {
@@ -97,19 +138,19 @@ const unsubscribeToNews = async (req , res)=>{
   }
 
   const sendNewsletter = async (req , res)=>{
-      let {news} = req.body
+      let {news , subject} = req.body
       try{
-        let users = User.findAll({where:{newsletter:true}})
-
+        let users = await User.findAll({where:{newsletter:true}})
+        console.log(users)
         users.forEach(user => {
 
             let message = modelNews
 
-            message = message.replace("%usuario%", user.name);
+            message = message.replace("%username%", user.name);
             message = message.replace("%message%", news);
 
 
-            let emailOptions = mailOptions(user.email, message , 'What is going on at your gym')
+            let emailOptions = mailOptions(user.email, message , subject?subject:'Que hay de nuevo en tu gimnasio local')
         
             let info = transporter.sendMail(emailOptions, function (error, info) {
                 if (error) {

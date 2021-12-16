@@ -5,10 +5,12 @@ import { Input } from "react-native-elements";
 import { ButtonGreen, Label } from "../Authentication.styles";
 import { Styles } from '../Authentication.styles';
 import { useSelector, useDispatch } from "react-redux";
-import signIn from "../../../redux/Actions/actions-User";
+import signIn from "../../../redux/Actions/actions-Login";
 import postLoginUser from "../../../api/post-login";
 import sendMailPassReco from "../../../api/post-passreco-mail";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getEvents } from "../../../redux/Actions/actions-Events";
+import { getGeneralRoutine } from "../../../redux/Actions/actions-Routine";
 
 const SignIn = () => {
   const navigation = useNavigation();
@@ -50,6 +52,8 @@ const SignIn = () => {
         return Alert.alert("Error", "Usted es administrador, para continuar ingrese a PocketFit Web")
       } else {
         dispatch(signIn(res.data.passport.user));
+        await dispatch(getEvents());
+        await dispatch(getGeneralRoutine());
         storeEmail(state.email);
         storePassword(state.password);
         setState({ email: "", password: "" });

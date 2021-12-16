@@ -6,8 +6,10 @@ import postRegisterUser from "../../../api/post-register";
 import { ButtonGreen, Label } from "../Authentication.styles";
 import { Styles } from "../Authentication.styles";
 import { useSelector, useDispatch } from "react-redux";
-import signIn from "../../../redux/Actions/actions-User";
+import signIn from "../../../redux/Actions/actions-Login";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getGeneralRoutine } from "../../../redux/Actions/actions-Routine";
+import { getEvents } from "../../../redux/Actions/actions-Events";
 
 export default function SignUp() {
   const navigation = useNavigation();
@@ -58,7 +60,7 @@ export default function SignUp() {
       };
       const res = await postRegisterUser(datos);
       dispatch(signIn(res.data));
-
+      
       if (res.data === "User is already registered") {
         Alert.alert("Error", "El usuario ya existe")
       } else {
@@ -71,6 +73,8 @@ export default function SignUp() {
           password: "",
           repeatPassword: ""
         })
+        await dispatch(getEvents());
+        await dispatch(getGeneralRoutine());
         navigation.navigate("Inicio")
         Alert.alert(`Bienvenido ${input.name}!`, "Te has registrado correctamente")
       };

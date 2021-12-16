@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("user", {
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.STRING,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
@@ -34,11 +34,19 @@ module.exports = (sequelize) => {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
+    phoneNumber: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    customRoutine: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
     backsquat: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
-    pushpress: {
+    benchpress: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
@@ -75,12 +83,23 @@ module.exports = (sequelize) => {
     },
     paymentday: {
       type: DataTypes.DATE,
-      allowNull:true
+      allowNull: true,
+    },
+    paystatus:{
+      type: DataTypes.ENUM("PAGO" , "NO-PAGO"),
+      defaultValue:"NO-PAGO"
+    },
+    status:{
+      type: DataTypes.ENUM("ACTIVO" , "INACTIVO"),
+      defaultValue:"ACTIVO"
     },
     newsletter:{
       type: DataTypes.BOOLEAN,
       defaultValue:false
-
+    },
+    notifications:{
+      type: DataTypes.BOOLEAN,
+      defaultValue:false
     },
     imageType: {
       type: DataTypes.STRING,

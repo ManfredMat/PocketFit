@@ -3,9 +3,11 @@ import React from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import { useEffect } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import signIn from "../../redux/Actions/actions-User";
+import signIn from "../../redux/Actions/actions-Login";
 import postLoginUser from "../../api/post-login";
 import { useDispatch } from "react-redux";
+import { getEvents } from "../../redux/Actions/actions-Events";
+import { getGeneralRoutine } from "../../redux/Actions/actions-Routine";
 
 const Loading = () => {
   const dispatch = useDispatch();
@@ -29,6 +31,8 @@ const Loading = () => {
       });
       if (res.data === "Email not found") return navigation.navigate('Authentication')
       dispatch(signIn(res.data.passport.user));
+      await dispatch(getEvents());
+      await dispatch(getGeneralRoutine());
       navigation.navigate('Inicio');
     } else navigation.navigate('Authentication')
   }

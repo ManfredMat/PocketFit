@@ -1,6 +1,7 @@
-import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EditBlock from "./EditBlock";
+import { AcceptButton, BackPop, BlockContainer, BlockEditDayContainer, ButtonContainer, EditButton, EditDayContainer, ExcerciseContainer, ExerciseP, InputStyle, KindOfBlockContainer, PopUpContainer, RoundsContainer, WeekDayContainer } from "./Routines.styles";
+import editIcon from '../../assets/img/iconos/editIcon.svg';
 
 const EditDay = (props) => {
 
@@ -9,98 +10,210 @@ const EditDay = (props) => {
         block: 1
     });
 
-    const [idRoutine, setIdRoutine] = useState({
-        block1: '',
-        block2: '',
-        block3: ''
-    });
-
-    const [input, setInput] = useState('')
+    const [input, setInput] = useState('');
 
     const handleOnclick = (block) => {
 
-        renderEditBlock.render
-            ? setRender({
-                render: false,
-                block: 1,
-            })
-            : setRender({
-                block: block,
-                render: true
-            });
+        setRender({ block: block, render: true });
+
     }
 
-    const submitChanges = async () => {
+    const submitChanges = () => {
 
         const dayRoutine = {
             kindOfRoutine: input,
-            //blocks: [idRoutine.block1, idRoutine.block2, idRoutine.block3],
             day: props.api
         }
 
-        props.setWeekChanges(oldState => {return { ...oldState, [props.api]:{...oldState[props.api], dayRoutine}}})
+        props.setWeekChanges(oldState => {
 
-        // const response = await axios.post("http://127.0.0.1:3001/api/routines", dayRoutine);
-        
-        // props.setWeekIds({ ...props.weekIds, [props.api]: response.data.id });
-        
+            return {
+                ...oldState,
+                [props.api]: {
+                    ...oldState[props.api],
+                    dayRoutine
+                }
+            }
+
+        })
+
         props.setRender(false)
+        props.setDisableButtons(false)
+
     }
+
+    useEffect(() => {
+
+        setInput(props.weekChanges[props.api].dayRoutine.kindOfRoutine);
+
+    }, [])
 
     return (
 
-        <div>
+        <BackPop>
 
-            <div>
-                <h3>Editando {props.day}</h3>
+            <PopUpContainer>
 
-                <input type="text" value={input} onChange={(e) => setInput(e.target.value)} />
+                <EditDayContainer>
 
-                <div>
-                    <h3>Bloque 1</h3>
-                    <button onClick={() => handleOnclick(1)}>editar</button>
-                </div>
+                    <h3>{props.day}</h3>
 
-                <div>
-                    {props.exercises.block1
-                        ? <ul>{props.exercises.block1.map((excercise, i) => <li key={i}>{excercise.name} <br /> repeticiones: {excercise.repetitions}</li>)}</ul>
-                        : <p>No hay ejercicios asignados para este día</p>}
-                </div>
-            </div>
+                    <div className='InputContainer'>
+                        <label htmlFor="kindOfRoutine">Tipo de Rutina</label>
+                        <InputStyle
+                            id="kindOfRoutine"
+                            type="text"
+                            value={input}
+                            placeholder='Escriba un tipo de rutina...'
+                            onChange={(e) => setInput(e.target.value)} />
+                    </div>
 
-            <div>
-                <div>
-                    <h3>Bloque 2</h3>
-                    <button onClick={() => handleOnclick(2)}>editar</button>
-                </div>
+                    <BlockEditDayContainer>
 
-                <div>
-                    {props.exercises.block2
-                        ? <ul>{props.exercises.block2.map((excercise, i) => <li key={i}>{excercise.name} <br /> repeticiones: {excercise.repetitions}</li>)}</ul>
-                        : <p>No hay ejercicios asignados para este día</p>}
-                </div>
-            </div>
+                        <div>
 
-            <div>
+                            <WeekDayContainer>
 
-                <div>
-                    <h3>Bloque 3</h3>
-                    <button onClick={() => handleOnclick(3)}>editar</button>
-                </div>
+                                <p className='number'>1</p>
+                                <EditButton onClick={() => handleOnclick(1)}>
+                                    <img height='25rem' src={editIcon} alt="" />
+                                </EditButton>
 
-                <div>
-                    {props.exercises.block3
-                        ? <ul>{props.exercises.block3.map((excercise, i) => <li key={i}>{excercise.name} <br /> repeticiones: {excercise.repetitions}</li>)}</ul>
-                        : <p>No hay ejercicios asignados para este día</p>}
-                </div>
-            </div>
+                            </WeekDayContainer>
 
-            <button onClick={submitChanges} >Aceptar</button>
+                            <BlockContainer block='1'>
+                                <ExcerciseContainer>
 
-            {renderEditBlock.render ? <EditBlock day={props.day} api={props.api} setWeekChanges={props.setWeekChanges} block={renderEditBlock.block} exercises={props.exercises[`block${renderEditBlock.block}`]} setIdRoutine={setIdRoutine} idRoutine={idRoutine} setRender={setRender} setExercises={props.setExercises}/> : null}
+                                    {props.weekChanges[props.api]
+                                        ? props.weekChanges[props.api].blocks.block1.kindOfBlock
+                                            ? <KindOfBlockContainer>{props.weekChanges[props.api].blocks.block1.kindOfBlock}</KindOfBlockContainer>
+                                            : null
+                                        : null}
 
-        </div>
+                                    {props.exercises.block1[0]
+                                        ? props.exercises.block1.map((excercise, i) =>
+                                            <ExerciseP key={i}>
 
+                                                {excercise.name} x {excercise.repetitions}
+
+                                            </ExerciseP>
+                                        )
+                                        : <ExerciseP inactive={true}>Sin ejercicios</ExerciseP>
+                                    }
+
+                                    {
+                                        props.weekChanges[props.api]
+                                            ? <RoundsContainer>Rounds: {props.weekChanges[props.api].blocks.block1.rounds}</RoundsContainer>
+                                            : null
+                                    }
+                                </ExcerciseContainer>
+                            </BlockContainer>
+
+                        </div>
+
+                        <div>
+
+                            <WeekDayContainer block='2'>
+
+                                <p className='number'>2</p>
+                                <EditButton onClick={() => handleOnclick(2)}>
+                                    <img height='25rem' src={editIcon} alt="" />
+                                </EditButton>
+
+                            </WeekDayContainer>
+
+                            <BlockContainer block='2'>
+                                <ExcerciseContainer>
+
+                                    {props.weekChanges[props.api]
+                                        ? props.weekChanges[props.api].blocks.block2.kindOfBlock
+                                            ? <KindOfBlockContainer>{props.weekChanges[props.api].blocks.block2.kindOfBlock}</KindOfBlockContainer>
+                                            : null
+                                        : null}
+
+                                    {props.exercises.block2[0]
+                                        ? props.exercises.block2.map((excercise, i) =>
+                                            <ExerciseP key={i}>
+
+                                                {excercise.name} x {excercise.repetitions}
+
+                                            </ExerciseP>
+                                        )
+                                        : <ExerciseP inactive={true}>Sin ejercicios</ExerciseP>}
+
+                                    {
+                                        props.weekChanges[props.api]
+                                            ? <RoundsContainer>Rounds: {props.weekChanges[props.api].blocks.block2.rounds}</RoundsContainer>
+                                            : null
+                                    }
+                                </ExcerciseContainer>
+                            </BlockContainer>
+
+                        </div>
+
+                        <div>
+
+                            <WeekDayContainer block='3'>
+
+                                <p className='number'>3</p>
+                                <EditButton onClick={() => handleOnclick(3)}>
+                                    <img height='25rem' src={editIcon} alt="" />
+                                </EditButton>
+
+                            </WeekDayContainer>
+
+                            <BlockContainer block='3'>
+                                <ExcerciseContainer>
+
+                                    {props.weekChanges[props.api]
+                                        ? props.weekChanges[props.api].blocks.block3.kindOfBlock
+                                            ? <KindOfBlockContainer>{props.weekChanges[props.api].blocks.block3.kindOfBlock}</KindOfBlockContainer>
+                                            : null
+                                        : null}
+
+                                    {props.exercises.block3[0]
+                                        ? props.exercises.block3.map((excercise, i) =>
+                                            <ExerciseP key={i}>
+
+                                                {excercise.name} x {excercise.repetitions}
+
+                                            </ExerciseP>
+                                        )
+                                        : <ExerciseP inactive={true}>Sin ejericios</ExerciseP>}
+
+{
+                        props.weekChanges[props.api]
+                            ? <RoundsContainer>Rounds: {props.weekChanges[props.api].blocks.block3.rounds}</RoundsContainer>
+                            : null
+                    }
+                                </ExcerciseContainer>
+                            </BlockContainer>
+
+                        </div>
+
+                    </BlockEditDayContainer>
+
+                    <ButtonContainer>
+                        <AcceptButton onClick={submitChanges} >Aceptar</AcceptButton>
+                    </ButtonContainer>
+
+                </EditDayContainer>
+
+            </PopUpContainer>
+
+            {renderEditBlock.render
+                ? <EditBlock
+                    day={props.day}
+                    api={props.api}
+                    setWeekChanges={props.setWeekChanges}
+                    weekChanges={props.weekChanges}
+                    block={renderEditBlock.block}
+                    exercises={props.exercises[`block${renderEditBlock.block}`]}
+                    setRender={setRender}
+                    setExercises={props.setExercises} />
+                : null}
+
+        </BackPop>
 
     )
 }

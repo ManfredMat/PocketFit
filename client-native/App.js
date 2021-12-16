@@ -10,6 +10,7 @@ import store from "./redux/store";
 import { Provider } from "react-redux";
 import Shifts from "./components/Shifts/Shifts";
 import PassReco from "./components/Authentication/SignIn/PassReco";
+import Configuration from "./components/Profile/Configuration/Configuration";
 import {
   Poppins_100Thin,
   Poppins_100Thin_Italic,
@@ -31,7 +32,11 @@ import {
   Poppins_900Black_Italic
 } from '@expo-google-fonts/poppins';
 import { useFonts } from "expo-font";
-import AppLoading from "expo-app-loading"
+import AppLoading from "expo-app-loading";
+import { Notification } from "expo-notifications";
+import * as Permissions from 'expo-permissions'
+import Payments from "./components/Profile/Payments/Payments";
+import FeedBack from "./components/Profile/FeedBack/FeedBack";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -71,15 +76,28 @@ export default function App() {
             <Stack.Screen name='Auth' component={RootStack} options={{ headerShown: false }} />
             <Stack.Screen name='PassReco' component={PassReco} options={{ headerShown: false }} />
             <Stack.Screen name='Inicio' component={InicioStack} options={{ headerShown: false }} />
+            <Stack.Screen name="Configuration" component={Configuration} options={{
+              title: "Configuración",
+              headerStyle: { backgroundColor: "#041D25", marginTop: 20 },
+              headerTintColor: "white"
+            }} />
             <Stack.Screen name='Shifts' component={Shifts} options={{
-
               title: 'Turnos',
-              headerTitleStyle: { color: '#fff' },
+              headerTintColor:'#fff',
               headerStyle: { backgroundColor: '#041D25' },
-            }}
-            />
+            }} />
+            <Stack.Screen name='Payments' component={Payments} options={{
+              title: 'Pagos',
+              headerTintColor:'#fff',
+              headerStyle: { backgroundColor: '#041D25' },
+            }}/>
+            <Stack.Screen name='FeedBack' component={FeedBack} options={{
+              title: 'Feedback',
+              headerTintColor:'#fff',
+              headerStyle: { backgroundColor: '#041D25' },
+            }}/>
           </Stack.Navigator>
-          <StatusBar />
+          <StatusBar backgroundColor="#020E12" style="light"/>
         </NavigationContainer>
       </Provider>
     </>

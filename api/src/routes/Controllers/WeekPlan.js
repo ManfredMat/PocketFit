@@ -16,21 +16,27 @@ const structureWeekPlan=(weekplan , name)=>{
 }
 
 const createWeekPlan = async (req , res)=>{
-    let {name , monday , tuesday ,wendsday , thursday , friday , saturday} = req.body
+    let {name, user , monday , tuesday ,wendsday , thursday , friday , saturday} = req.body
     
-
+     try{
+        
+        if(!name && !user){
     
+            await Weekplan.destroy({where:{name:NOMBRE_GENERAL}})        
+            name = NOMBRE_GENERAL
+        }
 
-    if(!name){
+        if(user){
+            await Weekplan.destroy({where:{user:user}})
+            if(!name){
+                name = "Plan semanal personalizado Usuario"
+            } 
+        }
 
-        Weekplan.destroy({where:{name:NOMBRE_GENERAL}})        
-        name = NOMBRE_GENERAL
-    }
-
-    try{
         let newWeekPlan = await Weekplan.create(
             {
                 name,
+                user,
                 monday,
                 tuesday,
                 wendsday,
@@ -59,9 +65,9 @@ const getAllWeekPlans = async (req , res)=>{
 const getWeekPlanById = async (req , res)=>{
 
     let {id}=req.params
-    console.log(typeof id)
+    
     try{
-        let weekplan = await Weekplan.findOne({where:{id:id}})
+        let weekplan = await Weekplan.findOne({where:{id:id}}) 
 
         let {monday , tuesday ,wendsday , thursday , friday , saturday} = weekplan
 
@@ -85,8 +91,46 @@ const getWeekPlanById = async (req , res)=>{
        
        
         }
+    
         weekplan = await Promise.all(newStructure , name)
+        weekplan = structureWeekPlan(weekplan)
 
+
+        res.json(weekplan)
+    }catch(error){res.send(error)}
+}
+
+const getWeekPlanByUser = async (req , res)=>{
+
+    let {user}=req.params
+    
+    try{
+        let weekplan = await Weekplan.findOne({where:{user:user}}) 
+
+        let {monday , tuesday ,wendsday , thursday , friday , saturday} = weekplan
+
+        let {name}=weekplan
+
+        let newStructure=[]
+
+        weekplan=[monday,tuesday,wendsday,thursday,friday,saturday]
+
+        for(let i of weekplan){
+        
+
+            newStructure.push(Routine.findOne({
+                where:{id:i},
+                include:[{
+                    model: Block , attributes:['id' , 'order', 'rounds' ,'kindOfBlock','exercises'],
+                    through:{
+                        attributes:[]
+                    }
+                }]}))
+       
+       
+        }
+    
+        weekplan = await Promise.all(newStructure , name)
         weekplan = structureWeekPlan(weekplan)
 
 
@@ -170,5 +214,6 @@ module.exports = {
     getWeekPlanById,
     updateWeekPlan,
     deleteWeekPlan,
-    getGeneralWeekPlan
+    getGeneralWeekPlan,
+    getWeekPlanByUser
 }

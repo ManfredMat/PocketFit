@@ -1,41 +1,68 @@
 import { Link } from "react-router-dom";
 import Styles from "./NavBar-Styled";
-import React, { useEffect } from "react";
+import EventsIco from "../../assets/img/iconos/events.svg";
+import EventsIcoSelect from "../../assets/img/iconos/select-icons/event-select.svg";
+import PayIco from "../../assets/img/iconos/Pay.svg";
+import PayIcoSelect from "../../assets/img/iconos/select-icons/payments-select.svg";
+import SemanalPlan from "../../assets/img/iconos/Plans.svg";
+import SemanalPlanSelect from "../../assets/img/iconos/select-icons/plan-select.svg";
+import FeedBackIco from "../../assets/img/iconos/feedback.svg";
+import FeedBackIcoSelect from "../../assets/img/iconos/select-icons/feedback-select.svg";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAdmin } from "../../redux/Actions/actions-login";
+import defaultProfilePhoto from "../../assets/img/profilephoto.svg";
+import Activities from "../Activities/Activities";
+import { useLocation } from "react-router-dom";
 
-function NavBar({screenHeight}) {
+function NavBar({ screenHeight }) {
   const dispatch = useDispatch();
   const id = localStorage.getItem("number");
-  const adminProfileImage = useSelector(state => state.session.admin.imageData);
+  const adminProfileImage = useSelector(
+    (state) => state.session.admin.imageData
+  );
+  const [renderActivities, setRenderActivities] = useState(false);
+
+
+  const usePathname = () => {
+    const location = useLocation();
+    return location.pathname;
+  };
+
+  let actual = usePathname();
+
 
   useEffect(() => {
-    dispatch(getAdmin(id))
-  }, [dispatch , id]);
-
-  let actual = window.location.pathname;
+    dispatch(getAdmin(id));
+  }, [dispatch, actual]);
 
   return (
     <React.Fragment>
       <Styles.GlobalStyle />
       <Styles.StyledBody screenHeight={screenHeight}>
         <Styles.StyledTopContainer>
-          <Link to="/session/profile">
+          <Link to="/session/config">
             <Styles.StyledProfileImageContainer>
               <Styles.StyledProfileImage
-                src={adminProfileImage ? `data:image/jpeg;base64, ${adminProfileImage}` : "https://picsum.photos/200"}
+                src={
+                  adminProfileImage
+                    ? `data:image/jpeg;base64, ${adminProfileImage}`
+                    : defaultProfilePhoto
+                }
                 alt="profile-photo"
               />
             </Styles.StyledProfileImageContainer>
           </Link>
-          <Link to="/notifications">
+          <Styles.StyledNavButtonActivities
+            onClick={() => setRenderActivities(true)}
+          >
             <Styles.StyledNotifiImage />
-          </Link>
-          <Styles.StyledEventContainer>
-            <Link to="/new-event">
+          </Styles.StyledNavButtonActivities>
+          {/*  <Styles.StyledEventContainer>
+            <Styles.StyledNavButtonActivities onClick={() => setRenderActivities(true)}>
               <Styles.StyledEventImage />
-            </Link>
-          </Styles.StyledEventContainer>
+            </Styles.StyledNavButtonActivities>
+          </Styles.StyledEventContainer> */}
         </Styles.StyledTopContainer>
 
         <Styles.StyledNavContainer>
@@ -59,12 +86,12 @@ function NavBar({screenHeight}) {
               />
             </Styles.StyledNavButton>
           </Link>
-          <Link to="/weeklyroutine">
+          <Link to="/session/routines">
             <Styles.StyledNavButton
-              select={actual.includes("weeklyroutine") ? true : false}
+              select={actual.includes("routines") ? true : false}
             >
               <Styles.StyledNavButtonWeekly
-                select={actual.includes("weeklyroutine") ? true : false}
+                select={actual.includes("routines") ? true : false}
                 className="weekly"
               />
             </Styles.StyledNavButton>
@@ -79,7 +106,7 @@ function NavBar({screenHeight}) {
               />
             </Styles.StyledNavButton>
           </Link>
-          <Link to="/session/payments">
+          {/*           <Link to="/session/payments">
             <Styles.StyledNavButton
               select={actual.includes("payments") ? true : false}
             >
@@ -88,8 +115,8 @@ function NavBar({screenHeight}) {
                 className="payments"
               />
             </Styles.StyledNavButton>
-          </Link>
-          <Link to="/feed">
+          </Link> */}
+          <Link to="/session/feedback">
             <Styles.StyledNavButton
               select={actual.includes("feed") ? true : false}
             >
@@ -102,10 +129,11 @@ function NavBar({screenHeight}) {
         </Styles.StyledNavContainer>
         <Styles.StyledBottomContainer>
           <Link to="/session/config">
-            <Styles.StyledConfigImage/>
+            <Styles.StyledConfigImage />
           </Link>
         </Styles.StyledBottomContainer>
       </Styles.StyledBody>
+      {renderActivities && <Activities display={setRenderActivities} />}
     </React.Fragment>
   );
 }

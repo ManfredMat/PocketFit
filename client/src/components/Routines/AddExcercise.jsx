@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { AcceptButton, ButtonContainer, CancelButton, EditDayContainer, InputLabelContainer, InputStyle, PopUpContainer, SelectStyle } from "./Routines.styles";
 
 const AddExcercise = (props) => {
 
@@ -19,60 +20,100 @@ const AddExcercise = (props) => {
     const handleAddExcercise = () => {
 
         props.setExercises(oldState => {
-            return {
 
+            return [
                 ...oldState,
-                [props.api]: {
-                    ...oldState[props.api],
-                    [`block${props.block}`]: [
-                        ...oldState[props.api][`block${props.block}`],
-                        {
-                            id: excercises[inputs.indexExercise].id,
-                            name: excercises[inputs.indexExercise].name,
-                            repetitions: inputs.reps,
-                            notes: inputs.description
-                        }
-                    ]
+                {
+                    id: excercises[inputs.indexExercise].id,
+                    name: excercises[inputs.indexExercise].name,
+                    repetitions: inputs.reps,
+                    notes: inputs.description
                 }
-            }
+            ]
+
         });
+
         props.setRender(false);
 
     }
 
-    useEffect(async () => { 
+    const getExcercises = async () => {
 
         const exerciseApi = await axios.get(`${REACT_APP_API}/api/exercises/`);
         setExcercises(exerciseApi.data);
+
+    }
+
+    useEffect(() => {
+
+        getExcercises();
 
     }, [])
 
     return (
 
-        <div>
+        <PopUpContainer>
+            <EditDayContainer>
 
-            <h3>Agregando Ejercicio a {props.day} bloque {props.block}</h3>
+                <h3>Bloque {props.block}<span> | {props.day}</span></h3>
+                <h2>Agregar Ejercicio</h2>
 
-            <label htmlFor="exercises">Ejercicio </label>
-            <select id="exercises" name="indexExercise" value={inputs.excercise} onChange={handleInputs}>
-                <option value="default">-- Seleccione un ejercicio --</option>
-                {excercises
-                    ? excercises.map(excercise =>
-                        <option key={excercise.id} value={excercises.indexOf(excercise)}>{excercise.name}</option>
-                    )
-                    : null}
-            </select>
 
-            <label htmlFor="repetitions">Repeticiones </label>
-            <input type="number" min="0" name="reps" id="repetitions" value={inputs.repetitions} onChange={handleInputs} />
+                <InputLabelContainer>
+                    <label htmlFor="exercises">Ejercicio </label>
+                    <SelectStyle
+                        id="exercises"
+                        name="indexExercise"
+                        value={inputs.excercise}
+                        onChange={handleInputs}>
 
-            <label htmlFor="description">Descripción </label>
-            <input type="text" name="description" id="description" value={inputs.description} onChange={handleInputs} />
+                        <option value="default">-- Seleccione un ejercicio --</option>
 
-            <button disabled={inputs.indexExercise === 'default'} onClick={handleAddExcercise}>Agregar</button>
-            <button>Cancelar</button>
+                        {excercises
+                            ? excercises.map(excercise =>
+                                <option
+                                    key={excercise.id}
+                                    value={excercises.indexOf(excercise)}>
 
-        </div>
+                                    {excercise.name}
+
+                                </option>
+                            )
+                            : null}
+
+                    </SelectStyle>
+                </InputLabelContainer>
+
+                <InputLabelContainer>
+                    <label htmlFor="repetitions">Repeticiones </label>
+                    <InputStyle
+                        type="number"
+                        min="0"
+                        name="reps"
+                        id="repetitions"
+                        value={inputs.reps}
+                        onChange={handleInputs} />
+                </InputLabelContainer>
+
+                <InputLabelContainer>
+                    <label htmlFor="description">Descripción </label>
+                    <InputStyle
+                        type="text"
+                        name="description"
+                        id="description"
+                        placeholder="Descripción del ejercicio..."
+                        value={inputs.description}
+                        onChange={handleInputs}
+                        style={{marginBottom: '3rem'}} />
+                </InputLabelContainer>
+
+                <ButtonContainer>
+                    <AcceptButton disabled={inputs.indexExercise === 'default'} onClick={handleAddExcercise}>Agregar</AcceptButton>
+                    <CancelButton onClick={() => props.setRender(false)}>Cancelar</CancelButton>
+                </ButtonContainer>
+
+            </EditDayContainer>
+        </PopUpContainer>
     )
 
 }

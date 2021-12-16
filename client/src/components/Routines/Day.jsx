@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import EditDay from "./EditDay";
+import { BlockContainer, EditButton, ExcerciseContainer, ExerciseP, KindOfBlockContainer, RoundsContainer, WeekDayContainer } from "./Routines.styles";
+import editIcon from '../../assets/img/iconos/editIcon.svg'
 
 const Day = (props) => {
 
@@ -7,33 +9,125 @@ const Day = (props) => {
 
     const handleOnClick = () => {
 
-        renderEdit
-            ? setRender(false)
-            : setRender(true)
+        props.setDisableButtons(true)
+        setRender(true)
+
     }
 
     return (
-        <div style={{ margin: '1rem' }}>
-            <div style={{ display: 'flex' }}>
+
+        <div>
+
+            <WeekDayContainer>
+
                 <h3>{props.day}</h3>
-                <button onClick={handleOnClick}>editar</button>
-            </div>
+                <EditButton disabled={props.disableButtons} onClick={handleOnClick}>
+                    <img height='25rem' src={editIcon} alt="" />
+                </EditButton>
 
-            {renderEdit ? <EditDay day={props.day} api={props.api} setRender={setRender} setWeekChanges={props.setWeekChanges} setWeekIds={props.setWeekIds} weekIds={props.weekIds} exercises={props.exercises} setExercises={props.setExercises} /> : null}
+            </WeekDayContainer>
 
-            <div>------------------------</div>
-            <div> -- Bloque 1 -- </div>
-            {props.exercises.block1
-                ? <ul>{props.exercises.block1.map((excercise, i) => <li key={i}>{excercise.name} <br /> repeticiones: {excercise.repetitions}</li>)}</ul>
-                : <p>No hay ejercicios asignados para este día</p>}
-            <div> -- Bloque 2 -- </div>
-            {props.exercises.block2
-                ? <ul>{props.exercises.block2.map((excercise, i) => <li key={i}>{excercise.name} <br /> repeticiones: {excercise.repetitions}</li>)}</ul>
-                : <p>No hay ejercicios asignados para este día</p>}
-            <div> -- Bloque 3 -- </div>
-            {props.exercises.block3
-                ? <ul>{props.exercises.block3.map((excercise, i) => <li key={i}>{excercise.name} <br /> repeticiones: {excercise.repetitions}</li>)}</ul>
-                : <p>No hay ejercicios asignados para este día</p>}
+            {renderEdit
+                ? <EditDay
+                    setDisableButtons={props.setDisableButtons}
+                    day={props.day}
+                    api={props.api}
+                    setRender={setRender}
+                    setWeekChanges={props.setWeekChanges}
+                    weekChanges={props.weekChanges}
+                    exercises={props.exercises}
+                    setExercises={props.setExercises} />
+                : null}
+
+            <BlockContainer block='1'>
+
+                <ExcerciseContainer>
+
+                    {props.weekChanges[props.api]
+                        ? props.weekChanges[props.api].blocks.block1.kindOfBlock
+                            ? <KindOfBlockContainer>{props.weekChanges[props.api].blocks.block1.kindOfBlock}</KindOfBlockContainer>
+                            : null
+                        : null}
+
+                    {props.exercises.block1[0]
+                        ? props.exercises.block1.map((excercise, i) =>
+                            <ExerciseP key={i}>
+
+                                {excercise.name} x {excercise.repetitions}
+
+                            </ExerciseP>
+                        )
+                        : <ExerciseP inactive={true}>Sin ejercicios</ExerciseP>
+                    }
+
+                    {
+                        props.weekChanges[props.api]
+                            ? <RoundsContainer>Rounds: {props.weekChanges[props.api].blocks.block1.rounds}</RoundsContainer>
+                            : null
+                    }
+
+                </ExcerciseContainer>
+
+            </BlockContainer>
+
+            <BlockContainer block='2'>
+
+                <ExcerciseContainer>
+
+                    {props.weekChanges[props.api]
+                        ? props.weekChanges[props.api].blocks.block2.kindOfBlock
+                            ? <KindOfBlockContainer>{props.weekChanges[props.api].blocks.block2.kindOfBlock}</KindOfBlockContainer>
+                            : null
+                        : null}
+
+                    {props.exercises.block2[0]
+                        ? props.exercises.block2.map((excercise, i) =>
+                            <ExerciseP key={i}>
+
+                                {excercise.name} x {excercise.repetitions}
+
+                            </ExerciseP>
+                        )
+                        : <ExerciseP inactive={true}>Sin ejercicios</ExerciseP>
+                    }
+
+                    {
+                        props.weekChanges[props.api]
+                            ? <RoundsContainer>Rounds: {props.weekChanges[props.api].blocks.block2.rounds}</RoundsContainer>
+                            : null
+                    }
+
+                </ExcerciseContainer>
+            </BlockContainer>
+
+            <BlockContainer block='3'>
+                <ExcerciseContainer>
+
+                    {props.weekChanges[props.api]
+                        ? props.weekChanges[props.api].blocks.block3.kindOfBlock
+                            ? <KindOfBlockContainer>{props.weekChanges[props.api].blocks.block3.kindOfBlock}</KindOfBlockContainer>
+                            : null
+                        : null}
+
+                    {props.exercises.block3[0]
+                        ? props.exercises.block3.map((excercise, i) =>
+                            <ExerciseP key={i}>
+
+                                {excercise.name} x {excercise.repetitions}
+
+                            </ExerciseP>
+                        )
+                        : <ExerciseP inactive={true}>Sin ejercicios</ExerciseP>
+                    }
+
+                    {
+                        props.weekChanges[props.api]
+                            ? <RoundsContainer>Rounds: {props.weekChanges[props.api].blocks.block3.rounds}</RoundsContainer>
+                            : null
+                    }
+
+                </ExcerciseContainer>
+            </BlockContainer>
 
 
         </div>

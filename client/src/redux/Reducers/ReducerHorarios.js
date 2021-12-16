@@ -4,7 +4,11 @@ import {
   GET_WEEK_SHIFTS,
   SELECT_SHIFT,
   GET_ALL_SHIFTS,
-  GET_ACTUAL_TIMETABLE, PUT_SHIFT_USER, PUT_SHIFT_USER_CLEAN
+  GET_ACTUAL_TIMETABLE,
+  PUT_SHIFT_USER,
+  PUT_SHIFT_USER_CLEAN,
+  CREATED_WEEK_SHIFTS,
+  GET_ROUTINE
 } from "../Actions/actions-Horarios";
 
 const initialState = {
@@ -14,7 +18,8 @@ const initialState = {
   shiftSelect: undefined,
   allShifts: [],
   actualTimetable: [],
-  putShiftUser: []
+  putShiftUser: [],
+  routine: undefined
 };
 
 function reducerHorario(state = initialState, action) {
@@ -30,6 +35,11 @@ function reducerHorario(state = initialState, action) {
         events: action.value,
       }
     case GET_WEEK_SHIFTS:
+      return {
+        ...state,
+        weekShifts: action.value,
+      }
+      case CREATED_WEEK_SHIFTS:
       return {
         ...state,
         weekShifts: action.value,
@@ -62,6 +72,12 @@ function reducerHorario(state = initialState, action) {
       return {
         ...state,
         putShiftUser: action.value,
+      }
+
+    case GET_ROUTINE:
+      return {
+        ...state,
+        routine: action.value,
       }
 
     default:

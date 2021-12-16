@@ -1,32 +1,26 @@
-import React, { useEffect } from "react";
-import {useSelector, useDispatch} from "react-redux"
-import {getLessons} from '../../redux/Actions/actions-Horarios';
+import React, { useEffect, useState } from "react";
+import * as json from "./Hard-code.json";
+import { useSelector, useDispatch } from "react-redux";
+import { getLessons } from "../../redux/Actions/actions-Activities";
+import Styles from "./Styles/ClasesWeeklyViewStyled";
+import ClassesDetail from "../Activities/ClassesDetail";
 
+var weekDays = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 
-var weekDays = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
-
-function ClasesWeeklyView() {
-    const lessons = useSelector(state => state.timetable.lessons)
-    const dispatch = useDispatch()
+function ClasesWeeklyView({setClaseDetalle,setClaseId, claseDetalle, setOverFlow}) {
+  const lessons = useSelector((state) => state.activities.lessons);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getLessons())
   }, [dispatch]);
 
-  console.log(lessons)
-
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(6, 1fr)",
-        gap: "2rem ",
-      }}
-    >
+    <Styles.StyledGrid>
       {weekDays.map((day) => (
         <div>
-          <div>{day}</div>
-          <div>
+          <Styles.StyledDaysContainers>{day}</Styles.StyledDaysContainers>
+          <Styles.StyledContainer>
             {lessons
               .filter((cla) => cla.nameday === day)
               .sort(function (a, b) {
@@ -35,15 +29,26 @@ function ClasesWeeklyView() {
                 return 0;
               })
               .map((cla) => (
-                <div>
-                  <h3>{cla.name}</h3>
+                <Styles.StyledClasesContainers
+                  onClick={() => {
+                    setClaseId(cla.id);
+                    setClaseDetalle(!claseDetalle);
+                    setOverFlow(true);
+                  }}
+                >
+                  <Styles.TitleH3Styled>{cla.name}</Styles.TitleH3Styled>
                   <p>{cla.hour} hs</p>
-                </div>
+                </Styles.StyledClasesContainers>
               ))}
-          </div>
+          </Styles.StyledContainer>
         </div>
       ))}
-    </div>
+
+
+      {/* {claseDetalle && <ClassesDetail id={claseId} display={setClaseDetalle} />} */}
+
+
+    </Styles.StyledGrid>
   );
 }
 

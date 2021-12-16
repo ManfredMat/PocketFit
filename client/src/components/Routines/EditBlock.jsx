@@ -1,14 +1,16 @@
-import axios from "axios";
 import { useState } from "react";
 import AddExcercise from "./AddExcercise";
+import { AcceptButton, BlockContainer, ButtonContainer, CancelButton, EditBlockContainer, EditDayContainer, ExcerciseContainer, ExerciseDelete, ExerciseP, InputStyle, PopUpContainer, WeekDayContainer } from "./Routines.styles";
 
 const EditBlock = (props) => {
 
     const [renderAddExcercises, setRender] = useState(false);
 
+    const [exercises, setExercises] = useState(props.exercises);
+
     const [inputs, setInputs] = useState({
-        rounds: 0,
-        kindOfBlock: ""
+        rounds: props.weekChanges[props.api].blocks[`block${props.block}`].rounds,
+        kindOfBlock: props.weekChanges[props.api].blocks[`block${props.block}`].kindOfBlock
     })
 
     const handleInputs = (e) => {
@@ -19,60 +21,165 @@ const EditBlock = (props) => {
 
     const handleOnClick = () => {
 
-        renderAddExcercises
-            ? setRender(false)
-            : setRender(true)
+        setRender(true)
 
     }
 
-    const handleAccept = async () => {
+    const upgradeExercises = () => {
+
+        props.setExercises(oldState => {
+
+            return {
+
+                ...oldState,
+                [props.api]:
+                {
+                    ...oldState[props.api],
+                    [`block${props.block}`]: exercises
+                }
+            }
+        });
+
+    }
+    const handleAccept = () => {
+
+        upgradeExercises();
 
         const block = {
+
             ...inputs,
             rounds: parseInt(inputs.rounds),
-            exercises: props.exercises.map(exercise => {return {id: exercise.id, reps: exercise.repetitions, description: exercise.notes}}),
             day: props.api,
             order: props.block,
+            exercises: exercises.map(exercise => {
+
+                return {
+                    id: exercise.id,
+                    reps: exercise.repetitions,
+                    description: exercise.notes
+                }
+
+            })
+
         }
 
-        props.setWeekChanges(oldState => {return { ...oldState, [props.api]:{...oldState[props.api], blocks:{...oldState[props.api].blocks,[`block${props.block}`]:block}}}})
+        props.setWeekChanges(oldState => {
 
-        // try {
-
-        //     const response = await axios.post("http://127.0.0.1:3001/api/blocks/", block);
-        //     props.setIdRoutine({ ...props.idRoutine, [`block${props.block}`]: response.data.id });
-
-        // } catch (e) {
-        //     console.log("oups error")
-        //     console.log(e)
-        // }
+            return {
+                ...oldState,
+                [props.api]: {
+                    ...oldState[props.api],
+                    blocks: {
+                        ...oldState[props.api].blocks,
+                        [`block${props.block}`]: block
+                    }
+                }
+            }
+        })
 
         props.setRender({ render: false })
     }
 
+    const deleteExercise = (indexDelete) => {
+
+        let filteredExcercises = exercises.filter((excercise, index) => {
+
+            if(index !== indexDelete) return true;
+            else return false
+
+        })
+
+        setExercises(filteredExcercises);
+
+    }
+
     return (
-        <div>
+        <>
+            <PopUpContainer>
+                <EditDayContainer>
 
-            <div>
-                <h3>Editar {props.day} Bloque: {props.block}</h3>
-                <button onClick={handleOnClick}>Agregar Ejercicio</button>
-            </div>
+                    <h3>Bloque {props.block} <span>| {props.day} </span> </h3>
 
-            <div>
-                {props.exercises
-                    ? <ul>{props.exercises.map((excercise, i) => <li key={i}>{excercise.name} <br /> repeticiones: {excercise.repetitions}</li>)}</ul>
-                    : <p>No hay ejercicios asignados para este día</p>}
-            </div>
+                    <EditBlockContainer>
 
-            <input type="text" name="kindOfBlock" value={inputs.kindOfBlock} onChange={handleInputs} />
-            <input type="number" min="0" name="rounds" value={inputs.rounds} onChange={handleInputs} />
+                        <div className='Block'>
+                            <div className='Scale'>
+                                <WeekDayContainer center={true} block={`${props.block}`}>
+                                    <p className='number'>{props.block}</p>
+                                </WeekDayContainer>
 
-            <button onClick={handleAccept}>Aceptar Cambios</button>
-            <button >Cancelar</button>
+                                <BlockContainer block={`${props.block}`}>
+                                    <ExcerciseContainer>
+                                        {exercises[0]
+                                            ? exercises.map((excercise, i) =>
+                                                <ExerciseP key={i}>
 
-            {renderAddExcercises ? <AddExcercise setRender={setRender} setExercises={props.setExercises} api={props.api} day={props.day} block={props.block} /> : null}
+                                                    {excercise.name} x {excercise.repetitions}
 
-        </div>
+                                                    <ExerciseDelete onClick={() => deleteExercise(i)}>Eliminar</ExerciseDelete>
+
+                                                </ExerciseP>
+                                            )
+                                            : <ExerciseP inactive={true}>Sin ejercicios</ExerciseP>}
+                                    </ExcerciseContainer>
+                                </BlockContainer>
+                            </div>
+                        </div>
+
+                        <div className='Inputs'>
+
+                            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                <AcceptButton onClick={handleOnClick}>Agregar Ejercicio</AcceptButton>
+                            </div>
+
+                            <div>
+                                <div className='InputsContainer'>
+                                    <label htmlFor='kindOfBlock'>Tipo de bloque</label>
+                                    <InputStyle
+                                        id='kindOfBlock'
+                                        type="text"
+                                        name="kindOfBlock"
+                                        placeholder='Ingresa el tipo de bloque...'
+                                        value={inputs.kindOfBlock}
+                                        onChange={handleInputs} />
+                                </div>
+                                <div className='InputsContainer'>
+                                    <label htmlFor='rounds'>Repeticiones del bloque</label>
+                                    <InputStyle
+                                        id='rounds'
+                                        type="number"
+                                        min="0"
+                                        name="rounds"
+                                        value={inputs.rounds}
+                                        onChange={handleInputs} />
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </EditBlockContainer>
+
+                    <ButtonContainer>
+                        <AcceptButton onClick={handleAccept}>Aceptar</AcceptButton>
+                        <CancelButton onClick={() => props.setRender({ render: false })}>Cancela</CancelButton>
+                    </ButtonContainer>
+
+                </EditDayContainer>
+
+            </PopUpContainer>
+
+            {
+                renderAddExcercises
+                    ? <AddExcercise
+                        setRender={setRender}
+                        setExercises={setExercises}
+                        api={props.api}
+                        day={props.day}
+                        block={props.block} />
+                    : null
+            }
+
+        </>
     )
 
 }
