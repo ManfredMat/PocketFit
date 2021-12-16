@@ -97,7 +97,7 @@ const Profile = () => {
             </Styles.InfoContainer>
 
             <Styles.ProfileButtonsContainer>
-                <Styles.YellowButton onPress={() => navigation.navigate("Configuration")} style={{ width: 90, marginRight: 5 }}>
+                <Styles.YellowButton style={{ width: 90, marginRight: 5 }} onPress={() => navigation.navigate("Configuration")}>
                     <Styles.ButtonText style={{ alignSelf: "center" }}>Editar</Styles.ButtonText>
                 </Styles.YellowButton>
 
@@ -125,7 +125,7 @@ const Profile = () => {
                 <Styles.Arrow>{">"}</Styles.Arrow>
             </Styles.AccountButtonsContainer>
 
-            <Styles.AccountButtonsContainer>
+            <Styles.AccountButtonsContainer onPress={()=> navigation.navigate('FeedBack')}>
                 <Styles.AccountButtonsSubContainer>
                     <Styles.AccountImageButton style={{ marginLeft: 15 }} source={require("../../assets/feedback-icon.png")} />
                     <Styles.AccountText>FeedBack</Styles.AccountText>

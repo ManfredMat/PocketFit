@@ -26,15 +26,15 @@ export default function Statistics() {
 
     const [edit, setEdit] = useState(false)
     const [input, setInput] = useState({
-        age: User.age.toString(),
-        weight: User.weight.toString(),
-        height: User.height.toString(),
-        backsquat: User.backsquat.toString(),
-        clean: User.clean.toString(),
-        snatch: User.snatch.toString(),
-        pullups: User.pullups.toString(),
-        benchpress: User.benchpress.toString(),
-        running: User.running.toString()
+        age: User.age ? User.age.toString() : '0',
+        weight: User.weight ? User.weight.toString(): '0' ,
+        height: User.height ? User.height.toString(): '0',
+        backsquat: User.backsquat ? User.backsquat.toString(): '15',
+        clean:  User.clean ? User.clean.toString() : '30',
+        snatch: User.snatch ? User.snatch.toString(): '40',
+        pullups: User.pullups ? User.pullups.toString(): '10',
+        benchpress: User.benchpress ? User.benchpress.toString() : '40',
+        running: User.running ? User.running.toString(): '17'
     })
 
     const handleInputChange = (e, type) => {
@@ -80,6 +80,7 @@ export default function Statistics() {
         return total / 365
     }
     const data = {
+        labels: ["Clases", "Ejercicios", "General"],
         data: [clases(), ejercicios(), totalData()],
         colors:['rgba(206, 250, 31, 0.7)', 'rgba(217, 251, 82, 0.9)', 'rgba(106, 224, 86, 0.8)']
       };
@@ -87,7 +88,7 @@ export default function Statistics() {
         <Stats>
             <ScrollView>
                 <Text style={{color:'#6AE056', fontSize: 25,  marginTop: 60, marginLeft: 10, fontFamily:"Poppins_500Medium"}}>Estadisticas</Text>
-                <View style={{alignItems: 'center'}}>
+                <View style={{alignItems: 'center', right: 28}}>
                     <ProgressChart
                         data={data}
                         withCustomBarColorFromData={true}
