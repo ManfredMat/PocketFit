@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
 import { Switch } from 'react-native-elements';
 import { ViewEX, DarkContainer, Excercise } from './Training.Styles';
 import { trainingStats } from '../../redux/Actions/actions-Training';
@@ -26,11 +26,14 @@ export default function CardExercise({reps, exercise, reset}) {
                             <Text style={{color: "#fff"}}>{reps}</Text>
                     </DarkContainer>
                  </ViewEX>
-         <Switch
-            trackColor={{ false: "#767577", true: "#020E12"}}
-            thumbColor={isEnabled ? "#CEFA1F" : "#f4f3f4"}
-            onValueChange={toggleSwitch}
-            value={isEnabled}/>
+         <View style={{marginLeft: "93%", position: 'absolute'}}>
+            <Switch
+                style
+                trackColor={{ false: "#767577", true: "#020E12"}}
+                thumbColor={isEnabled ? "#CEFA1F" : "#f4f3f4"}
+                onValueChange={toggleSwitch}
+                value={isEnabled}/>
+         </View>
         </Excercise>
     )
 }

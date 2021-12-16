@@ -12,10 +12,10 @@ export const Container = styled.View`
     align-items: center;
     border-radius: 10px;
     width: 350px;
-    height: 50px;
     margin: 10px;
     margin-top: 1px;
-    padding: 15px
+    padding: 20px
+
 `
 export const Message = styled.View`
     margin-left: 10px;

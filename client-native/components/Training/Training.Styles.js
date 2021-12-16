@@ -45,7 +45,6 @@ export const LemonContainer = styled.View`
 `
 export const Excercise = styled.View`
     border-radius: 15px;
-    justify-content: space-around;
     align-items: center;
     flex-direction: row;
     margin: 5px;
@@ -67,7 +66,6 @@ export const ProxShifts = styled.View`
 `
 export const ViewEX = styled.View`
     display: flex;
-    justify-content: space-around;
     flex-direction: row;
     align-items: center;
 `

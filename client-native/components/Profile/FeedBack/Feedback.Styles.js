@@ -17,7 +17,7 @@ export const Card = styled.View`
     border-radius: 15px;
     margin-top: 10%;
     width: 85%;
-    height: 500px;
+    height: 520px;
     padding: 10px
 `
 export const Input = styled.TextInput`

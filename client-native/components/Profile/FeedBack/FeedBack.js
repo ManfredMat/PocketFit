@@ -7,6 +7,7 @@ import { Image } from 'react-native-elements/dist/image/Image'
 import axios from 'axios'
 import IP from '../../Ips'
 export default function FeedBack() {
+    const [state, setState] = useState()
     const [input, setInput] = useState({
         subject:'',
         review:'',
@@ -45,17 +46,25 @@ export default function FeedBack() {
                     </View>
                     <Select>
                         <Picker 
-                            onValueChange={(itemValue, itemIndex) => {
-                                itemValue === 'profesor' ? setInput({...input, profesor: 'profesor' }): 
-                                itemValue === 'gym' ? setInput({...input, gym: 'gym' }): 
-                                itemValue === 'event' ? setInput({...input, event: 'event' }): null}}
+                            onValueChange={(itemValue, itemIndex) => setState(itemValue)}
                             style={{ height: 40, width: 290}}>
                             <Picker.Item label='Categoría'/>
                             <Picker.Item label= 'Profesor' value="profesor"/>
                             <Picker.Item label= 'Gimnasio' value="gym"/>
                             <Picker.Item label= 'Evento' value="event"/>
                         </Picker>
-
+                        <TextInput 
+                            style={{
+                            color:"#fff",
+                            backgroundColor: "#083645", 
+                            margin:10,
+                            borderRadius: 15,
+                            paddingLeft: 10}}
+                            onChange={(e) => handleInputChange(e, state)}
+                            placeholder='Profesor/gimnasio/evento' 
+                            value={state === 'profesor' ? input.profesor : 
+                                   state ==='gym' ? input.gym : 
+                                   state === 'event' ? input.event : null}/>
                     </Select>
                 </View>
                 <View>

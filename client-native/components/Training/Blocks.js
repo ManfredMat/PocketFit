@@ -58,7 +58,7 @@ export default function Blocks({num, setRound, reset}) {
                         )}
                     </View>
                     :
-                    <Excercise>
+                    <Excercise style={{justifyContent: 'center'}}>
                         <ActivityIndicator size="large" color="#6AE056"/>
                    </Excercise>
                   }
