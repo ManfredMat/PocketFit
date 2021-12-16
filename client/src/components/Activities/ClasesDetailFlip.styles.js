@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 
-const Style = {
+const Styles = {
   GlobalStyle: createGlobalStyle`
   * {
       margin:0;
@@ -112,14 +112,54 @@ const Style = {
     margin-top: 1em;
     margin-right: 3em;
   `,
-
+  InputTitle: styled.input`
+    background-color: var(--green);
+    text-decoration: none;
+    border: none;
+    border-radius: 0.5em;
+    color: var(--darkBlue);
+    font-weight: 500;
+    font-size: 1.4em;
+    font-family: 'Poppins', sans-serif;
+  `,
+    EditGuardar: styled.button`
+    background-color: var(--green);
+    text-decoration: none;
+    border: none;
+    border-radius: 0.5em;
+    width: 5.2em;
+    color: var(--darkBlue);
+    padding: 0.5em;
+    cursor: pointer;
+    margin-right: 1em;
+  `,
+    EditCancel: styled.button`
+    background-color: var(--green-medium);
+    text-decoration: none;
+    border: none;
+    border-radius: 0.5em;
+    width: 5.2em;
+    color: white;
+    padding: 0.5em;
+    cursor: pointer;
+    font-weight: 100;
+    padding-right: 5em;
+  `,
   ContenedorInfo: styled.div`
     display: flex;
     align-items: center;
     margin-right: -1.2em;
     justify-content: space-between;
   `,
-
+  DisplayImgData: styled.div`
+  display: flex;
+  `,
+  DivData: styled.div`
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  `,
   DivInfo: styled.div`
     display: flex;
     width: 15em;
@@ -177,4 +217,4 @@ const Style = {
   `,
 };
 
-export default Style;
+export default Styles;

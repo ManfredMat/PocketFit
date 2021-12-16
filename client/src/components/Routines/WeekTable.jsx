@@ -2,10 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 import Day from "./Day";
-import { DayContainer, LeftBarContainer, SaveDeleteChanges , HeaderConteiner } from "./Routines.styles";
+import { DayContainer, LeftBarContainer, SaveDeleteChanges , HeaderConteiner ,ConteinerSaveDeleteChanges } from "./Routines.styles";
 import Styles from "../Exercises/Styles/ExercisesStyled"
 import goBack from "../../assets/img/iconos/goBack.svg"
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 const weekDays = [
     {
@@ -429,8 +429,17 @@ const WeekTable = (props) => {
     return (
         <>  
             <HeaderConteiner>
-        { Object.keys(params).length > 0 ? <Styles.SearchButton onClick={handlerClick}><img src={goBack} alt="search-icon" height={"30rem"}/></Styles.SearchButton >:null}
-            <h1>Plan Semanal <span style={{fontWeight: '400'}}>{userName ? `de ${userName}` :'General'}</span></h1>
+
+                { Object.keys(params).length > 0 ? <Styles.SearchButton onClick={handlerClick}><img src={goBack} alt="search-icon" height={"30rem"}/></Styles.SearchButton >:null}
+
+                <h1>Plan Semanal <span style={{fontWeight: '400'}}>{userName ? `de ${userName}` :'General'}</span></h1>
+                <ConteinerSaveDeleteChanges>
+
+                    <SaveDeleteChanges action='save' disabled={disableButtons} onClick={saveChanges}>Guardar Cambios</SaveDeleteChanges>
+
+                    <SaveDeleteChanges action='delete' disabled={disableButtons} onClick={deleteChanges}>Borrar Cambios</SaveDeleteChanges>
+                </ConteinerSaveDeleteChanges>
+
             </HeaderConteiner>
             <DayContainer>
                 <LeftBarContainer>
@@ -459,8 +468,7 @@ const WeekTable = (props) => {
                 )}
 
             </DayContainer>
-            <SaveDeleteChanges action='save' disabled={disableButtons} onClick={saveChanges}>Guardar Cambios</SaveDeleteChanges>
-            <SaveDeleteChanges action='delete' disabled={disableButtons} onClick={deleteChanges}>Borrar Cambios</SaveDeleteChanges>
+            
 
         </>
     )

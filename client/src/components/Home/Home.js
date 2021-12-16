@@ -7,6 +7,8 @@ import datos from "./Datos-Hard";
 import { useSelector, useDispatch } from "react-redux";
 import Shifts from "../Timetable/Shifts";
 import ShiftsPreview from "../Timetable/ShiftsPreview";
+import ScheduleShift from "../Timetable/ScheduleShift";
+
 import { getRoutine, getLessons } from "../../redux/Actions/actions-Horarios";
 //import * as routine from "./hardCode.json";
 import moment from "moment";
@@ -15,10 +17,6 @@ moment.locale("es");
 
 const GymName = "FitnessGym";
 
-function month(date) {
-  let options = { month: "long" };
-  return date.toLocaleDateString(undefined, options);
-}
 
 function Home({ screenHeight }) {
   const today = moment().format("dddd");
@@ -30,6 +28,12 @@ function Home({ screenHeight }) {
   const [shiftDetail, setShiftDetail] = React.useState(false);
   const [overFlow, setOverFlow] = React.useState(false);
   const dispatch = useDispatch();
+
+  const month = moment().format("M");
+  const monthName = moment().format("MMMM");
+  const year = moment().format("YYYY");
+
+
   var weekDays = [
     "Lunes",
     "Martes",
@@ -38,8 +42,6 @@ function Home({ screenHeight }) {
     "Viernes",
     "Sabado",
   ];
-
-  const date = new Date();
 
   React.useEffect(() => {
     dispatch(getRoutine());
@@ -200,12 +202,15 @@ function Home({ screenHeight }) {
             </Styles.WeekPlanContainer>
 
             <Styles.StyledClasesContainer>
-              <h2>Hoy</h2>
+              <div style={{display:"flex", justifyContent: "space-between", alignItems: "center"}}>
+              <h2>Clases</h2>
+              <Link to="/session/timetable/ShiftsDetails">
+                    <Styles.LinkGreen style={{fontSize: "0.85rem"}}>Ver Todas</Styles.LinkGreen>
+                </Link>
+              </div>
+              
               <div>
-                <div>
-                  <h3>Clases</h3>
-                  <p>Ver Todas</p>
-                </div>
+                <h3>Hoy</h3>
                 <Clases day={today} />
                 <h3>Mañana</h3>
                 <Clases day={tomorrow} />
@@ -215,8 +220,8 @@ function Home({ screenHeight }) {
 
           <div style={{ display: "flex" }}>
             <Styles.StyledCalendarContainer>
-              <Styles.TitleH2Styled>{month(date)}</Styles.TitleH2Styled>
-              <Calendar year={date.getFullYear()} month={date.getMonth()} />
+              <Styles.TitleH2Styled>{monthName}</Styles.TitleH2Styled>
+              <Calendar year={year} month={month} big={true}/>
             </Styles.StyledCalendarContainer>
 
             <Styles.StyledShiftsContainer>
@@ -236,6 +241,7 @@ function Home({ screenHeight }) {
           </div>
         </Styles.StyledContent>
       </Styles.StyledBody>
+      {takeShift && <ScheduleShift display={setTakeShift} setOverFlow={setOverFlow}/>}
       {shiftDetail && (
         <ShiftsPreview display={setShiftDetail} setOverFlow={setOverFlow} />
       )}
