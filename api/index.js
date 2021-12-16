@@ -17,8 +17,10 @@ conn.sync({ force: true }).then(async () => {
   }; 
 
   await User.create(adminAcount);
-  
-  server.listen(3001, () => {
-    console.log("%s listening at 3001");
+
+  server.listen(process.env.PORT||3001, () => {
+    app.listen(PORT, () => {
+      console.log(`Our app is running on port ${ PORT }`);
+  });
   });
 });
