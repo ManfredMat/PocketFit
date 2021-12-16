@@ -47,9 +47,9 @@ function ShiftsPreview({ display, setOverFlow }) {
                 {shiftSelect.users.map((user) => (
                   <div>
                       {console.log(user)}
-                      <img src={/* user.imageData ? 
+                      <img src={user.imageData ? 
                       `data:image/jpeg;base64, ${user.imageData}` 
-                      :  */defaultProfilePhoto} alt={user.name + "-profile"}/>
+                      : defaultProfilePhoto} alt={user.name + "-profile"}/>
                       
                     <h4>
                       {user.name} {user.lastname}
