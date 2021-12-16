@@ -11,6 +11,7 @@ import moment from "moment";
 import "moment/locale/es";
 import fitnesslogo from "../../assets/img/iconos/fotoperfil.svg";
 import Style from "./ClasesDetail.styles";
+import Styles from "./ClasesDetailFlip.styles";
 
 function ClassesDetail({ id, display, setOverFlow }) {
   const dispatch = useDispatch();
@@ -141,7 +142,7 @@ function ClassesDetail({ id, display, setOverFlow }) {
               </Style.Cruz>
               <Style.DivContenedorTitulo>
                 <Style.Titulo> {event.name} </Style.Titulo>
-                <Style.Edit onClick={(e) => handleFlip(e)}>Editar</Style.Edit>
+                <Style.Edit onClick={(e) => handleFlip(e)} disabled>Editar</Style.Edit>
               </Style.DivContenedorTitulo>
               <Style.ContenedorInfo>
                 <Style.Image src={fitnesslogo} alt="class-img" />
@@ -165,43 +166,57 @@ function ClassesDetail({ id, display, setOverFlow }) {
                 </Style.Info>
               </Style.ContenedorInfo>
               <Style.Inscriptos> Inscriptos</Style.Inscriptos>
-              <div style={{    display: "flex",flexDirection: "column"}}>
-              <div
-                style={{
-                  marginBottom: "1em",
-                  display: "flex",
-                  gap: "8em",
-                  width: "-webkit-fill-available",
-                  justifyContent: "space-evenly",
-                  marginLeft: ".8em",
-                  marginRight: "1.7em"
-                }}
-              >
-                <Style.DatosInscriptos > Nombre </Style.DatosInscriptos>
-                <Style.DatosInscriptos > Día de pago </Style.DatosInscriptos>
-                <Style.DatosInscriptos > Pago </Style.DatosInscriptos>
-              </div>
-              <div>
-                {event.users?.map((user, index) => {
-                  let flag = index % 2 === 0;
-                  return (
-                    <div
-                      style={{
-                        display: " flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      {flag ? <Style.PropBox> {user.name} </Style.PropBox> : <Style.PropBoxV2> {user.name} </Style.PropBoxV2>}
-                      {flag ? (
-                        <Style.PropBox> {user.paymentday.slice(0, 10)}</Style.PropBox>
-                      ) : (
-                        <Style.PropBoxV2> {user.paymentday.slice(0, 10)}</Style.PropBoxV2>
-                      )}
-                      {flag ? <Style.PropBox> {user.status}</Style.PropBox> : <Style.PropBoxV2> {user.status}</Style.PropBoxV2>}
-                    </div>
-                  );
-                })}
-              </div>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <div
+                  style={{
+                    marginBottom: "1em",
+                    display: "flex",
+                    gap: "8em",
+                    width: "-webkit-fill-available",
+                    justifyContent: "space-evenly",
+                    marginLeft: ".8em",
+                    marginRight: "1.7em",
+                  }}
+                >
+                  <Style.DatosInscriptos> Nombre </Style.DatosInscriptos>
+                  <Style.DatosInscriptos> Día de pago </Style.DatosInscriptos>
+                  <Style.DatosInscriptos> Pago </Style.DatosInscriptos>
+                </div>
+                <div>
+                  {event.users?.map((user, index) => {
+                    let flag = index % 2 === 0;
+                    return (
+                      <div
+                        style={{
+                          display: " flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        {flag ? (
+                          <Style.PropBox> {user.name} </Style.PropBox>
+                        ) : (
+                          <Style.PropBoxV2> {user.name} </Style.PropBoxV2>
+                        )}
+                        {flag ? (
+                          <Style.PropBox>
+                            {" "}
+                            {user.paymentday.slice(0, 10)}
+                          </Style.PropBox>
+                        ) : (
+                          <Style.PropBoxV2>
+                            {" "}
+                            {user.paymentday.slice(0, 10)}
+                          </Style.PropBoxV2>
+                        )}
+                        {flag ? (
+                          <Style.PropBox> {user.status}</Style.PropBox>
+                        ) : (
+                          <Style.PropBoxV2> {user.status}</Style.PropBoxV2>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </Style.Card>
           ) : (
@@ -221,16 +236,16 @@ function ClassesDetail({ id, display, setOverFlow }) {
 
         {/* INICIO DE REVERSO DE LA CARD!*/}
 
-        <div
-          style={{
-            display: "flex",
-            width: "60%",
-            height: "45%",
-            padding: "2em",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            backgroundColor: "grey",
-          }}
+        <Styles.Contenedor
+        // style={{
+        //   display: "flex",
+        //   width: "60%",
+        //   height: "45%",
+        //   padding: "2em",
+        //   flexDirection: "column",
+        //   alignItems: "flex-start",
+        //   backgroundColor: "grey",
+        // }}
         >
           {event ? (
             <form
@@ -238,62 +253,76 @@ function ClassesDetail({ id, display, setOverFlow }) {
                 handleSubmit(e);
               }}
             >
-              <button
+              <Styles.Cruz
                 onClick={() => {
                   display(false);
                   setOverFlow(false);
                 }}
               >
                 x
-              </button>
-
-              <input
-                type="text"
-                defaultValue={event.name}
-                name="name"
-                onChange={(e) => handleChange(e)}
-              />
-              <button type="submit">Guardar</button>
-              <button onClick={(e) => handleFlip(e)}>Cancelar</button>
-              <img src={fitnesslogo} alt="class-img" />
-              <br />
-              <select name="profesor" onChange={(e) => handleChange(e)}>
-                <option value="" disabled selected>
-                  Elija uno...
-                </option>
-                {professors?.map((professor) => (
-                  <option key={professor.id} value={professor.name}>
-                    {" "}
-                    {professor.name}{" "}
-                  </option>
-                ))}
-              </select>
-              <h2>Profesor</h2>
-
+              </Styles.Cruz>
               <div>
-                <h3>Horario </h3>
-                <input type="time" name="hour" onChange={(e) => parseHour(e)} />
-                <h3>Capacidad </h3>
-                <input
-                  type="number"
-                  name="capacity"
-                  onChange={(e) => parseCapacity(e)}
-                  min="1"
+                <Styles.InputTitle
+                  type="text"
+                  defaultValue={event.name}
+                  name="name"
+                  onChange={(e) => handleChange(e)}
                 />
-                <h3> Día </h3>
-                <select name="nameday" onChange={(e) => handleChange(e)}>
+                <Styles.EditGuardar type="submit">Guardar</Styles.EditGuardar>
+                <Styles.EditCancel onClick={(e) => handleFlip(e)}>
+                  Cancelar
+                </Styles.EditCancel>
+              </div>
+              <Styles.DisplayImgData>
+                <img src={fitnesslogo} alt="class-img" />
+              <Styles.DivData>
+              <div style={{display:"flex"}}> 
+              <h3>Profesor</h3> 
+                <select name="profesor" onChange={(e) => handleChange(e)}>
                   <option value="" disabled selected>
                     Elija uno...
                   </option>
-                  <option value="Lunes">Lunes</option>
-                  <option value="Martes">Martes</option>
-                  <option value="Miercoles">Miércoles</option>
-                  <option value="Jueves">Jueves</option>
-                  <option value="Viernes">Viernes</option>
-                  <option value="Sabado">Sábado</option>
+                  {professors?.map((professor) => (
+                    <option key={professor.id} value={professor.name}>
+                      {" "}
+                      {professor.name}{" "}
+                    </option>
+                  ))}
                 </select>
+              </div>        
+              <div style={{display:"flex"}}>
+                  <h3>Horario </h3>
+                  <input
+                    type="time"
+                    name="hour"
+                    onChange={(e) => parseHour(e)}
+                  />
               </div>
-
+              <div style={{display:"flex"}}>
+                  <h3>Capacidad </h3>
+                  <input
+                    type="number"
+                    name="capacity"
+                    onChange={(e) => parseCapacity(e)}
+                    min="1"
+                  />
+              </div>
+              <div style={{display:"flex"}}>
+                  <h3> Día </h3>
+                  <select name="nameday" onChange={(e) => handleChange(e)}>
+                    <option value="" disabled selected>
+                      Elija uno...
+                    </option>
+                    <option value="Lunes">Lunes</option>
+                    <option value="Martes">Martes</option>
+                    <option value="Miercoles">Miércoles</option>
+                    <option value="Jueves">Jueves</option>
+                    <option value="Viernes">Viernes</option>
+                    <option value="Sabado">Sábado</option>
+                  </select>
+              </div>
+              </Styles.DivData>
+              </Styles.DisplayImgData>
               <div>
                 <h3>Agregar usuarios</h3>
 
@@ -335,7 +364,7 @@ function ClassesDetail({ id, display, setOverFlow }) {
               <p> ...Aún no hay Clases disponibles! </p>
             </div>
           )}
-        </div>
+        </Styles.Contenedor>
       </ReactCardFlip>
     </Style.BodyGen>
   );
