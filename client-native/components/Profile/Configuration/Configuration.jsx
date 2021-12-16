@@ -101,10 +101,10 @@ const Configuration = () => {
                     if (password.oldPassword !== oldPasswordStoraged) return Alert.alert("Error", "Las contraseña anterior no es la correcta")
                     if (password.newPassword !== password.repeatNewPassword) return Alert.alert("Error", "Las nuevas contraseñas no coinciden")
                     await changeUserPassword({
-                        email: email,
+                        id: user.id,
                         newPassword: password.newPassword
                     })
-                    storePassword(password.newPassword);
+                    await storePassword(password.newPassword);
                     const respass = await getUserId(user.id);
                     dispatch(getUser(respass.data));
                     setIsEditPass(false);
