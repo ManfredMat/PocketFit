@@ -6,9 +6,9 @@ const Styles = {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center;
         margin-top: .5rem;
         height: auto;
+        margin-left: 6.2rem;
     `,
 
     NoUsersContainer: styled.div`
