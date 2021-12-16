@@ -178,13 +178,23 @@ function ClassesDetail({ id, display, setOverFlow }) {
                 <Style.DatosInscriptos> Pago </Style.DatosInscriptos>
               </div>
               <div>
-                {event.users?.map((user) => {
+                {event.users?.map((user, index) => {
+                  let flag = index % 2 === 0;
                   return (
-                    <>
-                      <h3> {user.name} </h3>
-                      <h3> {user.paymentday}</h3>
-                      <h3> {user.status}</h3>
-                    </>
+                    <div
+                      style={{
+                        display: " flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      {flag ? <h3> {user.name} </h3> : <h3> {user.name} </h3>}
+                      {flag ? (
+                        <h3> {user.paymentday.slice(0, 10)}</h3>
+                      ) : (
+                        <h3> {user.paymentday.slice(0, 10)}</h3>
+                      )}
+                      {flag ? <h3> {user.status}</h3> : <h3> {user.status}</h3>}
+                    </div>
                   );
                 })}
               </div>
@@ -263,7 +273,7 @@ function ClassesDetail({ id, display, setOverFlow }) {
                   type="number"
                   name="capacity"
                   onChange={(e) => parseCapacity(e)}
-                  min={clients.length}
+                  min="1"
                 />
                 <h3> Día </h3>
                 <select name="nameday" onChange={(e) => handleChange(e)}>
