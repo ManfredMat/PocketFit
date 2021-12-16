@@ -7,8 +7,10 @@ import ShiftsConfig from "./ShiftsConfig";
 import ShiftActivate from "./ShiftActivate";
 import Styles from "./Styles/ShiftDetailsStyled";
 import moment from "moment";
-
+import { useNavigate} from "react-router-dom";
 import ShiftsPreview from "./ShiftsPreview";
+import goBack from "../../assets/img/iconos/goBack.svg"
+
 
 function ShiftsDetails({ screenHeight }) {
   let today = moment().format("M-D-YYYY").split("-");
@@ -29,6 +31,12 @@ function ShiftsDetails({ screenHeight }) {
     dispatch(getAllShifts(today[2], today[0], today[1]));
   }, [render]);
 
+  let navigate = useNavigate();
+
+  function handlerClick(e){
+    e.preventDefault();
+    navigate("/session/timetable")
+}
   
 
   return (
@@ -40,7 +48,10 @@ function ShiftsDetails({ screenHeight }) {
         <Styles.BodyStyled screenHeight={screenHeight} overFlow={overFlow}>
           <Styles.StartBodyStyled>
             <Styles.Header>
-              <Styles.TitleH1Styled>Turnos Sala de Gimnasio</Styles.TitleH1Styled>
+              <Styles.RightSide>
+                <Styles.SearchButton onClick={handlerClick}><img src={goBack} alt="search-icon" height={"30rem"}/></Styles.SearchButton >
+                <Styles.TitleH1Styled>Turnos Sala de Gimnasio</Styles.TitleH1Styled>
+              </Styles.RightSide>
               <Styles.ButtonsContainer>
               <Styles.GreenButton onClick={() => {
                 setTakeShift(!takeShift);
@@ -61,16 +72,16 @@ function ShiftsDetails({ screenHeight }) {
               
             </Styles.Header>
             <div>
-              <Styles.genWeekContainer>
-                  <Styles.buttonsContainer overFlow={overFlow}>
-                  <Styles.buttons onClick={() => setWeek(week !== 0 && week - 1)}>
+              <Styles.GenWeekContainer>
+                  <Styles.ButtonsContainer overFlow={overFlow}>
+                  <Styles.Buttons onClick={() => setWeek(week !== 0 && week - 1)}>
                   {"<<"}
-                </Styles.buttons>
-                <Styles.buttons onClick={() => setWeek(week + 1)}>{">>"}</Styles.buttons>
-                  </Styles.buttonsContainer>
+                </Styles.Buttons>
+                <Styles.Buttons onClick={() => setWeek(week + 1)}>{">>"}</Styles.Buttons>
+                  </Styles.ButtonsContainer>
                 
               <ShiftWeeklyView render={render} week={week} overFlow={overFlow} setOverFlow={setOverFlow} setShiftDetail={setShiftDetail}/>
-              </Styles.genWeekContainer>
+              </Styles.GenWeekContainer>
 
             </div>
             <div>

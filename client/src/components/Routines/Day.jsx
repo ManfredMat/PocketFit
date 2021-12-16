@@ -20,7 +20,7 @@ const Day = (props) => {
 
             <WeekDayContainer>
 
-                <p>{props.day}</p>
+                <h3>{props.day}</h3>
                 <EditButton disabled={props.disableButtons} onClick={handleOnClick}>
                     <img height='25rem' src={editIcon} alt="" />
                 </EditButton>
