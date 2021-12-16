@@ -85,31 +85,25 @@ function ShiftsDetails({ screenHeight }) {
 
             </div>
             <div>
-              <h2>Todos los Turnos</h2>
+              <Styles.TitleH2Styled>Todos los Turnos</Styles.TitleH2Styled>
               <div
                 style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(5, 1fr)",
-                  gap: "2rem ",
+                  gap: "0.1rem ",
                 }}
               >
                 {labels.map((label) => (
                   <div>{label}</div>
                 ))}
-                {allShifts.map((shift) => (
+                {allShifts.map((shift , index) => (
+
                   <>
-                    <p>
-                      {shift.beginning}hs - {shift.ending}hs
-                    </p>
-                    <p>{shift.weekday}</p>
-                    <p>
-                      {" "}
-                      {shift.day}/{shift.month}/{shift.year}
-                    </p>
-                    <p>
-                      {shift.availability}/{shift.capacity}
-                    </p>
-                    <p>{shift.week}</p>
+                    {((index%2)==0)?<Styles.PropBox>{shift.beginning}hs - {shift.ending}hs</Styles.PropBox>:<Styles.PropBoxV2>{shift.beginning}hs - {shift.ending}hs</Styles.PropBoxV2>}
+                    {((index%2)==0)?<Styles.PropBox>{shift.weekday}</Styles.PropBox>:<Styles.PropBoxV2>{shift.weekday}</Styles.PropBoxV2>}
+                    {((index%2)==0)?<Styles.PropBox>{" "}{shift.day}/{shift.month}/{shift.year}</Styles.PropBox>:<Styles.PropBoxV2>{" "}{shift.day}/{shift.month}/{shift.year}</Styles.PropBoxV2>}
+                    {((index%2)==0)?<Styles.PropBox>{shift.availability}/{shift.capacity}</Styles.PropBox>:<Styles.PropBoxV2>{shift.availability}/{shift.capacity}</Styles.PropBoxV2>}
+                    {((index%2)==0)?<Styles.PropBox>{shift.week}</Styles.PropBox>:<Styles.PropBoxV2>{shift.availability}/{shift.capacity}</Styles.PropBoxV2>}
                   </>
                 ))}
               </div>

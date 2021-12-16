@@ -133,6 +133,32 @@ const Styles = {
 display:flex;
 
  `,
+PropBox: styled.p`
+ background:var(--green-medium);
+ width:14rem;
+ margin:0.2rem;
+ height:1.5em;    
+ border-radius: 0.3em;
+ text-align:center;
+ color:var(--darkGray-base);   
+`,
+PropBoxV2: styled.p`
+background:var(--darkGray-base);
+width:14rem;
+margin:0.2rem;
+height:1.5em;    
+border-radius: 0.3em;
+text-align:center;
+color:var(--green-medium);
+`,
+TitleH2Styled: styled.h2`
+    color: #ffffff;
+    font-size: 1.4em;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin-top:1em;
+    margin-bottom:1em;
+  `,
 };
 
 export default Styles;
