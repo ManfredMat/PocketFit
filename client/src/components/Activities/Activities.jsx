@@ -134,7 +134,12 @@ const Activities = ({ select, display }) => {
               <NewClass close={display} display={setNuevaClase} kind={etype} />
             )}
             {nuevoEvento && (
-              <NewEvent close={display} display={setNuevoEvento} kind={etype} />
+              <NewEvent
+                close={display}
+                display={setNuevoEvento}
+                kind={etype}
+                name={ename}
+              />
             )}
             {nuevoFeriado && (
               <NewHoliday
