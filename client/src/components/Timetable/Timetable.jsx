@@ -14,6 +14,7 @@ import moment from "moment";
 import "moment/locale/es";
 import Activities from "../Activities/Activities";
 import ClassesDetail from "../Activities/ClassesDetail";
+import { useNavigate} from "react-router-dom";
 moment.locale("es");
 
 function Timetable({ screenHeight }) {

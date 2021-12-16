@@ -118,6 +118,18 @@ const Styles = {
   ButtonsContainer: styled.div`
     margin-right: -0.5em;
   `,
+  SearchButton: styled.button`
+  background-color: transparent;
+  border: none;
+  margin-left: .3rem;
+  &:hover {
+      cursor: pointer;
+  }
+`,
+ RightSide: styled.div`
+display:flex;
+
+ `,
 };
 
 export default Styles;
