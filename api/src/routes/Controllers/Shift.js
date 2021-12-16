@@ -77,10 +77,11 @@ const getShiftById = async (req, res) => {
 
   try {
     let oneShift = await Shift.findOne({ where: { id: id }, include: User });
-    oneShift.map((shift) => {
-      if (shift.users.imageData)
-        shift.users.imageData = shift.users.imageData.toString("base64");
-    });
+
+    if (oneShift.users.imageData) {
+      let userImg = oneShift.users.imageData.toString("base64");
+      oneShift.users["imageData"] = userImg;
+    }
 
     res.send(oneShift);
   } catch (error) {

@@ -51,6 +51,7 @@ function ScheduleShift({ display, setOverFlow }) {
 
     dispatch(postShift(body));
     console.log("body:", body);
+    console.log(putShiftUser)
   };
 
   const handleOnShiftClean = (e) => {
