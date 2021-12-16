@@ -72,16 +72,16 @@ function ShiftsDetails({ screenHeight }) {
               
             </Styles.Header>
             <div>
-              <Styles.genWeekContainer>
-                  <Styles.buttonsContainer overFlow={overFlow}>
-                  <Styles.buttons onClick={() => setWeek(week !== 0 && week - 1)}>
+              <Styles.GenWeekContainer>
+                  <Styles.ButtonsContainer overFlow={overFlow}>
+                  <Styles.Buttons onClick={() => setWeek(week !== 0 && week - 1)}>
                   {"<<"}
-                </Styles.buttons>
-                <Styles.buttons onClick={() => setWeek(week + 1)}>{">>"}</Styles.buttons>
-                  </Styles.buttonsContainer>
+                </Styles.Buttons>
+                <Styles.Buttons onClick={() => setWeek(week + 1)}>{">>"}</Styles.Buttons>
+                  </Styles.ButtonsContainer>
                 
               <ShiftWeeklyView render={render} week={week} overFlow={overFlow} setOverFlow={setOverFlow} setShiftDetail={setShiftDetail}/>
-              </Styles.genWeekContainer>
+              </Styles.GenWeekContainer>
 
             </div>
             <div>

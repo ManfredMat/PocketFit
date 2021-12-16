@@ -33,18 +33,18 @@ const Styles = {
     margin-top: 0.5em;
     width: -webkit-fill-available;
   `,
-  genWeekContainer: styled.div`
+  GenWeekContainer: styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
     align-content: center;
   `,
-  buttonsContainer: styled.div`
+  ButtonsContainer: styled.div`
     padding-top: 1.25em;
     width: 6em;
     z-index: ${(props) => (props.overFlow ? 0 : 2)};
   `,
-  buttons: styled.button`
+  Buttons: styled.button`
     background-color: var(--darkBlue);
     color: var(--green);
     text-decoration: none;
@@ -55,6 +55,9 @@ const Styles = {
     font-weight: 700;
     margin-left: 0.3em;
     z-index: 2;
+    &:hover {
+      cursor: pointer;
+    }
   `,
   TitleH1Styled: styled.h1`
     color: #ffffff;
