@@ -47,6 +47,41 @@ const Styles = {
       cursor: pointer;
     }
   `,
+  TitleH2Styled: styled.h2`
+    color: #ffffff;
+    font-size: 1.4em;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin-bottom: 1em;
+  `,
+  InicioDay: styled.div`
+    background-color: var(--yellow);
+    padding: 0.6em;
+    border-radius: 0.4rem;
+    text-align: center;
+    width: 20em;
+    color: var(--darkGray-base);
+  `,
+  FinalDay: styled.div`
+    margin-top: 0.8em;
+    margin-bottom: 2em;
+    background-color: var(--green);
+    padding: 0.6em;
+    border-radius: 0.4rem;
+    text-align: center;
+    width: 20em;
+    color: var(--darkBlue);
+  `,
+  divClientes: styled.div`
+    width: 30em;
+    display: flex;
+    flex-wrap: wrap;
+  `,
+  contClientes: styled.div`
+    background-color: var(--green-medium);
+    border-radius: 1em;
+    padding: 1em;
+  `
   }
 
 export default Styles;

@@ -19,6 +19,7 @@ const Style = {
   DivEditFlip: styled.div`
     display: flex;
     justify-content: space-between;
+    margin-right:1em;
   `,
 
   DivBotonesFlip: styled.div`
@@ -86,7 +87,7 @@ const Style = {
     text-decoration: none;
     border: none;
     border-radius: 0.5em;
-    width: 5em;
+    width: 5.2em;
     color: var(--darkBlue);
     padding: 0.5em;
     cursor: pointer;
@@ -102,17 +103,19 @@ const Style = {
     padding: 0.5em;
     cursor: pointer;
     text-align: center;
+
   `,
   EditCancel: styled.button`
     background-color: var(--green-medium);
     text-decoration: none;
     border: none;
     border-radius: 0.5em;
-    width: 5em;
+    width: 5.2em;
     color: white;
     padding: 0.5em;
     cursor: pointer;
     font-weight: 100;
+    padding-right: 5em;
   `,
   InputEdit: styled.input`
     background-color: var(--green);
@@ -128,6 +131,7 @@ const Style = {
     font-weight: 300;
     font-size: 1em;
     color: var(--green);
+    
   `,
   Descripcion2: styled.h2`
     font-weight: 300;
@@ -141,7 +145,9 @@ const Style = {
     border: none;
     border-radius: 0.5em;
     color: var(--darkBlue);
-    font-weight: 300;
+    font-weight: 500;
+    font-size: 1.4em;
+    font-family: 'Poppins', sans-serif;
   `,
 
   ContenedorDescripcion: styled.p`
@@ -149,6 +155,8 @@ const Style = {
     color: var(--darkBlue);
     border-radius: 1em;
     padding: 1em;
+    height: 10em;
+    width: -webkit-fill-available;
   `,
 
   Image: styled.img`
@@ -188,6 +196,7 @@ const Style = {
   `,
   DivData2: styled.h4`
     font-weight: 300;
+    margin-right: 2em;
   `,
   Info: styled.div`
     background-color: var(--green-medium);
@@ -217,10 +226,11 @@ const Style = {
     padding: 0.5rem;
     resize: none;
     font-family: "Poppins", sans-serif;
-    border-radius: 1rem;
+    border-radius: 1em;
     background-color: var(--green-medium);
     border: none;
     color: var(--green);
+    font-family: 'Poppins', sans-serif;
   `,
 };
 

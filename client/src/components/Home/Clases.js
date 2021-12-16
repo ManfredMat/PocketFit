@@ -16,18 +16,23 @@ function Clases({day}) {
     <>
       <Styles.GlobalStyle />
       <Styles.StyledContainer>
+        <Styles.table>
+        <Styles.tableTr border={true}>
         {labelsNames.map((label, index) => (
-          <div>{label}</div>
+          <Styles.labels>{label}</Styles.labels>
         ))}
+        </Styles.tableTr>
         {lessons
           .filter((classs) => classs.nameday === capitalizeFirstLetter(day))
-          .map((c) => (
-            <>
-              <div>{c.name}</div>
-              <div>{c.hour}</div>
-              <div>{c.profesor}</div>
-            </>
+          .map((c,index) => (
+            <Styles.tableTr border={index === 2 ? false : true}>
+              <Styles.tableTd>{c.name}</Styles.tableTd>
+              <Styles.tableTd>{c.hour}</Styles.tableTd>
+              <Styles.tableTd>{c.profesor}</Styles.tableTd>
+            </Styles.tableTr>
           ))}
+        </Styles.table>
+        
       </Styles.StyledContainer>
     </>
   );

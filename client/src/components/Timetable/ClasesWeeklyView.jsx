@@ -5,7 +5,7 @@ import { getLessons } from "../../redux/Actions/actions-Activities";
 import Styles from "./Styles/ClasesWeeklyViewStyled";
 import ClassesDetail from "../Activities/ClassesDetail";
 
-var weekDays = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
+var weekDays = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 
 function ClasesWeeklyView({setClaseDetalle,setClaseId, claseDetalle, setOverFlow}) {
   const lessons = useSelector((state) => state.activities.lessons);

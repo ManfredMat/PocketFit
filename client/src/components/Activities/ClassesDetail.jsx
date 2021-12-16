@@ -4,14 +4,16 @@ import {
   getSingleEvent,
   updateEvent,
   getClients,
+  getProfessors,
 } from "../../redux/Actions/actions-Activities";
 import ReactCardFlip from "react-card-flip";
 import moment from "moment";
 import "moment/locale/es";
 import fitnesslogo from "../../assets/img/iconos/fotoperfil.svg";
 import Style from "./ClasesDetail.styles";
+import Styles from "./ClasesDetailFlip.styles";
 
-function ClassesDetail({ id, display , setOverFlow }) {
+function ClassesDetail({ id, display, setOverFlow }) {
   const dispatch = useDispatch();
 
   const [value, setValue] = useState(0);
@@ -19,10 +21,12 @@ function ClassesDetail({ id, display , setOverFlow }) {
   useEffect(() => {
     dispatch(getSingleEvent(id));
     dispatch(getClients());
+    dispatch(getProfessors());
   }, [dispatch, id, value]);
 
   const event = useSelector((state) => state.activities.event);
   const clients = useSelector((state) => state.activities.clients);
+  const professors = useSelector((state) => state.activities.professors);
 
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -102,7 +106,7 @@ function ClassesDetail({ id, display , setOverFlow }) {
 
   return (
     <Style.BodyGen
-      /* style={{
+    /* style={{
           display: "flex",
           position: "absolute",
           width: "-webkit-fill-available",
@@ -117,7 +121,7 @@ function ClassesDetail({ id, display , setOverFlow }) {
     >
       <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
         <Style.Contenedor
-           /* style={{
+        /* style={{
             display: "flex",
             width: "60%",
             height: "45%",
@@ -128,53 +132,103 @@ function ClassesDetail({ id, display , setOverFlow }) {
         >
           {event ? (
             <Style.Card>
-              <Style.Cruz onClick={() => {display(false); setOverFlow(false);}}>X</Style.Cruz>
+              <Style.Cruz
+                onClick={() => {
+                  display(false);
+                  setOverFlow(false);
+                }}
+              >
+                X
+              </Style.Cruz>
               <Style.DivContenedorTitulo>
-              <Style.Titulo> {event.name} </Style.Titulo>
-              <Style.Edit onClick={(e) => handleFlip(e)}>Editar</Style.Edit>
+                <Style.Titulo> {event.name} </Style.Titulo>
+                <Style.Edit onClick={(e) => handleFlip(e)} disabled>Editar</Style.Edit>
               </Style.DivContenedorTitulo>
               <Style.ContenedorInfo>
-              <Style.Image src={fitnesslogo} alt="class-img" />
-              <div>
-              <h1 style={{fontWeight: "300"}}>{event.profesor}</h1>
-              <Style.Profesor>Profesor</Style.Profesor>
-              </div>
-              <Style.Info>
-                <Style.DivInfo>
-                <h3>Horario </h3>
-                <Style.DivData> {event.hour} hs. </Style.DivData>
-                </Style.DivInfo>
-                <Style.DivInfo>
-                <h3>Capacidad </h3>
-                <Style.DivData> {event.capacity} </Style.DivData>
-                </Style.DivInfo>
-                <Style.DivInfo>
-                <h3> Día de la semana </h3>
-                <Style.DivData>{event.day}</Style.DivData>
-                </Style.DivInfo>
-              </Style.Info>
+                <Style.Image src={fitnesslogo} alt="class-img" />
+                <div>
+                  <h1 style={{ fontWeight: "300" }}>{event.profesor}</h1>
+                  <Style.Profesor>Profesor</Style.Profesor>
+                </div>
+                <Style.Info>
+                  <Style.DivInfo>
+                    <h3>Horario </h3>
+                    <Style.DivData> {event.hour} hs. </Style.DivData>
+                  </Style.DivInfo>
+                  <Style.DivInfo>
+                    <h3>Capacidad </h3>
+                    <Style.DivData> {event.capacity} </Style.DivData>
+                  </Style.DivInfo>
+                  <Style.DivInfo>
+                    <h3> Día de la semana </h3>
+                    <Style.DivData>{event.nameday}</Style.DivData>
+                  </Style.DivInfo>
+                </Style.Info>
               </Style.ContenedorInfo>
               <Style.Inscriptos> Inscriptos</Style.Inscriptos>
-              <div style={{marginBottom : "1em", display: "flex", width: "-webkit-fill-available", justifyContent: "space-between"}}>
-              <Style.DatosInscriptos> Nombre </Style.DatosInscriptos>
-              <Style.DatosInscriptos> Dia de pago </Style.DatosInscriptos>
-              <Style.DatosInscriptos> Pago </Style.DatosInscriptos>
-              </div>
-              <div>
-                {event.users?.map((user) => {
-                  return (
-                    <>
-                      <h3> {user.name} </h3>
-                      <h3> {user.paymentday}</h3>
-                      <h3> {user.status}</h3>
-                    </>
-                  );
-                })}
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <div
+                  style={{
+                    marginBottom: "1em",
+                    display: "flex",
+                    gap: "8em",
+                    width: "-webkit-fill-available",
+                    justifyContent: "space-evenly",
+                    marginLeft: ".8em",
+                    marginRight: "1.7em",
+                  }}
+                >
+                  <Style.DatosInscriptos> Nombre </Style.DatosInscriptos>
+                  <Style.DatosInscriptos> Día de pago </Style.DatosInscriptos>
+                  <Style.DatosInscriptos> Pago </Style.DatosInscriptos>
+                </div>
+                <div>
+                  {event.users?.map((user, index) => {
+                    let flag = index % 2 === 0;
+                    return (
+                      <div
+                        style={{
+                          display: " flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        {flag ? (
+                          <Style.PropBox> {user.name} </Style.PropBox>
+                        ) : (
+                          <Style.PropBoxV2> {user.name} </Style.PropBoxV2>
+                        )}
+                        {flag ? (
+                          <Style.PropBox>
+                            {" "}
+                            {user.paymentday.slice(0, 10)}
+                          </Style.PropBox>
+                        ) : (
+                          <Style.PropBoxV2>
+                            {" "}
+                            {user.paymentday.slice(0, 10)}
+                          </Style.PropBoxV2>
+                        )}
+                        {flag ? (
+                          <Style.PropBox> {user.status}</Style.PropBox>
+                        ) : (
+                          <Style.PropBoxV2> {user.status}</Style.PropBoxV2>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </Style.Card>
           ) : (
             <div>
-              <button onClick={() => {display(false); setOverFlow(false);}}>x</button>
+              <button
+                onClick={() => {
+                  display(false);
+                  setOverFlow(false);
+                }}
+              >
+                x
+              </button>
               <p> ...Aún no hay Clases disponibles! </p>
             </div>
           )}
@@ -182,16 +236,16 @@ function ClassesDetail({ id, display , setOverFlow }) {
 
         {/* INICIO DE REVERSO DE LA CARD!*/}
 
-        <div
-          style={{
-            display: "flex",
-            width: "60%",
-            height: "45%",
-            padding: "2em",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            backgroundColor: "grey",
-          }}
+        <Styles.Contenedor
+        // style={{
+        //   display: "flex",
+        //   width: "60%",
+        //   height: "45%",
+        //   padding: "2em",
+        //   flexDirection: "column",
+        //   alignItems: "flex-start",
+        //   backgroundColor: "grey",
+        // }}
         >
           {event ? (
             <form
@@ -199,50 +253,76 @@ function ClassesDetail({ id, display , setOverFlow }) {
                 handleSubmit(e);
               }}
             >
-              <button onClick={() => {display(false);setOverFlow(false);}}>x</button>
-
-              <input
-                type="text"
-                defaultValue={event.name}
-                name="name"
-                onChange={(e) => handleChange(e)}
-              />
-              <button type="submit">Guardar</button>
-              <button onClick={(e) => handleFlip(e)}>Cancelar</button>
-              <img src={fitnesslogo} alt="class-img" />
-              <br />
-              <input
-                type="text"
-                defaultValue={event.profesor}
-                name="profesor"
-                onChange={(e) => handleChange(e)}
-              />
-              <h2>Profesor</h2>
-
+              <Styles.Cruz
+                onClick={() => {
+                  display(false);
+                  setOverFlow(false);
+                }}
+              >
+                x
+              </Styles.Cruz>
               <div>
-                <h3>Horario </h3>
-                <input type="time" name="hour" onChange={(e) => parseHour(e)} />
-                <h3>Capacidad </h3>
-                <input
-                  type="number"
-                  name="capacity"
-                  onChange={(e) => parseCapacity(e)}
-                  min={clients.length}
+                <Styles.InputTitle
+                  type="text"
+                  defaultValue={event.name}
+                  name="name"
+                  onChange={(e) => handleChange(e)}
                 />
-               <h3> Día </h3>
-                <select name="nameday" onChange={(e) => handleChange(e)}>
+                <Styles.EditGuardar type="submit">Guardar</Styles.EditGuardar>
+                <Styles.EditCancel onClick={(e) => handleFlip(e)}>
+                  Cancelar
+                </Styles.EditCancel>
+              </div>
+              <Styles.DisplayImgData>
+                <img src={fitnesslogo} alt="class-img" />
+              <Styles.DivData>
+              <div style={{display:"flex"}}> 
+              <h3>Profesor</h3> 
+                <select name="profesor" onChange={(e) => handleChange(e)}>
                   <option value="" disabled selected>
                     Elija uno...
                   </option>
-                  <option value="Lunes">Lunes</option>
-                  <option value="Martes">Martes</option>
-                  <option value="Miercoles">Miércoles</option>
-                  <option value="Jueves">Jueves</option>
-                  <option value="Viernes">Viernes</option>
-                  <option value="Sabado">Sábado</option>
+                  {professors?.map((professor) => (
+                    <option key={professor.id} value={professor.name}>
+                      {" "}
+                      {professor.name}{" "}
+                    </option>
+                  ))}
                 </select>
+              </div>        
+              <div style={{display:"flex"}}>
+                  <h3>Horario </h3>
+                  <input
+                    type="time"
+                    name="hour"
+                    onChange={(e) => parseHour(e)}
+                  />
               </div>
-
+              <div style={{display:"flex"}}>
+                  <h3>Capacidad </h3>
+                  <input
+                    type="number"
+                    name="capacity"
+                    onChange={(e) => parseCapacity(e)}
+                    min="1"
+                  />
+              </div>
+              <div style={{display:"flex"}}>
+                  <h3> Día </h3>
+                  <select name="nameday" onChange={(e) => handleChange(e)}>
+                    <option value="" disabled selected>
+                      Elija uno...
+                    </option>
+                    <option value="Lunes">Lunes</option>
+                    <option value="Martes">Martes</option>
+                    <option value="Miercoles">Miércoles</option>
+                    <option value="Jueves">Jueves</option>
+                    <option value="Viernes">Viernes</option>
+                    <option value="Sabado">Sábado</option>
+                  </select>
+              </div>
+              </Styles.DivData>
+              </Styles.DisplayImgData>
               <div>
                 <h3>Agregar usuarios</h3>
 
@@ -273,11 +353,18 @@ function ClassesDetail({ id, display , setOverFlow }) {
             </form>
           ) : (
             <div>
-              <button onClick={() => {display(false);setOverFlow(false);}}>x</button>
+              <button
+                onClick={() => {
+                  display(false);
+                  setOverFlow(false);
+                }}
+              >
+                x
+              </button>
               <p> ...Aún no hay Clases disponibles! </p>
             </div>
           )}
-        </div>
+        </Styles.Contenedor>
       </ReactCardFlip>
     </Style.BodyGen>
   );
