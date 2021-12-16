@@ -5,9 +5,6 @@ import { Container, Card, Button, Title, Deadline } from './Payments.Styles'
 import logo from '../../../assets/mercado-pago.png'
 import axios from 'axios'
 import IP from "../../Ips"
-import * as WebBrowser from 'expo-web-browser';
-
-
 export default function Payments() {
     useEffect(() => {
         setStatus(pago.paystatus ===  "PAGO" ? true : false)
@@ -16,9 +13,6 @@ export default function Payments() {
     const [status, setStatus] = useState()
     let paymentday = pago.paymentday.split('-') 
 
-
-
-    const handleProfile = async () => await WebBrowser.openBrowserAsync()
     const pay = async () => {
         try {
             const res = await axios.post(`https://${IP}:3001/api/mercadopago/pay`)
