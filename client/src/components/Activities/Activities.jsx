@@ -4,7 +4,7 @@ import NewEvent from "./NewEvent";
 import NewHoliday from "./NewHoliday";
 import { useDispatch } from "react-redux";
 import Styles from "./Activities.styles";
-import { putEventName } from "../../redux/Actions/actions-Activities";
+import { putEventName } from "../../redux/Actions/actions-Activities"
 
 //render con prop
 const Activities = ({ select, display }) => {
