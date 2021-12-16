@@ -131,6 +131,7 @@ const Style = {
     font-weight: 300;
     font-size: 1em;
     color: var(--green);
+    
   `,
   Descripcion2: styled.h2`
     font-weight: 300;
@@ -154,6 +155,8 @@ const Style = {
     color: var(--darkBlue);
     border-radius: 1em;
     padding: 1em;
+    height: 10em;
+    width: -webkit-fill-available;
   `,
 
   Image: styled.img`
