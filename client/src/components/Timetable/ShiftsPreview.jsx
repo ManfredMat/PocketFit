@@ -41,11 +41,11 @@ function ShiftsPreview({ display, setOverFlow }) {
             </Styles.FinalDay>
           </div>
           <Styles.contClientes>
-            <h3>Clientes</h3>
+            <Styles.TitleH3Styled>Clientes</Styles.TitleH3Styled>
             {shiftSelect.users.length ? (
               <Styles.divClientes>
                 {shiftSelect.users.map((user) => (
-                  <div>
+                  <div style={{marginBottom: "1em", marginRight: "1em"}}>
                       {console.log(user)}
                       <img src={user.imageData ? 
                       `data:image/jpeg;base64, ${user.imageData}` 
