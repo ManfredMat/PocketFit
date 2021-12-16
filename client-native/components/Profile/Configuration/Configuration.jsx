@@ -10,16 +10,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from "@react-navigation/core";
 import editInfoButton from "../../../assets/editprofilephoto.png";
 import { Input } from 'react-native-elements/dist/input/Input';
-import { PutUser } from '../../../redux/Actions/actions-getUser';
+import getUser, { PutUser } from '../../../redux/Actions/actions-getUser';
 import { useDispatch } from 'react-redux';
 import changeUserPassword from "../../../api/put-passreco";
+import getUserId from "../../../api/get-user";
 
 
 const Configuration = () => {
 
     const dispatch = useDispatch();
     const navigation = useNavigation();
-    const user = useSelector(state => state.reducerUser.user)
+    const user = useSelector((state) => state.reducerUser.user);
 
     //logOut
     const logOut = async () => {
@@ -43,11 +44,6 @@ const Configuration = () => {
     const [password, setPassword] = useState({ oldPassword: "", newPassword: "", repeatNewPassword: "" });
     const [phoneNumber, setPhoneNumber] = useState({ phoneNumber: "" });
 
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        
-    }, [loading])
 
     const newsletterSuscribe = async () => {
         await axios.put(`http://${IP}:3001/api/news/subscribenews`, { id: user.id })
@@ -93,7 +89,8 @@ const Configuration = () => {
                 dispatch(PutUser(user.id, data));
                 storeEmail(email.email);
                 setIsEditMail(false);
-                setLoading(true);
+                const resemail = await getUserId(user.id);
+                dispatch(getUser(resemail.data));
                 Alert.alert("Mail cambiado correctamente");
                 break;
 
@@ -108,6 +105,8 @@ const Configuration = () => {
                         newPassword: password.newPassword
                     })
                     storePassword(password.newPassword);
+                    const respass = await getUserId(user.id);
+                    dispatch(getUser(respass.data));
                     setIsEditPass(false);
                     Alert.alert("Éxito", "Contraseña cambiada satisfactoriamente")
 
@@ -118,8 +117,10 @@ const Configuration = () => {
                 data = phoneNumber
                 if (phoneNumber.phoneNumber.length < 1) return Alert.alert("Error", "Por favor completa el campo");
                 dispatch(PutUser(user.id, data));
-                Alert.alert("Numero de celular cambiado correctamente");
                 setIsEditPhoneNumber(false);
+                const resnumber = await getUserId(user.id);
+                dispatch(getUser(resnumber.data));
+                Alert.alert("Numero de celular cambiado correctamente");
                 break;
 
             default:
@@ -261,7 +262,7 @@ const Configuration = () => {
                                 <Styles.InfoKey>Contraseña:</Styles.InfoKey>
                             </Styles.InfoSubContainer>
                             <Styles.InfoSubContainer>
-                                <Styles.InfoValue>******</Styles.InfoValue>
+                                <Styles.InfoValue>*********</Styles.InfoValue>
                             </Styles.InfoSubContainer>
                             <Styles.EditInfoButtonContainer onPress={() => setIsEditPass(true)}>
                                 <Styles.EditInfoButton source={editInfoButton} />
@@ -296,13 +297,13 @@ const Configuration = () => {
                             </Styles.ButtonsContainer>
                         </Styles.InputContainer> :
                         <Styles.InfoContainer style={{ marginTop: 10 }}>
-                            <Styles.InfoSubContainer>
+                            <Styles.InfoSubContainer style={{ width: "25%" }}>
                                 <Styles.InfoKey>Celular:</Styles.InfoKey>
                             </Styles.InfoSubContainer>
-                            <Styles.InfoSubContainer>
-                                <Styles.InfoValue>{user.phoneNumber}</Styles.InfoValue>
+                            <Styles.InfoSubContainer style={{ width: "50%" }}>
+                                <Styles.InfoValue>{user.phoneNumber ? `+54 9 ${user.phoneNumber}` : "Desconocido"}</Styles.InfoValue>
                             </Styles.InfoSubContainer>
-                            <Styles.EditInfoButtonContainer onPress={() => setIsEditPhoneNumber(true)}>
+                            <Styles.EditInfoButtonContainer style={{ width: "24%" }} onPress={() => setIsEditPhoneNumber(true)}>
                                 <Styles.EditInfoButton source={editInfoButton} />
                             </Styles.EditInfoButtonContainer>
                         </Styles.InfoContainer>
