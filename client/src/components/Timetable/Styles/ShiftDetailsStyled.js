@@ -40,10 +40,11 @@ const Styles = {
     align-content: center;
   `,
   ButtonsContainer: styled.div`
+    display:flex;
+    justify-content:flex-end;
     padding-top: 1.25em;
     width: 6em;
     z-index: ${(props) => (props.overFlow ? 0 : 2)};
-    margin-right: -0.5em;
   `,
   Buttons: styled.button`
     background-color: var(--darkBlue);
