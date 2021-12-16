@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import Styles from "./Activities.styles";
 import { putEventName } from "../../redux/Actions/actions-Activities"
 
-//render con prop
+
 const Activities = ({ select, display }) => {
   const [nuevoEvento, setNuevoEvento] = React.useState(false);
   const [nuevaClase, setNuevaClase] = React.useState(false);
