@@ -32,9 +32,9 @@ const PassReco = () => {
                 if (state.newPassword !== state.repeatNewPassword) return Alert.alert("Error", "Las contraseñas no coinciden")
             } else return Alert.alert("Error", "Por favor completa todos los campos");
 
-            const email = await AsyncStorage.getItem("recoEmail");
+            const id = await AsyncStorage.getItem("id");
             await changeUserPassword({
-                email: email,
+                id: id,
                 newPassword: state.newPassword
             });
             await AsyncStorage.removeItem("recoEmail");
