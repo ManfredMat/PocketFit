@@ -10,7 +10,7 @@ export const SEARCH_EXERCISES = "SEARCH_EXERCISES"
 
 export function get_exercises(){
     return async function (dispatch) {
-        await axios.get("http://localhost:3001/api/exercises")
+        await axios.get(REACT_APP_API + "/api/exercises")
         .then((exercises) => {
             dispatch({
                 type: GET_EXERCISES,
@@ -21,7 +21,7 @@ export function get_exercises(){
 }
 export function get_exercise_by_id(id){
     return async function (dispatch) {
-        await axios.get("http://localhost:3001/api/exercises/" + id)
+        await axios.get(REACT_APP_API + "/api/exercises/" + id)
         .then((exercise) => {
             dispatch({
                 type: GET_EXERCISE_BY_ID,
@@ -32,7 +32,7 @@ export function get_exercise_by_id(id){
 }
 export function create_exercise(exercise){
     return async function () {
-        await axios.post("http://localhost:3001/api/exercises/",exercise)
+        await axios.post(REACT_APP_API + "/api/exercises/",exercise)
     }
 }
 export function render_exercise(bool){
@@ -43,7 +43,7 @@ export function render_exercise(bool){
 }
 export function delete_exercise(name){
     return async function () {
-        await axios.delete("http://localhost:3001/api/exercises/"+name)
+        await axios.delete(REACT_APP_API + "/api/exercises/"+name)
     }
 }
 export function searchExercises(search) {

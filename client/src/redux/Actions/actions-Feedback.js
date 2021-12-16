@@ -6,7 +6,7 @@ export const ASCDES_REVIEWS = 'ASCDES_REVIEWS'
 
 export function getReviews(){
     return async function(dispatch){
-            await axios.get("http://localhost:3001/api/reviews/all")
+            await axios.get(REACT_APP_API + "/api/reviews/all")
             .then((reviews) => {
                 dispatch({
                     type: GET_REVIEWS,

@@ -26,7 +26,7 @@ function UserDetail() {
     // })();
 
     // const getPayStatus = async () => {
-    //     let res = await axios.put("http://localhost:3001/api/users/paystatus", { date: dateFormat, id: user.id })
+    //     let res = await axios.put(REACT_APP_API + "/api/users/paystatus", { date: dateFormat, id: user.id })
     //     return res.data
     // }
 

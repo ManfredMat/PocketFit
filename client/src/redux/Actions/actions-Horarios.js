@@ -61,7 +61,7 @@ export function getWeekShifts(week) {
 export function postWeekShifts(params) {
   console.log(params)
   return async function (dispatch) {
-    await axios.post('http://localhost:3001/api/shift/weekcreate', params)
+    await axios.post(REACT_APP_API + '/api/shift/weekcreate', params)
       .then(res => {
         console.log("Created:",res.data)
         dispatch({
@@ -141,7 +141,7 @@ export function postShiftClean() {
 export function getRoutine() {
   return async function (dispatch) {
     await axios
-      .get("http://localhost:3001/api/weekplan/general")
+      .get(REACT_APP_API + "/api/weekplan/general")
       .then((res) => {
         console.log(res.data)
         dispatch({

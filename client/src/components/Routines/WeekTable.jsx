@@ -70,7 +70,7 @@ const exercisesDefaultValue = {
 
 const WeekTable = (props) => {
 
-    let routineRoute = "http://127.0.0.1:3001/api/weekplan";
+    let routineRoute = REACT_APP_API + "/api/weekplan";
 
     const [weekChanges, setWeekChanges] = useState({});
 
@@ -90,7 +90,7 @@ const WeekTable = (props) => {
 
             await axios.post(routineRoute, dayIds);
             await axios.post(routineRoute, dayIds);
-            if(props.id) await axios.put(`http://localhost:3001/api/users/${props.id}`, { customRoutine: true })
+            if(props.id) await axios.put(REACT_APP_API + `/api/users/${props.id}`, { customRoutine: true })
 
             await upgradeTable();
 
@@ -121,7 +121,7 @@ const WeekTable = (props) => {
             for (const key2 in weekChanges[key].blocks) {
 
 
-                let response = await axios.post("http://127.0.0.1:3001/api/blocks/", weekChanges[key].blocks[key2]);
+                let response = await axios.post(REACT_APP_API + "/api/blocks/", weekChanges[key].blocks[key2]);
 
                 routinesIds.push(response.data.id);
             }
@@ -134,7 +134,7 @@ const WeekTable = (props) => {
 
     const postRoutine = async (blocksIds, dayRoutine) => {
 
-        const response = await axios.post("http://127.0.0.1:3001/api/routines", { ...dayRoutine, blocks: blocksIds });
+        const response = await axios.post(REACT_APP_API + "/api/routines", { ...dayRoutine, blocks: blocksIds });
         return response.data.id;
     }
 

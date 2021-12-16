@@ -10,7 +10,7 @@ export const GET_CLIENTS = "GET_CLIENTS";
 
 export function getLessons() {
   return async function (dispatch) {
-    await axios.get("http://localhost:3001/api/events/all").then((res) => {
+    await axios.get(REACT_APP_API + "/api/events/all").then((res) => {
       dispatch({
         type: GET_LESSONS,
         value: res.data,
@@ -21,7 +21,7 @@ export function getLessons() {
 
 export function getEvents() {
   return async function (dispatch) {
-    let response = await axios.get("http://localhost:3001/api/events/all");
+    let response = await axios.get(REACT_APP_API + "/api/events/all");
     dispatch({
       type: GET_EVENTS,
       value: response.data,
@@ -31,7 +31,7 @@ export function getEvents() {
 
 export function postEvent(payload) {
   return async function () {
-    let post = await axios.post("http://localhost:3001/api/events", payload);
+    let post = await axios.post(REACT_APP_API + "/api/events", payload);
     return post;
   };
 }
@@ -39,7 +39,7 @@ export function postEvent(payload) {
 export function getProfessors() {
   return async function (dispatch) {
     let professors = await axios.get(
-      "http://localhost:3001/api/users/professors"
+      REACT_APP_API + "/api/users/professors"
     );
     dispatch({
       type: GET_PROFESSORS,
@@ -59,7 +59,7 @@ export function putEventName(name) {
 
 export function getSingleEvent(id) {
   return async function (dispatch) {
-    let event = await axios.get("http://localhost:3001/api/events/" + id);
+    let event = await axios.get(REACT_APP_API + "/api/events/" + id);
     dispatch({
       type: GET_ONE_EVENT,
       value: event.data,
@@ -70,7 +70,7 @@ export function getSingleEvent(id) {
 export function updateEvent(data, id) {
   return async function () {
     let update = await axios.put(
-      `http://localhost:3001/api/events/${id}`,
+      REACT_APP_API + `/api/events/${id}`,
       data
     );
     return update;
@@ -79,7 +79,7 @@ export function updateEvent(data, id) {
 
 export function getClients() {
   return async function (dispatch) {
-    let users = await axios.get("http://localhost:3001/api/users/");
+    let users = await axios.get(REACT_APP_API + "/api/users/");
     let clients = users.data.filter((user) => user.isuser === true);
     dispatch({
       type: GET_CLIENTS,

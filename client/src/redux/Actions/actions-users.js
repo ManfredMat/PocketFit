@@ -15,7 +15,7 @@ export const FILTER = "FILTER";
 
 export function getUsers() {
     return async function (dispatch) {
-        await axios.get("http://localhost:3001/api/users", { withCredentials: true })
+        await axios.get(REACT_APP_API + "/api/users", { withCredentials: true })
             .then((users) => {
                 dispatch({
                     type: GET_USERS,
@@ -50,7 +50,7 @@ export function getUserDetail(id) {
         }
     }
     return async function (dispatch) {
-        await axios.get(`http://localhost:3001/api/users/${id}`)
+        await axios.get(REACT_APP_API + `/api/users/${id}`)
             .then(user => {
                 dispatch({
                     type: GET_USER_DETAIL,
@@ -70,7 +70,7 @@ export function sorter(order) {
 export function filtered(filter) {
     // if (filter === "PAGO" || filter === "NO-PAGO") {
     //     return async function (dispatch) {
-    //         await axios.get("http://localhost:3001/api/users/paystatus/all", date)
+    //         await axios.get(REACT_APP_API + "/api/users/paystatus/all", date)
     //         .then(users => {
     //             dispatch({
     //                 type: FILTER,

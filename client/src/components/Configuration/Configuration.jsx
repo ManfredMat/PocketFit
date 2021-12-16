@@ -38,7 +38,7 @@ function Configuration() {
     const onSubmit = async (e) => {
         const res = await axios({
             method: "post",
-            url: "http://localhost:3001/api/news/sendnews",
+            url: REACT_APP_API + "/api/news/sendnews",
             data: newsletter
         })
         if (res.data.message === "All messages delivered") {
@@ -63,7 +63,7 @@ function Configuration() {
         const data = new FormData();
         data.append("photo", file);
 
-        await axios.put(`http://localhost:3001/api/users/${id}`, data, { withCredentials: true, headers: { "content-Type": `multipart/form-data; boundary=${data._boundary}` } })
+        await axios.put(REACT_APP_API + `/api/users/${id}`, data, { withCredentials: true, headers: { "content-Type": `multipart/form-data; boundary=${data._boundary}` } })
             .then(res => console.log(res))
             .catch(err => console.log(err));
 
