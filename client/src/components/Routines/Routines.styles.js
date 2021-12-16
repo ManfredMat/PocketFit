@@ -29,7 +29,7 @@ export const PageContainer = styled.div`
     flex-direction: column;
     justify-content: space-evenly;
     flex-wrap: wrap;   
-    
+    padding-bottom:2em;
     color: white;
     width: 100vw; 
     min-height: 100vh;
@@ -43,6 +43,7 @@ export const PageContainer = styled.div`
 
 export const WeekDayContainer = styled.div`
     width: 13vw;
+    height:3.5vh;
     background-color: #D9FB52;
     background-color: ${props => props.block === '1'
         ? '#D9FB52'
@@ -172,7 +173,7 @@ export const LeftBarContainer = styled.div`
     .LeftBar-FirstBlock{
         background-color: #D9FB52;
         border-radius: 0.5rem;
-        height: 52.64px;
+        height:3.25em;
         width: 5rem;
         margin-bottom: 0.7rem;
     }
@@ -228,7 +229,8 @@ export const SaveDeleteChanges = styled.button`
     height:1.7em;
     border-radius: 0.6rem;
     color: var(--darkGray-medium);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    font-weight: 550;
     background-color: ${props => props.action === 'save'
         ? '#479639'
         : props.action === 'delete'
