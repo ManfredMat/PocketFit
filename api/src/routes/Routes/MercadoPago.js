@@ -67,7 +67,7 @@ mercadopago.configure({
   // access token para usuarios - APP_USR-6388733552893649-120718-62f4163746f82234ad13632557821c2e-194185716
   // public key credencial real- APP_USR-9f808268-1ab7-42af-956f-15043288021f
 
-  router.post('/pay', async (req, res) => {
+  router.post('https://localhost:3001/api/mercadopago/pay', async (req, res) => {
     const { title, /*total*/ } = req.body;
     mercadopago.configure({
         access_token: 'TEST-4584026682195569-100518-6865fd891a74a50438b28e4a07dae8f4-835549336',
@@ -96,7 +96,7 @@ mercadopago.configure({
     res.json({ response: response, init_points: init_points });
 });
 
-router.get('/success', async (req, res)=>{
+router.get('https://localhost:3001/api/mercadopago/success', async (req, res)=>{
     res.json({
         Payment: req.query.payment_id,
         Status: req.query.status,
@@ -104,7 +104,7 @@ router.get('/success', async (req, res)=>{
     })
 })
 
-router.post('/mail', async (req, res)=>{
+router.post('https://localhost:3001/api/mercadopago/mail', async (req, res)=>{
     const { payment_id, mail, total, status, id } = req.body;
     try{    
         let user = await User.findOne({where: {id: id}})
@@ -149,3 +149,5 @@ router.post('/mail', async (req, res)=>{
     }}
     catch(error){res.send(error)}
 })
+
+module.export = router;

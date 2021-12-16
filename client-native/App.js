@@ -36,7 +36,7 @@ import AppLoading from "expo-app-loading";
 import { Notification } from "expo-notifications";
 import * as Permissions from 'expo-permissions'
 import Payments from "./components/Profile/Payments/Payments";
-
+import FeedBack from "./components/Profile/FeedBack/FeedBack";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -88,6 +88,11 @@ export default function App() {
             }} />
             <Stack.Screen name='Payments' component={Payments} options={{
               title: 'Pagos',
+              headerTintColor:'#fff',
+              headerStyle: { backgroundColor: '#041D25' },
+            }}/>
+            <Stack.Screen name='FeedBack' component={FeedBack} options={{
+              title: 'Feedback',
               headerTintColor:'#fff',
               headerStyle: { backgroundColor: '#041D25' },
             }}/>
