@@ -15,7 +15,7 @@ import backsquat from '../../assets/backsquat-icon.png'
 import benchpress from '../../assets/benchpress-icon.png'
 import clean from '../../assets/clean-icon.png'
 import getUserId from '../../api/get-user'
-import {PutUser} from '../../redux/Actions/actions-getUser'
+import getUser, { PutUser } from '../../redux/Actions/actions-getUser'
 
 export default function Statistics() {
 
@@ -44,9 +44,10 @@ export default function Statistics() {
         });
       };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         dispatch(PutUser(User.id, input))
-
+        const res = await getUserId(User.id);
+        dispatch(getUser(res.data));
         setTimeout(() => {
             getUserId(User.id)
         }, 2000);
