@@ -11,7 +11,7 @@ export default function getUser(usuario) {
 
 export const PutUser = (id, data) => async () =>{
     try {
-       await axios.put(`http://${IP}:3001/api/users/${id}`, data)
+       await axios.put(`https://pocketfithenry.herokuapp.com/api/users/${id}`, data)
     } catch (error) {
         console.log(error)
     }

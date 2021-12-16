@@ -14,7 +14,7 @@ export const getAllShifts = (day, month, year) => {
   }
     return async function(dispatch) {
     try {
-      const res = await axios.get(`http://${IP}:3001/api/shift/all`, { params:query })
+      const res = await axios.get(`https://pocketfithenry.herokuapp.com/api/shift/all`, { params:query })
       dispatch({
         type: ALL_SHIFTS,
         payload: res.data
@@ -29,7 +29,7 @@ export const getAllShifts = (day, month, year) => {
 export const getShiftId = (id) => {
     return async function(dispatch) {
     try {
-      const res = await axios.get(`http://${IP}:3001/api/shift/user/${id}`)
+      const res = await axios.get(`https://pocketfithenry.herokuapp.com/api/shift/user/${id}`)
       dispatch({
         type: GET_BY_ID,
         payload: res.data.shifts
@@ -41,7 +41,7 @@ export const getShiftId = (id) => {
 }
 
 export const deleteShiftId = (id, userid) => async (dispatch) => {
-    await axios.put(`http://${IP}:3001/api/shift/revomeusershift?userId=${userid}&shiftId=${id}`)
+    await axios.put(`https://pocketfithenry.herokuapp.com/api/shift/revomeusershift?userId=${userid}&shiftId=${id}`)
     dispatch({
       type: DELETE_SHIFTS,
       payload: id

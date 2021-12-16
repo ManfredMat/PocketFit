@@ -46,11 +46,11 @@ const Configuration = () => {
 
 
     const newsletterSuscribe = async () => {
-        await axios.put(`http://${IP}:3001/api/news/subscribenews`, { id: user.id })
+        await axios.put(`https://pocketfithenry.herokuapp.com/api/news/subscribenews`, { id: user.id })
     }
 
     const newsletterUnsuscribe = async () => {
-        await axios.put(`http://${IP}:3001/api/news/unsubscribenews`, { id: user.id })
+        await axios.put(`https://pocketfithenry.herokuapp.com/api/news/unsubscribenews`, { id: user.id })
     }
 
     const validatorEmail = (email) => {

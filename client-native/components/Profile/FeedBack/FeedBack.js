@@ -22,7 +22,7 @@ export default function FeedBack() {
         });
       };
     const Submit = async () => {
-        const res = await axios.post(`http://${IP}:3001/api/reviews/send`, input)
+        const res = await axios.post(`https://pocketfithenry.herokuapp.com/api/reviews/send`, input)
         setTimeout(() => {
             res.status === 200 ? alert('reseña enviada con éxito') : 
             alert('Parece que algo salió mal… inténtelo mas tarde')
