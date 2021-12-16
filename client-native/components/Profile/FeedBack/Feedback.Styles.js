@@ -33,3 +33,9 @@ export const Select = styled.View`
 
 
 `
+export const Box = styled.View`
+    background-color: ${yellow};
+    margin:10px;
+    border-radius: 15px;
+    padding-left: 10px
+`
