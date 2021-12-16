@@ -24,7 +24,7 @@ const Styles = {
       width: 12px;
     }
     ::-webkit-scrollbar-track {
-      background: orange;
+      background: var(--darkGray-base);
     }
   `,
   StartBodyStyled: styled.div`
@@ -135,7 +135,7 @@ display:flex;
  `,
 PropBox: styled.p`
  background:var(--green-medium);
- width:14rem;
+ width:13.3rem;
  margin:0.2rem;
  height:1.5em;    
  border-radius: 0.3em;
@@ -144,12 +144,21 @@ PropBox: styled.p`
 `,
 PropBoxV2: styled.p`
 background:var(--darkGray-base);
-width:14rem;
+width:13.3rem;
 margin:0.2rem;
 height:1.5em;    
 border-radius: 0.3em;
 text-align:center;
 color:var(--green-medium);
+`,
+PropLabel:styled.p`
+background:none;
+width:13.3rem;
+margin:0.2rem;
+height:1.5em;    
+border-radius: 0.3em;
+text-align:center;
+color:white;   
 `,
 TitleH2Styled: styled.h2`
     color: #ffffff;
@@ -159,6 +168,13 @@ TitleH2Styled: styled.h2`
     margin-top:1em;
     margin-bottom:1em;
   `,
+AllShiftsConteiner: styled.div`
+position:relative
+`,
+GridShifts: styled.div`
+position:absolute;
+right:-1.5em;
+`
 };
 
 export default Styles;

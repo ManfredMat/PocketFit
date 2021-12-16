@@ -84,9 +84,9 @@ function ShiftsDetails({ screenHeight }) {
               </Styles.GenWeekContainer>
 
             </div>
-            <div>
+            <Styles.AllShiftsConteiner>
               <Styles.TitleH2Styled>Todos los Turnos</Styles.TitleH2Styled>
-              <div
+              <Styles.GridShifts
                 style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(5, 1fr)",
@@ -94,11 +94,12 @@ function ShiftsDetails({ screenHeight }) {
                 }}
               >
                 {labels.map((label) => (
-                  <div>{label}</div>
+                  <Styles.PropLabel>{label}</Styles.PropLabel>
                 ))}
                 {allShifts.map((shift , index) => (
 
                   <>
+                  
                     {((index%2)==0)?<Styles.PropBox>{shift.beginning}hs - {shift.ending}hs</Styles.PropBox>:<Styles.PropBoxV2>{shift.beginning}hs - {shift.ending}hs</Styles.PropBoxV2>}
                     {((index%2)==0)?<Styles.PropBox>{shift.weekday}</Styles.PropBox>:<Styles.PropBoxV2>{shift.weekday}</Styles.PropBoxV2>}
                     {((index%2)==0)?<Styles.PropBox>{" "}{shift.day}/{shift.month}/{shift.year}</Styles.PropBox>:<Styles.PropBoxV2>{" "}{shift.day}/{shift.month}/{shift.year}</Styles.PropBoxV2>}
@@ -106,8 +107,8 @@ function ShiftsDetails({ screenHeight }) {
                     {((index%2)==0)?<Styles.PropBox>{shift.week}</Styles.PropBox>:<Styles.PropBoxV2>{shift.availability}/{shift.capacity}</Styles.PropBoxV2>}
                   </>
                 ))}
-              </div>
-            </div>
+              </Styles.GridShifts>
+            </Styles.AllShiftsConteiner>
           </Styles.StartBodyStyled>
           {takeShift && <ScheduleShift display={setTakeShift} setOverFlow={setOverFlow}/>}
           {configTurnos && <ShiftsConfig display={setconfigTurnos} setOverFlow={setOverFlow} />}
