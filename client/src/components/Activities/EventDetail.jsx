@@ -200,10 +200,10 @@ function EventDetail({ id, display }) {
                   <Style.EditGuardar
                     type="submit"
                     onClick={(e) => handleSubmit(e)}>
-                      Guardar
+                     <p style={{fontFamily:"Poppins, sans-serif ",fontWeight: "300", color: "#083645"}}> Guardar</p>
                   </Style.EditGuardar>
                   <Style.EditCancel onClick={(e) => handleFlip(e)}>
-                    Cancelar
+                  <p style={{ color: "white", fontFamily:"Poppins, sans-serif ", fontWeight: "300", alignContent: "center"}}> Cancelar </p>
                   </Style.EditCancel>
                 </Style.DivBotonesFlip>
               </Style.DivEditFlip>
@@ -222,6 +222,7 @@ function EventDetail({ id, display }) {
                       style={{
                         display: "flex",
                         justifyContent: "space-between",
+                        alignItems: "center"
                       }}
                     >
                       <Style.DivData2>Horario </Style.DivData2>
@@ -235,6 +236,7 @@ function EventDetail({ id, display }) {
                       style={{
                         display: "flex",
                         justifyContent: "space-between",
+                        alignItems: "center"
                       }}
                     >
                       <Style.DivData2>Capacidad </Style.DivData2>
@@ -248,6 +250,7 @@ function EventDetail({ id, display }) {
                       style={{
                         display: "flex",
                         justifyContent: "space-between",
+                        alignItems: "center"
                       }}
                     >
                       <Style.DivData2> Fecha </Style.DivData2>
