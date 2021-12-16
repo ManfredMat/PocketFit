@@ -118,7 +118,7 @@ const Style = {
     display: flex;
     align-items: center;
     margin-right: -1.2em;
-    
+    justify-content: space-between;
   `,
 
   DivInfo: styled.div`
@@ -155,6 +155,27 @@ const Style = {
     height: 12vh;
     margin: 1em;
   `,
+  PropBox: styled.h3`
+  background:var(--green-medium);
+  width:28%;
+  margin:0.2em;
+  height:1.5em;    
+  border-radius: 0.3em;
+  text-align:center; 
+  margin-right: -.3em;
+margin-left: -.3em;  
+`,
+PropBoxV2: styled.h3`
+background:var(--darkGray-base);
+width:28%;
+margin:0.2em;
+height:1.5em;    
+border-radius: 0.3em;
+text-align:center;
+color:var(--green-medium);
+margin-right: -.3em;
+margin-left: -.3em;
+`,
 };
 
 export default Style;

@@ -165,17 +165,21 @@ function ClassesDetail({ id, display, setOverFlow }) {
                 </Style.Info>
               </Style.ContenedorInfo>
               <Style.Inscriptos> Inscriptos</Style.Inscriptos>
+              <div style={{    display: "flex",flexDirection: "column"}}>
               <div
                 style={{
                   marginBottom: "1em",
                   display: "flex",
+                  gap: "8em",
                   width: "-webkit-fill-available",
-                  justifyContent: "space-between",
+                  justifyContent: "space-evenly",
+                  marginLeft: ".8em",
+                  marginRight: "1.7em"
                 }}
               >
-                <Style.DatosInscriptos> Nombre </Style.DatosInscriptos>
-                <Style.DatosInscriptos> Dia de pago </Style.DatosInscriptos>
-                <Style.DatosInscriptos> Pago </Style.DatosInscriptos>
+                <Style.DatosInscriptos > Nombre </Style.DatosInscriptos>
+                <Style.DatosInscriptos > Día de pago </Style.DatosInscriptos>
+                <Style.DatosInscriptos > Pago </Style.DatosInscriptos>
               </div>
               <div>
                 {event.users?.map((user, index) => {
@@ -187,16 +191,17 @@ function ClassesDetail({ id, display, setOverFlow }) {
                         justifyContent: "space-between",
                       }}
                     >
-                      {flag ? <h3> {user.name} </h3> : <h3> {user.name} </h3>}
+                      {flag ? <Style.PropBox> {user.name} </Style.PropBox> : <Style.PropBoxV2> {user.name} </Style.PropBoxV2>}
                       {flag ? (
-                        <h3> {user.paymentday.slice(0, 10)}</h3>
+                        <Style.PropBox> {user.paymentday.slice(0, 10)}</Style.PropBox>
                       ) : (
-                        <h3> {user.paymentday.slice(0, 10)}</h3>
+                        <Style.PropBoxV2> {user.paymentday.slice(0, 10)}</Style.PropBoxV2>
                       )}
-                      {flag ? <h3> {user.status}</h3> : <h3> {user.status}</h3>}
+                      {flag ? <Style.PropBox> {user.status}</Style.PropBox> : <Style.PropBoxV2> {user.status}</Style.PropBoxV2>}
                     </div>
                   );
                 })}
+              </div>
               </div>
             </Style.Card>
           ) : (
