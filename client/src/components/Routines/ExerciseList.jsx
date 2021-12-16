@@ -14,13 +14,16 @@ const ExerciseList = () => {
 
     let exercises = useSelector((state)=> state.exercise.exercises)
 
+    // eslint-disable-next-line
     const renderExercises = (items)=>{
+        // eslint-disable-next-line
         let exerciseArray = items.map((excercise , index)=>{        
             if(index <= 3 ){ 
                 
             return <Exercises key={index} excercise = {excercise} index={index}/>
 
             }
+           
         })          
         return <>
             {exerciseArray}

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { AcceptButton, ButtonContainer, CancelButton, EditDayContainer, InputLabelContainer, InputStyle, PopUpContainer, SelectStyle } from "./Routines.styles";
+const { REACT_APP_API} = process.env;
 
 const AddExcercise = (props) => {
 

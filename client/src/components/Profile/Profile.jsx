@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
 import { getAdmin } from "../../redux/Actions/actions-login";
+const { REACT_APP_API} = process.env;
 
 function Profile() {
     const dispatch = useDispatch();

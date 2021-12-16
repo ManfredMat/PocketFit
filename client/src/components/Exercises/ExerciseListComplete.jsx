@@ -14,7 +14,7 @@ const ExerciseListComplete = () => {
 
     const [exerciseCreate, setExerciseCreate] = React.useState(false);
     const [search, setSearch] = React.useState("");
-    const [isSearch, setIsSearch] = React.useState(false);
+    const [,setIsSearch] = React.useState(false);
 
     let exerciseRender = useSelector((state) => state.exercise.exerciseRender)
 

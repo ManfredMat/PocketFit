@@ -1,13 +1,5 @@
 import { Link } from "react-router-dom";
 import Styles from "./NavBar-Styled";
-import EventsIco from "../../assets/img/iconos/events.svg";
-import EventsIcoSelect from "../../assets/img/iconos/select-icons/event-select.svg";
-import PayIco from "../../assets/img/iconos/Pay.svg";
-import PayIcoSelect from "../../assets/img/iconos/select-icons/payments-select.svg";
-import SemanalPlan from "../../assets/img/iconos/Plans.svg";
-import SemanalPlanSelect from "../../assets/img/iconos/select-icons/plan-select.svg";
-import FeedBackIco from "../../assets/img/iconos/feedback.svg";
-import FeedBackIcoSelect from "../../assets/img/iconos/select-icons/feedback-select.svg";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAdmin } from "../../redux/Actions/actions-login";
@@ -34,6 +26,7 @@ function NavBar({ screenHeight }) {
 
   useEffect(() => {
     dispatch(getAdmin(id));
+    //eslint-disable-next-line
   }, [dispatch, actual]);
 
   return (

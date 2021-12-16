@@ -1,6 +1,4 @@
 import styled, { createGlobalStyle } from "styled-components";
-import NotifiIcon from "../../assets/img/iconos/notifi.svg";
-import NotifiIconSelect from "../../assets/img/iconos/select-icons/notifi-select.svg";
 import NewEventIco from "../../assets/img/iconos/newActivity.svg";
 import NewEventIcoSelect from "../../assets/img/iconos/select-icons/newActivity-select.svg";
 import HomeIco from "../../assets/img/iconos/Home.svg";

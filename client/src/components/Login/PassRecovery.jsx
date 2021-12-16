@@ -4,6 +4,7 @@ import LogingWave from "../../assets/img/loginwave.svg";
 import ProfilePhoto from "../../assets/img/profilephoto.svg"
 import { Container, ContainerIn, Input, Wave, Btn } from "./Login.styles";
 import axios from "axios";
+const { REACT_APP_API} = process.env;
 
 function PassRecovery() {
   const [input, setInput] = useState({

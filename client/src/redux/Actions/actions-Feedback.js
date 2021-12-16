@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const { REACT_APP_API} = process.env;
+
 export const GET_REVIEWS = 'GET_REVIEWS';
 export const FILTER_REVIEWS = 'FILTER_REVIEWS';
 export const ASCDES_REVIEWS = 'ASCDES_REVIEWS'

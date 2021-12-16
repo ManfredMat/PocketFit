@@ -63,18 +63,6 @@ function ClassesDetail({ id, display, setOverFlow }) {
     setInput({ ...input, capacity: capacidad });
   }
 
-  function parseDate(e) {
-    let nombreDia = moment(e.target.value).format("dddd");
-
-    let mes = moment(e.target.value).format("L");
-    let dia = mes.slice(0, 2);
-    dia = parseInt(dia);
-    mes = mes.slice(3, 5);
-    mes = parseInt(mes);
-
-    setInput({ ...input, nameday: nombreDia, month: mes, day: dia });
-  }
-
   function handleSelect(e) {
     setInput({
       ...input,

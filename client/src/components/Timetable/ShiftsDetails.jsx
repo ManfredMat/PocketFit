@@ -29,6 +29,7 @@ function ShiftsDetails({ screenHeight }) {
     setRender(true);
     setWeek(0);
     dispatch(getAllShifts(today[2], today[0], today[1]));
+  //eslint-disable-next-line
   }, [render]);
 
   let navigate = useNavigate();
@@ -100,11 +101,11 @@ function ShiftsDetails({ screenHeight }) {
 
                   <>
                   
-                    {((index%2)==0)?<Styles.PropBox>{shift.beginning}hs - {shift.ending}hs</Styles.PropBox>:<Styles.PropBoxV2>{shift.beginning}hs - {shift.ending}hs</Styles.PropBoxV2>}
-                    {((index%2)==0)?<Styles.PropBox>{shift.weekday}</Styles.PropBox>:<Styles.PropBoxV2>{shift.weekday}</Styles.PropBoxV2>}
-                    {((index%2)==0)?<Styles.PropBox>{" "}{shift.day}/{shift.month}/{shift.year}</Styles.PropBox>:<Styles.PropBoxV2>{" "}{shift.day}/{shift.month}/{shift.year}</Styles.PropBoxV2>}
-                    {((index%2)==0)?<Styles.PropBox>{shift.availability}/{shift.capacity}</Styles.PropBox>:<Styles.PropBoxV2>{shift.availability}/{shift.capacity}</Styles.PropBoxV2>}
-                    {((index%2)==0)?<Styles.PropBox>{shift.week}</Styles.PropBox>:<Styles.PropBoxV2>{shift.availability}/{shift.capacity}</Styles.PropBoxV2>}
+                    {((index%2)===0)?<Styles.PropBox>{shift.beginning}hs - {shift.ending}hs</Styles.PropBox>:<Styles.PropBoxV2>{shift.beginning}hs - {shift.ending}hs</Styles.PropBoxV2>}
+                    {((index%2)===0)?<Styles.PropBox>{shift.weekday}</Styles.PropBox>:<Styles.PropBoxV2>{shift.weekday}</Styles.PropBoxV2>}
+                    {((index%2)===0)?<Styles.PropBox>{" "}{shift.day}/{shift.month}/{shift.year}</Styles.PropBox>:<Styles.PropBoxV2>{" "}{shift.day}/{shift.month}/{shift.year}</Styles.PropBoxV2>}
+                    {((index%2)===0)?<Styles.PropBox>{shift.availability}/{shift.capacity}</Styles.PropBox>:<Styles.PropBoxV2>{shift.availability}/{shift.capacity}</Styles.PropBoxV2>}
+                    {((index%2)===0)?<Styles.PropBox>{shift.week}</Styles.PropBox>:<Styles.PropBoxV2>{shift.availability}/{shift.capacity}</Styles.PropBoxV2>}
                   </>
                 ))}
               </Styles.GridShifts>

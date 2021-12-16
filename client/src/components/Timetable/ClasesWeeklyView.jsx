@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import * as json from "./Hard-code.json";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getLessons } from "../../redux/Actions/actions-Activities";
 import Styles from "./Styles/ClasesWeeklyViewStyled";
-import ClassesDetail from "../Activities/ClassesDetail";
+
 
 var weekDays = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 

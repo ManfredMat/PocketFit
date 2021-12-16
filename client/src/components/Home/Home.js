@@ -3,7 +3,6 @@ import Calendar from "../Timetable/Calendar";
 import Clases from "./Clases";
 import { Link } from "react-router-dom";
 import Styles from "./Styles/HomeStyled";
-import datos from "./Datos-Hard";
 import { useSelector, useDispatch } from "react-redux";
 import Shifts from "../Timetable/Shifts";
 import ShiftsPreview from "../Timetable/ShiftsPreview";
@@ -46,7 +45,7 @@ function Home({ screenHeight }) {
   React.useEffect(() => {
     dispatch(getRoutine());
     dispatch(getLessons());
-  }, []);
+  }, [dispatch]);
 
   console.log(routine);
   console.log(lessons);
@@ -91,7 +90,7 @@ function Home({ screenHeight }) {
                             {block.kindOfBlock}
                           </Styles.BlockName>
                           {block.exercises.map((exe) => (
-                            <Styles.exeName>{exe[0]}</Styles.exeName>
+                            <Styles.ExeName>{exe[0]}</Styles.ExeName>
                           ))}
                           <Styles.BlockRounds>
                             {block.rounds} Series
@@ -109,7 +108,7 @@ function Home({ screenHeight }) {
                           </Styles.BlockName>
 
                           {block.exercises.map((exe) => (
-                            <Styles.exeName>{exe[0]}</Styles.exeName>
+                            <Styles.ExeName>{exe[0]}</Styles.ExeName>
                           ))}
                           <Styles.BlockRounds>
                             {block.rounds} Series
@@ -127,7 +126,7 @@ function Home({ screenHeight }) {
                           </Styles.BlockName>
 
                           {block.exercises.map((exe) => (
-                            <Styles.exeName>{exe[0]}</Styles.exeName>
+                            <Styles.ExeName>{exe[0]}</Styles.ExeName>
                           ))}
                           <Styles.BlockRounds>
                             {block.rounds} Series
@@ -145,7 +144,7 @@ function Home({ screenHeight }) {
                           </Styles.BlockName>
 
                           {block.exercises.map((exe) => (
-                            <Styles.exeName>{exe[0]}</Styles.exeName>
+                            <Styles.ExeName>{exe[0]}</Styles.ExeName>
                           ))}
                           <Styles.BlockRounds>
                             {block.rounds} Series
@@ -163,7 +162,7 @@ function Home({ screenHeight }) {
                           </Styles.BlockName>
 
                           {block.exercises.map((exe) => (
-                            <Styles.exeName>{exe[0]}</Styles.exeName>
+                            <Styles.ExeName>{exe[0]}</Styles.ExeName>
                           ))}
                           <Styles.BlockRounds>
                             {block.rounds} Series
@@ -181,7 +180,7 @@ function Home({ screenHeight }) {
                           </Styles.BlockName>
 
                           {block.exercises.map((exe) => (
-                            <Styles.exeName>{exe[0]}</Styles.exeName>
+                            <Styles.ExeName>{exe[0]}</Styles.ExeName>
                           ))}
                           <Styles.BlockRounds>
                             {block.rounds} Series

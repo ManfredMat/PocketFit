@@ -1,4 +1,5 @@
 import axios from "axios";
+const { REACT_APP_API} = process.env;
 
 export const GET_EXERCISES = "GET_EXERCISES";
 

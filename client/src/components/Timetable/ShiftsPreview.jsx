@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Styles from "./Styles/ShiftPreviewStyled";
 import defaultProfilePhoto from "../../assets/img/profilephoto.svg"
 
@@ -40,10 +40,10 @@ function ShiftsPreview({ display, setOverFlow }) {
               {shiftSelect.availability}/{shiftSelect.capacity}
             </Styles.FinalDay>
           </div>
-          <Styles.contClientes>
+          <Styles.ContClientes>
             <Styles.TitleH3Styled>Clientes</Styles.TitleH3Styled>
             {shiftSelect.users.length ? (
-              <Styles.divClientes>
+              <Styles.DivClientes>
                 {shiftSelect.users.map((user) => (
                   <div style={{marginBottom: "1em", marginRight: "1em"}}>
                       {console.log(user)}
@@ -56,11 +56,11 @@ function ShiftsPreview({ display, setOverFlow }) {
                     </h4>
                   </div>
                 ))}
-              </Styles.divClientes>
+              </Styles.DivClientes>
             ) : (
-              <Styles.divClientes>Aun no hay turnos</Styles.divClientes>
+              <Styles.DivClientes>Aun no hay turnos</Styles.DivClientes>
             )}
-          </Styles.contClientes>
+          </Styles.ContClientes>
         </div>
       </Styles.BoxStyle>
     </Styles.BodyStyled>

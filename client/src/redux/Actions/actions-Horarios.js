@@ -1,5 +1,5 @@
 import axios from "axios";
-
+const { REACT_APP_API} = process.env;
 
 //ACTIONS NAMES
 export const GET_LESSONS = "GET_LESSONS";

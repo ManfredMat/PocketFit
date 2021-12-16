@@ -43,6 +43,7 @@ const Styles = {
     padding-top: 1.25em;
     width: 6em;
     z-index: ${(props) => (props.overFlow ? 0 : 2)};
+    margin-right: -0.5em;
   `,
   Buttons: styled.button`
     background-color: var(--darkBlue);
@@ -117,9 +118,6 @@ const Styles = {
     align-content: center;
     align-items: center;
     justify-content: space-between;
-  `,
-  ButtonsContainer: styled.div`
-    margin-right: -0.5em;
   `,
   SearchButton: styled.button`
   background-color: transparent;

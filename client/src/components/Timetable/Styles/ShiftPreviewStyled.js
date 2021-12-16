@@ -72,7 +72,7 @@ const Styles = {
     width: 20em;
     color: var(--darkBlue);
   `,
-  divClientes: styled.div`
+  DivClientes: styled.div`
     width: 30em;
     display: flex;
     flex-wrap: wrap;
@@ -90,7 +90,7 @@ const Styles = {
       background: var(--yellow);
     }
   `,
-  contClientes: styled.div`
+  ContClientes: styled.div`
     background-color: var(--green-medium);
     border-radius: 1em;
     padding: 2em;

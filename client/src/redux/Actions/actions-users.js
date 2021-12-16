@@ -1,4 +1,5 @@
 import axios from "axios";
+const { REACT_APP_API} = process.env;
 
 export const GET_USERS = "GET_USERS";
 export const SEARCH_USERS = "SEARCH_USERS";

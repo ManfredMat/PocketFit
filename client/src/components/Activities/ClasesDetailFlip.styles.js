@@ -165,9 +165,6 @@ const Styles = {
     width: 15em;
     justify-content: space-between;
   `,
-  DivData: styled.h3`
-    font-weight: 200;
-  `,
 
   Profesor: styled.h2`
     color: var(--green);

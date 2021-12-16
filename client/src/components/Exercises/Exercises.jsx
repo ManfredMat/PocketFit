@@ -5,7 +5,7 @@ const Exercises = (props) => {
 
     let index = props.index + 1
 
-    let flag = ((index%2)==0)
+    let flag = ((index%2)===0)
 
     return(
         <>

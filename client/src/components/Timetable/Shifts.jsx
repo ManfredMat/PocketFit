@@ -26,6 +26,7 @@ function Shifts({ setShiftDetail , wrap }) {
   useEffect(() => {
     dispatch(getWeekShifts(week));
     dispatch(getTimetable())
+    //eslint-disable-next-line
   }, []);
 
   function shiftPreview(shift) {

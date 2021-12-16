@@ -11,29 +11,29 @@ function Detail() {
 
     useEffect(() => {
         dispatch(getEvents())
-    }, []);
+    }, [dispatch]);
 
     console.log(events)
 
     return (
         <Styles.StyledContainer>
-            <Styles.table>
-                <Styles.tableTr  border={true}>
+            <Styles.Table>
+                <Styles.TableTr  border={true}>
             {labels.map((label) => (
-                <Styles.labels>{label}</Styles.labels>
+                <Styles.Labels>{label}</Styles.Labels>
             ))}
-            </Styles.tableTr>
+            </Styles.TableTr>
             {events || events.length ? events.map((eve,index) => (
                 index <= 2 &&
-                <Styles.tableTr border={index === 2 ? false : true}>
-                    <Styles.tableTd>{eve.name}</Styles.tableTd>
-                    <Styles.tableTd>{eve.day}/{eve.month}</Styles.tableTd>
-                    <Styles.tableTd>{eve.hour} hs</Styles.tableTd>
-                    <Styles.tableTd>{eve.profesor}</Styles.tableTd>
-                </Styles.tableTr>
+                <Styles.TableTr border={index === 2 ? false : true}>
+                    <Styles.TableTd>{eve.name}</Styles.TableTd>
+                    <Styles.TableTd>{eve.day}/{eve.month}</Styles.TableTd>
+                    <Styles.TableTd>{eve.hour} hs</Styles.TableTd>
+                    <Styles.TableTd>{eve.profesor}</Styles.TableTd>
+                </Styles.TableTr>
             ))
         : <p> No hay eventos proximos </p>}
-            </Styles.table>    
+            </Styles.Table>    
         </Styles.StyledContainer>
     )
 }

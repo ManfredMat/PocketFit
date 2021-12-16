@@ -45,7 +45,7 @@ const EditDay = (props) => {
     useEffect(() => {
 
         setInput(props.weekChanges[props.api].dayRoutine.kindOfRoutine);
-
+        //eslint-disable-next-line
     }, [])
 
     return (

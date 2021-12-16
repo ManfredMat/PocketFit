@@ -38,9 +38,7 @@ function ShiftWeeklyView({ render, week ,  overFlow , setOverFlow, setShiftDetai
       : moment().format("w", "isoWeek");
   let firstDay = moment(weekNum, "w").format("D/M");
   let lastDay = moment(weekNum, "w").endOf("week").format("D/M");
-  const actualTimetable = useSelector(
-    (state) => state.timetable.actualTimetable
-  );
+ 
 
   //const intervaloLength = actualTimetable.length && actualTimetable.intervalo.length;
   var numbers = [...Array(6 + 1).keys()];
@@ -52,6 +50,7 @@ function ShiftWeeklyView({ render, week ,  overFlow , setOverFlow, setShiftDetai
   useEffect(() => {
     dispatch(getWeekShifts(parseInt(weekNum)));
     dispatch(getTimetable());
+  //eslint-disable-next-line
   }, [week,weekShifts.length, overFlow]);
 
   function shiftPreview(shift) {
@@ -65,9 +64,9 @@ function ShiftWeeklyView({ render, week ,  overFlow , setOverFlow, setShiftDetai
       <Styles.BodyStyled>
           
         <Styles.ContainerStyled style={{ display: "flex" }}>
-        <Styles.semanaContainer>
-          <Styles.semanaText>Semana {firstDay} al {lastDay}</Styles.semanaText>
-          </Styles.semanaContainer>
+        <Styles.SemanaContainer>
+          <Styles.SemanaText>Semana {firstDay} al {lastDay}</Styles.SemanaText>
+          </Styles.SemanaContainer>
           <Styles.SubContainerStyled>
           <Styles.CardShiftContainer flag={true}>
             {numbers.map((num) => (
@@ -78,10 +77,10 @@ function ShiftWeeklyView({ render, week ,  overFlow , setOverFlow, setShiftDetai
           </Styles.CardShiftContainer>
           {weekDays.map((dayName, index) => (
             <Styles.ColumnsStyle>
-              <Styles.head>
-                <Styles.headText>{dayName}</Styles.headText>
-                <Styles.headText>{weekNumsData[index]}</Styles.headText>
-              </Styles.head>
+              <Styles.Head>
+                <Styles.HeadText>{dayName}</Styles.HeadText>
+                <Styles.HeadText>{weekNumsData[index]}</Styles.HeadText>
+              </Styles.Head>
 
               <Styles.CardShiftContainer flag={false}>
                 {weekShifts.length ? (
@@ -93,12 +92,12 @@ function ShiftWeeklyView({ render, week ,  overFlow , setOverFlow, setShiftDetai
                         return 0;})
                     .map((day) => (
                       <Styles.CardShift onClick={() => shiftPreview(day)}>
-                        <Styles.capacityTag>
+                        <Styles.CapacityTag>
                           {day.availability}/{day.capacity}
-                        </Styles.capacityTag>
-                        <Styles.timeTag>
+                        </Styles.CapacityTag>
+                        <Styles.TimeTag>
                           {day.beginning}hs a {day.ending}hs
-                        </Styles.timeTag>
+                        </Styles.TimeTag>
                       </Styles.CardShift>
                     ))
                 ) : (

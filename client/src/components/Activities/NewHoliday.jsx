@@ -16,6 +16,7 @@ const NewHoliday = ({ display, kind, close }) => {
     setTimeout(() => {
       setInput({ ...input, name: eventname });
     }, 1000);
+    //eslint-disable-next-line
   }, [eventname]);
 
   const [input, setInput] = useState({

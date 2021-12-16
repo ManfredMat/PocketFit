@@ -70,6 +70,7 @@ function ScheduleShift({ display, setOverFlow }) {
     dispatch(getAllShifts(today[2], today[0], today[1]));
     dispatch(getUsers());
     dispatch(getTimetable());
+    //eslint-disable-next-line
   }, []);
 
   return (
@@ -77,7 +78,7 @@ function ScheduleShift({ display, setOverFlow }) {
       <Styles.BoxStyle>
         <div>
           {putShiftUser.length >= 1 ? (
-            <Styles.contenedorCreated>
+            <Styles.ContenedorCreated>
               <Styles.TitleH3Styled>Turno Creado</Styles.TitleH3Styled>
               <Styles.DaysContainer>
                 <Styles.InicioDay style={{ width: "auto" }}>
@@ -103,7 +104,7 @@ function ScheduleShift({ display, setOverFlow }) {
                 </Styles.FinalDay>
               </Styles.DaysContainer>
 
-              <Styles.buttonContainer>
+              <Styles.ButtonContainer>
               <Styles.GreenButton
                 onClick={() => {
                   display(false);
@@ -114,9 +115,9 @@ function ScheduleShift({ display, setOverFlow }) {
                 Continuar
               </Styles.GreenButton>
               <Styles.GreenDarkButton onClick={(e) => handleOnShiftClean(e)}>Crear Otro</Styles.GreenDarkButton>
-              </Styles.buttonContainer>
+              </Styles.ButtonContainer>
               
-            </Styles.contenedorCreated>
+            </Styles.ContenedorCreated>
           ) : (
             <>
               <Styles.TitleH2Styled>Agendar Turno</Styles.TitleH2Styled>

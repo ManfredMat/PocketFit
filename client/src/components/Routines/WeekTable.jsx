@@ -7,6 +7,8 @@ import Styles from "../Exercises/Styles/ExercisesStyled"
 import goBack from "../../assets/img/iconos/goBack.svg"
 import { useNavigate} from "react-router-dom";
 
+const { REACT_APP_API} = process.env;
+
 const weekDays = [
     {
         day: 'Lunes',
@@ -413,11 +415,11 @@ const WeekTable = (props) => {
     }
 
     useEffect(() => {
-
+    
         upgradeTable();
         if(!props.id) setUserName('');
 
-
+    //eslint-disable-next-line
     }, [props.id]);
 
     let navigate = useNavigate()

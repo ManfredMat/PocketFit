@@ -140,11 +140,11 @@ const Styles = {
     text-transform: capitalize;
     margin: 1em 0em 0.5em 0em;
   `,
-  contenedorCreated: styled.div`
+  ContenedorCreated: styled.div`
     width: 15vw;
     height:40vh;
   `,
-  buttonContainer: styled.div`
+  ButtonContainer: styled.div`
   margin-top: 1em;
   padding: 1em 0em 2em 0em;
   `

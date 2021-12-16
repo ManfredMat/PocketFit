@@ -49,12 +49,6 @@ const Styles = {
     flex-direction: column;
     width: 70%;
   `,
-  TitleH2Styled: styled.h2`
-    color: #ffffff;
-    font-size: 1.4em;
-    font-weight: 500;
-    text-transform: capitalize;
-  `,
   StyledClasesContainer: styled.div`
     margin-left: 1rem;
     display: flex;
@@ -143,7 +137,7 @@ const Styles = {
     justify-content: center;
     align-items: stretch;
   `,
-  exeName: styled.p`
+  ExeName: styled.p`
     background-color: var(--darkGray-base);
     border-radius: 0.4em;
     padding: 0.4em;

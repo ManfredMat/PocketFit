@@ -29,7 +29,7 @@ function Calendar({ year, month, big }) {
 
   useEffect(() => {
     dispatch(getEvents());
-  }, []);
+  }, [dispatch]);
 
   //console.log(events)
   //console.log("Filtrados",events.filter((event)=> event.month === parseInt(month)))
@@ -44,7 +44,7 @@ function Calendar({ year, month, big }) {
         {range(firstDay, daysMonth, StartName).map((day, index) =>
           index >= StartName - 1 ? (
             <Styles.StyledCalendarContainers>
-              <Styles.eventsContainer name="Eventos">
+              <Styles.EventsContainer name="Eventos">
                 {events &&
                   events
                     .filter((event) => event.month === parseInt(month))
@@ -67,7 +67,7 @@ function Calendar({ year, month, big }) {
                           </Styles.EventeInCalendarContainer>
                         )
                     )}
-              </Styles.eventsContainer>
+              </Styles.EventsContainer>
 
               <Styles.NumContainer>
                 <Styles.Num>{day}</Styles.Num>

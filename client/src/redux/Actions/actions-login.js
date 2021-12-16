@@ -1,5 +1,5 @@
 import axios from 'axios'
-REACT_APP_API 
+const { REACT_APP_API} = process.env;
 //ACTIONS NAMES
 export const LOG_IN = 'LOG_IN'
 export const GET_ADMIN = "GET_ADMIN"

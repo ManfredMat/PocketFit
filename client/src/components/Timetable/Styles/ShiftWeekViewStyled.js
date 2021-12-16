@@ -10,11 +10,11 @@ const Styles = {
     width: -webkit-fill-available;
     z-index: 0;
   `,
-  semanaContainer: styled.div`
+  SemanaContainer: styled.div`
     padding-top: 1em;
     margin-left: 3.6em;
   `,
-  semanaText: styled.h2`
+  SemanaText: styled.h2`
     color: var(--green);
     font-size: 1.5em;
     background-color: var(--darkGray-medium);
@@ -74,7 +74,7 @@ const Styles = {
     height: 1.3em;
     align-self: center;
   `,
-  head: styled.div`
+  Head: styled.div`
     height: 2.3em;
     display: flex;
     background-color: var(--green);
@@ -86,11 +86,11 @@ const Styles = {
     align-items: center;
     font-size: 1.3em;
   `,
-  headText: styled.p`
+  HeadText: styled.p`
     color: var(--darkGray-base);
     font-weight: 600;
   `,
-  capacityTag: styled.p`
+  CapacityTag: styled.p`
     background-color: var(--darkGray-base);
     padding: 0.5em;
     text-align: center;
@@ -99,7 +99,7 @@ const Styles = {
     font-size: 1.4em;
     margin-bottom: 0.8em;
   `,
-  timeTag: styled.p`
+  TimeTag: styled.p`
     text-align: center;
     color: var(--darkGray-base);
     font-size: 1.1em;

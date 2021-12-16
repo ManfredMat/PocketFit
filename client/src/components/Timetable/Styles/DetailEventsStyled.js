@@ -22,7 +22,7 @@ const Styles = {
     height: -webkit-fill-available;
     border-collapse: collapse;
   `,
-  tableTd: styled.td`
+  TableTd: styled.td`
     border-collapse: collapse;
     padding: 0.2em 0 0.2em 0;
   `,

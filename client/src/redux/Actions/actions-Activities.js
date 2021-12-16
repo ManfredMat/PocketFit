@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const { REACT_APP_API} = process.env;
+
 //ACTIONS NAMES
 export const GET_LESSONS = "GET_LESSONS";
 export const GET_EVENTS = "GET_EVENTS";
@@ -7,6 +9,8 @@ export const GET_PROFESSORS = "GET_PROFESSORS";
 export const PUT_EVENT_NAME = "PUT_EVENT_NAME";
 export const GET_ONE_EVENT = "GET_ONE_EVENT";
 export const GET_CLIENTS = "GET_CLIENTS";
+
+
 
 export function getLessons() {
   return async function (dispatch) {

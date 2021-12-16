@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   getAllShifts,
   postWeekShifts,
@@ -28,8 +28,6 @@ function Mondays() {
 
 function ShiftActivate({ display, setRender, render , setOverFlow}) {
   let today = moment().format("M-D-YYYY").split("-");
-  const weekShifts = useSelector((state) => state.timetable.weekShifts);
-  const allShifts = useSelector((state) => state.timetable.allShifts);
   const dispatch = useDispatch();
   const [data, setData] = useState({
     weeks: "",
@@ -45,6 +43,7 @@ function ShiftActivate({ display, setRender, render , setOverFlow}) {
 
   useEffect(() => {
     dispatch(getAllShifts(today[2], today[1], today[0]));
+    //eslint-disable-next-line
   }, []);
 
   async function handleOnChange(e) {
