@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ClasesWeeklyView from "./ClasesWeeklyView";
 import Calendar from "./Calendar";
-import { useDispatch } from "react-redux";
+import { useDispatch} from "react-redux";
 import Detail from "./DetailEvents";
 import Shifts from "./Shifts";
 import ScheduleShift from "./ScheduleShift";
@@ -14,7 +14,6 @@ import moment from "moment";
 import "moment/locale/es";
 import Activities from "../Activities/Activities";
 import ClassesDetail from "../Activities/ClassesDetail";
-
 moment.locale("es");
 
 function Timetable({ screenHeight }) {
@@ -39,7 +38,7 @@ function Timetable({ screenHeight }) {
 
   useEffect(() => {
     dispatch(getTimetable());
-  // eslint-disable-next-line
+        // eslint-disable-next-line
   }, []);
 
   return (

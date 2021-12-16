@@ -11,7 +11,8 @@ function Detail() {
 
     useEffect(() => {
         dispatch(getEvents())
-    }, [dispatch]);
+        // eslint-disable-next-line
+    }, []);
 
     console.log(events)
 
