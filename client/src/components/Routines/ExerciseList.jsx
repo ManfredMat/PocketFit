@@ -30,7 +30,7 @@ const ExerciseList = () => {
     return(
         <div>
             <Styles.HeaderConteiner>
-            <h2>Ejercicios</h2>
+            <h2 style={{color:"white"}} >Ejercicios</h2>
             <Link to="/session/exercises"> 
             <Styles.LinkGreen>Ver detalle</Styles.LinkGreen>
             </Link>

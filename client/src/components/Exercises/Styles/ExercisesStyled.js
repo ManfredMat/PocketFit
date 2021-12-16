@@ -38,7 +38,7 @@ PropBoxList: styled.h3`
     background:var(--darkGray-medium);
     width:25%;
     margin:0.3rem;
-       
+    color:white;   
     border-radius: 0.3em;
     text-align:center;   
   `,

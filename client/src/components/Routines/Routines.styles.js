@@ -30,7 +30,6 @@ export const PageContainer = styled.div`
     justify-content: space-evenly;
     flex-wrap: wrap;   
     padding-bottom:2em;
-    color: white;
     width: 100vw; 
     min-height: 100vh;
     h1{
@@ -38,6 +37,7 @@ export const PageContainer = styled.div`
         font-size: 2em;
         margin-top: 2rem;
         margin-bottom: 2rem;
+        color:white;
     }
 `
 
@@ -90,6 +90,7 @@ export const DayContainer = styled.div`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    color:white;
 `
 
 export const EditButton = styled.button`
@@ -176,13 +177,14 @@ export const LeftBarContainer = styled.div`
         height:3.25em;
         width: 5rem;
         margin-bottom: 0.7rem;
+        
     }
     .LeftBar-SecondBlock{
         background-color: #D9FB52;
         border-radius: 0.5rem;
         height: 12vw;
         margin-bottom: 0.7rem;
-        
+        color:white;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -195,6 +197,7 @@ export const LeftBarContainer = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        color:white;
     }
     .LeftBar-FourthBlock{
         background-color: #B4E005;
@@ -204,6 +207,7 @@ export const LeftBarContainer = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        color:white;
     }
     p{
         font-size: 2rem;
