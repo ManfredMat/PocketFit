@@ -279,15 +279,19 @@ export default function Home() {
                                 </Styles.RoutineTypeTitleContainer>
                                 <Styles.RoutineTypeSubContainerContainer>
                                     <Styles.RoutineTypeSubContainer>
-                                        <Styles.RoutineTypeNumberContainer source={require("../../assets/routine-number-background.png")} />
-                                        <Styles.RoutineTypeNumber style={{ left: 19 }}>{getRepeticiones()}</Styles.RoutineTypeNumber>
+                                        {/* <Styles.RoutineTypeNumberContainer source={require("../../assets/routine-number-background.png")} /> */}
+                                        <Styles.RoutineTypeNumberContainer>
+                                            <Styles.RoutineTypeNumber>{getRepeticiones()}</Styles.RoutineTypeNumber>
+                                        </Styles.RoutineTypeNumberContainer>
                                         <Styles.RoutineTypeSubtitle style={{ textAlign: "right" }}>Repeticiones{"\n"}Totales</Styles.RoutineTypeSubtitle>
                                     </Styles.RoutineTypeSubContainer>
 
                                     <Styles.RoutineTypeSubContainer>
                                         <Styles.RoutineTypeSubtitle>Cantidad De{"\n"}Ejercicios</Styles.RoutineTypeSubtitle>
-                                        <Styles.RoutineTypeNumberContainer source={require("../../assets/routine-number-background.png")} />
-                                        <Styles.RoutineTypeNumber style={{ left: 105 }}>{getEjercicios()}</Styles.RoutineTypeNumber>
+                                        {/* <Styles.RoutineTypeNumberContainer source={require("../../assets/routine-number-background.png")} /> */}
+                                        <Styles.RoutineTypeNumberContainer>
+                                            <Styles.RoutineTypeNumber>{getEjercicios()}</Styles.RoutineTypeNumber>
+                                        </Styles.RoutineTypeNumberContainer>
                                     </Styles.RoutineTypeSubContainer>
                                 </Styles.RoutineTypeSubContainerContainer>
                             </Styles.RoutineTypeContainer>

@@ -141,7 +141,7 @@ const Styles = {
 
     EventTextContainer: styled.View`
         height: 100%;
-        width: 50%;
+        width: 70%;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
@@ -231,7 +231,7 @@ const Styles = {
         border-radius: 9999px;
         background-color: ${(props) =>
             props.current ? "white" : greenMedium};
-        margin: 3px
+        margin: 3px;
     `,
 
     ViewDetailedRoutine: styled.Text`
@@ -362,28 +362,29 @@ const Styles = {
         font-size: 12px;
     `,
 
-    RoutineTypeNumberContainer: styled.Image`
+    /* RoutineTypeNumberContainer: styled.Image`
         border-radius: 9999px;
         height: 55px;
         width: 55px;
         align-items: center;
         justify-content: center;
-    `,
+        align-items: center;
+        justify-content: center;
+    `, */
 
-    // RoutineTypeNumberContainer: styled.View`
-    //     border-radius: 9999px;
-    //     height: 55px;
-    //     width: 55px;
-    //     background-color: ${yellowMedium};
-    //     align-items: center;
-    //     justify-content: center;
-    // `,
+    RoutineTypeNumberContainer: styled.View`
+        border-radius: 9999px;
+        height: 55px;
+        width: 55px;
+        background-color: ${yellowMedium};
+        align-items: center;
+        justify-content: center;
+    `,
 
     RoutineTypeNumber: styled.Text`
         color: ${darkBlue};
         font-family: "Poppins_500Medium";
         font-size: 25px;
-        position: absolute;
     `,
 }
 
