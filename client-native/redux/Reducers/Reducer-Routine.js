@@ -35,7 +35,7 @@ function reducerRoutine(state = initialState, action) {
                     todayRoutine = action.payload.saturday
                     break;
 
-                case "7":
+                case "0":
                     todayRoutine = "Domingo"
                     break;   
             
