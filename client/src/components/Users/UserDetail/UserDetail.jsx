@@ -102,11 +102,11 @@ function UserDetail() {
                                 </Styles.StadisticsInfoContainer>
                                 <Styles.StadisticsInfoContainer>
                                     <Styles.StadisticsKey>Altura:</Styles.StadisticsKey>
-                                    <Styles.StadisticsValue>{user.height ? `${user.height}kg` : "-"}</Styles.StadisticsValue>
+                                    <Styles.StadisticsValue>{user.height ? `${user.height}cm` : "-"}</Styles.StadisticsValue>
                                 </Styles.StadisticsInfoContainer>
                                 <Styles.StadisticsInfoContainer>
                                     <Styles.StadisticsKey>Peso:</Styles.StadisticsKey>
-                                    <Styles.StadisticsValue>{user.weight ? `${user.weight}cm` : "-"}</Styles.StadisticsValue>
+                                    <Styles.StadisticsValue>{user.weight ? `${user.weight}kg` : "-"}</Styles.StadisticsValue>
                                 </Styles.StadisticsInfoContainer>
                             </Styles.DataSheetSubContainer>
                         </Styles.DataSheet>
