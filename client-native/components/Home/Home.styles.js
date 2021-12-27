@@ -19,7 +19,7 @@ const Styles = {
         background-color: ${darkGrayBase};
         padding: 10px;
         padding-top: 20px;
-        padding-bottom: 103px;
+        padding-bottom: 78px;
     `,
 
     HeaderContainer: styled.View`

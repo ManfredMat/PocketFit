@@ -46,6 +46,8 @@
           "mode": "production"
         }
       ]
-    ]
+    ],
+    "description": "",
+    "githubUrl": "https://github.com/ManfredMat/PocketFit"
   }
 }
