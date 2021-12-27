@@ -98,15 +98,15 @@ function UserDetail() {
                             <Styles.DataSheetSubContainer>
                                 <Styles.StadisticsInfoContainer>
                                     <Styles.StadisticsKey>Edad:</Styles.StadisticsKey>
-                                    <Styles.StadisticsValue>{user.age ? user.age : "-"}</Styles.StadisticsValue>
+                                    <Styles.StadisticsValue>{user.age ? `${user.age} años` : "-"}</Styles.StadisticsValue>
                                 </Styles.StadisticsInfoContainer>
                                 <Styles.StadisticsInfoContainer>
                                     <Styles.StadisticsKey>Altura:</Styles.StadisticsKey>
-                                    <Styles.StadisticsValue>{user.height ? user.height : "-"}</Styles.StadisticsValue>
+                                    <Styles.StadisticsValue>{user.height ? `${user.height}cm` : "-"}</Styles.StadisticsValue>
                                 </Styles.StadisticsInfoContainer>
                                 <Styles.StadisticsInfoContainer>
                                     <Styles.StadisticsKey>Peso:</Styles.StadisticsKey>
-                                    <Styles.StadisticsValue>{user.weight ? user.weight : "-"}</Styles.StadisticsValue>
+                                    <Styles.StadisticsValue>{user.weight ? `${user.weight}kg` : "-"}</Styles.StadisticsValue>
                                 </Styles.StadisticsInfoContainer>
                             </Styles.DataSheetSubContainer>
                         </Styles.DataSheet>
