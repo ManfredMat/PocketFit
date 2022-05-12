@@ -11,7 +11,7 @@ function Calendar({ year, month, big }) {
   const [eventoDetalle, setEventoDetalle] = React.useState(false);
   const [eventoId, setEventoId] = useState("");
   var daysMonth = parseInt(moment(month, "M").endOf("month").format("D"));
-  var StartName = parseInt(moment(month, "M").startOf("month").format("d"));
+  var StartName = parseInt(moment(month, "M").startOf("month").format("D"));
   let firstDay = parseInt(moment(month, "M").startOf("month").format("D"));
   //Function to create an array with all the days of the month
 
